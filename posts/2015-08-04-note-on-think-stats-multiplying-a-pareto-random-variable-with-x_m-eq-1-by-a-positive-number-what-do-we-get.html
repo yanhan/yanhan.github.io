@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Note on Think Stats: Multiplying a Pareto random variable with x_m = 1 by a positive number - what do we get?</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pang Yan Han">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/foundation.min.css">
+        <link rel="stylesheet" href="../css/responsive-nav.css">
+        <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="../css/my-pygments-colorscheme.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+        <script src="../js/vendor/modernizr.js"></script>
+        <script src="../js/responsive-nav.min.js"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ["\\(", "\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+    </head>
+
+    <body>
+      <div class="site">
+        <div class="row">
+          <div class="small-6 columns">
+            <h1 class="title"><a href="../">yan han's blog</a></h1>
+          </div>
+          <div class="small-6 columns">
+            <div class="header-icons header-icons-translate show-for-medium-up">
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-4x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-4x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-4x"></i>
+              </a>
+            </div>
+            <div class="header-icons show-for-small-only">
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-2x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-2x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <nav class="header nav-collapse">
+              <ul>
+                <li><a class="extra" href="../">home</a></li>
+                <li><a class="extra" href="../about.html">about</a></li>
+                <li><a class="extra" href="../haskell">Haskell</a></li>
+                <li><a class="extra" href="../bookshelf.html">bookshelf</a></li>
+                <li><a class="extra" href="../interesting-talks.html">interesting talks</a></li>
+                <li><a class="extra" href="../archive.html">archive</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <h2>Note on Think Stats: Multiplying a Pareto random variable with x_m = 1 by a positive number - what do we get?</h2>
+<p class="meta">
+  04 Aug 2015,
+  
+    by <span class="italic">Pang Yan Han</span>
+  
+</p>
+<div class="post-tags">
+  <i class="fa fa-tags"></i>Tags: <a href="../tags/probability.html">probability</a>
+</div>
+<div class="post">
+  <p><strong>NOTE:</strong> Having only a very basic and recently acquired formal education in Probability and Statistics, I have no idea how to write a Pareto random variable in Math notation. And I can’t seem to find it on the Internet due to my poor googling skills. So I’m going to write: \( X \sim Pareto(x_m = j, \alpha = k) \) to mean that \( X \) is a Pareto random variable with parameters \( x_m = j, \alpha = k \). If you know the actual Math notation for writing a Pareto random variable, please share it with me, I’ll be very glad to know it!!!</p>
+<p>So I was onto Chapter 4.2 of <a href="http://greenteapress.com/thinkstats/">Think Stats</a> which featured the Pareto Distribution. Exercise 4.3 was on writing a function <code>paretovariate</code> to generate a Pareto random variable with parameters \( x_m, \alpha \). So it turns out that the <code>random</code> module in Python has a function <code>random.paretovariate</code> whose documentation looks like this:</p>
+<blockquote>
+<p>Help on method paretovariate in module random:</p>
+<p><strong>paretovariate</strong>(self, alpha) method of random.Random instance</p>
+<p>    Pareto distribution. alpha is the shape parameter.</p>
+</blockquote>
+<p>And indeed the <code>random.paretovariate</code> does not take in a \( x_m \) parameter. The author mentioned that \( x_m = 1 \) for <code>random.paretovariate</code>, and that by multiplying the random variable generated by <code>random.paretovariate</code> by a positive number \( j \), we obtain a new Pareto random variable with \( x_m = j \) instead of \( x_m = 1 \). Writing a function called <code>paretovariate</code> which allows a custom \( x_m \) is one objective of Exercise 4.3. My code for it is as follows:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">paretovariate</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">x_m</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">x_m</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">paretovariate</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+<p>But… how do we know that the author is telling us the truth? I mean, usually the author is correct, but, we are given this transformation without proof. So I set out to prove for myself the following:</p>
+<p>Given \( X \sim Pareto(x_m = 1, \alpha = k) \), multiplying \( X \) by \( j &gt; 0 \) and denoting the resulting random variable as \( Y \), we have \( Y \sim Pareto(x_m = j, \alpha = k) \).</p>
+<p>And… I must be really rusty. I forgot how to prove equivalence between 2 random variables. Eventually, I remembered that this can be done by showing that they share the same moment generating function. So first we gotta find out what the mgf of a Pareto random variable is. On the <a href="https://en.wikipedia.org/wiki/Pareto_distribution">Wikipedia entry of the Pareto Distribution</a>, we see this intimidating equation:</p>
+<p><br /><span class="math display">$$\alpha(-x_m t)^{\alpha} \Gamma(-\alpha, -x_m t) \ \ \text{for} \ \ t &lt; 0\
+$$</span><br /></p>
+<p>which I must say again, looks really intimidating. And while I do understand most of the individual symbols, I don’t know what the gamma symbol stands for (it’s probably not the gamma function since that takes in a single value) and so proving things via the mgf route didn’t seem very feasible to me.</p>
+<p>I’d probably have given up if not for recalling that we can prove the same thing by showing that the 2 random variables share the same CDF. In the book, the CDF of the Pareto distribution is given by:</p>
+<p><br /><span class="math display">$$CDF(x) = 1 - (\frac{x}{x_m})^{-\alpha}
+$$</span><br /></p>
+<p>which is slightly different from that given in Wikipedia but they’re essentially the same thing. So \( X \sim Pareto(x_m = 1, \alpha = \alpha) \) has CDF \( F_X(x) = 1 - (\frac{x}{1})^{-\alpha} = 1 - x^{-\alpha} \).</p>
+<p>Now, let \( j &gt; 0 \) be a constant, \( X \sim Pareto(x_m = 1, \alpha = k) \) for some \( k &gt; 0 \). Let \( Y = j * X \). We want to show that \( Y \sim Pareto(x_m = j, \alpha = k) \) by showing that \( F_Y(x) = 1 - (\frac{x}{j})^{-k} \).</p>
+<p><strong>Proof:</strong></p>
+<p><br /><span class="math display">$$
+\begin{align*}
+F_Y(x) =&amp; \ \ \mathbb{P}(Y &lt;= x)\\
+=&amp; \ \ \mathbb{P}(j * X &lt;= x)\\
+=&amp; \ \ \mathbb{P}(X &lt;= \frac{x}{j})\\
+=&amp; \ \ 1 - (\frac{x}{j})^{-k}
+\end{align*}
+$$</span><br /></p>
+<p>as desired. Hence \( Y \sim Pareto(x_m = j, \alpha = k) \), where \( X \sim Pareto(x_m = 1, \alpha = k), j &gt; 0, Y = j * X \).</p>
+<h2 id="afterthoughts">Afterthoughts</h2>
+<p>While the actual proof was pretty short, I thought that this was a rather meaningful exercise and it certainly helped me brush up my probability chops.</p>
+</div>
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
+        var disqus_identifier = "posts/2015-08-04-note-on-think-stats-multiplying-a-pareto-random-variable-with-x_m-eq-1-by-a-positive-number-what-do-we-get.md";
+        var disqus_url = "http://blog.pangyanhan.com/posts/2015-08-04-note-on-think-stats-multiplying-a-pareto-random-variable-with-x_m-eq-1-by-a-positive-number-what-do-we-get.html";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+          </div>
+        </div>
+
+        <div class="row footer">
+          <div class="medium-12 columns">
+            <div class="footer-item">
+              <span>Github</span>
+              <a href="https://github.com/yanhan/">github.com/yanhan</a>
+            </div>
+            <div class="hakyll-line">
+              Site proudly generated by
+              <a href="http://jaspervdj.be/hakyll" target="_blank">Hakyll</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="../js/vendor/jquery.js"></script>
+      <script src="../js/foundation.min.js"></script>
+      <script>
+        $(document).foundation();
+        var navigation = responsiveNav(".nav-collapse", {
+          animate: true,
+          transition: 284,
+          label: "",
+          insert: "after",
+          openPos: "relative",
+          navActiveClass: "js-nav-active"
+        });
+      </script>
+      <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-49506023-1', 'pangyanhan.com');ga('send', 'pageview');</script>
+    </body>
+</html>

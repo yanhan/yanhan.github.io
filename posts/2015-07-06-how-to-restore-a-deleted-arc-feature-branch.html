@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>How to restore a deleted `arc feature` branch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pang Yan Han">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/foundation.min.css">
+        <link rel="stylesheet" href="../css/responsive-nav.css">
+        <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="../css/my-pygments-colorscheme.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+        <script src="../js/vendor/modernizr.js"></script>
+        <script src="../js/responsive-nav.min.js"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ["\\(", "\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+    </head>
+
+    <body>
+      <div class="site">
+        <div class="row">
+          <div class="small-6 columns">
+            <h1 class="title"><a href="../">yan han's blog</a></h1>
+          </div>
+          <div class="small-6 columns">
+            <div class="header-icons header-icons-translate show-for-medium-up">
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-4x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-4x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-4x"></i>
+              </a>
+            </div>
+            <div class="header-icons show-for-small-only">
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-2x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-2x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <nav class="header nav-collapse">
+              <ul>
+                <li><a class="extra" href="../">home</a></li>
+                <li><a class="extra" href="../about.html">about</a></li>
+                <li><a class="extra" href="../haskell">Haskell</a></li>
+                <li><a class="extra" href="../bookshelf.html">bookshelf</a></li>
+                <li><a class="extra" href="../interesting-talks.html">interesting talks</a></li>
+                <li><a class="extra" href="../archive.html">archive</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <h2>How to restore a deleted `arc feature` branch</h2>
+<p class="meta">
+  06 Jul 2015,
+  
+    by <span class="italic">Pang Yan Han</span>
+  
+</p>
+<div class="post-tags">
+  <i class="fa fa-tags"></i>Tags: <a href="../tags/arc.html">arc</a>, <a href="../tags/arcanist.html">arcanist</a>, <a href="../tags/git.html">git</a>, <a href="../tags/phabricator.html">phabricator</a>, <a href="../tags/version%20control.html">version control</a>
+</div>
+<div class="post">
+  <p><strong>Updated:</strong> 17 July 2015</p>
+<p><strong>NOTE:</strong> There may be some (ok perhaps a lot of) mistakes with regards to Phabricator and Arcanist terminology because of my lack of familiarity with these tools. But I think you should be able to get the gist of this post despite my mistakes.</p>
+<h2 id="backstory-scenario">Backstory / Scenario</h2>
+<p>Suppose you are using Phabricator and like a true command line addict, you make use of Arcanist and create a feature branch using <code>arc feature</code>. Being the git power user that you are, you go on to perform many <code>git reset</code>s (various flavors), <code>git rebase</code>s (various flavors again), <code>git merge</code>s, <code>git branch -D</code>’s, etc as you are making changes to your code. Along with several <code>arc diff</code>s as you update your Revision on Phabricator. One thing led to another and suddenly you realize… you deleted the branch you created using <code>arc feature</code>, or messed it up to the point of no recognition. And you want to get it back to exactly the same state as the Revision on Phabricator, but you don’t know how.</p>
+<p>That was exactly the scenario that happened to me. Reading the Phabricator docs and googling around for answers didn’t help much. Eventually I tried something which has worked for me. I hope it works for you, too.</p>
+<h2 id="step-0-assumptions">Step 0: Assumptions</h2>
+<ol style="list-style-type: decimal">
+<li>The Revision that you’ve sent for review using <code>arc diff</code> is available on your Phabricator server.</li>
+<li>You have the actual git branch for the Revision created by <code>arc diff</code> somewhere, whether it’s a local or remote git repository. If you’ve configured Phabricator to do a force push onto a branch on a remote Git repo each time you do an <code>arc diff</code>, then you can probably find the branch on the remote.</li>
+</ol>
+<p>Carry on if both assumptions above are true for you. Otherwise, you may stop reading.</p>
+<p>Some terminology I wish to introduce at this point:</p>
+<ol style="list-style-type: decimal">
+<li>The branch that we want to restore is <code>awesome-feature-X</code>. That is, you originally created it using an <code>arc feature awesome-feature-X</code> command.</li>
+<li>The corresponding Phabricator Revision for <code>arc feature awesome-feature-X</code> is <code>D1882</code>.</li>
+<li><p>At the <code>origin</code> git remote, there is a branch called <code>FBR_D1882_awesome-feature-X</code> that corresponds to the Phabricator Revision <code>D1882</code>.</p></li>
+<li><p>We will also assume that <code>D1882</code> contains the follow commits, from oldest to most recent, in chronological order:</p></li>
+</ol>
+<blockquote>
+<p>fec32ab8 Add README.md</p>
+<p>25ad51ee Create AwesomeController</p>
+<p>39cf115d Enable CORS for AwesomeController</p>
+</blockquote>
+<p>and the parent of commit <code>fec32ab8</code> is commit <code>da1522c3</code>. Do note that <code>da1522c3</code> is not part of Revision <code>D1882</code>.</p>
+<h2 id="step-1-delete-the-branch-with-the-same-name-as-the-feature-branch">Step 1: Delete the branch with the same name as the feature branch</h2>
+<p>That is assuming you have, in your effort to restore the feature branch, actually created a branch of the same name. If you have indeed done so and on that branch, you have changes that you want to play on top of the a restored feature branch, please rename the branch to something else before you carry on.</p>
+<p>Delete the branch using:</p>
+<div class="highlight"><pre>git branch -D awesome-feature-X
+</pre></div>
+
+<h2 id="step-2-create-a-new-branch-whose-head-is-the-same-as-the-parent-of-the-oldest-commit-in-the-feature-branch-you-want-to-restore">Step 2: Create a new branch whose HEAD is the same as the parent of the oldest commit in the feature branch you want to restore</h2>
+<p>In Step 0, we assumed that Phabricator Revision, <code>D1882</code>, contains the following commits, from least recent to most recent, in chronological order:</p>
+<div class="highlight"><pre>fec32ab8 Add README.md
+25ad51ee Create AwesomeController
+39cf115d Enable CORS for AwesomeController
+</pre></div>
+
+<p>The commit we’re interested in is the parent of <code>fec32ab8</code>, which we earlier assumed is <code>da1522c3</code>.</p>
+<p>We need a temporary branch whose <code>HEAD</code> is <code>da1522c3</code>. Let’s call this temporary branch <code>temp-helper-branch</code> and create it:</p>
+<div class="highlight"><pre>git checkout -b temp-helper-branch da1522c3
+</pre></div>
+
+<h2 id="step-3-use-arc-feature-to-create-a-branch-with-the-same-name-as-the-feature-branch">Step 3: Use <code>arc feature</code> to create a branch with the same name as the feature branch</h2>
+<p>At the end of the last step, <code>temp-helper-branch</code> should be the currently active branch and its <code>HEAD</code> should be commit <code>da1522c3</code>. Now you gotta use <code>arc feature</code> to create a feature branch with the same name as the one you want to restore:</p>
+<div class="highlight"><pre>arc feature awesome-feature-X
+</pre></div>
+
+<h2 id="step-4-fetch-from-the-origin-remote">Step 4: Fetch from the <code>origin</code> remote</h2>
+<p>At Step 0, we assumed that at the <code>origin</code> remote, there is a branch named <code>FBR_D1882_awesome-feature-X</code> that’s created by Phbricator for <code>D1882</code>. Let’s fetch all the updates from <code>origin</code>, which will also update the remote tracking branch <code>origin/FBR_D1882_awesome-feature-X</code> on your local git repository (or create it if it does not exist):</p>
+<div class="highlight"><pre>git fetch origin
+</pre></div>
+
+<h2 id="step-5-fast-forward-merge-originfbr_d1882_awesome-feature-x-branch-on-top-of-awesome-feature-x">Step 5: Fast forward merge <code>origin/FBR_D1882_awesome-feature-X</code> branch on top of <code>awesome-feature-X</code></h2>
+<p>You should still be at branch <code>awesome-feature-X</code>. Now execute:</p>
+<div class="highlight"><pre>git merge --ff-only origin/FBR_D1882_awesome-feature-X
+</pre></div>
+
+<p>Tadah! You got your feature branch back. Now you can apply any changes you want on top of this and run <code>arc diff</code> as if your feature branch was never accidentally deleted in the first place.</p>
+<h2 id="step-6-delete-the-unnecessary-branch-weve-created-along-the-way">Step 6: Delete the unnecessary branch we’ve created along the way</h2>
+<p>Namely, <code>temp-helper-branch</code>:</p>
+<div class="highlight"><pre>git branch -D temp-helper-branch
+</pre></div>
+
+</div>
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
+        var disqus_identifier = "posts/2015-07-06-how-to-restore-a-deleted-arc-feature-branch.md";
+        var disqus_url = "http://blog.pangyanhan.com/posts/2015-07-06-how-to-restore-a-deleted-arc-feature-branch.html";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+          </div>
+        </div>
+
+        <div class="row footer">
+          <div class="medium-12 columns">
+            <div class="footer-item">
+              <span>Github</span>
+              <a href="https://github.com/yanhan/">github.com/yanhan</a>
+            </div>
+            <div class="hakyll-line">
+              Site proudly generated by
+              <a href="http://jaspervdj.be/hakyll" target="_blank">Hakyll</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="../js/vendor/jquery.js"></script>
+      <script src="../js/foundation.min.js"></script>
+      <script>
+        $(document).foundation();
+        var navigation = responsiveNav(".nav-collapse", {
+          animate: true,
+          transition: 284,
+          label: "",
+          insert: "after",
+          openPos: "relative",
+          navActiveClass: "js-nav-active"
+        });
+      </script>
+      <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-49506023-1', 'pangyanhan.com');ga('send', 'pageview');</script>
+    </body>
+</html>
