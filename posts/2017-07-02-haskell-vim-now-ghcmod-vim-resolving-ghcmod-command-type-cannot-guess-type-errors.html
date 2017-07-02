@@ -92,6 +92,7 @@
 </div>
 <div class="post">
   <p><strong>NOTE:</strong> This post features a very hacky way to work around things which will likely never be merged into the ghcmod-vim project. It is just a place for me to document what has worked for myself in case I encounter the same issue again. <strong>This also assumes you are primarily using <a href="https://docs.haskellstack.org/en/stable/README/">Stack</a> for your Haskell projects.</strong></p>
+<h2 id="introduction-problem-statement">Introduction / Problem Statement</h2>
 <p>Yesterday afternoon, I took some time to install <a href="https://github.com/begriffs/haskell-vim-now">haskell-vim-now</a>. Among the list of features I saw on the README, what caught my attention was its ability to show the type of an expression in Haskell source code by typing <code>,ht</code> in normal mode. So I tried it on a Haskell file and I see the following text in red at the status line:</p>
 <div class="highlight"><pre>ghcmod#command#type: Cannot guess type
 </pre></div>
@@ -109,17 +110,21 @@ The Glorious Glasgow Haskell Compilation System, version 7.10.3
 </pre></div>
 
 <p>Notice the difference in the GHC versions.</p>
-<p>The workaround stated in <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a> only works to a certain extent for myself (will be explained later). What worked for me is to directly modify the <code>ghcmod-vim</code> source code to invoke the correct <code>ghc-mod</code> command.</p>
+<p>The workaround stated in <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a> only works to a certain extent for myself (will be explained later). Below, I present a step by step solution to solve the problem.</p>
 <h2 id="the-solution">The solution</h2>
-<p>To set things straight, the <code>ghc-mod</code> invoked by the <code>ghc-mod --version</code> command above is installed in <code>${HOME}/.local/bin</code> by haskell-vim-now. Other than the fact that it may be using a different GHC version from what your Haskell project uses, it may also be missing the libraries needed by your project. What we want is to invoke <code>ghc-mod</code> that is installed inside the project.</p>
+<p>To set things straight, the <code>ghc-mod</code> invoked by the <code>ghc-mod --version</code> command above is installed in <code>${HOME}/.local/bin</code> by haskell-vim-now. Other than the fact that it may be using a different GHC version from what your Haskell project uses, it may also be missing the libraries needed by your project. What we want is to</p>
+<ol style="list-style-type: decimal">
+<li>install ghc-mod inside our project</li>
+<li>let ghcmod-vim invoke the ghc-mod that is installed inside our project</li>
+</ol>
 <h3 id="step-1.-install-ghc-mod-inside-your-project">Step 1. Install ghc-mod inside your project</h3>
-<p>This assumes that your Haskell source code is inside its own Stack project (created by <code>stack new</code>). If so, run:</p>
+<p>This assumes that your Haskell source code is inside its own Stack project (created by <code>stack new</code>). If so, cd into the project’s directory and run:</p>
 <div class="highlight"><pre>stack install ghc-mod
 </pre></div>
 
 <p>This step is essentially the same as the workaround given in <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a></p>
 <h3 id="step-2.-modify-the-ghcmod-vim-plugin-source-code-to-use-the-correct-ghc-mod">Step 2. Modify the ghcmod-vim plugin source code to use the correct ghc-mod</h3>
-<p>haskell-vim-now installs the ghcmod-vim plugin in <code>${HOME}/.vim/bundle/ghcmod-vim</code>. I figured out that at some point it has to invoke the <code>ghc-mod</code> command. We just need to change appropriate occurrences of <code>ghc-mod</code> to <code>stack exec ghc-mod</code> so that ghcmod-vim will use the <code>ghc-mod</code> we installed in Step 1. A little browsing around and git grep reveals the following points where code needs to be changed:</p>
+<p>haskell-vim-now installs the ghcmod-vim plugin in <code>${HOME}/.vim/bundle/ghcmod-vim</code>. I figured out that at some point it has to invoke the ghc-mod command. We just need to change appropriate occurrences of <code>ghc-mod</code> to <code>stack exec ghc-mod</code> so that ghcmod-vim will use the ghc-mod we installed in Step 1. A little browsing around and git grep reveals the following points where code needs to be changed:</p>
 <p><strong>NOTE:</strong> The following required source code changes are based on commit <a href="https://github.com/eagletmt/ghcmod-vim/commit/1d192d13d68ab59f9f46497a0909bf24a7b7dfff">1d192d13d68ab59f9f46497a0909bf24a7b7dfff</a> of ghcmod-vim. Things may have changed since the time of writing of this post. Hence for the best effect, please run the <code>git grep -n &quot;\['ghc-mod'&quot;</code> command in <code>${HOME}/.vim/bundle/ghcmod-vim</code> to figure out where you need to change the code and use the files below as a reference.</p>
 <p><strong>Point one:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L248" class="uri">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L248</a></p>
 <p>Modify:</p>
