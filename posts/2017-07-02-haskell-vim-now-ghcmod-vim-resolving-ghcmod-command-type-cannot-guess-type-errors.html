@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>haskell-vim-now / ghcmod-vim: Resolving 'ghcmod#command#type Cannot guess type' errors</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pang Yan Han">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/foundation.min.css">
+        <link rel="stylesheet" href="../css/responsive-nav.css">
+        <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="../css/my-pygments-colorscheme.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+        <script src="../js/vendor/modernizr.js"></script>
+        <script src="../js/responsive-nav.min.js"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ["\\(", "\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+    </head>
+
+    <body>
+      <div class="site">
+        <div class="row">
+          <div class="small-6 columns">
+            <h1 class="title"><a href="../">yan han's blog</a></h1>
+          </div>
+          <div class="small-6 columns">
+            <div class="header-icons header-icons-translate show-for-medium-up">
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-4x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-4x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-4x"></i>
+              </a>
+            </div>
+            <div class="header-icons show-for-small-only">
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-2x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-2x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <nav class="header nav-collapse">
+              <ul>
+                <li><a class="extra" href="../">home</a></li>
+                <li><a class="extra" href="../about.html">about</a></li>
+                <li><a class="extra" href="../haskell">Haskell</a></li>
+                <li><a class="extra" href="../bookshelf.html">bookshelf</a></li>
+                <li><a class="extra" href="../interesting-talks.html">interesting talks</a></li>
+                <li><a class="extra" href="../archive.html">archive</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <h2>haskell-vim-now / ghcmod-vim: Resolving 'ghcmod#command#type Cannot guess type' errors</h2>
+<p class="meta">
+  02 Jul 2017,
+  
+    by <span class="italic">Pang Yan Han</span>
+  
+</p>
+<div class="post-tags">
+  <i class="fa fa-tags"></i>Tags: <a href="../tags/haskell.html">haskell</a>, <a href="../tags/vim.html">vim</a>, <a href="../tags/haskell-vim-now.html">haskell-vim-now</a>, <a href="../tags/ghcmod-vim.html">ghcmod-vim</a>, <a href="../tags/ghc-mod.html">ghc-mod</a>
+</div>
+<div class="post">
+  <p><strong>NOTE:</strong> This post features a very hacky way to work around things which will likely never be merged into the ghcmod-vim project. It is just a place for me to document what has worked for myself in case I encounter the same issue again. <strong>This also assumes you are primarily using <a href="https://docs.haskellstack.org/en/stable/README/">Stack</a> for your Haskell projects.</strong></p>
+<p>Yesterday afternoon, I took some time to install <a href="https://github.com/begriffs/haskell-vim-now">haskell-vim-now</a>. Among the list of features I saw on the README, what caught my attention was its ability to show the type of an expression in Haskell source code by typing <code>,ht</code> in normal mode. So I tried it on a Haskell file and I see the following text in red at the status line:</p>
+<div class="highlight"><pre>ghcmod#command#type: Cannot guess type
+</pre></div>
+
+<p>It was pretty devastating for me to see this. After all, the installation took closer to an hour than 10 minutes. This morning I decided to do more googling and figured out the reason, which is stated right here: <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a></p>
+<p>It turns out that haskell-vim-now uses ghcmod-vim which in turn calls ghc-mod to retrieve the type of the expression under our vim cursor when we press <code>,ht</code>. But because I was using Stack, the GHC and the libraries I was using to compile the Haskell source code is different from the GHC that ghcmod-vim was using to infer the types.</p>
+<p>Here’s the output I got:</p>
+<div class="highlight"><pre>$ ghc-mod --version
+ghc-mod version 5.7.0.0 compiled by GHC 8.0.2
+</pre></div>
+
+<p>versus</p>
+<div class="highlight"><pre>$ stack exec ghc -- --version
+The Glorious Glasgow Haskell Compilation System, version 7.10.3
+</pre></div>
+
+<p>Notice the difference in the GHC versions.</p>
+<p>The workaround stated in <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a> only works to a certain extent for myself (will be explained later). What worked for me is to directly modify the <code>ghcmod-vim</code> source code to invoke the correct <code>ghc-mod</code> command.</p>
+<h2 id="the-solution">The solution</h2>
+<p>To set things straight, the <code>ghc-mod</code> invoked by the <code>ghc-mod --version</code> command above is installed in <code>${HOME}/.local/bin</code> by haskell-vim-now. Other than the fact that it may be using a different GHC version from what your Haskell project uses, it may also be missing the libraries needed by your project. What we want is to invoke <code>ghc-mod</code> that is installed inside the project.</p>
+<h3 id="step-1.-install-ghc-mod-inside-your-project">Step 1. Install ghc-mod inside your project</h3>
+<p>This assumes that your Haskell source code is inside its own Stack project (created by <code>stack new</code>). If so, run:</p>
+<div class="highlight"><pre>stack install ghc-mod
+</pre></div>
+
+<p>This step is essentially the same as the workaround given in <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a></p>
+<h3 id="step-2.-modify-the-ghcmod-vim-plugin-source-code-to-use-the-correct-ghc-mod">Step 2. Modify the ghcmod-vim plugin source code to use the correct ghc-mod</h3>
+<p>haskell-vim-now installs the ghcmod-vim plugin in <code>${HOME}/.vim/bundle/ghcmod-vim</code>. I figured out that at some point it has to invoke the <code>ghc-mod</code> command. We just need to change appropriate occurrences of <code>ghc-mod</code> to <code>stack exec ghc-mod</code> so that ghcmod-vim will use the <code>ghc-mod</code> we installed in Step 1. A little browsing around and git grep reveals the following points where code needs to be changed:</p>
+<p><strong>NOTE:</strong> The following required source code changes are based on commit <a href="https://github.com/eagletmt/ghcmod-vim/commit/1d192d13d68ab59f9f46497a0909bf24a7b7dfff">1d192d13d68ab59f9f46497a0909bf24a7b7dfff</a> of ghcmod-vim. Things may have changed since the time of writing of this post. Hence for the best effect, please run the <code>git grep -n &quot;\['ghc-mod'&quot;</code> command in <code>${HOME}/.vim/bundle/ghcmod-vim</code> to figure out where you need to change the code and use the files below as a reference.</p>
+<p><strong>Point one:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L248" class="uri">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L248</a></p>
+<p>Modify:</p>
+<div class="highlight"><pre>let l:cmd = ['ghc-mod', '--silent']
+</pre></div>
+
+<p>to</p>
+<div class="highlight"><pre>let l:cmd = ['stack', 'exec', 'ghc-mod', '--silent']
+</pre></div>
+
+<p>And in fact this was sufficient to let <code>,ht</code> correctly infer the type of an expression, because this code is inside the <code>ghcmod#build_command</code> vim function and is used by various parts of the code to build the actual <code>ghc-mod</code> command.</p>
+<p><strong>Point two:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L344" class="uri">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L344</a></p>
+<p>Modify:</p>
+<div class="highlight"><pre>\ substitute(vimproc#system(['ghc-mod', '--silent', 'root']), '\n*$', '', '')
+</pre></div>
+
+<p>to:</p>
+<div class="highlight"><pre>\ substitute(vimproc#system(['stack', 'exec', 'ghc-mod', '--silent', 'root']), '\n*$', '', '')
+</pre></div>
+
+<p><strong>Point three:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109" class="uri">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109</a></p>
+<p>Modify:</p>
+<div class="highlight"><pre>let l:ghcmod = vimproc#system(['ghc-mod','version'])
+</pre></div>
+
+<p>to:</p>
+<div class="highlight"><pre>let l:ghcmod = vimproc#system(['stack', 'exec', 'ghc-mod','version'])
+</pre></div>
+
+<h3 id="step-3-restart-vim">Step 3: Restart vim</h3>
+<p>This should be pretty obvious but it’s here for completeness.</p>
+<h2 id="afterthoughts-additional-notes">Afterthoughts / Additional Notes</h2>
+<p>What did not work for me in the workaround stated at <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a> was having the <code>,ht</code> command work after running vim using <code>stack exec</code>, like <code>stack exec -- vim source-file.hs</code>. Contrary to what is stated, running vim like this does not add the directory containing the current Haskell project’s <code>ghc-mod</code> binary (that we installed via <code>stack install ghc-mod</code> in Step 1 of the solution) to the <code>PATH</code> environment variable. As such, the <code>ghc-mod</code> vim that’s invoked by the ghcmod-vim plugin is still the one installed in <code>${HOME}/.local/bin</code>.</p>
+<p>Because there are a few layers of abstraction, you might want to check if using <code>ghc-mod</code> directly on a Haskell source file actually works. Assuming you have already carried out step 1 of the solution above, simply run <code>stack exec ghc-mod type source-file.hs row col</code> and see if there is meaningful output (of course replacing <code>source-file.hs</code>, <code>row</code>, <code>col</code> with appropriate values).</p>
+<p>For instance, given the following source file named <code>hello.hs</code>:</p>
+<div class="highlight"><pre>main :: IO ()
+main = putStrLn &quot;Hello, World!&quot;
+</pre></div>
+
+<p>To find out the type of <code>putStrLn</code>, run:</p>
+<div class="highlight"><pre>stack exec ghc-mod type hello.hs 2 8
+</pre></div>
+
+<p>You should see the following output:</p>
+<div class="highlight"><pre>2 8 2 16 &quot;String -&gt; IO ()&quot;
+2 8 2 32 &quot;IO ()&quot;
+2 1 2 32 &quot;IO ()&quot;
+</pre></div>
+
+</div>
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
+        var disqus_identifier = "posts/2017-07-02-haskell-vim-now-ghcmod-vim-resolving-ghcmod-command-type-cannot-guess-type-errors.md";
+        var disqus_url = "http://blog.pangyanhan.com/posts/2017-07-02-haskell-vim-now-ghcmod-vim-resolving-ghcmod-command-type-cannot-guess-type-errors.html";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+          </div>
+        </div>
+
+        <div class="row footer">
+          <div class="medium-12 columns">
+            <div class="footer-item">
+              <span>Github</span>
+              <a href="https://github.com/yanhan/">github.com/yanhan</a>
+            </div>
+            <div class="hakyll-line">
+              Site proudly generated by
+              <a href="http://jaspervdj.be/hakyll" target="_blank">Hakyll</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="../js/vendor/jquery.js"></script>
+      <script src="../js/foundation.min.js"></script>
+      <script>
+        $(document).foundation();
+        var navigation = responsiveNav(".nav-collapse", {
+          animate: true,
+          transition: 284,
+          label: "",
+          insert: "after",
+          openPos: "relative",
+          navActiveClass: "js-nav-active"
+        });
+      </script>
+      <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-49506023-1', 'pangyanhan.com');ga('send', 'pageview');</script>
+    </body>
+</html>
