@@ -132,7 +132,7 @@ The Glorious Glasgow Haskell Compilation System, version 7.10.3
 </pre></div>
 
 <p>to</p>
-<div class="highlight"><pre>let l:cmd = ['stack', 'exec', 'ghc-mod', '--silent']
+<div class="highlight"><pre>let l:cmd = ['stack', 'exec', '--', 'ghc-mod', '--silent']
 </pre></div>
 
 <p>And in fact this was sufficient to let <code>,ht</code> correctly infer the type of an expression, because this code is inside the <code>ghcmod#build_command</code> vim function and is used by various parts of the code to build the actual <code>ghc-mod</code> command.</p>
@@ -142,7 +142,7 @@ The Glorious Glasgow Haskell Compilation System, version 7.10.3
 </pre></div>
 
 <p>to:</p>
-<div class="highlight"><pre>\ substitute(vimproc#system(['stack', 'exec', 'ghc-mod', '--silent', 'root']), '\n*$', '', '')
+<div class="highlight"><pre>\ substitute(vimproc#system(['stack', 'exec', '--', 'ghc-mod', '--silent', 'root']), '\n*$', '', '')
 </pre></div>
 
 <p><strong>Point three:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109" class="uri">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109</a></p>
