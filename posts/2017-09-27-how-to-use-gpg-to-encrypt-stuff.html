@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>How to use GPG to encrypt stuff</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pang Yan Han">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/foundation.min.css">
+        <link rel="stylesheet" href="../css/responsive-nav.css">
+        <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="../css/my-pygments-colorscheme.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+        <script src="../js/vendor/modernizr.js"></script>
+        <script src="../js/responsive-nav.min.js"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ["\\(", "\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+    </head>
+
+    <body>
+      <div class="site">
+        <div class="row">
+          <div class="small-6 columns">
+            <h1 class="title"><a href="../">yan han's blog</a></h1>
+          </div>
+          <div class="small-6 columns">
+            <div class="header-icons header-icons-translate show-for-medium-up">
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-4x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-4x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-4x"></i>
+              </a>
+            </div>
+            <div class="header-icons show-for-small-only">
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-2x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-2x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <nav class="header nav-collapse">
+              <ul>
+                <li><a class="extra" href="../">home</a></li>
+                <li><a class="extra" href="../about.html">about</a></li>
+                <li><a class="extra" href="../haskell">Haskell</a></li>
+                <li><a class="extra" href="../bookshelf.html">bookshelf</a></li>
+                <li><a class="extra" href="../interesting-talks.html">interesting talks</a></li>
+                <li><a class="extra" href="../archive.html">archive</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <h2>How to use GPG to encrypt stuff</h2>
+<p class="meta">
+  27 Sep 2017,
+  
+    by <span class="italic">Pang Yan Han</span>
+  
+</p>
+<div class="post-tags">
+  <i class="fa fa-tags"></i>Tags: <a href="../tags/gpg.html">gpg</a>
+</div>
+<div class="post">
+  <p>You want to exchange a message / file securely with another party and do not want anyone else to look at the information. This is where you can use GPG to encrypt the message / file you want to send.</p>
+<p>The overview of the steps are as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Make sure everything is in one file. If there are multiple files, you can put them inside a folder and create a tarball of that folder, or just directly tarball all the files</li>
+<li>(OPTIONAL) Sign the file using your <strong>private key</strong>. This will generate a signature that can be verified using your public key</li>
+<li>Encrypt the file using the recipient’s <strong>public key</strong>. This will generate an encrypted file that can only be decrypted using the recipient’s private key</li>
+<li>Send the encrypted file and (optionally) the signature to the other person</li>
+<li>The recipient of the message will decrypt the encrypted file using his/her private key</li>
+<li>(OPTIONAL) The recipient of the message will verify the signature using your public key</li>
+</ol>
+<p>The steps below will not correspond to the points in this overview because the guide is intended to be as complete as possible without bogging you down with unnecessary details.</p>
+<h2 id="step-1-generate-a-gpg-keypair">Step 1: Generate a GPG keypair</h2>
+<p>For recipient: This step is absolutely required.</p>
+<p>For the sender: This step is required if you wish to send a signature to the recipient. Otherwise you can skip this step.</p>
+<p>To generate a GPG keypair, you first have to install GPG. This should come automatically with Linux. For Mac OS X users, I highly recommend that you install <a href="https://gpgtools.org/">GPG Suite</a>.</p>
+<p>To generate a key, run the following command:</p>
+<div class="highlight"><pre>gpg --gen-key
+</pre></div>
+
+<p>You will be prompted for some information. I will be guiding you through the flow below.</p>
+<div class="highlight"><pre>gpg (GnuPG) 1.4.16; Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+Your selection?
+</pre></div>
+
+<p>Type <code>1</code> followed by Enter for the <code>RSA and RSA</code> option.</p>
+<div class="highlight"><pre>RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048)
+</pre></div>
+
+<p>Type <code>4096</code> followed by Enter. We want our key to be as strong as possible.</p>
+<div class="highlight"><pre>Requested keysize is 4096 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0)
+</pre></div>
+
+<p>Type <code>0</code> followed by Enter. For convenience, we do not want the key to expire</p>
+<div class="highlight"><pre>Key does not expire at all
+Is this correct? (y/N)
+</pre></div>
+
+<p>Type <code>y</code> followed by Enter.</p>
+<div class="highlight"><pre>You need a user ID to identify your key; the software constructs the user ID
+from the Real Name, Comment and Email Address in this form:
+    &quot;Heinrich Heine (Der Dichter) &lt;heinrichh@duesseldorf.de&gt;&quot;
+
+Real name:
+</pre></div>
+
+<p>Type your real name followed by Enter.</p>
+<div class="highlight"><pre>Email address:
+</pre></div>
+
+<p>Type your email address followed by Enter. The email address you use depends on the context. If you are exchanging files securely for work, then type your work email address.</p>
+<div class="highlight"><pre>Comment:
+</pre></div>
+
+<p>This can be left blank. Press Enter if you have nothing to add.</p>
+<div class="highlight"><pre>You selected this USER-ID:
+    &quot;Your name &lt;your.name@yourdomain.com&gt;&quot;
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit?
+</pre></div>
+
+<p>Type <code>O</code> followed by Enter.</p>
+<div class="highlight"><pre>You need a Passphrase to protect your secret key.
+</pre></div>
+
+<p>If you are using a GUI, you will see a GUI prompt open up for your passphrase. <strong>Do not forget your passphrase!!!</strong> Otherwise your GPG keypair is worthless. Use something long and easily remembered by you but hard for other people and computers to guess. <a href="https://blog.lastpass.com/2013/04/how-to-create-secure-master-password.html/">This blog post by LastPass</a> is a good guide to generating a good passphrase.</p>
+<div class="highlight"><pre>We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+
+Not enough random bytes available.  Please do some other work to give
+the OS a chance to collect more entropy! (Need _ more bytes)
+</pre></div>
+
+<p>Once you the above, just go do some other stuff at your computer. It could take a few minutes before this is done. To speed up the process, you can run some intensive commands like <code>cd ~ &amp;&amp; find . -type f</code> (assuming you have a lot of files in your home folder)</p>
+<div class="highlight"><pre>gpg: key ________ marked as ultimately trusted
+public and secret key created and signed.
+
+gpg: checking the trustdb
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+pub   4096R/________ 2017-09-26
+      Key fingerprint = ____ ____ ____ ____ ____  ____ ____ ____ ____ ____
+uid                  Your Name &lt;your.name@yourdomain.com&gt;
+sub   4096R/________ 2017-09-26
+</pre></div>
+
+<h2 id="step-2-make-your-gpg-public-key-available-to-the-other-party">Step 2: Make your GPG public key available to the other party</h2>
+<p>For the recipient: This step is absolutely required.</p>
+<p>For the sender: This step is required if you wish to send a signature to the recipient. Otherwise you can skip this step.</p>
+<p>Regardless of whether you are the sender or the recipient, we shall cover 2 methods of making your GPG public key available to the other party.</p>
+<h3 id="method-1-send-your-public-key-as-a-file-to-the-recipient">Method 1: Send your public key as a file to the recipient</h3>
+<p>Remember the email you used to create your GPG keypair? We shall assume it is <code>your.name@yourdomain.com</code>. Run the following command:</p>
+<div class="highlight"><pre>gpg --armor --output mypubkey.gpg --export your.name@yourdomain.com
+</pre></div>
+
+<p>The <code>mypubkey.gpg</code> file should look similar to the following:</p>
+<div class="highlight"><pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1
+
+mfgQighgkm47609/132415jkamfgASHDFGkgm48610xktgy46523jrkfagmb01f4
+...
+...
+... A lot of similar lines omitted ...
+...
+...
+-----END PGP PUBLIC KEY BLOCK-----
+</pre></div>
+
+<p>Now you can send this file to your friend / colleague.</p>
+<h3 id="method-2-upload-your-public-key-to-a-pgp-public-key-server">Method 2: Upload your public key to a PGP public key server</h3>
+<p>The alternative method is to upload your public key a PGP public key server and have your friend / colleague download your public key from there.</p>
+<p>We have to find out the public key ID of our GPG key. Do so by running the following command:</p>
+<div class="highlight"><pre>gpg --list-secret-keys
+</pre></div>
+
+<p>You should see something similar to the following:</p>
+<div class="highlight"><pre>/home/youruser/.gnupg/secring.gpg
+---------------------------------
+sec   4096R/DEADBEEF 2017-09-26
+uid                  Your name here &lt;your.name@yourdomain.com&gt;
+ssb   4096R/A0156F2D 2017-09-26
+</pre></div>
+
+<p>The key ID of your GPG public key is in the first row on the same line as the <code>sec</code> field. In this made up example here, it is <code>DEADBEEF</code>.</p>
+<p>To export your GPG public key, run the following command, replacing the public key ID accordingly:</p>
+<div class="highlight"><pre>gpg --send-keys DEADBEEF
+</pre></div>
+
+<p>You should see something like the following:</p>
+<div class="highlight"><pre>gpg: sending key DEADBEEF to hkp server keys.gnupg.net
+</pre></div>
+
+<p>Take note of the GPG server that the key was uploaded to. We will be needing it later.</p>
+<h2 id="step-3-for-sender-retrieve-the-message-recipients-public-key">Step 3: (For sender) Retrieve the message recipient’s public key</h2>
+<p>This step is for the sender of the message. We shall cover what follows from the 2 methods that we covered in step 2.</p>
+<h3 id="method-1-friend-colleague-sent-his-her-public-key-to-you">Method 1: Friend / colleague sent his / her public key to you</h3>
+<p>This corresponds to Step 2 Method 1, where your friend / colleague (the recipient of the message) send his / her public key to you in a file. We have to import the public key into our keyring. Suppose this file is called <code>recipient-pubkey.gpg</code>. To import it, run:</p>
+<div class="highlight"><pre>gpg --import recipient-pubkey.gpg
+</pre></div>
+
+<p>You should see output similar to the following:</p>
+<div class="highlight"><pre>gpg: key ______: public key &quot;Your friend's name &lt;your.friend@yourfriendsdomain.com&gt;&quot; imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+</pre></div>
+
+<h3 id="method-2-friend-colleague-uploaded-his-her-gpg-public-key-to-a-pgp-public-key-server">Method 2: Friend / colleague uploaded his / her GPG public key to a PGP public key server</h3>
+<p>Ask your friend / colleague the server that he / she uploaded his / her public key to.</p>
+<p>Suppose it is <code>keys.gnupg.net</code>. Suppose your friend’s email address is <code>your.friend@yourfriendsdomain.com</code>. To find his / her key, run the following command (replacing the keyserver and email address accordingly):</p>
+<div class="highlight"><pre>gpg --keyserver keys.gnupg.net --search-key your.friend@yourfriendsdomain.com
+</pre></div>
+
+<p>If everything goes well, you should see output similar to the following:</p>
+<div class="highlight"><pre>gpg: data source: http://192.94.109.73:11371
+(1)     Your Friend's Name &lt;your.friend@yourfriendsdomain.com&gt;
+        4096 bit RSA key 5019A105E6069CD4, created: 2017-09-26
+Keys 1-1 of 1 for &quot;your.friend@yourfriendsdomain.com&quot;. Enter number(s), N)ext, or Q)uit &gt;
+</pre></div>
+
+<p>Type <code>1</code> followed by enter if you are sure that this is your friend’s public key and GPG will proceed to import it into your public keyring.</p>
+<p>If you are unsure this key belongs to your friend, verify with him / her. Get them to run the following command:</p>
+<div class="highlight"><pre>gpg --list-keys --keyid-format LONG --fingerprint
+</pre></div>
+
+<p>Verify that the public key ID you see (in our example it is <code>5019A105E6069CD4</code>) matches the his / her public key ID. Proceed to import the key if everything is good.</p>
+<h2 id="step-4-for-sender-encrypt-the-message">Step 4: (For sender) Encrypt the message</h2>
+<p>We will now encrypt the message using the sender’s public key. Assuming the sender’s email that is associated with public key is <code>your.friend@yourfriendsdomain.com</code> and the file you want to encrypt is called <code>myfile.txt</code>, run the following command:</p>
+<div class="highlight"><pre>gpg --output myfile.txt.gpg --encrypt --recipient your.friend@yourfriendsdomain.com  myfile.txt
+</pre></div>
+
+<p>The encrypted file will be at <code>myfile.txt.gpg</code>. If you take a look at it, you will see that it is in a binary format. Now you can send this file to your friend / colleague. Only the recipient will be able to decrypt it using his / her private key.</p>
+<h2 id="step-5-for-sender-signing-the-message">Step 5: (For sender) Signing the message</h2>
+<p><strong>NOTE:</strong> This step is optional. The reason why you as a sender may want to sign the message is for the recipient to verify that it is indeed you who sent the message and not someone else. This is a form of anti-tampering.</p>
+<p>Instead of signing the message (which is also a form of encrypting the message), we shall generate a checksum of the message and sign that instead.</p>
+<p>Let us generate a SHA256 sum of the <strong>unencrypted</strong> file (assuming it is named <code>myfile.txt</code>) and sign that using our <strong>private key</strong>:</p>
+<div class="highlight"><pre>shasum -a 256 myfile.txt | awk '{print $1}' &gt;myfile.txt.sha256sum
+gpg --output myfile.txt.sha256sum.sig --sign myfile.txt.sha256sum
+</pre></div>
+
+<p>You can then send <code>myfile.txt.sha256sum.sig</code> to the recipient.</p>
+<h2 id="step-6-for-receiver-decrypt-the-message">Step 6: (For receiver) Decrypt the message</h2>
+<p>Suppose the encrypted message sent by the sender is called <code>myfile.txt.gpg</code> and it was encrypted using your public key.</p>
+<p>To decrypt this message using your private key, run:</p>
+<div class="highlight"><pre>gpg --output myfile.txt --decrypt myfile.txt.gpg
+</pre></div>
+
+<p>You will be prompted for the passphrase of your private key. Assuming the sender specified the recipient of the message using the <code>--recipient</code> option when encrypting the message, GPG should be able to identify the correct private key to use (assuming you have multiple keypairs).</p>
+<p>Now you have the message! It is in the file specified by the <code>--output</code> flag. If the sender did not provide a signature and you trust him / her, then you are done. Otherwise, go on to the next step to verify the signature.</p>
+<h2 id="step-7-for-receiver-verify-the-signature-of-the-message">Step 7: (For receiver) Verify the signature of the message</h2>
+<p>Suppose the signature is named <code>myfile.txt.sha256sum.sig</code>. To verify that the signature is indeed sent by the sender, run the following command:</p>
+<div class="highlight"><pre>gpg --verify myfile.txt.sha256sum.sig
+</pre></div>
+
+<p>You should see an output similar to the following:</p>
+<div class="highlight"><pre>gpg: Signature made Tue 26 Sep 2017 09:10:22 PM SGT
+gpg:                using RSA key ID 741A869EBC910BE2
+gpg: Good signature from &quot;Sender's name &lt;sender.name@sendersdomain.com&gt;&quot; [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 85AF 5410 058C FE1D 76DA  986F 910C B963 468A 0F16
+</pre></div>
+
+<p>Check that the public key ID and fingerprint. matches the sender’s public key ID in your keyring. Run <code>gpg --list-keys --keyid-format LONG --fingerprint</code> to list the public keys in your GPG keyring alongside their fingerprint.</p>
+<p>To get the actual content from the signature, run:</p>
+<div class="highlight"><pre>gpg --output myfile.txt.sha256sum  --decrypt myfile.txt.sha256sum.sig
+</pre></div>
+
+<p>You should see some output very similar to / the same as that from running the command <code>gpg --verify myfile.txt.sha256sum.sig</code>.</p>
+<p>You should verify that the sha256 sum inside <code>myfile.txt.sha256sum</code> is the same as the sha256 sum of the decrypted file that the sender sent you.</p>
+<p>And if you only wish to send and / or receive messages securely, this is the end. If you are curious about why we go through all these trouble just to exchange some files, read the next section.</p>
+<h2 id="why-go-through-all-these-trouble-why-use-gpg-to-exchange-messages">Why go through all these trouble? / Why use GPG to exchange messages?</h2>
+<p>I have to admit that I am not the best person to write this section due to my lack of knowledge. That being said, I will be explaining the concepts here to the best of my ability.</p>
+<p>GPG uses public key cryptography. This is also known as asymmetric encryption, where a <strong>keypair</strong> consisting of a public and private key is involved, as opposed to symmetric encryption, which makes use of a single key. The public key can be distributed to whoever you want. The private key must be closely guarded and in GPG’s case is protected by a strong passphrase.</p>
+<p>Suppose Alice wants to send a message to Bob. Alice will encrypt Bob’s message using Bob’s <strong>public key</strong>. This ensures that no one else other than Bob can read the message, because only Bob can decrypt the message using his <strong>private key</strong>. Anyone with Bob’s public key encrypt a message that only Bob can view. This explanation should also explain why Bob must guard his private key - because anyone with his private key can decrypt any message encrypted using his public key.</p>
+<p>Now, Alice has guaranteed that whatever message she sends to Bob can only be viewed by Bob. This ensures the <strong>privacy</strong> of the message.</p>
+<p>However, anyone with Bob’s public key can send a message intended for him. How can Bob ensure that when Alice says she sent him a message, that the message is from Alice and not from someone else?</p>
+<p>This is where signatures come in. Alice can generate a file containing the checksum of the original, plaintext message and sign that file using her <strong>private key</strong>. Anyone who has Alice’s <strong>public key</strong> (and trusts her public key) can verify the authenticity of that file, because to generate that signature, Alice’s <strong>private key</strong> is required. Assuming that Alice’s private key has not been compromised, it is pretty much impossible for anyone to forge the signature, or for Alice to deny that she did not generate the signature. This ensures the <strong>authenticity</strong> of the message, that it is indeed sent by Alice herself and not anyone else.</p>
+<p>The reason why Alice signs a file containing the checksum of the original message is because signing a file will encrypt it using Alice’s public key. Anyone with Alice’s public key can decrypt that file. So it is not safe for Alice to sign the message she wants to send to Bob, otherwise anyone with her public key (and not just Bob) can read it. A file containing the checksum can be sent through non trusted channels without allowing anyone to reverse engineer the contents of the original message, while letting the intended recipient verify the authenticity of the message. This is why I will recommend sending a signature to the recipient even though it is completely optional.</p>
+<p>If you are relatively new to public key cryptography, the above could take a while to grasp. It is perfectly normal.</p>
+<p>If you have read everything so far, you will notice something. Everything hinges on both parties trusting each other’s public keys. Especially Alice trusting Bob’s public key. Why do I say so? Suppose there is a malicious 3rd party called Eve that is intercepting all traffic between Alice and Bob. Through some very clever means, Alice got Eve’s public key instead of Bob’s public key and believes that it is Bob’s public key. When Alice encrypts a message intended for Bob using “Bob’s” public key, Eve can decrypt the message that was originally meant for Bob. Furthermore, assuming that Eve has Bob’s public key (it is a public key after all), Eve can alter the contents of the message, encrypt it with Bob’s public key and then send the altered message to Bob. As for signatures, Eve can trick Bob into believing that her public key is Alice’s public key. Then Bob will trust whatever signature that Eve sends to him and believes it is a signature from Alice.</p>
+<p>While the above scenario may seem hypothetical, it is entirely possible. The crux of the message is: everything is based on trust and there has to be secure key exchange - we have to know whether a public key actually belongs to who it says it belongs to and we cannot trust public keys blindly. Now, these are topics I barely know anything about and shall not go into =)</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.gnupg.org/gph/en/manual/x135.html">The GNU Privacy Handbook - Making and verifying signatures</a></li>
+<li><a href="https://www.gnupg.org/gph/en/manual/x56.html">The GNU Privacy Handbook - Exchanging keys</a></li>
+<li><a href="https://www.gnupg.org/gph/en/manual/x110.html">The GNU Privacy Handbook - Encrypting and decrypting documents</a></li>
+<li><a href="https://stackoverflow.com/q/454048">What is the difference between encrypting and signing in asymmetric encryption?</a></li>
+<li><a href="https://askubuntu.com/q/29889">How do I check if my OpenPGP key is in the Ubuntu keyserver?</a></li>
+<li><a href="http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/">GPG Cheat Sheet</a></li>
+<li><a href="https://superuser.com/q/619145">How to make GnuPG display full 8-byte/64-bit key ID?</a></li>
+<li><a href="https://security.stackexchange.com/a/84281">Short OpenPGP key IDs are insecure, how to configure GnuPG to use long key IDs instead?</a></li>
+</ul>
+</div>
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
+        var disqus_identifier = "posts/2017-09-27-how-to-use-gpg-to-encrypt-stuff.md";
+        var disqus_url = "http://blog.pangyanhan.com/posts/2017-09-27-how-to-use-gpg-to-encrypt-stuff.html";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+          </div>
+        </div>
+
+        <div class="row footer">
+          <div class="medium-12 columns">
+            <div class="footer-item">
+              <span>Github</span>
+              <a href="https://github.com/yanhan/">github.com/yanhan</a>
+            </div>
+            <div class="hakyll-line">
+              Site proudly generated by
+              <a href="http://jaspervdj.be/hakyll" target="_blank">Hakyll</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="../js/vendor/jquery.js"></script>
+      <script src="../js/foundation.min.js"></script>
+      <script>
+        $(document).foundation();
+        var navigation = responsiveNav(".nav-collapse", {
+          animate: true,
+          transition: 284,
+          label: "",
+          insert: "after",
+          openPos: "relative",
+          navActiveClass: "js-nav-active"
+        });
+      </script>
+      <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-49506023-1', 'pangyanhan.com');ga('send', 'pageview');</script>
+    </body>
+</html>
