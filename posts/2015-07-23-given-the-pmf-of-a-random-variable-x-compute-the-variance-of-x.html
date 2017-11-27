@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -92,7 +92,7 @@
 </div>
 <div class="post">
   <p>This week, I started using some free time to read <a href="http://thinkstats.com/">Think Stats</a> by Allen B. Downey. So far it’s been a pretty good book. I was reading the start of Chapter 2.4, where the author says to download the <code>Pmf.py</code> file from http://thinkstats.com/Pmf.py . Curious of what’s inside, I read through the code and encountered this method in the <code>Pmf</code> class:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">Var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Computes the variance of a PMF.</span>
 
 <span class="sd">    Args:</span>
@@ -117,7 +117,7 @@
 $$</span><br /></p>
 <p>and that <code>Pmf.d</code> is a dictionary which maps values the random variable can take on, to the probabilities of appearance.</p>
 <p>What kind of surprised me about the <code>Pmf.Var</code> code above was this part:</p>
-<div class="highlight"><pre><span class="n">var</span> <span class="o">=</span> <span class="mf">0.0</span>
+<div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
     <span class="n">var</span> <span class="o">+=</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
 <span class="k">return</span> <span class="n">var</span>

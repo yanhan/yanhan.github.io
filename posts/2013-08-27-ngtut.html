@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -135,7 +135,7 @@
 <p>I have set up a Git repository <a href="https://github.com/yanhan/ngtut">here</a>. To get the most out of this tutorial, you should clone it.</p>
 <h2 id="file-organization">File Organization</h2>
 <p>The repository looks like this:</p>
-<div class="highlight"><pre>ngtut
+<div class="highlight"><pre><span></span>ngtut
  |- README.md
  |- setup.sh
  |- todoModel.py
@@ -171,17 +171,17 @@
 <p>The <strong>static</strong> folder is for the AngularJS portion of the application, and the <strong>test</strong> folder is used to house its tests.</p>
 <h2 id="setting-up">Setting up</h2>
 <p>Before running the application, you will need to run the <strong>setup.sh</strong> file, which creates a sqlite3 database, sets up a virtualenv folder, and installs flask into that virtualenv:</p>
-<div class="highlight"><pre>./setup.sh
+<div class="highlight"><pre><span></span>./setup.sh
 </pre></div>
 
 <p>You should see a file named <strong>db.db</strong> and a folder named <strong>venv</strong> in the directory.</p>
 <h2 id="running-the-application">Running the application</h2>
 <p>On the command prompt, enter (The first character here is a period):</p>
-<div class="highlight"><pre>. venv/bin/activate
+<div class="highlight"><pre><span></span>. venv/bin/activate
 </pre></div>
 
 <p>Followed by:</p>
-<div class="highlight"><pre>python todo.py
+<div class="highlight"><pre><span></span>python todo.py
 </pre></div>
 
 <p>Now, go to http://127.0.0.1:5000 and you should see the application, in its full glory (or ugliness):</p>
@@ -191,46 +191,46 @@
 <h2 id="a-high-level-overview-of-the-application">A high level overview of the application</h2>
 <p>Now, I wish to give a high level overview of the application, starting from the moment you hit the url <code>http://127.0.0.1:5000</code>. Most of this section covers the Flask backend. <strong>Don’t worry</strong> if you are not familiar with Flask and do not understand it entirely.</p>
 <p>Open the <strong>todo.py</strong> file, and look at lines 7 and 8:</p>
-<div class="highlight"><pre><span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s">'/'</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">TodoView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s">'todo_view'</span><span class="p">),</span>
-    <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">TodoView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s1">'todo_view'</span><span class="p">),</span>
+    <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
 </pre></div>
 
 <p>When you hit the url <code>http://127.0.0.1:5000</code>, it matches the <code>/</code> endpoint, specified above, so control passes over to the MethodView <strong>TodoView</strong>, located at <strong>todoView.py</strong>, lines 9 to 11:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">TodoView</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TodoView</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'main.html'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">'main.html'</span><span class="p">)</span>
 </pre></div>
 
 <p>This view is very simple. It simply returns the <strong>main.html</strong> template, located at <strong>templates/main.html</strong>:</p>
-<div class="highlight"><pre><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;layout.html&quot;</span> <span class="cp">%}</span>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;layout.html&quot;</span> <span class="cp">%}</span>
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span>
-<span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;TodoApp&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">ng-view</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-app</span><span class="o">=</span><span class="s">&quot;TodoApp&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-view</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/static/todo.js&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/script&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/todo.js&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">content</span> <span class="cp">%}</span>
 </pre></div>
 
 <p>This is written in the Jinja2 templating language. Basically, the <strong>templates/main.html</strong> page inherits the <strong>templates/layout.html</strong> page, and on top of that, it includes the stuff between the <code>{% block content %}</code> and the <code>{% endblock content %}</code> delimiters where they are located from the inherited template.</p>
 <p>A quick look at <strong>templates/layout.html</strong> will show the same 2 delimiters, and lines 2 to 8 of the <code>&lt;head&gt;</code> section are shown here:</p>
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>We include the jQuery 1.10.2, AngularJS 1.0.7 libraries and Twitter Bootstrap 3.0.0. If you require jQuery, remember to include it <strong>before</strong> AngularJS. AngularJS has its own version of jQuery called jqlite, which is a subset of jQuery. jqlite is used as a fallback to jQuery should the need arises, such as when you use jQuery functionality within AngularJS and the jQuery library is not included. As long as you include the jQuery library before AngularJS, AngularJS will make use of jQuery instead of jqlite.</p>
 <p>Going back to the <strong>templates/main.html</strong> file, and looking at the purely html parts:</p>
-<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;TodoApp&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">ng-view</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-app</span><span class="o">=</span><span class="s">&quot;TodoApp&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-view</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/static/todo.js&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/script&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/todo.js&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Most of these should look familiar, except the weird looking <code>ng-app</code> and <code>ng-view</code> portions. <code>ng-app</code> and <code>ng-view</code> are AngularJS <strong>directives</strong>, which is one of AngularJS’ defining features. In short, think of a <strong>directive</strong> as a <strong>domain specific language</strong>. It should come as no surprise to you that you can implement your own directives, which will be no less powerful than the ones provided by AngularJS, although that is a more advanced topic, which we only take a brief look at in a much later section of this tutorial.</p>
@@ -245,14 +245,14 @@
 <h2 id="the-foundation-of-angularjs-applications---modules">The foundation of AngularJS applications - modules</h2>
 <p>A full fledged AngularJS application will consist of multiple <strong>modules</strong>. For those of you coming from a Python background, you can think of an AngularJS module as a Python module. In AngularJS, a module is unit of code organization, where you can store <strong>controllers</strong>, <strong>factories</strong>, <strong>directives</strong> and the other AngularJS goodies.</p>
 <p>We know from the last section that our module of interest is the <code>TodoApp</code> module, located at <strong>static/todo.js</strong>. Open that file, and look at lines 1 and 2:</p>
-<div class="highlight"><pre><span class="nx">angular</span>
+<div class="highlight"><pre><span></span><span class="nx">angular</span>
     <span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'TodoApp'</span><span class="p">,</span> <span class="p">[])</span>
 </pre></div>
 
 <p>These two lines create a new AngularJS module called <code>TodoApp</code>. The <code>[]</code> argument is used to specify dependencies (which are themselves modules). Because our application is so simple, we only have one module and it is standalone.</p>
 <h2 id="angularjs-concept---routes">AngularJS concept - Routes</h2>
 <p>Next, turn your attention to lines 3 to 14:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">config</span><span class="p">([</span><span class="s1">'$routeProvider'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$routeProvider</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">config</span><span class="p">([</span><span class="s1">'$routeProvider'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$routeProvider</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$routeProvider</span>
         <span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="p">{</span>
             <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">'../static/todo.html'</span><span class="p">,</span>
@@ -270,9 +270,9 @@
 <p>Ignore the weird looking array notation and the <code>&quot;$routeProvider&quot;</code> string for now, we will explain that in a later section.</p>
 <p>Back to our main topic. The <code>$routeProvider</code> service has two methods, <code>when</code> and <code>otherwise</code>. The <code>when</code> method takes in 2 arguments, the first is a route, and the second is an object specfiying what to do when AngularJS sees that route. Looking at the AngularJS documentation for <code>$routeProvider</code> <a href="http://docs.angularjs.org/api/ngRoute.$routeProvider">here</a>, the object in the second argument can be pretty complicated, but imho the most useful properties, which are the ones I have used so far, are <code>templateUrl</code> and <code>controller</code>.</p>
 <p>The <code>templateUrl</code> property specifies the path to the HTML file<sup id="hn3"><a href="#fn3">3</a></sup> to be displayed when the <code>TodoApp</code> AngularJS module encounters the given route. But where does it insert this HTML? Inside an <code>ng-view</code>. If we look at lines 5 to 7 of <strong>templates/main.html</strong> which we have seen earlier, there is indeed an <code>ng-view</code> directive at the inner <code>&lt;div&gt;</code> element:</p>
-<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;TodoApp&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">ng-view</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-app</span><span class="o">=</span><span class="s">&quot;TodoApp&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-view</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Therefore, when the <code>TodoApp</code> module sees a request for the route <code>/</code>, it inserts the contents of the HTML file <strong>/static/todo.html</strong> within the inner <code>&lt;div&gt;</code> element. And indeed, if we open up the <strong>static/todo.html</strong> file, we see a form element, the three buttons and a table.</p>
@@ -281,33 +281,33 @@
 <p>Notice that we have chained a second <code>when</code> method. That is for another page accessible by clicking on the tab labelled <strong>Second Page</strong>:</p>
 <p><img src="../images/2013-08-27-ngtut/todolist02.png" /></p>
 <p>Notice how the contents of the page changes, without a page refresh. In addition, observe that the url changes to:</p>
-<div class="highlight"><pre>http://127.0.0.1:5000/#/secondPage
+<div class="highlight"><pre><span></span>http://127.0.0.1:5000/#/secondPage
 </pre></div>
 
 <p>from the original:</p>
-<div class="highlight"><pre>http://127.0.0.1:5000/#/
+<div class="highlight"><pre><span></span>http://127.0.0.1:5000/#/
 </pre></div>
 
 <p>Observe that the parts after the <code>#</code> character are exactly the routes we specify to the <code>$routeProvider</code> service.</p>
 <p>Now, enter the following url into your browser:</p>
-<div class="highlight"><pre>http://127.0.0.1:5000/#/nonexistent
+<div class="highlight"><pre><span></span>http://127.0.0.1:5000/#/nonexistent
 </pre></div>
 
 <p>This should take you back to our original page, and that is the purpose of the <code>otherwise</code> method at line 13 of <strong>static/todo.js</strong>, after the <code>when</code> method calls:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">otherwise</span><span class="p">({</span> <span class="nx">redirectTo</span><span class="o">:</span> <span class="s1">'/'</span> <span class="p">});</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">otherwise</span><span class="p">({</span> <span class="nx">redirectTo</span><span class="o">:</span> <span class="s1">'/'</span> <span class="p">});</span>
 </pre></div>
 
 <p>Any unmatched route (one not specified through <code>$routeProvider.when</code> method calls) like <code>'/nonexistent'</code> falls through to the route specified in the <code>otherwise</code> method. While this is optional, I highly recommend you specify a default route using the <code>$routeProvider.otherwise</code> method when making use of the <code>$routeProvider</code> service.</p>
 <h2 id="a-note-on-the-format-of-the-templateurl">A note on the format of the templateUrl</h2>
 <p>The more curious may ask why the following templateUrls in <strong>static/todo.js</strong> are relative paths beginning with ‘..’:</p>
-<div class="highlight"><pre>../static/todo.html
+<div class="highlight"><pre><span></span>../static/todo.html
 ../static/secondPage.html
 </pre></div>
 
 <p>This is due to the way Flask works with regards to serving static files, and has nothing to do with AngularJS. Please do not be too bothered by this.</p>
 <h2 id="angularjs-concept---controller-model">AngularJS concept - Controller, Model</h2>
 <p>Still at <strong>static/todo.js</strong>, look at lines 21 to 30:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="s1">'$http'</span><span class="p">,</span>
     <span class="s1">'windowAlert'</span><span class="p">,</span>
@@ -325,7 +325,7 @@
 <p>Lines 26 to 30 show some assignments to properties within the <code>$scope</code> object. The <code>$scope</code> object here is part of <sup id="hn5"><a href="#fn5">5</a></sup> the <strong>Model</strong>. In AngularJS, the Model should be the one and only source of truth with regards to application state.</p>
 <p>The more interesting state variable to us is <code>$scope.state.todoList</code>. Initially, this is set to the array <code>[]</code>, which is why we do not see any todo list items upon reaccessing the application even though we might have added some items in the past.</p>
 <p>The funny array notation here:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="s1">'$http'</span><span class="p">,</span>
     <span class="s1">'windowAlert'</span><span class="p">,</span>
@@ -337,31 +337,31 @@
 <h2 id="adding-a-new-todo-list-item---from-start-to-finish">Adding a new todo list item - from start to finish</h2>
 <p><strong>NOTE:</strong> This section is going to jump around a lot of files, but I will show the relevant section of the file and state the filename and the relevant line numbers. I will try to explain to the best of my ability, so stick with me.</p>
 <p>Our journey begins from lines 4 to 9 of <strong>static/todo.html</strong>:</p>
-<div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">&quot;POST&quot;</span> <span class="na">ng-submit=</span><span class="s">&quot;addItem()&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;fieldset&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;Add something&quot;</span> <span class="na">size=</span><span class="s">50</span> <span class="na">ng-model=</span><span class="s">&quot;state.newItem&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="nt">&gt;</span>Add item<span class="nt">&lt;/button&gt;</span>
-  <span class="nt">&lt;/fieldset&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span> <span class="na">ng-submit</span><span class="o">=</span><span class="s">&quot;addItem()&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Add something&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">50</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;state.newItem&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Add item<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Recall from the earlier sections that this is the template for the route <code>/</code> and its controller is <code>TodoController</code>, which we covered in the last section. I would like you to focus on line 6:</p>
-<div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;Add something&quot;</span> <span class="na">size=</span><span class="s">50</span> <span class="na">ng-model=</span><span class="s">&quot;state.newItem&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Add something&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">50</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;state.newItem&quot;</span> <span class="p">/&gt;</span>
 </pre></div>
 
 <p>This is the input field where you type some text to add as a todo list item. In particular, look at the <code>ng-model=&quot;state.newItem&quot;</code> part. By now, you should know that <code>ng-model</code> is a directive. In this case, we are creating a <strong>two-way data binding</strong> between the text contained in the input field and the <code>$scope.state.newItem</code> variable. When specifying the variable name in the <code>ng-model</code> directive, we omit the <code>$scope.</code> portion. We did not assign any value to this variable inside the <code>TodoController</code>, but this is fine.</p>
 <p>What we mean by a <strong>two-way data binding</strong> is this: whenever the text inside the input field changes (such as from the user typing new text or editing the contents of the input field), the value of the variable <code>$scope.state.newItem</code> is updated to reflect that value. That is one direction. Correspondingly, in the other direction, should the value of the variable <code>$scope.state.newItem</code> change, the text shown in the input field will be updated to reflect the change. And that completes both directions.</p>
 <p>Now, suppose we enter the following text:</p>
-<div class="highlight"><pre>Do laundry
+<div class="highlight"><pre><span></span>Do laundry
 </pre></div>
 
 <p>into the input field. Due to two-way data binding specified by the <code>ng-model</code> directive, the value of the <code>$scope.state.newItem</code> variable will be updated to the string <code>&quot;Do laundry&quot;</code>.</p>
 <p>Now, turn your attention towards line 4 of the same file:</p>
-<div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">ng-submit=</span><span class="s">&quot;addItem()&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">ng-submit</span><span class="o">=</span><span class="s">&quot;addItem()&quot;</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Observe that there is no <code>action</code> or <code>method</code> attribute on the <code>&lt;form&gt;</code> element. Instead, there is an <code>ng-submit</code> directive. The <code>ng-submit</code> directive will evaluate an AngularJS expression when we submit the form. The expression specified in this case is a call to the <code>$scope.addItem</code> function. Recall that <code>$scope.addItem</code> is assigned a function in <code>TodoController</code>, and that is where we shall look at next. Go to <strong>static/todo.js</strong>, lines 32 to 52:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">windowAlert</span><span class="p">(</span><span class="s2">&quot;text field must be non-empty&quot;</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -391,47 +391,47 @@
 <p>We mentioned that the <code>$http.post</code> call is asynchronous. This means that the <code>$http.post</code> call does not block, so if you have any code after it, they will <strong>very likely</strong> be executed before the proper callback function for the <code>$http.post</code> call gets executed.</p>
 <p>While I am a bit hesitant to write this part about what goes on when the <code>$http.post</code> call issues a POST request that hits the url, since this is an AngularJS tutorial, and material here covers Flask. However, I think it will be beneficial for those seeking to see how things play out on the backend. It’s really standard backend web development stuff. So if you are not interested, feel free to skip to the part where I talk about what happens when the <code>$http.post</code> call succeeds and we return to AngularJS land.</p>
 <p>Now, to recap, we are at the stage where the <code>$http.post</code> call sends off a <strong>POST</strong> request to the url <code>/todoAdd</code>. We are leaving AngularJS and going off to our Flask backend, at <strong>todo.py</strong>, lines 9 and 10:</p>
-<div class="highlight"><pre><span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s">'/todoAdd'</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">TodoAdd</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s">'todo_add'</span><span class="p">),</span>
-    <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s1">'/todoAdd'</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">TodoAdd</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s1">'todo_add'</span><span class="p">),</span>
+    <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
 </pre></div>
 
 <p>Notice that this endpoint handles the <strong>POST</strong> method exclusively. Control is passed over to the <code>TodoAdd</code> MethodView, at <strong>todoView.py</strong>, lines 13 to 17:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">TodoAdd</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TodoAdd</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">TodoModel</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s">'item'</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span> <span class="s">'success'</span><span class="p">:</span> <span class="bp">True</span> <span class="p">})</span>
+        <span class="n">TodoModel</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">'item'</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span> <span class="s1">'success'</span><span class="p">:</span> <span class="bp">True</span> <span class="p">})</span>
 </pre></div>
 
 <p>I shall not go into the details, but basically, the data sent over by <code>$http.post</code> is in the <code>request.data</code> variable. We use the built-in <code>json</code> library’s <code>json.loads</code> function to convert the json data to a python dict. Recall that in <strong>static/todo.js</strong> (lines 36 to 39):</p>
-<div class="highlight"><pre><span class="nx">$http</span>
+<div class="highlight"><pre><span></span><span class="nx">$http</span>
     <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/todoAdd'</span><span class="p">,</span> <span class="p">{</span>
         <span class="nx">item</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span>
     <span class="p">})</span>
 </pre></div>
 
 <p>the <code>$http.post</code> call sends out an object with an <code>item</code> property. Now, at line 16 of <strong>todoView.py</strong>:</p>
-<div class="highlight"><pre><span class="n">TodoModel</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s">'item'</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">TodoModel</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">'item'</span><span class="p">])</span>
 </pre></div>
 
 <p>We access the <code>item</code> key of the dict converted from the POST request data, and pass it to the <code>TodoModel.add_item</code> function, located at lines 11 to 14 of <strong>todoModel.py</strong>:</p>
-<div class="highlight"><pre><span class="nd">@classmethod</span>
-<span class="k">def</span> <span class="nf">add_item</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-    <span class="n">_cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'INSERT INTO todo(text) VALUES(?)'</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">add_item</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="n">_cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">'INSERT INTO todo(text) VALUES(?)'</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">))</span>
     <span class="n">_conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 
 <p>The heart of this function is a SQL statement to insert the item into the ‘text’ column of the database. We are done with this function. So we return from this function call and go back to <strong>todoView.py</strong>, lines 13 to 17:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">TodoAdd</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TodoAdd</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">TodoModel</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s">'item'</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span> <span class="s">'success'</span><span class="p">:</span> <span class="bp">True</span> <span class="p">})</span>
+        <span class="n">TodoModel</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">'item'</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span> <span class="s1">'success'</span><span class="p">:</span> <span class="bp">True</span> <span class="p">})</span>
 </pre></div>
 
 <p>We have added the new todo list item, so there is only one thing remaining, the return statement. We return a json object with a single property called <code>success</code>, its value being <code>True</code>.</p>
 <p>Now, we are back to AngularJS land, at <strong>static/todo.js</strong>, lines 36 to 48:</p>
-<div class="highlight"><pre><span class="nx">$http</span>
+<div class="highlight"><pre><span></span><span class="nx">$http</span>
     <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/todoAdd'</span><span class="p">,</span> <span class="p">{</span>
         <span class="nx">item</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span>
     <span class="p">})</span>
@@ -447,11 +447,11 @@
 </pre></div>
 
 <p>Since the <code>$http.post</code> call succeeds (a HTTP 200 code is returned), we execute the success callback function. Recall that the Flask backend returns a json object with a property <code>success</code> set to <code>true</code>. We pass the <code>if</code> test and execute the statement:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">retrieveNr</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">retrieveNr</span><span class="p">);</span>
 </pre></div>
 
 <p>Which brings us to lines 54 to 67 of the same <strong>static/todo.js</strong> file:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$http</span>
         <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/todoRetrieve/'</span> <span class="o">+</span> <span class="nx">n</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">headers</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
@@ -470,12 +470,12 @@
 <p>This is a <code>$http.get</code> call, with the parameter <code>n</code> being <code>$scope.state.retrieveNr</code>, which is assigned the value <code>$scope.RETRIEVE_DEFAULT_NR</code> (at line 29 of of the same file, <strong>static/todo.js</strong>), which is <code>5</code>. Since you are now familiar with <code>$http.post</code>, <code>$http.get</code> works similarly with regards to the promise and callbacks, so I shall not go into detail explaining the same concepts again.</p>
 <p>I will be going through the Flask portion after the <code>$http.get</code> call. Feel free to skip this by scrolling down until you see that we have returned to AngularJS land.</p>
 <p>Looking at <strong>todo.py</strong>, lines 11 and 12:</p>
-<div class="highlight"><pre><span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s">'/todoRetrieve/&lt;int:n&gt;'</span><span class="p">,</span>
-    <span class="n">view_func</span><span class="o">=</span><span class="n">TodoRetrieve</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s">'todo_retrieve'</span><span class="p">),</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s1">'/todoRetrieve/&lt;int:n&gt;'</span><span class="p">,</span>
+    <span class="n">view_func</span><span class="o">=</span><span class="n">TodoRetrieve</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s1">'todo_retrieve'</span><span class="p">),</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
 </pre></div>
 
 <p>There is a MethodView called <code>TodoRetrieve</code> handling the <code>/todoRetrieve</code> url. It is located at <strong>todoView.py</strong>, lines 19 to 31:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">TodoRetrieve</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TodoRetrieve</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -485,27 +485,27 @@
             <span class="n">n</span> <span class="o">=</span> <span class="n">RETRIEVE_DEFAULT_NR</span>
         <span class="n">todoList</span> <span class="o">=</span> <span class="n">TodoModel</span><span class="o">.</span><span class="n">retrieve_last_N_items</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
-            <span class="s">'success'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
-            <span class="s">'todoList'</span><span class="p">:</span> <span class="p">[{</span> <span class="s">'text'</span><span class="p">:</span> <span class="n">item</span> <span class="p">}</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">todoList</span><span class="p">]</span>
+            <span class="s1">'success'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="s1">'todoList'</span><span class="p">:</span> <span class="p">[{</span> <span class="s1">'text'</span><span class="p">:</span> <span class="n">item</span> <span class="p">}</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">todoList</span><span class="p">]</span>
         <span class="p">})</span>
 </pre></div>
 
 <p>Much of the <code>get</code> function is dedicated to ensuring that n is a non-negative integer. The heart of this function lies in line 27:</p>
-<div class="highlight"><pre><span class="n">todoList</span> <span class="o">=</span> <span class="n">TodoModel</span><span class="o">.</span><span class="n">retrieve_last_N_items</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">todoList</span> <span class="o">=</span> <span class="n">TodoModel</span><span class="o">.</span><span class="n">retrieve_last_N_items</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 
 <p>at lines 16 to 21 of <strong>todoModel.py</strong>:</p>
-<div class="highlight"><pre><span class="nd">@classmethod</span>
-<span class="k">def</span> <span class="nf">retrieve_last_N_items</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">retrieve_last_N_items</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="n">_cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-        <span class="s">'SELECT text FROM todo ORDER BY id DESC LIMIT ?'</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">)</span>
+        <span class="s1">'SELECT text FROM todo ORDER BY id DESC LIMIT ?'</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">)</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s">'text'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s1">'text'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
 </pre></div>
 
 <p>Here, we are retrieving the <code>n</code> most recently inserted items, <code>n</code> being 5 in this case.</p>
 <p>We go back to <strong>todoView.py</strong>, lines 19 to 31:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">TodoRetrieve</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TodoRetrieve</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">MethodView</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -515,14 +515,14 @@
             <span class="n">n</span> <span class="o">=</span> <span class="n">RETRIEVE_DEFAULT_NR</span>
         <span class="n">todoList</span> <span class="o">=</span> <span class="n">TodoModel</span><span class="o">.</span><span class="n">retrieve_last_N_items</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
-            <span class="s">'success'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
-            <span class="s">'todoList'</span><span class="p">:</span> <span class="p">[{</span> <span class="s">'text'</span><span class="p">:</span> <span class="n">item</span> <span class="p">}</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">todoList</span><span class="p">]</span>
+            <span class="s1">'success'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="s1">'todoList'</span><span class="p">:</span> <span class="p">[{</span> <span class="s1">'text'</span><span class="p">:</span> <span class="n">item</span> <span class="p">}</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">todoList</span><span class="p">]</span>
         <span class="p">})</span>
 </pre></div>
 
 <p>After the call to <code>TodoModel.retrieve_last_N_items</code>, the <code>get</code> function returns a json object with 2 properties, <code>success</code> and <code>todoList</code>. The <code>success</code> property holds the value <code>True</code>, while the <code>todoList</code> property is an array of objects, each of which with a single <code>text</code> property containing the text we retrieved from the database.</p>
 <p>Now, we return to AngularJS land, lines 54 to 67 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$http</span>
         <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/todoRetrieve/'</span> <span class="o">+</span> <span class="nx">n</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">headers</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
@@ -539,12 +539,12 @@
 </pre></div>
 
 <p>This <code>$http.get</code> call is a success, with the json object returned by our Flask backend available in the <code>data</code> parameter of the callback function specified in the success call of the promise. Recall that our Flask backend returned a json object with a <code>success</code> property with value <code>True</code>, so the <code>if (data.success)</code> test passes. Thus we go to execute the statement:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todoList</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">todoList</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todoList</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">todoList</span><span class="p">;</span>
 </pre></div>
 
 <p>Which sets <code>$scope.state.todoList</code> to the <code>todoList</code> property of the object returned by the Flask backend. This is why we are able to see the todo list updated with the last recently inserted items everytime we insert a new item. Yea, I know it’s expensive to query the database everytime we add a new item, but this is just for illustration purposes.</p>
 <p>And recall that this call to <code>$scope.retrieveLastNItems</code> originated from the success callback of the <code>$scope.addItem</code> function in <strong>static/todo.js</strong> (lines 32 to 52):</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">windowAlert</span><span class="p">(</span><span class="s2">&quot;text field must be non-empty&quot;</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -571,64 +571,64 @@
 <p>While we have shown how the todo list gets updated within the <code>TodoController</code>, this does not answer the question - how does it get displayed in a HTML table? Surely some kind of DOM manipulation is needed. That is the subject of our next section.</p>
 <h2 id="angularjs-concept---ng-repeat">AngularJS concept - ng-repeat</h2>
 <p>Open <strong>static/todo.html</strong>, and look at lines 21 to 33:</p>
-<div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">&quot;table&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;thead&gt;</span>
-    <span class="nt">&lt;th&gt;</span>Number<span class="nt">&lt;/th&gt;</span>
-    <span class="nt">&lt;th&gt;</span>Text<span class="nt">&lt;/th&gt;</span>
-  <span class="nt">&lt;/thead&gt;</span>
-  <span class="nt">&lt;tbody&gt;</span>
-    <span class="nt">&lt;tr</span> <span class="na">ng-repeat=</span><span class="s">&quot;item in state.todoList&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;td&gt;</span>{{ $index + 1 }}<span class="nt">&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>{{ item.text }}<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;/tbody&gt;</span>
-<span class="nt">&lt;/table&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Number<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Text<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">&quot;item in state.todoList&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ $index + 1 }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ item.text }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>This is where the todo list gets displayed. The interesting part is here:</p>
-<div class="highlight"><pre><span class="nt">&lt;tr</span> <span class="na">ng-repeat=</span><span class="s">&quot;item in state.todoList&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ $index + 1 }}<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ item.text }}<span class="nt">&lt;/td&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">&quot;item in state.todoList&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ $index + 1 }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ item.text }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Where we see an <code>ng-repeat</code> directive. The <strong>repeat expression</strong> is <code>item in state.todoList</code>, and specifically, we are iterating over the <code>$scope.state.todoList</code> array in the <code>TodoController</code>. This array happens to be the todo list. At each iteration, <code>ng-repeat</code> creates a new scope and binds the current item of <code>state.todoList</code> to the variable <code>item</code>. The entire <code>'&lt;tr&gt;'</code> element and everything within it is the <strong>template</strong> for the <code>ng-repeat</code>, in otherwords, a piece of HTML to be repeated for each element in <code>$scope.state.todoList</code>.</p>
 <p>If that seems like a lot of jargon, it is. I suggest you read it slowly one more time. But the idea behind <code>ng-repeat</code> is very simple: <code>ng-repeat</code> repeats the entire HTML block it appears in for each element we are iterating over.</p>
 <p>Confused? I will give you a more concrete example. Suppose <code>$scope.state.todoList</code> has the value</p>
-<div class="highlight"><pre><span class="p">[{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">'go out with friends'</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">'watch tv'</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">'Do laundry'</span> <span class="p">}]</span>
+<div class="highlight"><pre><span></span><span class="p">[{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">'go out with friends'</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">'watch tv'</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">'Do laundry'</span> <span class="p">}]</span>
 </pre></div>
 
 <p>Then, what we will get is:</p>
-<div class="highlight"><pre><span class="nt">&lt;tr&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ $index + 1 }}<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ item.text }}<span class="nt">&lt;/td&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
-<span class="nt">&lt;tr&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ $index + 1 }}<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ item.text }}<span class="nt">&lt;/td&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
-<span class="nt">&lt;tr&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ $index + 1 }}<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ item.text }}<span class="nt">&lt;/td&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ $index + 1 }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ item.text }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ $index + 1 }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ item.text }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ $index + 1 }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ item.text }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>So for the first <code>&lt;tr&gt;</code> element you see here, <code>item</code> refers to the object <code>{ text: 'go out with friends' }</code>, the 0th element of <code>$scope.state.todoList</code>. For the second <code>&lt;tr&gt;</code> element, <code>item</code> refers to the object <code>{ text: 'watch tv' }</code>, the 1th element of <code>$scope.state.todoList</code>. For the third <code>&lt;tr&gt;</code> element, <code>item</code> refers to the object <code>{ text: 'Do laundry' }</code>, the 2nd element of <code>$scope.state.todoList</code>.</p>
 <p>The <code>$index</code> variable is something unique to <code>ng-repeat</code>. It is the offset of the element we are iterating over, starting from 0.</p>
 <p>Therefore, <code>$index</code> has the value <code>0</code> for the first <code>&lt;tr&gt;</code> element, the value <code>1</code> for the second <code>&lt;tr&gt;</code> element, and the value <code>2</code> for the final <code>&lt;tr&gt;</code> element.</p>
 <p>Now that we know all that, and you know JavaScript, you can probably infer that the final result of the <code>ng-repeat</code> will look something like:</p>
-<div class="highlight"><pre><span class="nt">&lt;tr&gt;</span>
-  <span class="nt">&lt;td&gt;</span>1<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;td&gt;</span>go out with friends<span class="nt">&lt;/td&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
-<span class="nt">&lt;tr&gt;</span>
-  <span class="nt">&lt;td&gt;</span>2<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;td&gt;</span>watch tv<span class="nt">&lt;/td&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
-<span class="nt">&lt;tr&gt;</span>
-  <span class="nt">&lt;td&gt;</span>3<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;td&gt;</span>Do laundry<span class="nt">&lt;/td&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>go out with friends<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>watch tv<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Do laundry<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Tada! Notice how there isn’t <strong>any</strong> DOM manipulation, like deleting existing rows in the table, and updating the table with the new todo list entries by adding new rows to it representing the updated todo list items. There is <strong>none</strong> of that. The table just gets updated. It’s just like magic. Ok, we all know it’s not magic, but yea.</p>
@@ -647,7 +647,7 @@
 <p>Try adding an empty item to the todo list. You should see an alert box:</p>
 <p><img src="../images/2013-08-27-ngtut/todolist03.png" /></p>
 <p>This is due to lines 32 to 35 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">windowAlert</span><span class="p">(</span><span class="s2">&quot;text field must be non-empty&quot;</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -655,7 +655,7 @@
 
 <p>Which causes any falsy value in <code>$scope.state.newItem</code> to fall into that branch, and call the windowAlert function.</p>
 <p>Now, look at lines 21 to 25 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="s1">'$http'</span><span class="p">,</span>
     <span class="s1">'windowAlert'</span><span class="p">,</span>
@@ -663,7 +663,7 @@
 </pre></div>
 
 <p>See how we specified <code>windowAlert</code> as a dependency. In the section titled “AngularJS concept - Controller, Model”, I mentioned that <code>windowAlert</code> is a factory that I implemented. In fact, it’s right above the definition for <code>TodoController</code>, at lines 15 to 20 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'windowAlert'</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'windowAlert'</span><span class="p">,</span> <span class="p">[</span>
     <span class="s1">'$window'</span><span class="p">,</span>
     <span class="kd">function</span><span class="p">(</span><span class="nx">$window</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">$window</span><span class="p">.</span><span class="nx">alert</span><span class="p">;</span>
@@ -675,14 +675,14 @@
 <p>Back to the main topic of this section, a factory is very similar to a service. You should check out <a href="http://stackoverflow.com/questions/13762228/confused-about-service-vs-factory/13763886#13763886">this</a> stack overflow question and <a href="https://groups.google.com/forum/#!topic/angular/qYBkDDDyEw0">this</a> link for explanations better than I can offer with regards to the difference between factories and services.</p>
 <p>But a probably correct (I hope) and tldr explanation is: A factory is a <strong>singleton</strong> object.</p>
 <p>So whenever we see a windowAlert call, such as in lines 32 to 35 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">windowAlert</span><span class="p">(</span><span class="s2">&quot;text field must be non-empty&quot;</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 </pre></div>
 
 <p>we can substitute the <code>windowAlert</code> with whatever is returned by the <code>windowAlert</code> factory function, so it is essentially:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">$window</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;text field must be non-empty&quot;</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -691,19 +691,19 @@
 <p>which is why we get the alert box whenever we try to add an empty item.</p>
 <h2 id="the-retrieve-buttons">The retrieve buttons</h2>
 <p>Now onto the final feature I will be covering, the retrieve buttons. At lines 11 to 19 of <strong>static/todo.html</strong>:</p>
-<div class="highlight"><pre><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;btn&quot;</span> <span class="na">ng-click=</span><span class="s">&quot;setAndRetrieveLastNItems(5)&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn&quot;</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">&quot;setAndRetrieveLastNItems(5)&quot;</span><span class="p">&gt;</span>
 Retrieve last 5 items
-<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;btn&quot;</span> <span class="na">ng-click=</span><span class="s">&quot;setAndRetrieveLastNItems(10)&quot;</span><span class="nt">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn&quot;</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">&quot;setAndRetrieveLastNItems(10)&quot;</span><span class="p">&gt;</span>
 Retrieve last 10 items
-<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;btn&quot;</span> <span class="na">ng-click=</span><span class="s">&quot;setAndRetrieveLastNItems(15)&quot;</span><span class="nt">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn&quot;</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">&quot;setAndRetrieveLastNItems(15)&quot;</span><span class="p">&gt;</span>
 Retrieve last 15 items
-<span class="nt">&lt;/button&gt;</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>We see the template for the buttons. Focus on the <code>ng-click</code> directive. Suppose we click on the “Retrieve last 15 items” button. This will result in a call to the <code>$scope.setAndRetrieveLastNItems</code> function defined at lines 69 to 72 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">setAndRetrieveLastNItems</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">setAndRetrieveLastNItems</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">retrieveNr</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">retrieveNr</span><span class="p">);</span>
 <span class="p">};</span>
@@ -717,36 +717,36 @@ Retrieve last 15 items
 <p>There are many JavaScript testing frameworks and test runners, but AngularJS works very well with <strong>Karma</strong>. In fact, that is the test runner used in the official AngularJS tutorial.</p>
 <p>To use Karma, you will have to install <strong>node.js</strong>. I’ve tested this with node.js <strong>v0.10.15</strong>, and I believe a reasonably modern version of node.js should work fine.</p>
 <p>The version of <strong>Karma</strong> I’m using is <strong>v0.10.2</strong>. Once you have installed node.js, install karma globally by:</p>
-<div class="highlight"><pre>npm -g install karma@0.10.2
+<div class="highlight"><pre><span></span>npm -g install karma@0.10.2
 </pre></div>
 
 <p>We will also need a browser to capture the output from Karma. For this, I personally prefer <strong>PhantomJS</strong>. You can also use Firefox, Chrome, or any other <strong>modern</strong> browser, but you will have to edit the Karma configuration file.</p>
 <p>The version of <strong>PhantomJS</strong> that I’ve worked with is <strong>v1.9.1</strong>. You will have to install it globally:</p>
-<div class="highlight"><pre>npm -g install phantomjs@1.9.1
+<div class="highlight"><pre><span></span>npm -g install phantomjs@1.9.1
 </pre></div>
 
 <p>And we are done with the software needed for running the tests. Let us take a look at the Karma configuration file.</p>
 <h2 id="angularjs-testing---the-karma-configuration-file">AngularJS Testing - the Karma configuration file</h2>
 <p>Now because the Karma configuration file is pretty long, I shall not paste it in its entirety. Instead, I will go through it part by part. The file is located at <strong>test/test.conf.js</strong>.</p>
 <p>Look at lines 7 and 8 of <strong>test/test.conf.js</strong>:</p>
-<div class="highlight"><pre><span class="c1">// base path, that will be used to resolve files and exclude</span>
+<div class="highlight"><pre><span></span><span class="c1">// base path, that will be used to resolve files and exclude</span>
 <span class="nx">basePath</span><span class="o">:</span> <span class="s1">'..'</span><span class="p">,</span>
 </pre></div>
 
 <p>This specifies the path where Karma starts looking for files, <strong>relative to the directory the test/test.conf.js file is located in</strong>. For convenience reasons, we set it to <code>'..'</code>, or one directory above the <strong>test</strong> folder. That happens to be the root of the repository. We shall see why later.</p>
 <p>Now, look at line 10 of <strong>test/test.conf.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">hostname</span><span class="o">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="nx">hostname</span><span class="o">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
 </pre></div>
 
 <p>This specifies the server where browsers will capture output from running the tests. You will be running the tests on your own machine, hence the localhost IP address. I’ve used <code>127.0.0.1</code> instead of <code>localhost</code> in case you have configured <code>localhost</code> to something else in <code>/etc/hosts</code>.</p>
 <p>Moving on to lines 13 and 14 of <strong>test/test.conf.js</strong>:</p>
-<div class="highlight"><pre><span class="c1">// frameworks to use</span>
+<div class="highlight"><pre><span></span><span class="c1">// frameworks to use</span>
 <span class="nx">frameworks</span><span class="o">:</span> <span class="p">[</span><span class="s1">'jasmine'</span><span class="p">],</span>
 </pre></div>
 
 <p>We see that <strong>jasmine</strong> is specified as a test framework to use. Notice how we said Karma is a <strong>test runner</strong>. It is used to run tests. There is a nice test framework called <strong>jasmine</strong> that comes with Karma, so we will be using that.</p>
 <p>On to lines 17 to 24 of <strong>test/test.conf.js</strong>:</p>
-<div class="highlight"><pre><span class="c1">// list of files / patterns to load in the browser</span>
+<div class="highlight"><pre><span></span><span class="c1">// list of files / patterns to load in the browser</span>
 <span class="nx">files</span><span class="o">:</span> <span class="p">[</span>
   <span class="s1">'test/lib/jquery-1.10.2.min.js'</span><span class="p">,</span>
   <span class="s1">'test/lib/angular.min.js'</span><span class="p">,</span>
@@ -757,7 +757,7 @@ Retrieve last 15 items
 </pre></div>
 
 <p>Here, we specify a list of files to be loaded. This includes all the files for the actual test cases and any file they require. You can use wildcard patterns such as ‘*’ and ‘**’. I shall not go into their details. Only the line:</p>
-<div class="highlight"><pre>test/**/*.spec.js
+<div class="highlight"><pre><span></span>test/**/*.spec.js
 </pre></div>
 
 <p>includes the actual test cases. In fact, the test cases are located at the <strong>test/unit</strong> folder, and end with the extension ‘.spec.js’.</p>
@@ -770,21 +770,21 @@ Retrieve last 15 items
 <li><p>Notice all the paths here are relative to the root of the repository. This is due to us specifying the <code>basePath</code> property to be <code>'..'</code> above. If the basepath was set to the <code>test</code> folder, we will have to write <code>../test/lib/jquery-1.10.2.min.js</code>, <code>../static/todo.js</code>, and so on.</p></li>
 <li><p>Those with a <strong>very</strong> good memory will recall that our application uses CDNs for the JavaScript files. Open <strong>templates/layout.html</strong> and look at lines 3 to 6:</p></li>
 </ol>
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/script&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>When running the tests, the libraries required by the AngularJS code we are testing need to be on our local filesystem. Do take note of this if you are using some kind of CDN, or if the libraries you are using are not inside your repository.</p>
 <p>I will skip the <code>exclude</code> and <code>reporters</code> properties and move on to lines 37 and 38 of <strong>test/test.conf.js</strong>:</p>
-<div class="highlight"><pre><span class="c1">// web server port</span>
+<div class="highlight"><pre><span></span><span class="c1">// web server port</span>
 <span class="nx">port</span><span class="o">:</span> <span class="mi">9876</span><span class="p">,</span>
 </pre></div>
 
 <p>This is the port where the Karma will be running. Change it to another port if you have something else running on it.</p>
 <p>I’m going to skip over the <code>colors</code>, <code>loglevel</code> and <code>autoWatch</code> properties and move on to lines 54 to 62 of <strong>test/test.conf.js</strong>:</p>
-<div class="highlight"><pre><span class="c1">// Start these browsers, currently available:</span>
+<div class="highlight"><pre><span></span><span class="c1">// Start these browsers, currently available:</span>
 <span class="c1">// - Chrome</span>
 <span class="c1">// - ChromeCanary</span>
 <span class="c1">// - Firefox</span>
@@ -796,18 +796,18 @@ Retrieve last 15 items
 </pre></div>
 
 <p>Earlier, I mentioned that you can use another browser than PhantomJS, but you will have to edit the configuration file. This is the section where you have to edit. Suppose you want to use Firefox instead of PhantomJS. So you will edit the browsers property to:</p>
-<div class="highlight"><pre><span class="nx">browsers</span><span class="o">:</span> <span class="p">[</span><span class="s1">'Firefox'</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><span class="nx">browsers</span><span class="o">:</span> <span class="p">[</span><span class="s1">'Firefox'</span><span class="p">],</span>
 </pre></div>
 
 <p>Next, moving on to lines 69 to 71 of <strong>test/test.conf.js</strong>:</p>
-<div class="highlight"><pre><span class="c1">// Continuous Integration mode</span>
+<div class="highlight"><pre><span></span><span class="c1">// Continuous Integration mode</span>
 <span class="c1">// if true, it capture browsers, run tests and exit</span>
 <span class="nx">singleRun</span><span class="o">:</span> <span class="kc">true</span>
 </pre></div>
 
 <p>The <code>singleRun</code> option determines if the tests are just run once or continuously (until you tell Karma to stop). Here, we choose to run it once, so after running the tests, Karma exits.</p>
 <p>Earlier, I skipped the <code>autoWatch</code> option, at lines 50 to 51:</p>
-<div class="highlight"><pre><span class="c1">// enable / disable watching file and executing tests whenever any file changes</span>
+<div class="highlight"><pre><span></span><span class="c1">// enable / disable watching file and executing tests whenever any file changes</span>
 <span class="nx">autoWatch</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
 </pre></div>
 
@@ -816,13 +816,13 @@ Retrieve last 15 items
 <h2 id="running-the-tests">Running the tests</h2>
 <p>Before we move on with the explanation of the test cases, I think it will be good for you to see that the tests are working. Be sure to have installed the required software as outlined in the “<strong>AngularJS Testing - setting up</strong>” section above.</p>
 <p>To run the tests from the root of the repository:</p>
-<div class="highlight"><pre>karma start test/test.conf.js
+<div class="highlight"><pre><span></span>karma start test/test.conf.js
 </pre></div>
 
 <p>You should see something like this:</p>
 <p><img src="../images/2013-08-27-ngtut/ngtut04.png" /></p>
 <p>Alternatively, you can run the tests in the <code>test</code> folder:</p>
-<div class="highlight"><pre>cd test
+<div class="highlight"><pre><span></span>cd test
 karma start test.conf.js
 </pre></div>
 
@@ -837,7 +837,7 @@ karma start test.conf.js
 <p>Regardless, I believe that you will be able to get a much better idea of testing AngularJS code after reading the sections below.</p>
 <h2 id="testing-the-todocontroller">Testing the TodoController</h2>
 <p>Open up <strong>test/unit/TodoController.spec.js</strong>, and look at lines 1 to 10:</p>
-<div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">$scope</span>
       <span class="p">,</span> <span class="nx">$httpBackend</span>
       <span class="p">,</span> <span class="nx">ctrl</span>
@@ -862,7 +862,7 @@ karma start test.conf.js
 <p>Within the outermost <code>describe</code>, there are 2 top level <code>beforeEach</code> functions at lines 7 and 12; one top level <code>afterEach</code> function at line 18; one top level <code>it</code> function at line 23; three top level <code>describe</code> functions at lines 29, 99, 150.</p>
 <h2 id="angularjs-testing-concept---initializing-the-module">AngularJS Testing concept - initializing the module</h2>
 <p>Let’s look at the first <code>describe</code> block at lines 7 to 10:</p>
-<div class="highlight"><pre><span class="nx">beforeEach</span><span class="p">(</span><span class="nx">module</span><span class="p">(</span><span class="s1">'TodoApp'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$provide</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">beforeEach</span><span class="p">(</span><span class="nx">module</span><span class="p">(</span><span class="s1">'TodoApp'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$provide</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">windowAlert</span> <span class="o">=</span> <span class="nx">jasmine</span><span class="p">.</span><span class="nx">createSpy</span><span class="p">();</span>
     <span class="nx">$provide</span><span class="p">.</span><span class="nx">value</span><span class="p">(</span><span class="s1">'windowAlert'</span><span class="p">,</span> <span class="nx">windowAlert</span><span class="p">);</span>
 <span class="p">}));</span>
@@ -871,7 +871,7 @@ karma start test.conf.js
 <p>For AngularJS tests, be sure to include a <code>beforeEach</code> function inside each top level <code>describe</code> to tell it which module you are trying to test. I cannot stress this further. There was once when I was writing a test case and it mysteriously failed. Everything looks fine to me, and I’ve tried almost every trick in the book. It was only after many minutes of looking until I realized I forgot to include such a <code>beforeEach</code> block with the <code>module</code> function.</p>
 <p>Here, we are saying we want to load the <code>TodoApp</code> module. The second argument is a function, and it is optional. But if provided, it should have a <code>$provide</code> parameter. Here, we create a mock using <code>jasmine.createSpy</code>, then mock out the actual <code>windowAlert</code> factory using that mock by calling the <code>$provide.value</code> function, supplying the name of what we want to mock out (<code>'windowAlert'</code>), and the mock (the <code>windowAlert</code> variable).</p>
 <p>Let’s look at the second <code>beforeEach</code> block, at lines 12 to 16 of <strong>test/unit/TodoController.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">beforeEach</span><span class="p">(</span><span class="nx">inject</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">_$httpBackend_</span><span class="p">,</span> <span class="nx">$rootScope</span><span class="p">,</span> <span class="nx">$controller</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">beforeEach</span><span class="p">(</span><span class="nx">inject</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">_$httpBackend_</span><span class="p">,</span> <span class="nx">$rootScope</span><span class="p">,</span> <span class="nx">$controller</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$httpBackend</span> <span class="o">=</span> <span class="nx">_$httpBackend_</span><span class="p">;</span>
     <span class="nx">$scope</span> <span class="o">=</span> <span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$new</span><span class="p">();</span>
     <span class="nx">ctrl</span> <span class="o">=</span> <span class="nx">$controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">{</span> <span class="nx">$scope</span><span class="o">:</span> <span class="nx">$scope</span> <span class="p">});</span>
@@ -883,14 +883,14 @@ karma start test.conf.js
 <p>The <code>$rootScope</code> service is used to create new <code>scope</code> objects using the <code>$rootScope.$new</code> method, as we are doing in line 14.</p>
 <p>The <code>$controller</code> service is used to create new controllers. The first argument is the name of the controller, and the second argument is an object which contains a <code>$scope</code> property, whose value is a newly created scope object.</p>
 <p>At line 13, we see</p>
-<div class="highlight"><pre><span class="nx">$httpBackend</span> <span class="o">=</span> <span class="nx">_$httpBackend_</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">$httpBackend</span> <span class="o">=</span> <span class="nx">_$httpBackend_</span><span class="p">;</span>
 </pre></div>
 
 <p>Notice that at line 3, we have declared the <code>$httpBackend</code> variable. The underscores in <code>_$httpBackend_</code> parameter are used to name <code>$httpBackend</code> under a different name so we can assign it to a variable of the same name. For a more detailed explanation, see <a href="http://stackoverflow.com/questions/15318096/what-does-the-underscores-in-servicename-mean-in-angularjs-tests">this</a> stack overflow question.</p>
 <p>The <code>$httpBackend</code> service is made available through the angular-mock library. It is used to mock out a backend, as we shall see soon.</p>
 <h2 id="first-test-case">First test case</h2>
 <p>For Jasmine, actual test cases are the <code>it</code> blocks. Let’s look at our first actual test case, on lines 23 to 27 of <strong>test/unit/TodoController.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">it</span><span class="p">(</span><span class="s1">'initialization sets up the scope variables'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">it</span><span class="p">(</span><span class="s1">'initialization sets up the scope variables'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">jasmine</span><span class="p">.</span><span class="nx">any</span><span class="p">(</span><span class="nb">Object</span><span class="p">));</span>
     <span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todoList</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([]);</span>
     <span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">retrieveNr</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">RETRIEVE_DEFAULT_NR</span><span class="p">);</span>
@@ -899,7 +899,7 @@ karma start test.conf.js
 
 <p>Here, we are ensuring that the <code>TodoController</code> is setting up the initial state properly. Recall that we have created one <code>TodoController</code> in the <code>beforeEach</code> block with an <code>inject</code>. That controller is available through the <code>ctrl</code> variable, even though we won’t need it in this case.</p>
 <p>Looking at the relevant part of <code>TodoController</code> that we are testing, that is lines 21 to 30 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'TodoController'</span><span class="p">,</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="s1">'$http'</span><span class="p">,</span>
     <span class="s1">'windowAlert'</span><span class="p">,</span>
@@ -912,17 +912,17 @@ karma start test.conf.js
 </pre></div>
 
 <p>We see that this line:</p>
-<div class="highlight"><pre><span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">jasmine</span><span class="p">.</span><span class="nx">any</span><span class="p">(</span><span class="nb">Object</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">jasmine</span><span class="p">.</span><span class="nx">any</span><span class="p">(</span><span class="nb">Object</span><span class="p">));</span>
 </pre></div>
 
 <p>contains a single <strong>assertion</strong>, given by the <code>expect</code>. We are asserting that when the <code>TodoController</code> code has finished running, the <code>$scope.state</code> variable is an object. In this case, we do not care about the contents of the object, hence we use <code>jasmine.any(Object)</code>, which is a way of saying we do not care what the actual value of <code>$scope.state</code> is, as long as it is some object. There is <code>jasmine.any(Number)</code>, <code>jasmine.any(Function)</code>, etc, and I believe it works for any JavaScript type.</p>
 <p>Now, the second assertion in that <code>it</code> block (line 25 of <strong>test/unit/TodoController.spec.js</strong>):</p>
-<div class="highlight"><pre><span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todoList</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([]);</span>
+<div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todoList</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([]);</span>
 </pre></div>
 
 <p>We are asserting that <code>$scope.state.todoList</code> is initially an empty array.</p>
 <p>Finally, the third and last assertion in the <code>it block</code> (line 26 of <strong>test/unit/TodoController.spec.js</strong>):</p>
-<div class="highlight"><pre><span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">retrieveNr</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">RETRIEVE_DEFAULT_NR</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">retrieveNr</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">RETRIEVE_DEFAULT_NR</span><span class="p">);</span>
 </pre></div>
 
 <p>We are asserting that <code>$scope.state.retrieveNr</code> has the same value as <code>$scope.RETRIEVE_DEFAULT_NR</code>.</p>
@@ -931,7 +931,7 @@ karma start test.conf.js
 <p>In general, <code>toBe</code> is used for comparing non object values, such as integers, strings, booleans. <code>toEqual</code> is used for comparing arrays, objects and the like.</p>
 <h2 id="todocontrolleradditem---tests">TodoController::addItem - tests</h2>
 <p>Now, let’s move on to our second test case, lines 29 to 38 of <strong>test/unit/TodoController.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">'addItem'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'addItem'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">itemToAdd</span><span class="p">;</span>
     <span class="nx">it</span><span class="p">(</span><span class="s1">'should not be able to add undefined item'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
@@ -945,7 +945,7 @@ karma start test.conf.js
 
 <p>This time, the <code>it</code> block we are interested in is located within a nested <code>describe</code> block. We can see that we are trying to test the <code>addItem</code> function.</p>
 <p>Initially, we set <code>$scope.state.newItem</code> to be undefined, and proceed to call the <code>$scope.addItem</code> function. Looking at the code for that function (lines 32 to 52, <strong>static/todo.js</strong>):</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">windowAlert</span><span class="p">(</span><span class="s2">&quot;text field must be non-empty&quot;</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -970,7 +970,7 @@ karma start test.conf.js
 
 <p>It is not hard to see that we will end up inside the <code>then</code> part of the outermost <code>if</code> statement, considering that <code>undefined</code> is a falsy<sup id="hn7"><a href="#fn7">7</a></sup> value. So there should be a <code>windowAlert</code> call.</p>
 <p>Let’s look at the relevant part of the <code>it</code> block that tests for the <code>windowAlert</code> call (lines 34 to 37, <strong>test/unit/TodoController.spec.js</strong>):</p>
-<div class="highlight"><pre><span class="nx">expect</span><span class="p">(</span><span class="nx">windowAlert</span><span class="p">.</span><span class="nx">calls</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span><span class="nx">windowAlert</span><span class="p">.</span><span class="nx">calls</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="nx">expect</span><span class="p">(</span><span class="nx">windowAlert</span><span class="p">.</span><span class="nx">calls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">toBe</span><span class="p">(</span>
     <span class="s1">'text field must be non-empty'</span>
 <span class="p">);</span>
@@ -979,19 +979,19 @@ karma start test.conf.js
 <p>On line 34, we are asserting that the <code>windowAlert</code> factory should only be called <code>1</code> time.</p>
 <p>Lines 35 to 37 check that the first argument (<code>args[0]</code>) of the first call (<code>calls[0]</code>) to the <code>windowAlert</code> factory is the string <code>'text field must be non-empty'</code>.</p>
 <p>A similar way to check for the argument is:</p>
-<div class="highlight"><pre><span class="nx">expect</span><span class="p">(</span><span class="nx">windowAlert</span><span class="p">.</span><span class="nx">calls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">args</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="s1">'text field must be non-empty'</span><span class="p">]);</span>
+<div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span><span class="nx">windowAlert</span><span class="p">.</span><span class="nx">calls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">args</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="s1">'text field must be non-empty'</span><span class="p">]);</span>
 </pre></div>
 
 <p>Which tests the entire <strong>argument list</strong> of the first call to <code>windowAlert</code> instead of just the first argument.</p>
 <p>Yet another way to write the assertion is:</p>
-<div class="highlight"><pre><span class="nx">expect</span><span class="p">(</span><span class="nx">windowAlert</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span><span class="nx">windowAlert</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span>
     <span class="s1">'text field must be non-empty'</span>
 <span class="p">);</span>
 </pre></div>
 
 <p>However, the <code>toHaveBeenCalledWith</code> matcher will pass if there is <strong>any</strong> call to the function with the given argument list. In this case, there is only one call to <code>windowAlert</code>, so using <code>toHaveBeenCalledWith</code> is fine. In general, it is probably safer to use the first two ways.</p>
 <p>So why are we able to carry out those assertions on <code>windowAlert</code>, if it is a JavaScript function? Recall that at lines 7 to 10 of <strong>test/unit/TodoController.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">beforeEach</span><span class="p">(</span><span class="nx">module</span><span class="p">(</span><span class="s1">'TodoApp'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$provide</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">beforeEach</span><span class="p">(</span><span class="nx">module</span><span class="p">(</span><span class="s1">'TodoApp'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$provide</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">windowAlert</span> <span class="o">=</span> <span class="nx">jasmine</span><span class="p">.</span><span class="nx">createSpy</span><span class="p">();</span>
     <span class="nx">$provide</span><span class="p">.</span><span class="nx">value</span><span class="p">(</span><span class="s1">'windowAlert'</span><span class="p">,</span> <span class="nx">windowAlert</span><span class="p">);</span>
 <span class="p">}));</span>
@@ -1002,7 +1002,7 @@ karma start test.conf.js
 <p>With what we have just covered, you should be able to understand the <code>it</code> block located at lines 39 to 46 of <strong>test/unit/TodoController.spec.js</strong> on your own. It is very similar to the <code>it</code> block we just covered.</p>
 <h2 id="a-test-using-httpbackend">A test using $httpBackend</h2>
 <p>Now, look at lines 47 to 74 of <strong>test/unit/TodoController.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">'add non-empty item'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'add non-empty item'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">postUrl</span><span class="p">;</span>
     <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">postUrl</span> <span class="o">=</span> <span class="s1">'/todoAdd'</span><span class="p">;</span>
@@ -1034,18 +1034,18 @@ karma start test.conf.js
 
 <p>Most of the code should be familiar to you. Notice that the <code>it</code> block we are interested in is nested within two <code>describe</code> blocks (not counting the outermost <code>describe</code> block where the outermost <code>describe</code> block shown here is located).</p>
 <p>Notice that at line 52:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span> <span class="o">=</span> <span class="nx">jasmine</span><span class="p">.</span><span class="nx">createSpy</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span> <span class="o">=</span> <span class="nx">jasmine</span><span class="p">.</span><span class="nx">createSpy</span><span class="p">();</span>
 </pre></div>
 
 <p>We are mocking out a <code>TodoController</code> function. This is possible because we have already initialized the <code>TodoController</code> in a <code>beforeEach</code> block located outside of this <code>describe</code> block, at line 15.</p>
 <p>At lines 64 to 66:</p>
-<div class="highlight"><pre><span class="nx">it</span><span class="p">(</span><span class="s1">'should call retrieveLastNItems'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">it</span><span class="p">(</span><span class="s1">'should call retrieveLastNItems'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span> <span class="o">=</span> <span class="nx">itemToAdd</span><span class="p">;</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span><span class="p">();</span>
 </pre></div>
 
 <p>We are simulating the user typing into the input field and adding a new todo list item. Looking at the relevant portion of the <code>TodoController</code> code (lines 32 to 52, <strong>static/todo.js</strong>):</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">windowAlert</span><span class="p">(</span><span class="s2">&quot;text field must be non-empty&quot;</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -1070,7 +1070,7 @@ karma start test.conf.js
 
 <p>We see that the outermost <code>if</code> fails, so we move on to the <code>$http.post</code> part. Are we actually going to start up our backend for this POST request? No. This is a unit test, not an end to end test. We will be making use of the <code>$httpBackend</code> service here.</p>
 <p>Look at lines 54 to 63 of <strong>test/unit/TodoController.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">'on success'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'on success'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">itemToAdd</span><span class="p">;</span>
     <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">itemToAdd</span> <span class="o">=</span> <span class="s1">'do my laundry'</span><span class="p">;</span>
@@ -1083,19 +1083,19 @@ karma start test.conf.js
 </pre></div>
 
 <p>We see a <code>$httpBackend.expectPOST</code> call. That works exactly like what its name says, that we are expecting a POST call to our backend. The first argument is the url, at line 50:</p>
-<div class="highlight"><pre><span class="nx">postUrl</span> <span class="o">=</span> <span class="s1">'/todoAdd'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">postUrl</span> <span class="o">=</span> <span class="s1">'/todoAdd'</span><span class="p">;</span>
 </pre></div>
 
 <p>which is set to the string <code>'todoAdd'</code>, which is exactly the url provided in the <code>$http.post</code> in the <code>$scope.addItem</code> function.</p>
 <p>The second argument is the data the POST request should contain. In this case, it is an object with one property named <code>item</code> with value <code>do my laundry</code>. Looking at lines 64 to 66 of the <code>it</code> block:</p>
-<div class="highlight"><pre><span class="nx">it</span><span class="p">(</span><span class="s1">'should call retrieveLastNItems'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">it</span><span class="p">(</span><span class="s1">'should call retrieveLastNItems'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span> <span class="o">=</span> <span class="nx">itemToAdd</span><span class="p">;</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span><span class="p">();</span>
 </pre></div>
 
 <p>the todo list item to be added is exactly that same variable, which has the same value.</p>
 <p>Now, recall that our backend returns a HTTP code and a JSON object upon success. If we look at line 62:</p>
-<div class="highlight"><pre><span class="nx">$httpBackend</span>
+<div class="highlight"><pre><span></span><span class="nx">$httpBackend</span>
     <span class="p">.</span><span class="nx">expectPOST</span><span class="p">(</span><span class="nx">postUrl</span><span class="p">,</span> <span class="p">{</span>
         <span class="nx">item</span><span class="o">:</span> <span class="nx">itemToAdd</span>
     <span class="p">})</span>
@@ -1104,7 +1104,7 @@ karma start test.conf.js
 
 <p>We see a <code>.respond(200, { success: true })</code> call. That is a call to the object returned by <code>$httpBackend.expectPOST</code>, with the first argument being the HTTP code (<code>200</code> in this case), and the second argument being the object it should return, should it encounter the expected POST request.</p>
 <p>Going back to our <code>it block</code> at lines 64 to 73 of <strong>test/unit/TodoController.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">it</span><span class="p">(</span><span class="s1">'should call retrieveLastNItems'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">it</span><span class="p">(</span><span class="s1">'should call retrieveLastNItems'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">newItem</span> <span class="o">=</span> <span class="nx">itemToAdd</span><span class="p">;</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">addItem</span><span class="p">();</span>
     <span class="c1">// $httpBackend.flush() required here</span>
@@ -1118,7 +1118,7 @@ karma start test.conf.js
 
 <p>See the <code>$httpBackend.flush()</code>? Prior to calling <code>$httpBackend.flush()</code>, the <code>$httpBackend</code> will not respond to any calls to the <code>$http</code> service. This just tells the <code>$httpBackend</code> to go on and respond to those calls.</p>
 <p>Let’s take a look at the success callback of the <code>$http.post</code> call in the <code>$scope.addItem</code> function, lines 40 to 48 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">headers</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">headers</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span><span class="p">(</span>
             <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">retrieveNr</span>
@@ -1131,7 +1131,7 @@ karma start test.conf.js
 
 <p>Since our <code>$httpBackend</code> returns HTTP code 200 and an object with property success set to <code>true</code>, we should end up calling the <code>$scope.retrieveLastNItems</code> function with argument <code>$scope.state.retrieveNr</code>.</p>
 <p>But recall that in lines 49 to 53 of <strong>test/unit/TodoController.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">postUrl</span> <span class="o">=</span> <span class="s1">'/todoAdd'</span><span class="p">;</span>
     <span class="c1">// mock out call to retrieveLastNItems</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span> <span class="o">=</span> <span class="nx">jasmine</span><span class="p">.</span><span class="nx">createSpy</span><span class="p">();</span>
@@ -1140,7 +1140,7 @@ karma start test.conf.js
 
 <p>we have mocked out the <code>$scope.retrieveLastNItems</code> function with a jasmine spy. Therefore, we will not be calling the actual <code>$scope.retrieveLastNItems</code> function.</p>
 <p>And at the remaining part of the <code>it</code> block at lines 68 to 72 of <strong>test/unit/TodoController.spec.js</strong>, we assert some facts about the spy:</p>
-<div class="highlight"><pre><span class="nx">$httpBackend</span><span class="p">.</span><span class="nx">flush</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><span class="nx">$httpBackend</span><span class="p">.</span><span class="nx">flush</span><span class="p">();</span>
 <span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span><span class="p">.</span><span class="nx">calls</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="nx">expect</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">retrieveLastNItems</span><span class="p">.</span><span class="nx">calls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">toBe</span><span class="p">(</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">RETRIEVE_DEFAULT_NR</span>
@@ -1159,10 +1159,10 @@ karma start test.conf.js
 <p>If you wish to continue, brace yourself for a tough ride.</p>
 <p>Directives are one of the most powerful features of AngularJS. To convince yourself of this, just look at our earlier examples covering the built-in AngularJS directives <code>ng-model</code> and <code>ng-repeat</code>. They are very easy to use and do things that one will consider difficult if one has to implement them by hand.</p>
 <p>In fact, looking at this example at lines 27 to 30 of <strong>static/todo.html</strong>:</p>
-<div class="highlight"><pre><span class="nt">&lt;tr</span> <span class="na">ng-repeat=</span><span class="s">&quot;item in state.todoList&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ $index + 1 }}<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;td&gt;</span>{{ item.text }}<span class="nt">&lt;/td&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">&quot;item in state.todoList&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ $index + 1 }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ item.text }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>It would seem that we are not writing pure HTML at all, but a mix of HTML and JavaScript, with this weird brackety syntax for interpolating variables. This piece of code does a few things that you will have to implement if you are not using AngularJS:</p>
@@ -1178,16 +1178,16 @@ karma start test.conf.js
 <p>And on the second page:</p>
 <p><img src="../images/2013-08-27-ngtut/ngtut05.png" /></p>
 <p>Observe how the active tab is set to the correct tab whenever we change to a different page (the active tab is the one whose text is in black color). This is done through the use of a directive. So now you might be thinking, ok, this is nothing special. Yea indeed I don’t think it’s anything too special as well. That said, the code to generate this tab in the todo list template, it’s just <strong>one line</strong>. In fact, it’s the first line of the <strong>static/todo.html</strong> file:</p>
-<div class="highlight"><pre><span class="nt">&lt;navtabs</span> <span class="na">page-name=</span><span class="s">&quot;state.pageName&quot;</span><span class="nt">&gt;&lt;/navtabs&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">navtabs</span> <span class="na">page-name</span><span class="o">=</span><span class="s">&quot;state.pageName&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">navtabs</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>And for the second page, it is one line as well, at the first line of <strong>static/secondPage.html</strong>:</p>
-<div class="highlight"><pre><span class="nt">&lt;navtabs</span> <span class="na">page-name=</span><span class="s">&quot;state.pageName&quot;</span><span class="nt">&gt;&lt;/navtabs&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">navtabs</span> <span class="na">page-name</span><span class="o">=</span><span class="s">&quot;state.pageName&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">navtabs</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Ok, hopefully the fact that it is just one line should catch your attention. Of course the implementation is more than one line, but to use it in a view, it really is just this one line. And the fact that we are using this weird tag named <code>navtabs</code> which is not a real HTML tag should capture even more of your attention. Right now, there should be one thought in your head that goes like this - what the hell is going on?<sup id="hn8"><a href="#fn8">8</a></sup> Oh and did I mention? This thing is testable. And I have written a test case for it<sup><a href="#fn9">9</a></sup>, which we shall see soon.</p>
 <p>Now, the code for the <code>navtabs</code> directive, lines 75 to 94 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">'navtabs'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">'navtabs'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="nx">restrict</span><span class="o">:</span> <span class="s1">'E'</span><span class="p">,</span>
         <span class="nx">replace</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -1212,26 +1212,26 @@ karma start test.conf.js
 <p>Ok, that looks complicated. And indeed it is. In fact the original directive for the tab was not written this way. I changed it to this after seeing an example on the AngularJS homepage. I have to be honest and tell you that writing directives is <strong>not easy</strong>. In fact, when I write a directive, I usually need to look up the official AngularJS docs and read some stack overflow questions before I get it right. But the effort is worth it once your directive is done.</p>
 <p>Anyway, here goes. In a directive, we declare a function that returns an object. This object is at the heart of writing directives, and there are a number of properties for which you can set depending on what you intend to do.</p>
 <p>Here, we set the <code>restrict</code> property to the string <code>'E'</code> to say that it is only meant to be used like a HTML element. This is why we were able to use it like this:</p>
-<div class="highlight"><pre><span class="nt">&lt;navtabs</span> <span class="na">page-name=</span><span class="s">&quot;state.pageName&quot;</span><span class="nt">&gt;&lt;/navtabs&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">navtabs</span> <span class="na">page-name</span><span class="o">=</span><span class="s">&quot;state.pageName&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">navtabs</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>even though <code>navtabs</code> is not a real HTML element.</p>
 <p>There is also <code>'C'</code> (use as a class), <code>'A'</code> (use as an attribute) and the more obscure <code>M</code> (use as a comment; I’ve never used this before). So if you want to use a directive like how you would use <code>ng-model</code> (like an attribute), you will have to set restrict to the string <code>'A'</code>.</p>
 <p>We will skip the <code>replace</code> property for now and look at the <code>templateUrl</code> property. Just like its name suggests, this holds a path to the file containing the template for this directive. Here is the full template (<strong>static/navtabs.html</strong>):</p>
-<div class="highlight"><pre><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href=</span><span class="s">&quot;#/&quot;</span><span class="nt">&gt;</span>Home/Todo List<span class="nt">&lt;/tab&gt;</span>
-  <span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href=</span><span class="s">&quot;#/secondPage&quot;</span><span class="nt">&gt;</span>Second Page<span class="nt">&lt;/tab&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/&quot;</span><span class="p">&gt;</span>Home/Todo List<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/secondPage&quot;</span><span class="p">&gt;</span>Second Page<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Ah… the picture becomes more clear. We are using a <a href="http://getbootstrap.com/">Twitter Bootstrap</a> navtab, hence the <code>&lt;ul&gt;</code> element with the <code>nav</code> and <code>nav-tabs</code> CSS classes. The two <code>&lt;tab&gt;</code> elements inside are themselves directives (which we will cover very shortly), but they should look quite intuitive.</p>
 <p>Now, let’s look at the <code>replace</code> property, at line 78 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">replace</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="nx">replace</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 </pre></div>
 
 <p>When set to <code>true</code>, it means we want to replace the entire <code>&lt;navtabs&gt;</code> element with the template. The alternative is <code>false</code>, which will insert the template under the <code>&lt;navtabs&gt;</code> element. Yea it does work even though <code>&lt;navtabs&gt;</code> is not a real HTML tag.</p>
 <p>Still on <strong>static/todo.js</strong>, lines 80 to 82:</p>
-<div class="highlight"><pre><span class="nx">scope</span><span class="o">:</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">scope</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">pageName</span><span class="o">:</span> <span class="s1">'='</span>
 <span class="p">},</span>
 </pre></div>
@@ -1239,20 +1239,20 @@ karma start test.conf.js
 <p>This is one of the more confusing aspects of writing directives, especially when you are just starting out. Earlier in this tutorial, I mentioned that AngularJS has an elaborate scope hierarchy. It turns out that directives can have their own scope as well. In fact, you’ve seen an example in <code>ng-repeat</code>, where each <code>item</code> refers to a different object. This could not have been possible if they were sharing the same scope, since the same name should refer to the same object.</p>
 <p>What we’re doing here is, we are saying that the directive should have an <strong>‘isolate’</strong> scope. An isolate scope does not inherit from the parent scope. In this case, the parent scope refers to the scope of the controller for the page we are on (<code>TodoController</code> for the todo list page; <code>SecondController</code> for the second page). An isolate scope is created for a directive when we have a scope property whose value is an object, like what we have here.</p>
 <p>Here, we see that the object has a property called <code>pageName</code>. The value of the <code>pageName</code> is the string <code>'='</code>. Properties in this object are used to specify scope properties, so this means we want a scope property named <code>pageName</code>. That is half the story. The <code>'='</code> means we want to establish a two-way data binding between <code>$scope.pageName</code> and the variable passed to an attribute named <code>page-name</code> on the <code>&lt;navtabs&gt;</code> element. Confused? Don’t worry. Let’s look at how we use the navtabs directive, on the first line of <strong>static/todo.html</strong>:</p>
-<div class="highlight"><pre><span class="nt">&lt;navtabs</span> <span class="na">page-name=</span><span class="s">&quot;state.pageName&quot;</span><span class="nt">&gt;&lt;/navtabs&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">navtabs</span> <span class="na">page-name</span><span class="o">=</span><span class="s">&quot;state.pageName&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">navtabs</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Like we’ve mentioned, there is a <code>page-name</code> attribute on the <code>&lt;navtabs&gt;</code> element. It has a value of <code>state.pageName</code>. If we look at the <code>TodoController</code> code at <strong>static/todo.js</strong>, line 30:</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pageName</span> <span class="o">=</span> <span class="s1">'todoList'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pageName</span> <span class="o">=</span> <span class="s1">'todoList'</span><span class="p">;</span>
 </pre></div>
 
 <p>We see that there is indeed a scope variable called <code>$scope.state.pageName</code> set up in <code>TodoController</code>.</p>
 <p>If we look at the other place where the <strong><navtabs></strong> element is used, namely the first line of <strong>static/secondPage.html</strong>, we see the same line of HTML:</p>
-<div class="highlight"><pre><span class="nt">&lt;navtabs</span> <span class="na">page-name=</span><span class="s">&quot;state.pageName&quot;</span><span class="nt">&gt;&lt;/navtabs&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">navtabs</span> <span class="na">page-name</span><span class="o">=</span><span class="s">&quot;state.pageName&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">navtabs</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>And code for the <code>SecondController</code>, line 111 to 117 of <strong>static/todo.js</strong>, in particular line 115:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'SecondController'</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'SecondController'</span><span class="p">,</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{};</span>
@@ -1263,38 +1263,38 @@ karma start test.conf.js
 
 <p>We see a <code>$scope.state.pageName = 'secondPage';</code> assignment.</p>
 <p>If we take a look at the template file for the <code>navtabs</code> directive again (<strong>static/navtabs.html</strong>):</p>
-<div class="highlight"><pre><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href=</span><span class="s">&quot;#/&quot;</span><span class="nt">&gt;</span>Home/Todo List<span class="nt">&lt;/tab&gt;</span>
-  <span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href=</span><span class="s">&quot;#/secondPage&quot;</span><span class="nt">&gt;</span>Second Page<span class="nt">&lt;/tab&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/&quot;</span><span class="p">&gt;</span>Home/Todo List<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/secondPage&quot;</span><span class="p">&gt;</span>Second Page<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>See something special? I am referring to the <code>name=&quot;todoList&quot;</code> and <code>name=&quot;secondPage&quot;</code> attributes.</p>
 <p>Hopefully you see where we are going. On the todo list page, I set up <code>$scope.state.pageName</code> in the <code>TodoController</code> to have the value <code>'todoList'</code>, and on the second page, I set up the <code>$scope.state.pageName</code> in the <code>SecondController</code> to have the value <code>'secondPage'</code>. Compare that to the value of the <code>name</code> attribute in the two <code>&lt;tab&gt;</code> elements in the template file of the <code>navtabs</code> directive, and it should be obvious what we are trying to do - we want the tab with its name attribute equal to the value of <code>$scope.state.pageName</code> (as set up in the current controller, whichever one it might be) to be the active tab.</p>
 <p>Looking at on <strong>static/todo.js</strong>, lines 80 to 82:</p>
-<div class="highlight"><pre><span class="nx">scope</span><span class="o">:</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">scope</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">pageName</span><span class="o">:</span> <span class="s1">'='</span>
 <span class="p">},</span>
 </pre></div>
 
 <p>and a use case:</p>
-<div class="highlight"><pre><span class="nt">&lt;navtabs</span> <span class="na">page-name=</span><span class="s">&quot;state.pageName&quot;</span><span class="nt">&gt;&lt;/navtabs&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">navtabs</span> <span class="na">page-name</span><span class="o">=</span><span class="s">&quot;state.pageName&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">navtabs</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>See the difference between the scope property <code>pageName</code> and the attribute <code>page-name</code>on the <code>&lt;navtabs&gt;</code> element? That is a pecularity of AngularJS. For scope properties in camelCase, the corresponding attribute name will be in lowercase, with a ‘-’ inserted before all characters that were originally in uppercase.</p>
 <p>And the attribute name used in the <code>&lt;navtabs&gt;</code> element does not have to be the same as the scope property name. You can specify it after the ‘=’, like:</p>
-<div class="highlight"><pre><span class="nx">scope</span><span class="o">:</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">scope</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">pageName</span><span class="o">:</span> <span class="s1">'=anothername'</span>
 <span class="p">}</span>
 </pre></div>
 
 <p>and it will be used like:</p>
-<div class="highlight"><pre><span class="nt">&lt;navtabs</span> <span class="na">anothername=</span><span class="s">&quot;state.pageName&quot;</span><span class="nt">&gt;&lt;/navtabs&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">navtabs</span> <span class="na">anothername</span><span class="o">=</span><span class="s">&quot;state.pageName&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">navtabs</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>But I think it is good practice to use the same attribute name and scope property name. It leads to less confusion.</p>
 <p>Onto the final property we have not covered: <code>controller</code>. Look at lines 83 to 92 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">controller</span><span class="o">:</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="nx">controller</span><span class="o">:</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">selectTabIfOnPage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
@@ -1308,7 +1308,7 @@ karma start test.conf.js
 
 <p>The <code>controller</code> property allows us to associate a controller with this directive. This is strictly optional, and most of the directives I’ve written do not have a controller associated with it. Here, we add a <code>selectTabIfOnPage</code> method to the controller itself. We shall see what it does shortly.</p>
 <p>Now, the <code>navtabs</code> directive is just half of the picture. The other half lies in the <code>&lt;tab&gt;</code> directive, located at lines 95 to 110 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">'tab'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">'tab'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="nx">require</span><span class="o">:</span> <span class="s1">'^navtabs'</span><span class="p">,</span>
         <span class="nx">restrict</span><span class="o">:</span> <span class="s1">'E'</span><span class="p">,</span>
@@ -1330,17 +1330,17 @@ karma start test.conf.js
 <p>The <code>require</code> property allows a directive to require another directive and inject its controller as the fourth argument to the <code>link</code> function (discussed in detail below). Here, the <code>tab</code> requires the <code>navtabs</code> directive, and the controller of the <code>navtabs</code> directive will be made available to the link function of the <code>tab</code> directive in its fourth parameter.</p>
 <p>The <code>template</code> property is analogous to the <code>templateUrl</code> property, except that we specify a string for the actual template instead of specifying a file name.</p>
 <p>The <code>transclude</code> property, when set to true, makes the content of the <code>&lt;tab&gt;</code> element available to the <code>tab</code> directive<sup id="hn10"><a href="#fn10">10</a></sup>. Look at the template string:</p>
-<div class="highlight"><pre><span class="nx">template</span><span class="o">:</span> <span class="s1">'&lt;li ng-class=&quot;{ active: selected }&quot;&gt;&lt;a href=&quot;{{ href }}&quot; ng-transclude&gt;&lt;/a&gt;&lt;/li&gt;'</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="nx">template</span><span class="o">:</span> <span class="s1">'&lt;li ng-class=&quot;{ active: selected }&quot;&gt;&lt;a href=&quot;{{ href }}&quot; ng-transclude&gt;&lt;/a&gt;&lt;/li&gt;'</span><span class="p">,</span>
 </pre></div>
 
 <p>Observe that there is an <code>ng-transclude</code> directive on the <code>&lt;a&gt;</code> element. This means that we want the content of the original <code>&lt;tab&gt;</code> element to be placed beneath the <code>&lt;a&gt;</code> element in the template we see above. Looking at the 2 use cases of the <code>tab</code> directive should make this more clear:</p>
-<div class="highlight"><pre><span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href=</span><span class="s">&quot;#/&quot;</span><span class="nt">&gt;</span>Home/Todo List<span class="nt">&lt;/tab&gt;</span>
-<span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href=</span><span class="s">&quot;#/secondPage&quot;</span><span class="nt">&gt;</span>Second Page<span class="nt">&lt;/tab&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/&quot;</span><span class="p">&gt;</span>Home/Todo List<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/secondPage&quot;</span><span class="p">&gt;</span>Second Page<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>So we want the string <code>'Home/TodoList'</code> and <code>'Second Page'</code> to be placed within the <code>&lt;a&gt;</code> element for each of the <code>&lt;tab&gt;</code> elements here.</p>
 <p>Now, the final property, <code>link</code>, at lines 103 to 108 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">link</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">attr</span><span class="p">,</span> <span class="nx">navtabsCtrl</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">link</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">attr</span><span class="p">,</span> <span class="nx">navtabsCtrl</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
     <span class="nx">scope</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
     <span class="nx">scope</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -1351,26 +1351,26 @@ karma start test.conf.js
 <p>The value of the <code>link</code> property must be a function. The first three parameters are pretty much the standard across any <code>link</code> function you write (you can choose to name the parameters differently though). Earlier, we mentioned that the <code>require: ^navtabs</code> property causes the controller of the <code>navtabs</code> directive to be injected as the fourth argument of the <code>link</code> function, so here it is in the <code>navtabsCtrl</code> parameter.</p>
 <p>The link function is run whenever the DOM needs to be updated.</p>
 <p>These two lines:</p>
-<div class="highlight"><pre><span class="nx">scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
 <span class="nx">scope</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
 </pre></div>
 
 <p>assign the values of the <code>name</code> and <code>href</code> attributes of the <code>&lt;tab&gt;</code> element to the scope object. Looking at the use cases of the <code>&lt;tab&gt;</code> element:</p>
-<div class="highlight"><pre><span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href=</span><span class="s">&quot;#/&quot;</span><span class="nt">&gt;</span>Home/Todo List<span class="nt">&lt;/tab&gt;</span>
-<span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href=</span><span class="s">&quot;#/secondPage&quot;</span><span class="nt">&gt;</span>Second Page<span class="nt">&lt;/tab&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/&quot;</span><span class="p">&gt;</span>Home/Todo List<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/secondPage&quot;</span><span class="p">&gt;</span>Second Page<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>We see that indeed, both of them have the <code>name</code> and <code>href</code> attributes.</p>
 <p>Line 106 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">scope</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">scope</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 </pre></div>
 
 <p>sets a scope variable to false, and then line 107:</p>
-<div class="highlight"><pre><span class="nx">navtabsCtrl</span><span class="p">.</span><span class="nx">selectTabIfOnPage</span><span class="p">(</span><span class="nx">scope</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">navtabsCtrl</span><span class="p">.</span><span class="nx">selectTabIfOnPage</span><span class="p">(</span><span class="nx">scope</span><span class="p">);</span>
 </pre></div>
 
 <p>calls the <code>selectTabIfOnPage</code> function of the <code>navtabsCtrl</code> controller, passing it the scope object as the argument. Going back to the definition of the <code>selectTabIfOnPage</code> method of the controller for the <code>navtabs</code> directive, at lines 83 to 92 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">controller</span><span class="o">:</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="nx">controller</span><span class="o">:</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">selectTabIfOnPage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
@@ -1384,27 +1384,27 @@ karma start test.conf.js
 
 <p>The scope object for each <code>tab</code> directive is the argument to the <code>selectTabIfOnPage</code> method here. It sets the <code>selected</code> property of the tab object (which is the scope object of the <code>tab</code> directive) to true if it matches the value of <code>$scope.pageName</code> of the <code>navtabs</code> directive. And <code>$scope.pageName</code> was originally set to the name of the tab which we want to be active within one of <code>TodoController</code> and <code>SecondController</code>.</p>
 <p>Looking at the template string of the <code>tab</code> directive again, at line 102 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">template</span><span class="o">:</span> <span class="s1">'&lt;li ng-class=&quot;{ active: selected }&quot;&gt;&lt;a href=&quot;{{ href }}&quot; ng-transclude&gt;&lt;/a&gt;&lt;/li&gt;'</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="nx">template</span><span class="o">:</span> <span class="s1">'&lt;li ng-class=&quot;{ active: selected }&quot;&gt;&lt;a href=&quot;{{ href }}&quot; ng-transclude&gt;&lt;/a&gt;&lt;/li&gt;'</span><span class="p">,</span>
 </pre></div>
 
 <p>We see that there is an <code>ng-class</code> directive on the <code>&lt;li&gt;</code> element. Here, we supply a map consisting of one CSS class name, the <code>active</code> class. Its value is given by the <code>scope.selected</code> variable, which will depend on the outcome of the call to <code>selectTabIfOnPage</code> above. If <code>scope.selected</code> is <code>true</code>, then the <code>&lt;li&gt;</code> element will have the <code>active</code> css class applied to it. Otherwise, it will not have the <code>active</code> css class applied to it. You can supply multiple CSS classes to the map in the <code>ng-class</code> directive. This is not the only way to use the <code>ng-class</code> directive. You can read more <a href="http://docs.angularjs.org/api/ng.directive:ngClass">here</a>.</p>
 <p>To recap how this works. Suppose we visit the todo list page. At line 30 of <strong>static/todo.js</strong>, the <code>TodoController</code> sets</p>
-<div class="highlight"><pre><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pageName</span> <span class="o">=</span> <span class="s1">'todoList'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pageName</span> <span class="o">=</span> <span class="s1">'todoList'</span><span class="p">;</span>
 </pre></div>
 
 <p>The template for the todo list page gets rendered (<strong>static/todo.html</strong>, line 1):</p>
-<div class="highlight"><pre><span class="nt">&lt;navtabs</span> <span class="na">page-name=</span><span class="s">&quot;state.pageName&quot;</span><span class="nt">&gt;&lt;/navtabs&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">navtabs</span> <span class="na">page-name</span><span class="o">=</span><span class="s">&quot;state.pageName&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">navtabs</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>AngularJS sees the <code>&lt;navtabs&gt;</code> element and knows that it is a directive. So <code>&lt;navtabs&gt;</code> gets expanded to its HTML template (<strong>static/navtabs.html</strong>):</p>
-<div class="highlight"><pre><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href=</span><span class="s">&quot;#/&quot;</span><span class="nt">&gt;</span>Home/Todo List<span class="nt">&lt;/tab&gt;</span>
-  <span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href=</span><span class="s">&quot;#/secondPage&quot;</span><span class="nt">&gt;</span>Second Page<span class="nt">&lt;/tab&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/&quot;</span><span class="p">&gt;</span>Home/Todo List<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/secondPage&quot;</span><span class="p">&gt;</span>Second Page<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>assigns <code>scope.pageName</code> with the string <code>'todoList'</code>, and associates this controller with the directive (lines 83 to 92, <strong>static/todo.js</strong>):</p>
-<div class="highlight"><pre><span class="nx">controller</span><span class="o">:</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="nx">controller</span><span class="o">:</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">selectTabIfOnPage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
@@ -1417,14 +1417,14 @@ karma start test.conf.js
 </pre></div>
 
 <p>Then, AngularJS sees the 2 <code>&lt;tab&gt;</code> elements, and notices that they are directives as well (<strong>static/navtabs.html</strong>):</p>
-<div class="highlight"><pre><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href=</span><span class="s">&quot;#/&quot;</span><span class="nt">&gt;</span>Home/Todo List<span class="nt">&lt;/tab&gt;</span>
-  <span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href=</span><span class="s">&quot;#/secondPage&quot;</span><span class="nt">&gt;</span>Second Page<span class="nt">&lt;/tab&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;todoList&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/&quot;</span><span class="p">&gt;</span>Home/Todo List<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/secondPage&quot;</span><span class="p">&gt;</span>Second Page<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>so it proceeds to run this directive for the first <code>&lt;tab&gt;</code> (lines 95 to 110, <strong>static/todo.js</strong>):</p>
-<div class="highlight"><pre><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">'tab'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">'tab'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="nx">require</span><span class="o">:</span> <span class="s1">'^navtabs'</span><span class="p">,</span>
         <span class="nx">restrict</span><span class="o">:</span> <span class="s1">'E'</span><span class="p">,</span>
@@ -1443,7 +1443,7 @@ karma start test.conf.js
 </pre></div>
 
 <p>The link function is run:</p>
-<div class="highlight"><pre><span class="nx">link</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">attr</span><span class="p">,</span> <span class="nx">navtabsCtrl</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">link</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">attr</span><span class="p">,</span> <span class="nx">navtabsCtrl</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
     <span class="nx">scope</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
     <span class="nx">scope</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -1452,7 +1452,7 @@ karma start test.conf.js
 </pre></div>
 
 <p>and <code>scope.name</code> is assigned the value <code>'todoList'</code>, <code>scope.href</code> is assigned the value <code>'#/'</code>, <code>scope.selected</code> is assigned the value <code>false</code>. Then, the function <code>navTabsCtrl.selectTabIfOnPage</code> gets called, with the scope object of the <code>tab</code> directive getting passed in as the argument (lines 86 to 92, <strong>static/todo.js</strong>):</p>
-<div class="highlight"><pre><span class="k">this</span><span class="p">.</span><span class="nx">selectTabIfOnPage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">selectTabIfOnPage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">tab</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">pageName</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">tab</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
     <span class="p">}</span>
@@ -1461,30 +1461,30 @@ karma start test.conf.js
 
 <p><code>$scope.pageName</code> holds the value <code>'todoList'</code>, and <code>tab.name</code> (which refers to <code>scope.name</code> of the <code>tab</code> directive) holds the value <code>'todoList'</code> as well. As such, <code>tab.selected</code> (<code>scope.selected</code> of the <code>tab</code> directive) gets set to <code>true</code>.</p>
 <p>The <code>&lt;tab&gt;</code> element is replaced with its template (line 102, <strong>static/todo.js</strong>):</p>
-<div class="highlight"><pre><span class="nt">&lt;li</span> <span class="na">ng-class=</span><span class="s">&quot;{ active: selected }&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ href }}&quot;</span> <span class="na">ng-transclude</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">li</span> <span class="na">ng-class</span><span class="o">=</span><span class="s">&quot;{ active: selected }&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ href }}&quot;</span> <span class="na">ng-transclude</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>AngularJS sees the <code>ng-class</code> directive, runs it, and finds that <code>scope.selected</code> is <code>true</code>, then proceeds to apply the <code>active</code> CSS class on the <code>&lt;li&gt;</code> element, giving us something like:</p>
-<div class="highlight"><pre><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;active&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ href }}&quot;</span> <span class="na">ng-transclude</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;active&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ href }}&quot;</span> <span class="na">ng-transclude</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>The <code>href</code> of the <code>&lt;a&gt;</code> element gets the value of <code>scope.href</code>, which is <code>'#/'</code>:</p>
-<div class="highlight"><pre><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;active&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#/&quot;</span> <span class="na">ng-transclude</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;active&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/&quot;</span> <span class="na">ng-transclude</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>and the content of the <code>&lt;tab&gt;</code> element is made available within the <code>&lt;a&gt;</code>:</p>
-<div class="highlight"><pre><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;active&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#/&quot;</span><span class="nt">&gt;</span>Home/Todo List<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;active&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/&quot;</span><span class="p">&gt;</span>Home/Todo List<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>Of course, that is not the actual template generated. AngularJS does a lot more behind the scenes. But this is sufficient to illustrate the idea.</p>
 <p>As an exercise, you might want to work out what the other <code>&lt;tab&gt;</code> element (line 3, <strong>static/navtabs.html</strong>):</p>
-<div class="highlight"><pre><span class="nt">&lt;tab</span> <span class="na">name=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href=</span><span class="s">&quot;#/secondPage&quot;</span><span class="nt">&gt;</span>Second Page<span class="nt">&lt;/tab&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">tab</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;secondPage&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#/secondPage&quot;</span><span class="p">&gt;</span>Second Page<span class="p">&lt;/</span><span class="nt">tab</span><span class="p">&gt;</span>
 </pre></div>
 
 <p>gets expanded to. It looks very similar to the example we just worked out.</p>
 <h2 id="optional---testing-the-custom-directive">Optional - Testing the custom directive</h2>
 <p>This is the very last serious section of this tutorial. Without further ado, look at lines 1 to 12 of <strong>test/unit/TodoDirectives.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">'TodoApp directive'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'TodoApp directive'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">$rootScope</span>
       <span class="p">,</span> <span class="nx">$compile</span>
       <span class="p">,</span> <span class="nx">$templateCache</span><span class="p">;</span>
@@ -1500,7 +1500,7 @@ karma start test.conf.js
 
 <p>Most of this should be familiar. We inject 2 new services we have not seen before, <code>$compile</code> and <code>$templateCache</code>. We shall see their uses shortly.</p>
 <p>Now, look at lines 34 to 42 of <strong>test/unit/TodoDirectives.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">'navtabs'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'navtabs'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">$scope</span><span class="p">;</span>
     <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">$templateCache</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">'../static/navtabs.html'</span><span class="p">,</span>
@@ -1512,12 +1512,12 @@ karma start test.conf.js
 </pre></div>
 
 <p>We make use of the <code>$templateCache</code> service in the <code>beforeEach</code> block. Recall that we made use of a <code>templateUrl</code> property in the definition of the <code>navtabs</code> directive (line 79, <strong>static/todo.js</strong>):</p>
-<div class="highlight"><pre><span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">'../static/navtabs.html'</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">'../static/navtabs.html'</span><span class="p">,</span>
 </pre></div>
 
 <p>Because we will be making use of the <code>navtabs</code> directive later on in a test case, it will make a HTTP request for the <strong>../static/navtabs.html</strong> file. While it is possible to supply the actual file through the use of some libraries (see <a href="http://stackoverflow.com/questions/17223850/how-to-test-directives-that-use-templateurl-and-controllers">here</a> for an example), we take the easy way out and just mock it out with a string.</p>
 <p>Now, look at lines 43 to 55, <strong>test/unit/TodoDirectives.spec.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">it</span><span class="p">(</span><span class="s1">'should set the right tab to active'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">it</span><span class="p">(</span><span class="s1">'should set the right tab to active'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">navTabsElem</span>
       <span class="p">,</span> <span class="nx">linkFn</span>
       <span class="p">,</span> <span class="nx">liElems</span><span class="p">;</span>
@@ -1533,14 +1533,14 @@ karma start test.conf.js
 </pre></div>
 
 <p>Lines 47 to 49:</p>
-<div class="highlight"><pre><span class="nx">$scope</span> <span class="o">=</span> <span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$new</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><span class="nx">$scope</span> <span class="o">=</span> <span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$new</span><span class="p">();</span>
 <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{};</span>
 <span class="nx">$scope</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pageName</span> <span class="o">=</span> <span class="s1">'tabtwo'</span><span class="p">;</span>
 </pre></div>
 
 <p>sets up a new scope and initializes the state.</p>
 <p>Lines 50 to 53:</p>
-<div class="highlight"><pre><span class="nx">navTabsElem</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="nx">navTabsElem</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span>
     <span class="s1">'&lt;navtabs page-name=&quot;state.pageName&quot;&gt;&lt;/navtabs&gt;'</span>
 <span class="p">);</span>
 <span class="nx">linkFn</span> <span class="o">=</span> <span class="nx">$compile</span><span class="p">(</span><span class="nx">navTabsElem</span><span class="p">);</span>
@@ -1548,14 +1548,14 @@ karma start test.conf.js
 
 <p>creates a new <code>&lt;navtabs&gt;</code> element and compiles it, obtaining a link function.</p>
 <p>Lines 54 and 55:</p>
-<div class="highlight"><pre><span class="nx">linkFn</span><span class="p">(</span><span class="nx">$scope</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">linkFn</span><span class="p">(</span><span class="nx">$scope</span><span class="p">);</span>
 <span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$digest</span><span class="p">();</span>
 </pre></div>
 
 <p>calls the link function and passes the <code>$scope</code> variable as its argument, then calls <code>$rootScope.$digest()</code>.</p>
 <p>Most of this is more or less standard code when testing a directive, and learnt from reading <a href="http://stackoverflow.com/questions/12755421/how-to-test-angularjs-directives/12760618#12760618">this</a> stackoverflow answer.</p>
 <p>The rest of the test (lines 56 to 67, <strong>test/unit/TodoDirectives.spec.js</strong>):</p>
-<div class="highlight"><pre><span class="nx">liElems</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">navTabsElem</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">'li'</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">liElems</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">navTabsElem</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">'li'</span><span class="p">);</span>
 <span class="nx">expect</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">liElems</span><span class="p">[</span><span class="mi">0</span><span class="p">])).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toHaveClass</span><span class="p">(</span><span class="s1">'active'</span><span class="p">);</span>
 <span class="nx">expect</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">liElems</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">children</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'href'</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">'#'</span><span class="p">);</span>
 <span class="nx">expect</span><span class="p">(</span>
@@ -1575,23 +1575,23 @@ karma start test.conf.js
 <li><p>It turns out the <code>ng-transclude</code> creates a <code>&lt;span&gt;</code> element to house the transcluded stuff.</p></li>
 </ol>
 <p>In the <code>tab</code> directive, located at line 102 of <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">template</span><span class="o">:</span> <span class="s1">'&lt;li ng-class=&quot;{ active: selected }&quot;&gt;&lt;a href=&quot;{{ href }}&quot; ng-transclude&gt;&lt;/a&gt;&lt;/li&gt;'</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="nx">template</span><span class="o">:</span> <span class="s1">'&lt;li ng-class=&quot;{ active: selected }&quot;&gt;&lt;a href=&quot;{{ href }}&quot; ng-transclude&gt;&lt;/a&gt;&lt;/li&gt;'</span><span class="p">,</span>
 </pre></div>
 
 <p>there is an <code>ng-transclude</code>. Hence the awkward looking tests</p>
-<div class="highlight"><pre><span class="nx">expect</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span>
     <span class="nx">$</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">liElems</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">children</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">children</span><span class="p">(</span><span class="s1">'span'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">html</span><span class="p">()</span>
 <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">'Page One'</span><span class="p">);</span>
 </pre></div>
 
 <p>and</p>
-<div class="highlight"><pre><span class="nx">expect</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span>
     <span class="nx">$</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">liElems</span><span class="p">[</span><span class="mi">1</span><span class="p">]).</span><span class="nx">children</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">children</span><span class="p">(</span><span class="s1">'span'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">html</span><span class="p">()</span>
 <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">'Tab Two'</span><span class="p">);</span>
 </pre></div>
 
 <p>Earlier, I mentioned that I am not entirely happy with the tests for these 2 directives. If we look at lines 83 to 92, <strong>static/todo.js</strong>:</p>
-<div class="highlight"><pre><span class="nx">controller</span><span class="o">:</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><span class="nx">controller</span><span class="o">:</span> <span class="p">[</span>
     <span class="s1">'$scope'</span><span class="p">,</span>
     <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">selectTabIfOnPage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>

@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -92,11 +92,11 @@
 </div>
 <div class="post">
   <p>Recently I’ve faced this problem when trying to encrypt a file using my own gpg key, created on another machine and newly imported. Here’s the command used for encryption:</p>
-<div class="highlight"><pre>gpg -r 'Pang' -e some_file
+<div class="highlight"><pre><span></span>gpg -r 'Pang' -e some_file
 </pre></div>
 
 <p>and a message along the lines of this pops up:</p>
-<div class="highlight"><pre>gpg: checking the trustdb
+<div class="highlight"><pre><span></span>gpg: checking the trustdb
 gpg: no ultimately trusted keys found
 gpg: There is no assurance this key belongs to the named user
 
@@ -109,11 +109,11 @@ Use this key anyway? (y/N)
 
 <p>I was trying to incorporate this encrypting part into a bash script. Using the <code>--yes</code> flag still causes GPG to prompt. I did not want that; the bash script should be non-interactive.</p>
 <p>It took me quite a while to reach the solution, which is:</p>
-<div class="highlight"><pre>gpg --edit-key 'Pang'
+<div class="highlight"><pre><span></span>gpg --edit-key 'Pang'
 </pre></div>
 
 <p>which fires up GPG and shows a prompt.</p>
-<div class="highlight"><pre>gpg (GnuPG) 1.4.11; Copyright (C) 2010 Free Software Foundation, Inc.
+<div class="highlight"><pre><span></span>gpg (GnuPG) 1.4.11; Copyright (C) 2010 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 
@@ -127,11 +127,11 @@ gpg &gt;
 </pre></div>
 
 <p>At this point, I entered:</p>
-<div class="highlight"><pre>trust
+<div class="highlight"><pre><span></span>trust
 </pre></div>
 
 <p>which shows:</p>
-<div class="highlight"><pre>Please decide how far you trust this user to correctly verify other users' keys
+<div class="highlight"><pre><span></span>Please decide how far you trust this user to correctly verify other users' keys
 (by looking at passports, checking fingerprints from different sources, etc.)
 
   1 = I don't know or won't say
@@ -145,12 +145,12 @@ Your decision?
 </pre></div>
 
 <p>Since this is my own key, I entered:</p>
-<div class="highlight"><pre>5
+<div class="highlight"><pre><span></span>5
 </pre></div>
 
 <p>which trusts it ultimately.</p>
 <p>Exiting the gpg program, and running:</p>
-<div class="highlight"><pre>gpg -r 'Pang' -e some_file
+<div class="highlight"><pre><span></span>gpg -r 'Pang' -e some_file
 </pre></div>
 
 <p>no longer prompts me to answer that question. Automation ftw.</p>

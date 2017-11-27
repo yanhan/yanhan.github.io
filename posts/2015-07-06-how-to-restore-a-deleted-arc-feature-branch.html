@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -118,40 +118,40 @@
 <h2 id="step-1-delete-the-branch-with-the-same-name-as-the-feature-branch">Step 1: Delete the branch with the same name as the feature branch</h2>
 <p>That is assuming you have, in your effort to restore the feature branch, actually created a branch of the same name. If you have indeed done so and on that branch, you have changes that you want to play on top of the a restored feature branch, please rename the branch to something else before you carry on.</p>
 <p>Delete the branch using:</p>
-<div class="highlight"><pre>git branch -D awesome-feature-X
+<div class="highlight"><pre><span></span>git branch -D awesome-feature-X
 </pre></div>
 
 <h2 id="step-2-create-a-new-branch-whose-head-is-the-same-as-the-parent-of-the-oldest-commit-in-the-feature-branch-you-want-to-restore">Step 2: Create a new branch whose HEAD is the same as the parent of the oldest commit in the feature branch you want to restore</h2>
 <p>In Step 0, we assumed that Phabricator Revision, <code>D1882</code>, contains the following commits, from least recent to most recent, in chronological order:</p>
-<div class="highlight"><pre>fec32ab8 Add README.md
+<div class="highlight"><pre><span></span>fec32ab8 Add README.md
 25ad51ee Create AwesomeController
 39cf115d Enable CORS for AwesomeController
 </pre></div>
 
 <p>The commit we’re interested in is the parent of <code>fec32ab8</code>, which we earlier assumed is <code>da1522c3</code>.</p>
 <p>We need a temporary branch whose <code>HEAD</code> is <code>da1522c3</code>. Let’s call this temporary branch <code>temp-helper-branch</code> and create it:</p>
-<div class="highlight"><pre>git checkout -b temp-helper-branch da1522c3
+<div class="highlight"><pre><span></span>git checkout -b temp-helper-branch da1522c3
 </pre></div>
 
 <h2 id="step-3-use-arc-feature-to-create-a-branch-with-the-same-name-as-the-feature-branch">Step 3: Use <code>arc feature</code> to create a branch with the same name as the feature branch</h2>
 <p>At the end of the last step, <code>temp-helper-branch</code> should be the currently active branch and its <code>HEAD</code> should be commit <code>da1522c3</code>. Now you gotta use <code>arc feature</code> to create a feature branch with the same name as the one you want to restore:</p>
-<div class="highlight"><pre>arc feature awesome-feature-X
+<div class="highlight"><pre><span></span>arc feature awesome-feature-X
 </pre></div>
 
 <h2 id="step-4-fetch-from-the-origin-remote">Step 4: Fetch from the <code>origin</code> remote</h2>
 <p>At Step 0, we assumed that at the <code>origin</code> remote, there is a branch named <code>FBR_D1882_awesome-feature-X</code> that’s created by Phbricator for <code>D1882</code>. Let’s fetch all the updates from <code>origin</code>, which will also update the remote tracking branch <code>origin/FBR_D1882_awesome-feature-X</code> on your local git repository (or create it if it does not exist):</p>
-<div class="highlight"><pre>git fetch origin
+<div class="highlight"><pre><span></span>git fetch origin
 </pre></div>
 
 <h2 id="step-5-fast-forward-merge-originfbr_d1882_awesome-feature-x-branch-on-top-of-awesome-feature-x">Step 5: Fast forward merge <code>origin/FBR_D1882_awesome-feature-X</code> branch on top of <code>awesome-feature-X</code></h2>
 <p>You should still be at branch <code>awesome-feature-X</code>. Now execute:</p>
-<div class="highlight"><pre>git merge --ff-only origin/FBR_D1882_awesome-feature-X
+<div class="highlight"><pre><span></span>git merge --ff-only origin/FBR_D1882_awesome-feature-X
 </pre></div>
 
 <p>Tadah! You got your feature branch back. Now you can apply any changes you want on top of this and run <code>arc diff</code> as if your feature branch was never accidentally deleted in the first place.</p>
 <h2 id="step-6-delete-the-unnecessary-branch-weve-created-along-the-way">Step 6: Delete the unnecessary branch we’ve created along the way</h2>
 <p>Namely, <code>temp-helper-branch</code>:</p>
-<div class="highlight"><pre>git branch -D temp-helper-branch
+<div class="highlight"><pre><span></span>git branch -D temp-helper-branch
 </pre></div>
 
 </div>

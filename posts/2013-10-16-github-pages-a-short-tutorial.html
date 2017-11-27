@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -111,12 +111,12 @@
 <p>The below information is obtained from the official <a href="https://help.github.com/categories/20/articles">Github Pages documentation</a> and <a href="http://xlson.com/2010/11/09/getting-started-with-github-pages.html">this tutorial</a> from almost 3 years back, along with some experimentation.</p>
 <p>If you want to create a Github Page for your Github project, here are the steps:</p>
 <h2 id="step-1-checkout-an-orphan-branch-called-gh-pages">Step 1: Checkout an orphan branch called <code>gh-pages</code></h2>
-<div class="highlight"><pre>git checkout --orphan gh-pages
+<div class="highlight"><pre><span></span>git checkout --orphan gh-pages
 </pre></div>
 
 <p>This will create an <strong>orphan</strong> branch called <code>gh-pages</code>. Based on the <code>git-checkout</code> manpage, the first commit on an orphan branch has no parents, so it is disconnected from the history of your repository. This is perfect for our use case, after all, the history of the source code of a project probably should not feature as part of the history of its github page.</p>
 <h2 id="step-2-remove-the-tracked-contents-from-working-tree-and-index">Step 2: Remove the tracked contents from working tree and index</h2>
-<div class="highlight"><pre>git rm rf .
+<div class="highlight"><pre><span></span>git rm rf .
 </pre></div>
 
 <p>Again, this step may be optional depending on what you are trying to do.</p>
@@ -125,7 +125,7 @@
 <p>Do not forget to make a commit when you are done.</p>
 <h2 id="step-4-push-the-gh-pages-branch-up-to-github">Step 4: Push the gh-pages branch up to Github</h2>
 <p>Most commonly:</p>
-<div class="highlight"><pre>git push origin gh-pages
+<div class="highlight"><pre><span></span>git push origin gh-pages
 </pre></div>
 
 <p>Adjust the remote name accordingly if it is not <code>origin</code>.</p>

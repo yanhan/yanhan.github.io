@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -118,45 +118,45 @@
 <li>We perform the simulation on a per year basis; and for each year, we do it for each cohort; and for each cohort, we do it for each individual. Since we assumed that \( P(\text{person gets cancer}) = \frac{1}{1000} \) and each cohort is modelled as a \( Binom(n = 100, p = \frac{1}{1000}) \) random variable which is just a sum of \( 100 \) i.i.d. \( Ber(\frac{1}{1000}) \) random variables, we can use a CDF inversion algorithm to simulate each \( Ber(\frac{1}{1000}) \) random variable, by generating a \( Unif(0, 1) \) random variable and checking if its probability lies below \( \frac{1}{1000} \). If the value of the \( Unif(0, 1)\) is less than or equal to \( \frac{1}{1000} \), then that person contracts cancer in that year. Because we are tracking the total number of people in a cohort who contracted cancer in a 10 year period, as long as the person contracts cancer in some year, he/she is considered to have contracted cancer in the 10 year period. So to save a little bit of computing time for the simulation, we can effectively ignore that particular person for the rest of the years.</li>
 </ul>
 <p>Here’s the code we use to perform the simulation:</p>
-<div class="highlight"><pre><span class="c"># We'll do the simulation 1 year by 1 year</span>
-<span class="c"># Each year, about 1 / 1000 people will contract the particular cancer.</span>
-<span class="c"># So we assume that for each year, P(person gets cancer) = 1 / 1000</span>
+<div class="highlight"><pre><span></span><span class="c1"># We'll do the simulation 1 year by 1 year</span>
+<span class="c1"># Each year, about 1 / 1000 people will contract the particular cancer.</span>
+<span class="c1"># So we assume that for each year, P(person gets cancer) = 1 / 1000</span>
 <span class="n">prob_get_cancer</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">1000</span>
 
-<span class="c"># Performs a simulation and returns the simulated data</span>
+<span class="c1"># Performs a simulation and returns the simulated data</span>
 <span class="k">def</span> <span class="nf">_perform_simulation</span><span class="p">(</span><span class="n">nr_cohorts</span><span class="p">):</span>
     <span class="n">cohort_size</span> <span class="o">=</span> <span class="mi">100</span>
     <span class="n">nr_years</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="n">simulated_data</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c"># we perform simulation one cohort at a time</span>
+    <span class="c1"># we perform simulation one cohort at a time</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr_cohorts</span><span class="p">):</span>
         <span class="n">cancer_cases_in_cohort</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="c"># and for each cohort, we perform the simulation 1 year at a</span>
-        <span class="c"># time for `nr_years` years</span>
+        <span class="c1"># and for each cohort, we perform the simulation 1 year at a</span>
+        <span class="c1"># time for `nr_years` years</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr_years</span><span class="p">):</span>
             <span class="n">nr_contracted_cancer_in_this_round</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="c"># Once a patient contracts cancer, he/she is counted as a</span>
-            <span class="c"># case. Therefore we don't need to perform simulation for</span>
-            <span class="c"># that person anymore. The `nr_in_cohort_without_cancer`</span>
-            <span class="c"># stores the number of people in the cohort who have not yet</span>
-            <span class="c"># contracted cancer (we sound evil here but I don't know how</span>
-            <span class="c"># else to put it)</span>
+            <span class="c1"># Once a patient contracts cancer, he/she is counted as a</span>
+            <span class="c1"># case. Therefore we don't need to perform simulation for</span>
+            <span class="c1"># that person anymore. The `nr_in_cohort_without_cancer`</span>
+            <span class="c1"># stores the number of people in the cohort who have not yet</span>
+            <span class="c1"># contracted cancer (we sound evil here but I don't know how</span>
+            <span class="c1"># else to put it)</span>
             <span class="n">nr_in_cohort_without_cancer</span> <span class="o">=</span> <span class="n">cohort_size</span> <span class="o">-</span> <span class="n">cancer_cases_in_cohort</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr_in_cohort_without_cancer</span><span class="p">):</span>
-                <span class="c"># this simulates a Ber(p) random variable, where p is</span>
-                <span class="c"># the probability of the person contracting cancer</span>
+                <span class="c1"># this simulates a Ber(p) random variable, where p is</span>
+                <span class="c1"># the probability of the person contracting cancer</span>
                 <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">prob_get_cancer</span><span class="p">:</span>
                     <span class="n">nr_contracted_cancer_in_this_round</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">cancer_cases_in_cohort</span> <span class="o">+=</span> <span class="n">nr_contracted_cancer_in_this_round</span>
-        <span class="c"># we're done simulating the cohort and have the total number of</span>
-        <span class="c"># cancer cases in the cohort over 10 years. append it to our</span>
-        <span class="c"># data set.</span>
+        <span class="c1"># we're done simulating the cohort and have the total number of</span>
+        <span class="c1"># cancer cases in the cohort over 10 years. append it to our</span>
+        <span class="c1"># data set.</span>
         <span class="n">simulated_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cancer_cases_in_cohort</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">simulated_data</span>
 </pre></div>
 
 <p>With that, we perform our simulation by:</p>
-<div class="highlight"><pre><span class="n">nr_cohorts</span> <span class="o">=</span> <span class="mi">1000</span>
+<div class="highlight"><pre><span></span><span class="n">nr_cohorts</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">simulated_data</span> <span class="o">=</span> <span class="n">_perform_simulation</span><span class="p">(</span><span class="n">nr_cohorts</span><span class="p">)</span>
 </pre></div>
 
@@ -165,7 +165,7 @@
 <p>Imho, Chapters 3 and 4 of the book have been the most insightful chapters so far, in particular Chapter 4, which introduces the idea of model fitting. Plotting the CDF of a single variable data set (not sure if I’m using the right term here) can offer a lot of insights, especially when you know how to quickly spot some common patterns, or better, fit a lot of commonly used models onto the data. That was exactly what I did.</p>
 <p>Let’s take a look at the CDF from our simulation data:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf.png" alt />
+<img src="../images/2015-09-15/cdf.png" />
 
 </div>
 <p>Hmmm ok, so slightly less than 40% of the cohorts have no cancer cases and slightly less than 40% of the cohorts have 1 cancer case. So overall, about slightly less than 80% of the cohorts have 1 or less cancer cases. About 10% to 15% of the cohorts have 2 cancer cases, and less than 10% cohorts see &gt;= 3 cases. So this kind of fits the description given in the book:</p>
@@ -176,14 +176,11 @@
 <p>Now, let’s transform the CDF in various ways as outlined in Chapter 4 and see if we observe certain trends that reveal to us that the a certain distribution will a good fit for the data.</p>
 <h3 id="trend-observation-i-the-exponential-distribution">Trend observation I: the Exponential distribution</h3>
 <p>The CDF of a random variable from an exponential distribution with parameter λ is given by:</p>
-<p><br /><span class="math display">$$F_{X}(x) = 1 - e^{-λx} \
-$$</span><br /></p>
+<p><br /><span class="math display"><em>F</em><sub><em>X</em></sub>(<em>x</em>)=1 − <em>e</em><sup>−<em>λ</em><em>x</em></sup> </span><br /></p>
 <p>From Chapter 4.1 of the book, we know that we can perform some transformations and see if we observe a linear trend, first by considering the CCDF (Complementary Cumulative Distribution Function) instead of the CDF:</p>
-<p><br /><span class="math display">$$1 - F_{X}(x) = e^{-λx} \
-$$</span><br /></p>
+<p><br /><span class="math display">1 − <em>F</em><sub><em>X</em></sub>(<em>x</em>)=<em>e</em><sup>−<em>λ</em><em>x</em></sup> </span><br /></p>
 <p>So \( 1 - F_{X}(x) \) is the CCDF. We replace it with \( y \):</p>
-<p><br /><span class="math display">$$y = e^{-λx} \
-$$</span><br /></p>
+<p><br /><span class="math display"><em>y</em> = <em>e</em><sup>−<em>λ</em><em>x</em></sup> </span><br /></p>
 <p>Then take \( log \) on both sides:</p>
 <p><br /><span class="math display">$$
 \begin{align*}
@@ -193,12 +190,12 @@ log(y) &amp;= -λx
 $$</span><br /></p>
 <p>Hence, if we plot \( y = e^{-λx} \) where \( y \) is the CCDF on a \( log\ y \) scale and the exponential distribution happens to be a good model for the data, then we should be observing a linear trend, where \( -λ \) is the gradient of the line. Is that the case? Let’s look at our plot:</p>
 <div class="figure">
-<img src="../images/2015-09-15/ccdf-logy-scale.png" alt />
+<img src="../images/2015-09-15/ccdf-logy-scale.png" />
 
 </div>
 <p>Looks like a reasonably linear trend to me. Because I don’t know how to do it using matplotlib, allow me to use Gimp to hand draw a smooth curve:</p>
 <div class="figure">
-<img src="../images/2015-09-15/ccdf-logy-scale-with-hand-drawn-curve.png" alt />
+<img src="../images/2015-09-15/ccdf-logy-scale-with-hand-drawn-curve.png" />
 
 </div>
 <p>Ok, it wouldn’t be too outrageous to call this linear, or at least very close to it. So the exponential distribution may very well be a good fit. Let’s perform some other transformations on the CDF and see if we can spot other trends.</p>
@@ -223,29 +220,29 @@ log(y) = -\alpha log(x) + \alpha log(x_m)
 $$</span><br /></p>
 <p>So if we plot the CCDF on a \( log \ log \) scale and the Pareto is a good model for the data, we should see a linear trend with gradient \( -\alpha \) and y-intercept \( \alpha log(x_m) \). Let’s do a \( log \ log \) plot of the CCDF and see if that’s the case:</p>
 <div class="figure">
-<img src="../images/2015-09-15/ccdf-log-log-scale.png" alt />
+<img src="../images/2015-09-15/ccdf-log-log-scale.png" />
 
 </div>
 <p>And with a hand drawn curve:</p>
 <div class="figure">
-<img src="../images/2015-09-15/ccdf-log-log-scale-with-hand-drawn-curve.png" alt />
+<img src="../images/2015-09-15/ccdf-log-log-scale-with-hand-drawn-curve.png" />
 
 </div>
 <p>It’s pretty obvious that this is hardly linear. So the Pareto distribution does not seem to be a good model for the data.</p>
 <h3 id="trend-observation-iii-the-log-normal-distribution">Trend observation III: the Log-normal distribution</h3>
 <p>If we look at the CDF of our simulated data:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf.png" alt />
+<img src="../images/2015-09-15/cdf.png" />
 
 </div>
 <p>We can see that it looks quite different from that of a normal CDF, which looks something like this:</p>
 <div class="figure">
-<img src="../images/2015-09-15/normal-cdf.png" alt />
+<img src="../images/2015-09-15/normal-cdf.png" />
 
 </div>
 <p>So the normal distribution is not a good fit for our data. But how about the Log-normal distribution? We say that if a random variable \( X \) is log-normally distributed, then \( Y = ln(X) \) has a normal distribution. So if the Log-normal distribution is a good fit for our data, we should see a plot that looks similar to the normal CDF when we plot the CDF on a \( log \ x \) scale. Let’s do the plot:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-logx-scale.png" alt />
+<img src="../images/2015-09-15/cdf-logx-scale.png" />
 
 </div>
 <p>And… it looks nothing like the CDF of a normal distribution. So the Log-normal distribution is not a good model for our data.</p>
@@ -266,12 +263,12 @@ log(log((1 - CDF(x))^{-1})) = k \cdot log(x) - k \cdot log(λ)
 $$</span><br /></p>
 <p>Admittedly, this is quite a handful. Basically, if we do a \( log \ log \) plot with \( y = log((1 - CDF(x))^{-1}) = log(\frac{1}{1 - CDF(x)}) = log(\frac{1}{CCDF(x)}) \), then we should observe a linear trend with gradient \( k \) and y-intercept \( -k \cdot log(λ) \). Let’s look at the plot:</p>
 <div class="figure">
-<img src="../images/2015-09-15/one-over-log-ccdf-log-log-scale.png" alt />
+<img src="../images/2015-09-15/one-over-log-ccdf-log-log-scale.png" />
 
 </div>
 <p>And with a hand drawn curve:</p>
 <div class="figure">
-<img src="../images/2015-09-15/one-over-log-ccdf-log-log-scale-with-hand-drawn-curve.png" alt />
+<img src="../images/2015-09-15/one-over-log-ccdf-log-log-scale-with-hand-drawn-curve.png" />
 
 </div>
 <p>And we indeed observe a linear trend.</p>
@@ -279,12 +276,12 @@ $$</span><br /></p>
 <p>So to recap, we performed various transformations on the CDF to see if any of the Exponential, Pareto, Log-normal or Weibull distributions will be a good model for our data. Based on what we see, it seems that the Exponential and Weibull distributions could be good models for our data. Let’s take a look at the plots again:</p>
 <p>Plot of the transform to observe if the Exponential distribution is a good model:</p>
 <div class="figure">
-<img src="../images/2015-09-15/ccdf-logy-scale-with-hand-drawn-curve.png" alt />
+<img src="../images/2015-09-15/ccdf-logy-scale-with-hand-drawn-curve.png" />
 
 </div>
 <p>Plot of the transform to observe if the Weibull distribution is a good model:</p>
 <div class="figure">
-<img src="../images/2015-09-15/one-over-log-ccdf-log-log-scale-with-hand-drawn-curve.png" alt />
+<img src="../images/2015-09-15/one-over-log-ccdf-log-log-scale-with-hand-drawn-curve.png" />
 
 </div>
 <h2 id="now-what">Now what?</h2>
@@ -393,13 +390,13 @@ $$</span><br /></p>
 $$</span><br /></p>
 <p>Hence, the maximum likelihood estimate of \( \lambda \), which we denote as \( \tilde{\lambda} \), is also \( \frac{1}{\bar{X}} \), which is exactly the same as the method of moments estimate \( \hat{\lambda} \).</p>
 <p>To visually see how well the \( Exp(\hat{\lambda}) \) model is a fit for our data, I came up with 2 plots. First, the plot of the CCDF and the \( Exp(\hat{\lambda}) \) with a similar transform done. Before showing you the plots, here’s the code we use to compute \( \hat{\lambda} \) and draw the Exponential CDF:</p>
-<div class="highlight"><pre><span class="c"># First, we compute lambda = 1 / Xbar</span>
+<div class="highlight"><pre><span></span><span class="c1"># First, we compute lambda = 1 / Xbar</span>
 <span class="n">xBar</span> <span class="o">=</span> <span class="n">Mean</span><span class="p">(</span><span class="n">simulated_data</span><span class="p">)</span>
 <span class="n">exp_lambda</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">xBar</span>
-<span class="c"># Here, we plot the Exp(lambda) CDF, over increments of 0.01 to make</span>
-<span class="c"># it more smooth when we plot it. Otherwise, we'll be getting a plot</span>
-<span class="c"># which looks similar to the empirical CDF, which is only defined at</span>
-<span class="c"># discrete points.</span>
+<span class="c1"># Here, we plot the Exp(lambda) CDF, over increments of 0.01 to make</span>
+<span class="c1"># it more smooth when we plot it. Otherwise, we'll be getting a plot</span>
+<span class="c1"># which looks similar to the empirical CDF, which is only defined at</span>
+<span class="c1"># discrete points.</span>
 <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">simulated_data</span><span class="p">)</span>
 <span class="n">exp_lambda_pdf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">exp_lambda</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">exp_lambda</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
 <span class="n">val_to_density</span> <span class="o">=</span> <span class="p">{}</span>
@@ -408,25 +405,25 @@ $$</span><br /></p>
     <span class="n">val_to_density</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp_lambda_pdf</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="n">incr</span>
 <span class="n">exp_model_cdf</span> <span class="o">=</span> <span class="n">Cdf</span><span class="o">.</span><span class="n">MakeCdfFromDict</span><span class="p">(</span><span class="n">val_to_density</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s">&quot;model&quot;</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span>
 <span class="p">)</span>
 </pre></div>
 
 <p>Plot for the empirical CCDF and CCDF of our exponential model:</p>
 <div class="figure">
-<img src="../images/2015-09-15/ccdf-with-ccdf-of-exp-model-logy-scale.png" alt />
+<img src="../images/2015-09-15/ccdf-with-ccdf-of-exp-model-logy-scale.png" />
 
 </div>
 <p>followed by the CDF with the exponential model:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-with-exp-model.png" alt />
+<img src="../images/2015-09-15/cdf-with-exp-model.png" />
 
 </div>
 <p>While it is not perfect, other than the fact that the the probability of 0 cancer cases is way off for the model, the rest of the differences are arguably still acceptable. But it seems that we can do better. Suppose that \( X \) is a random variable for the simulated data and \( \mathbb{P}(X &lt;= 0) = p \), so \( p \) is the y-coordinate where \( x = 0 \) for the blue curve and is very close to 0.4 . Suppose \( Y \sim Exp(\hat{\lambda}) \), so the CDF plot of \( Y \) is the green curve. What we want is the value \( y \) such that \( \mathbb{P}(Y &lt;= y) = p \). In other words, the value on the x-axis where the green curve intersects with the blue curve at y-coordinate \( p \). It seems that if we shift the CDF plot of \( Y \sim Exp(\hat{\lambda}) \) by \( y \) units to the left on the x-axis, then the CDF of our model will be a much better fit for the simulated data.</p>
 <p>We can obtain \( p \) quite easily, since that is just the fraction of cohorts with zero cancer cases in our simulated data. Once we obtain \( p \), since we know the exact value of \( \hat{\lambda} \), we can perform CDF inversion to get \( y \).</p>
 <p>Here is the resulting plot after we shift the Exponential model:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-with-shifted-exp-model.png" alt />
+<img src="../images/2015-09-15/cdf-with-shifted-exp-model.png" />
 
 </div>
 <p>Seems like our modification to the \( Exp(\hat{\lambda}) \) model is a good fit for the data. Let’s move on to our next model, the Weibull distribution.</p>
@@ -543,7 +540,7 @@ $$</span><br /></p>
 <p>I did remember such situations happening in ST2132 (the Mathematical Statistics class I’ve taken), where we were trying to maximize the log likelihood for i.i.d. \( X_1, … X_n \) and the underlying distribution is one which is quite well studied. And we ran into this situation and the the lecturer and the notes mentioned that these are non-linear equations which will be quite difficult to evaluate by hand and can be solved numerically using a statistical software package.</p>
 <p>I was trying to do this in Python, after all that is the language that Think Stats uses. So I googled a bit and read some questions and answers on Stack Overflow that seemed to be doing what I wanted. But I wasn’t sure, after all I was pretty new to all these and know absolutely nothing about it. I remembered I have a friend doing a PhD in Operations Research at MIT who might be familiar with these things. So I asked him for a bit of help which he kindly rendered.</p>
 <p>Perhaps it was luck and persistence that got me through. I guess it was the query “python solve numerical equation” that yielded what I needed. Namely, <a href="http://stackoverflow.com/a/25208202">this answer on Stack Overflow by CT Zhu</a> and <a href="http://stackoverflow.com/a/22743440">this answer on Stack Overflow by nibot</a>. It seemed to me that one of <a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.root.html">scipy.optimize.root</a> or <a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve</a> was what I needed. Since the answer by CT Zhu and nibot both made use of <code>scipy.optimize.fsolve</code> and there was code there, I decided to go ahead with <code>scipy.optimize.fsolve</code>.</p>
-<p><a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve`">Documentation for scipy.optimize.fsolve</a> states that it:</p>
+<p><a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve%60">Documentation for scipy.optimize.fsolve</a> states that it:</p>
 <blockquote>
 <p>Returns the roots of the (non-linear) equations defined by <code>func(x) = 0</code> given a starting estimate.</p>
 </blockquote>
@@ -554,18 +551,18 @@ $$</span><br /></p>
 </blockquote>
 <p>So I did just that:</p>
 <div class="figure">
-<img src="../images/2015-09-15/weibull-k-parameter-plot.png" alt />
+<img src="../images/2015-09-15/weibull-k-parameter-plot.png" />
 
 </div>
 <p>Values of \( x \) are supplied to the equation \( f(k) = ( \frac{ \sum_{i=1}^{n} [ X_i^k \cdot log(X_i)] }{ \sum_{i=1}^{n} [ X_i^k ] } - \frac{1}{n} \sum_{i=1}^{n} [ log(X_i) ] )^{-1} - k \) (so \( k \) takes on each value of \( x \) ’s we are plotting). We see that the curve intersects with the line \( y = 0 \) at approximately \( x = 2 \). So \( 2.0 \) is an ok initial guess to supply to <code>scipy.optimize.fsolve</code>.</p>
 <p>Notice that in \( f(k) = ( \frac{ \sum_{i=1}^{n} [ X_i^k \cdot log(X_i)] }{ \sum_{i=1}^{n} [ X_i^k ] } - \frac{1}{n} \sum_{i=1}^{n} [ log(X_i) ] )^{-1} - k \), there is \( log(X_i) \). For our simulated data, a large number of cohorts have 0 cancer cases, so \( X_i = 0 \) for those \( i \). However, \( log \) is undefined at \( 0 \). Hence, we have to exclude those data points during parameter estimation.</p>
 <p>Here’s the code for parameter estimation of \( k \) using the method of Maximum Likelihood Estimate:</p>
-<div class="highlight"><pre><span class="n">X_without_zero</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">simulated_data</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="n">X_without_zero</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">simulated_data</span><span class="p">))</span>
 <span class="n">X_without_zero_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_without_zero</span><span class="p">)</span>
 <span class="n">log_X_without_zero</span> <span class="o">=</span> <span class="p">[</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X_without_zero</span><span class="p">]</span>
 <span class="n">one_over_n_sum_of_log_X_without_zero</span> <span class="o">=</span> \
     <span class="nb">sum</span><span class="p">(</span><span class="n">log_X_without_zero</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">X_without_zero_len</span><span class="p">)</span>
-<span class="c"># equation we're trying to find roots</span>
+<span class="c1"># equation we're trying to find roots</span>
 <span class="k">def</span> <span class="nf">_eqn_for_k</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
     <span class="n">numer</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_without_zero_len</span><span class="p">):</span>
@@ -575,7 +572,7 @@ $$</span><br /></p>
         <span class="n">denom</span> <span class="o">+=</span> <span class="p">(</span><span class="n">X_without_zero</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="n">k</span><span class="p">)</span>
     <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">numer</span> <span class="o">/</span> <span class="n">denom</span> <span class="o">-</span> <span class="n">one_over_n_sum_of_log_X_without_zero</span><span class="p">)</span> <span class="o">-</span> <span class="n">k</span>
 
-<span class="c"># This is a rough estimate from looking at the k parameter plot</span>
+<span class="c1"># This is a rough estimate from looking at the k parameter plot</span>
 <span class="n">initial_guess</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">weibull_model_shape</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">_eqn_for_k</span><span class="p">,</span>
     <span class="p">[</span><span class="n">initial_guess</span><span class="p">]</span>
@@ -583,7 +580,7 @@ $$</span><br /></p>
 </pre></div>
 
 <p>And once we obtain the MLE for \( k \), we can easily compute the MLE for \( \lambda \). Since \( \lambda^k = \frac{1}{n} \sum_{i=1}^{n} X_i^k \), then \( \lambda = ( \frac{1}{n} \sum_{i=1}^{n} X_i^k )^{ \frac{1}{k} } \). The question is, since we excluded the zero data points when computing the MLE for \( k \), should we also exclude those points when computing the MLE for \( \lambda \)? Frankly speaking, I do not know. So I computed one value of \( \lambda \) that uses the zero data points and another one that excludes them:</p>
-<div class="highlight"><pre><span class="n">weibull_model_scale_on_full_data</span> <span class="o">=</span> <span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="n">weibull_model_scale_on_full_data</span> <span class="o">=</span> <span class="p">(</span>
     <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">**</span> <span class="n">weibull_model_shape</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">simulated_data</span><span class="p">))</span> <span class="o">/</span> \
         <span class="nb">float</span><span class="p">(</span><span class="n">nr_cohorts</span><span class="p">)</span>
 <span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">weibull_model_shape</span><span class="p">)</span>
@@ -595,20 +592,20 @@ $$</span><br /></p>
 
 <p>From this point, we’re going to use \( \hat{\lambda} \) to denote the value of \( \lambda \) that is computed using the full data set, and we’re going to use \( \widetilde{\lambda} \) to denote the value of \( \lambda \) that is computed using the non-zero values in the data set.</p>
 <p>We’re going to do some plots. We’ll be needing the PDF of the Weibull, defined as \( f(x) = \frac{k}{\lambda} ( \frac{x}{\lambda} )^{k-1} e^{-(x / \lambda)^k} \) for \( x \geqslant 0 \). In code:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">_weibull_pdf</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_weibull_pdf</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">shape</span> <span class="o">/</span> <span class="n">scale</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">scale</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="n">shape</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span>
         <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">x</span> <span class="o">/</span> <span class="n">scale</span><span class="p">)</span> <span class="o">**</span> <span class="n">shape</span><span class="p">))</span>
 </pre></div>
 
 <p>This next part makes use of a <code>for</code> loop to do some plots for the 2 values of \( \lambda \):</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">scale</span><span class="p">,</span> <span class="n">root_suffix</span> <span class="ow">in</span> <span class="p">[</span>
-    <span class="p">(</span><span class="n">weibull_model_scale_on_full_data</span><span class="p">,</span> <span class="s">&quot;scale-on-full-data&quot;</span><span class="p">,),</span>
-    <span class="p">(</span><span class="n">weibull_model_scale_on_non_zero_data</span><span class="p">,</span> <span class="s">&quot;scale-on-non-zero-data&quot;</span><span class="p">,),</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">scale</span><span class="p">,</span> <span class="n">root_suffix</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">weibull_model_scale_on_full_data</span><span class="p">,</span> <span class="s2">&quot;scale-on-full-data&quot;</span><span class="p">,),</span>
+    <span class="p">(</span><span class="n">weibull_model_scale_on_non_zero_data</span><span class="p">,</span> <span class="s2">&quot;scale-on-non-zero-data&quot;</span><span class="p">,),</span>
 <span class="p">]:</span>
 </pre></div>
 
 <p>First, I did a CDF plot of the simulated data along with the Weibull model:</p>
-<div class="highlight"><pre><span class="n">weibull_val_to_density</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight"><pre><span></span><span class="n">weibull_val_to_density</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">i</span><span class="p">,</span> <span class="n">incr</span><span class="p">,</span> <span class="n">max_val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">simulated_data</span><span class="p">)</span>
 <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max_val</span><span class="p">:</span>
     <span class="n">weibull_val_to_density</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_weibull_pdf</span><span class="p">(</span>
@@ -616,53 +613,53 @@ $$</span><br /></p>
     <span class="p">)</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="n">incr</span>
 <span class="n">weibull_model_cdf</span> <span class="o">=</span> <span class="n">Cdf</span><span class="o">.</span><span class="n">MakeCdfFromDict</span><span class="p">(</span><span class="n">weibull_val_to_density</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s">&quot;model&quot;</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span>
 <span class="p">)</span>
 <span class="n">myplot</span><span class="o">.</span><span class="n">Cdfs</span><span class="p">([</span><span class="n">empirical_cdf</span><span class="p">,</span> <span class="n">weibull_model_cdf</span><span class="p">])</span>
 <span class="n">myplot</span><span class="o">.</span><span class="n">Save</span><span class="p">(</span>
-    <span class="n">root</span><span class="o">=</span><span class="s">&quot;ex5-13-p1-cdf-with-weibull-model-{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;ex5-13-p1-cdf-with-weibull-model-{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
         <span class="n">root_suffix</span>
     <span class="p">),</span>
-    <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;pdf&quot;</span><span class="p">,</span> <span class="s">&quot;png&quot;</span><span class="p">,],</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;cancer cases&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;CDF(x)&quot;</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s">&quot;CDF &amp; Weibull model&quot;</span><span class="p">,</span>
+    <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;png&quot;</span><span class="p">,],</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;cancer cases&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;CDF(x)&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;CDF &amp; Weibull model&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 
 <p>Plot of empirical CDF and \( Weibull(\hat{\lambda}, k) \) CDF:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-with-weibull-model-scale-on-full-data.png" alt />
+<img src="../images/2015-09-15/cdf-with-weibull-model-scale-on-full-data.png" />
 
 </div>
 <p>Plot of empirical CDF and \( Weibull(\widetilde{\lambda}, k) \) CDF:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-with-weibull-model-scale-on-non-zero-data.png" alt />
+<img src="../images/2015-09-15/cdf-with-weibull-model-scale-on-non-zero-data.png" />
 
 </div>
 <p>If we let \( W \) denote either one of our Weibull random variable, notice that \( \mathbb{P}(W &lt;= 0) \approx 0 \). However, it is about \( 0.4 \) for the empirical CDF. It also seems that if we shift the Weibull CDF plot to the left by 1 unit in the x-axis, then either model will be much better for our data, that is, if we ignore the region from \( [-1, 0) \). Let’s do it:</p>
-<div class="highlight"><pre><span class="n">weibull_val_minus_one_to_density</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="n">weibull_val_minus_one_to_density</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
         <span class="n">weibull_val_to_density</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
     <span class="p">)</span>
 <span class="p">)</span>
 <span class="n">weibull_model_minus_one_cdf</span> <span class="o">=</span> <span class="n">Cdf</span><span class="o">.</span><span class="n">MakeCdfFromDict</span><span class="p">(</span>
-    <span class="n">weibull_val_minus_one_to_density</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;model&quot;</span>
+    <span class="n">weibull_val_minus_one_to_density</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span>
 <span class="p">)</span>
 </pre></div>
 
 <p>Plot of empirical CDF and \( Weibull(\hat{\lambda}, k) \) CDF shifted by -1 unit along the x-axis:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-with-weibull-model-left-shifted-by-one-scale-on-full-data.png" alt />
+<img src="../images/2015-09-15/cdf-with-weibull-model-left-shifted-by-one-scale-on-full-data.png" />
 
 </div>
 <p>Plot of empirical CDF and \( Weibull(\widetilde{\lambda}, k) \) CDF shifted by -1 unit along the x-axis:</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-with-weibull-model-left-shifted-by-one-scale-on-non-zero-data.png" alt />
+<img src="../images/2015-09-15/cdf-with-weibull-model-left-shifted-by-one-scale-on-non-zero-data.png" />
 
 </div>
 <p>Hmm, despite some discrepancies, that indeed is the case. Let us take it a step further and accumulate all the densities from \( [-1, 0) \) and put them under \( 0 \) and leave the rest of the densities as they are:</p>
-<div class="highlight"><pre><span class="n">sum_of_negative_and_zero_density</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="n">sum_of_negative_and_zero_density</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
     <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
         <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">weibull_val_minus_one_to_density</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -676,40 +673,40 @@ $$</span><br /></p>
 <span class="p">)</span>
 <span class="n">weibull_val_to_density</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_of_negative_and_zero_density</span>
 <span class="n">weibull_model_negative_grouped_with_zero_cdf</span> <span class="o">=</span> <span class="n">Cdf</span><span class="o">.</span><span class="n">MakeCdfFromDict</span><span class="p">(</span>
-    <span class="n">weibull_val_to_density</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;model&quot;</span>
+    <span class="n">weibull_val_to_density</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span>
 <span class="p">)</span>
 </pre></div>
 
 <p>Resulting plot for \( Weibull(\hat{\lambda}, k) \):</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-full-data.png" alt />
+<img src="../images/2015-09-15/cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-full-data.png" />
 
 </div>
 <p>Resulting plot for \( Weibull(\widetilde{\lambda}, k) \):</p>
 <div class="figure">
-<img src="../images/2015-09-15/cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-non-zero-data.png" alt />
+<img src="../images/2015-09-15/cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-non-zero-data.png" />
 
 </div>
 <p>So \( \hat{\lambda} \) offers a good start for \( x = 0 \), but using \( \widetilde{\lambda} \) is a lot better for \( x = 1 \) onwards.</p>
 <h2 id="validating-our-models">Validating our models</h2>
 <p>We’ve done model fitting using the Exponential and Weibull distributions. The question is, how well do they generalize? Let’s perform another simulation to find out (and this is where our <code>_perform_simulation</code> function really shines):</p>
-<div class="highlight"><pre><span class="n">test_data</span> <span class="o">=</span> <span class="n">_perform_simulation</span><span class="p">(</span><span class="n">nr_cohorts</span><span class="p">)</span>
-<span class="n">test_data_cdf</span> <span class="o">=</span> <span class="n">Cdf</span><span class="o">.</span><span class="n">MakeCdfFromList</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;test data&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">_perform_simulation</span><span class="p">(</span><span class="n">nr_cohorts</span><span class="p">)</span>
+<span class="n">test_data_cdf</span> <span class="o">=</span> <span class="n">Cdf</span><span class="o">.</span><span class="n">MakeCdfFromList</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test data&quot;</span><span class="p">)</span>
 </pre></div>
 
 <p>Exponential model:</p>
 <div class="figure">
-<img src="../images/2015-09-15/test-data-cdf-with-shifted-exp-model.png" alt />
+<img src="../images/2015-09-15/test-data-cdf-with-shifted-exp-model.png" />
 
 </div>
 <p>\(Weibull(\hat{\lambda}, k) \) model:</p>
 <div class="figure">
-<img src="../images/2015-09-15/test-data-cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-full-data.png" alt />
+<img src="../images/2015-09-15/test-data-cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-full-data.png" />
 
 </div>
 <p>\(Weibull(\widetilde{\lambda}, k) \) model:</p>
 <div class="figure">
-<img src="../images/2015-09-15/test-data-cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-non-zero-data.png" alt />
+<img src="../images/2015-09-15/test-data-cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-non-zero-data.png" />
 
 </div>
 <p>I think there are much more mathematically rigorous ways to assess the strength of our models, but I don’t know them well and at this point, I feel that I’ve spent too much time and effort writing this blog post (it took me <em>much</em> longer to write this post than work on the actual problem).</p>

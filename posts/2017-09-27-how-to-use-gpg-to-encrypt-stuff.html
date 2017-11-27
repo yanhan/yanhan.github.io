@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -107,11 +107,11 @@
 <p>For the sender: This step is required if you wish to send a signature to the recipient. Otherwise you can skip this step.</p>
 <p>To generate a GPG keypair, you first have to install GPG. This should come automatically with Linux. For Mac OS X users, I highly recommend that you install <a href="https://gpgtools.org/">GPG Suite</a>.</p>
 <p>To generate a key, run the following command:</p>
-<div class="highlight"><pre>gpg --gen-key
+<div class="highlight"><pre><span></span>gpg --gen-key
 </pre></div>
 
 <p>You will be prompted for some information. I will be guiding you through the flow below.</p>
-<div class="highlight"><pre>gpg (GnuPG) 1.4.16; Copyright (C) 2013 Free Software Foundation, Inc.
+<div class="highlight"><pre><span></span>gpg (GnuPG) 1.4.16; Copyright (C) 2013 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 
@@ -124,12 +124,12 @@ Your selection?
 </pre></div>
 
 <p>Type <code>1</code> followed by Enter for the <code>RSA and RSA</code> option.</p>
-<div class="highlight"><pre>RSA keys may be between 1024 and 4096 bits long.
+<div class="highlight"><pre><span></span>RSA keys may be between 1024 and 4096 bits long.
 What keysize do you want? (2048)
 </pre></div>
 
 <p>Type <code>4096</code> followed by Enter. We want our key to be as strong as possible.</p>
-<div class="highlight"><pre>Requested keysize is 4096 bits
+<div class="highlight"><pre><span></span>Requested keysize is 4096 bits
 Please specify how long the key should be valid.
          0 = key does not expire
       &lt;n&gt;  = key expires in n days
@@ -140,12 +140,12 @@ Key is valid for? (0)
 </pre></div>
 
 <p>Type <code>0</code> followed by Enter. For convenience, we do not want the key to expire</p>
-<div class="highlight"><pre>Key does not expire at all
+<div class="highlight"><pre><span></span>Key does not expire at all
 Is this correct? (y/N)
 </pre></div>
 
 <p>Type <code>y</code> followed by Enter.</p>
-<div class="highlight"><pre>You need a user ID to identify your key; the software constructs the user ID
+<div class="highlight"><pre><span></span>You need a user ID to identify your key; the software constructs the user ID
 from the Real Name, Comment and Email Address in this form:
     &quot;Heinrich Heine (Der Dichter) &lt;heinrichh@duesseldorf.de&gt;&quot;
 
@@ -153,26 +153,26 @@ Real name:
 </pre></div>
 
 <p>Type your real name followed by Enter.</p>
-<div class="highlight"><pre>Email address:
+<div class="highlight"><pre><span></span>Email address:
 </pre></div>
 
 <p>Type your email address followed by Enter. The email address you use depends on the context. If you are exchanging files securely for work, then type your work email address.</p>
-<div class="highlight"><pre>Comment:
+<div class="highlight"><pre><span></span>Comment:
 </pre></div>
 
 <p>This can be left blank. Press Enter if you have nothing to add.</p>
-<div class="highlight"><pre>You selected this USER-ID:
+<div class="highlight"><pre><span></span>You selected this USER-ID:
     &quot;Your name &lt;your.name@yourdomain.com&gt;&quot;
 
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit?
 </pre></div>
 
 <p>Type <code>O</code> followed by Enter.</p>
-<div class="highlight"><pre>You need a Passphrase to protect your secret key.
+<div class="highlight"><pre><span></span>You need a Passphrase to protect your secret key.
 </pre></div>
 
 <p>If you are using a GUI, you will see a GUI prompt open up for your passphrase. <strong>Do not forget your passphrase!!!</strong> Otherwise your GPG keypair is worthless. Use something long and easily remembered by you but hard for other people and computers to guess. <a href="https://blog.lastpass.com/2013/04/how-to-create-secure-master-password.html/">This blog post by LastPass</a> is a good guide to generating a good passphrase.</p>
-<div class="highlight"><pre>We need to generate a lot of random bytes. It is a good idea to perform
+<div class="highlight"><pre><span></span>We need to generate a lot of random bytes. It is a good idea to perform
 some other action (type on the keyboard, move the mouse, utilize the
 disks) during the prime generation; this gives the random number
 generator a better chance to gain enough entropy.
@@ -182,7 +182,7 @@ the OS a chance to collect more entropy! (Need _ more bytes)
 </pre></div>
 
 <p>Once you the above, just go do some other stuff at your computer. It could take a few minutes before this is done. To speed up the process, you can run some intensive commands like <code>cd ~ &amp;&amp; find . -type f</code> (assuming you have a lot of files in your home folder)</p>
-<div class="highlight"><pre>gpg: key ________ marked as ultimately trusted
+<div class="highlight"><pre><span></span>gpg: key ________ marked as ultimately trusted
 public and secret key created and signed.
 
 gpg: checking the trustdb
@@ -200,11 +200,11 @@ sub   4096R/________ 2017-09-26
 <p>Regardless of whether you are the sender or the recipient, we shall cover 2 methods of making your GPG public key available to the other party.</p>
 <h3 id="method-1-send-your-public-key-as-a-file-to-the-recipient">Method 1: Send your public key as a file to the recipient</h3>
 <p>Remember the email you used to create your GPG keypair? We shall assume it is <code>your.name@yourdomain.com</code>. Run the following command:</p>
-<div class="highlight"><pre>gpg --armor --output mypubkey.gpg --export your.name@yourdomain.com
+<div class="highlight"><pre><span></span>gpg --armor --output mypubkey.gpg --export your.name@yourdomain.com
 </pre></div>
 
 <p>The <code>mypubkey.gpg</code> file should look similar to the following:</p>
-<div class="highlight"><pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
+<div class="highlight"><pre><span></span>-----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v1
 
 mfgQighgkm47609/132415jkamfgASHDFGkgm48610xktgy46523jrkfagmb01f4
@@ -220,11 +220,11 @@ mfgQighgkm47609/132415jkamfgASHDFGkgm48610xktgy46523jrkfagmb01f4
 <h3 id="method-2-upload-your-public-key-to-a-pgp-public-key-server">Method 2: Upload your public key to a PGP public key server</h3>
 <p>The alternative method is to upload your public key a PGP public key server and have your friend / colleague download your public key from there.</p>
 <p>We have to find out the public key ID of our GPG key. Do so by running the following command:</p>
-<div class="highlight"><pre>gpg --list-secret-keys
+<div class="highlight"><pre><span></span>gpg --list-secret-keys
 </pre></div>
 
 <p>You should see something similar to the following:</p>
-<div class="highlight"><pre>/home/youruser/.gnupg/secring.gpg
+<div class="highlight"><pre><span></span>/home/youruser/.gnupg/secring.gpg
 ---------------------------------
 sec   4096R/DEADBEEF 2017-09-26
 uid                  Your name here &lt;your.name@yourdomain.com&gt;
@@ -233,11 +233,11 @@ ssb   4096R/A0156F2D 2017-09-26
 
 <p>The key ID of your GPG public key is in the first row on the same line as the <code>sec</code> field. In this made up example here, it is <code>DEADBEEF</code>.</p>
 <p>To export your GPG public key, run the following command, replacing the public key ID accordingly:</p>
-<div class="highlight"><pre>gpg --send-keys DEADBEEF
+<div class="highlight"><pre><span></span>gpg --send-keys DEADBEEF
 </pre></div>
 
 <p>You should see something like the following:</p>
-<div class="highlight"><pre>gpg: sending key DEADBEEF to hkp server keys.gnupg.net
+<div class="highlight"><pre><span></span>gpg: sending key DEADBEEF to hkp server keys.gnupg.net
 </pre></div>
 
 <p>Take note of the GPG server that the key was uploaded to. We will be needing it later.</p>
@@ -245,11 +245,11 @@ ssb   4096R/A0156F2D 2017-09-26
 <p>This step is for the sender of the message. We shall cover what follows from the 2 methods that we covered in step 2.</p>
 <h3 id="method-1-friend-colleague-sent-his-her-public-key-to-you">Method 1: Friend / colleague sent his / her public key to you</h3>
 <p>This corresponds to Step 2 Method 1, where your friend / colleague (the recipient of the message) send his / her public key to you in a file. We have to import the public key into our keyring. Suppose this file is called <code>recipient-pubkey.gpg</code>. To import it, run:</p>
-<div class="highlight"><pre>gpg --import recipient-pubkey.gpg
+<div class="highlight"><pre><span></span>gpg --import recipient-pubkey.gpg
 </pre></div>
 
 <p>You should see output similar to the following:</p>
-<div class="highlight"><pre>gpg: key ______: public key &quot;Your friend's name &lt;your.friend@yourfriendsdomain.com&gt;&quot; imported
+<div class="highlight"><pre><span></span>gpg: key ______: public key &quot;Your friend's name &lt;your.friend@yourfriendsdomain.com&gt;&quot; imported
 gpg: Total number processed: 1
 gpg:               imported: 1
 </pre></div>
@@ -257,11 +257,11 @@ gpg:               imported: 1
 <h3 id="method-2-friend-colleague-uploaded-his-her-gpg-public-key-to-a-pgp-public-key-server">Method 2: Friend / colleague uploaded his / her GPG public key to a PGP public key server</h3>
 <p>Ask your friend / colleague the server that he / she uploaded his / her public key to.</p>
 <p>Suppose it is <code>keys.gnupg.net</code>. Suppose your friend’s email address is <code>your.friend@yourfriendsdomain.com</code>. To find his / her key, run the following command (replacing the keyserver and email address accordingly):</p>
-<div class="highlight"><pre>gpg --keyserver keys.gnupg.net --search-key your.friend@yourfriendsdomain.com
+<div class="highlight"><pre><span></span>gpg --keyserver keys.gnupg.net --search-key your.friend@yourfriendsdomain.com
 </pre></div>
 
 <p>If everything goes well, you should see output similar to the following:</p>
-<div class="highlight"><pre>gpg: data source: http://192.94.109.73:11371
+<div class="highlight"><pre><span></span>gpg: data source: http://192.94.109.73:11371
 (1)     Your Friend's Name &lt;your.friend@yourfriendsdomain.com&gt;
         4096 bit RSA key 5019A105E6069CD4, created: 2017-09-26
 Keys 1-1 of 1 for &quot;your.friend@yourfriendsdomain.com&quot;. Enter number(s), N)ext, or Q)uit &gt;
@@ -269,13 +269,13 @@ Keys 1-1 of 1 for &quot;your.friend@yourfriendsdomain.com&quot;. Enter number(s)
 
 <p>Type <code>1</code> followed by enter if you are sure that this is your friend’s public key and GPG will proceed to import it into your public keyring.</p>
 <p>If you are unsure this key belongs to your friend, verify with him / her. Get them to run the following command:</p>
-<div class="highlight"><pre>gpg --list-keys --keyid-format LONG --fingerprint
+<div class="highlight"><pre><span></span>gpg --list-keys --keyid-format LONG --fingerprint
 </pre></div>
 
 <p>Verify that the public key ID you see (in our example it is <code>5019A105E6069CD4</code>) matches the his / her public key ID. Proceed to import the key if everything is good.</p>
 <h2 id="step-4-for-sender-encrypt-the-message">Step 4: (For sender) Encrypt the message</h2>
 <p>We will now encrypt the message using the sender’s public key. Assuming the sender’s email that is associated with public key is <code>your.friend@yourfriendsdomain.com</code> and the file you want to encrypt is called <code>myfile.txt</code>, run the following command:</p>
-<div class="highlight"><pre>gpg --output myfile.txt.gpg --encrypt --recipient your.friend@yourfriendsdomain.com  myfile.txt
+<div class="highlight"><pre><span></span>gpg --output myfile.txt.gpg --encrypt --recipient your.friend@yourfriendsdomain.com  myfile.txt
 </pre></div>
 
 <p>The encrypted file will be at <code>myfile.txt.gpg</code>. If you take a look at it, you will see that it is in a binary format. Now you can send this file to your friend / colleague. Only the recipient will be able to decrypt it using his / her private key.</p>
@@ -283,7 +283,7 @@ Keys 1-1 of 1 for &quot;your.friend@yourfriendsdomain.com&quot;. Enter number(s)
 <p><strong>NOTE:</strong> This step is optional. The reason why you as a sender may want to sign the message is for the recipient to verify that it is indeed you who sent the message and not someone else. This is a form of anti-tampering.</p>
 <p>Instead of signing the message (which is also a form of encrypting the message), we shall generate a checksum of the message and sign that instead.</p>
 <p>Let us generate a SHA256 sum of the <strong>unencrypted</strong> file (assuming it is named <code>myfile.txt</code>) and sign that using our <strong>private key</strong>:</p>
-<div class="highlight"><pre>shasum -a 256 myfile.txt | awk '{print $1}' &gt;myfile.txt.sha256sum
+<div class="highlight"><pre><span></span>shasum -a 256 myfile.txt | awk '{print $1}' &gt;myfile.txt.sha256sum
 gpg --output myfile.txt.sha256sum.sig --sign myfile.txt.sha256sum
 </pre></div>
 
@@ -291,18 +291,18 @@ gpg --output myfile.txt.sha256sum.sig --sign myfile.txt.sha256sum
 <h2 id="step-6-for-receiver-decrypt-the-message">Step 6: (For receiver) Decrypt the message</h2>
 <p>Suppose the encrypted message sent by the sender is called <code>myfile.txt.gpg</code> and it was encrypted using your public key.</p>
 <p>To decrypt this message using your private key, run:</p>
-<div class="highlight"><pre>gpg --output myfile.txt --decrypt myfile.txt.gpg
+<div class="highlight"><pre><span></span>gpg --output myfile.txt --decrypt myfile.txt.gpg
 </pre></div>
 
 <p>You will be prompted for the passphrase of your private key. Assuming the sender specified the recipient of the message using the <code>--recipient</code> option when encrypting the message, GPG should be able to identify the correct private key to use (assuming you have multiple keypairs).</p>
 <p>Now you have the message! It is in the file specified by the <code>--output</code> flag. If the sender did not provide a signature and you trust him / her, then you are done. Otherwise, go on to the next step to verify the signature.</p>
 <h2 id="step-7-for-receiver-verify-the-signature-of-the-message">Step 7: (For receiver) Verify the signature of the message</h2>
 <p>Suppose the signature is named <code>myfile.txt.sha256sum.sig</code>. To verify that the signature is indeed sent by the sender, run the following command:</p>
-<div class="highlight"><pre>gpg --verify myfile.txt.sha256sum.sig
+<div class="highlight"><pre><span></span>gpg --verify myfile.txt.sha256sum.sig
 </pre></div>
 
 <p>You should see an output similar to the following:</p>
-<div class="highlight"><pre>gpg: Signature made Tue 26 Sep 2017 09:10:22 PM SGT
+<div class="highlight"><pre><span></span>gpg: Signature made Tue 26 Sep 2017 09:10:22 PM SGT
 gpg:                using RSA key ID 741A869EBC910BE2
 gpg: Good signature from &quot;Sender's name &lt;sender.name@sendersdomain.com&gt;&quot; [unknown]
 gpg: WARNING: This key is not certified with a trusted signature!
@@ -312,7 +312,7 @@ Primary key fingerprint: 85AF 5410 058C FE1D 76DA  986F 910C B963 468A 0F16
 
 <p>Check that the public key ID and fingerprint. matches the sender’s public key ID in your keyring. Run <code>gpg --list-keys --keyid-format LONG --fingerprint</code> to list the public keys in your GPG keyring alongside their fingerprint.</p>
 <p>To get the actual content from the signature, run:</p>
-<div class="highlight"><pre>gpg --output myfile.txt.sha256sum  --decrypt myfile.txt.sha256sum.sig
+<div class="highlight"><pre><span></span>gpg --output myfile.txt.sha256sum  --decrypt myfile.txt.sha256sum.sig
 </pre></div>
 
 <p>You should see some output very similar to / the same as that from running the command <code>gpg --verify myfile.txt.sha256sum.sig</code>.</p>

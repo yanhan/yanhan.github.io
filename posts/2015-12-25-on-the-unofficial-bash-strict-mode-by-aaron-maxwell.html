@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -96,26 +96,26 @@
 <p>If you haven’t started using his unofficial bash strict mode, you should, too.</p>
 <h2 id="the-evolution-of-my-original-unofficial-bash-strict-mode">The evolution of my original unofficial bash strict mode</h2>
 <p>For a very long time before I read Aaron’s blog post, this was my unofficial bash strict mode, which I used in most of my bash scripts:</p>
-<div class="highlight"><pre><span class="nb">set</span> -e
+<div class="highlight"><pre><span></span><span class="nb">set</span> -e
 </pre></div>
 
 <p>It is certainly much less comprehensive than Aaron’s unofficial bash strict mode, having the effect of erroring out on commands which return a non-zero exit code. But this flag alone eased a lot of debugging pain for bash scripts.</p>
 <p>After some time, I encountered <code>set -u</code>, which errors out on the use of undefined variables. So my unofficial bash strict mode became:</p>
-<div class="highlight"><pre><span class="nb">set</span> -eu
+<div class="highlight"><pre><span></span><span class="nb">set</span> -eu
 </pre></div>
 
 <p>which is just 2 things shy of Aaron’s unofficial bash strict mode. With <code>set -u</code>, debugging bash scripts becomes even easier, since use of undefined variables is a big source of bugs, especially when we factor in typos.</p>
 <h2 id="thoughts-on-the-other-2-flags">Thoughts on the other 2 flags</h2>
 <p>In fact, with <code>set -eu</code>, writing bash scripts becomes very smooth for me. So as much as Aaron’s blog post convinced me that his unofficial bash strict mode was superior to the one I’ve been using, after adopting its usage, I didn’t really detect much noticeable difference in how <code>set -o pipefail</code> and <code>IFS=$'\n\t'</code> helped with debugging, or how I had to adjust my code to work around some of their quirks.</p>
 <p>That being said, if I were to choose among those 2 to aid in the ease of writing bash scripts, it’ll be:</p>
-<div class="highlight"><pre><span class="nb">set</span> -o pipefail
+<div class="highlight"><pre><span></span><span class="nb">set</span> -o pipefail
 </pre></div>
 
 <p>Since that is such a natural next step from <code>set -eu</code>. And detecting intermediate failures in a very long chain of commands in a pipeline is an extremely welcome addition.</p>
 <p>As for <code>IFS=$'\n\t'</code>, while it does seem useful, I’m still a bit confused about bash arrays and don’t use them too often in my bash scripts. For string manipulation, I rely on a mix of <code>grep</code>, <code>perl</code> and a little bit of <code>sed</code> and when I’m really really confused about those 3 tools, I stick to a trusty Python script. So it is probably the least useful addition to my arsenal. Hopefully I’ll be making full use of it as my bash-fu improves. But the thing about bash is, it is actually quite difficult to pick up, or at least it gives people the impression of that. There is probably some truth to both, seeing how quite a number of programmers I know don’t know how to write bash scripts and see it as some kind of alien language when I get them to fire up their text editor to open a bash script I’ve written so we can debug something in it together; and for those who know how to write them, it certainly isn’t their favourite language and they’d rather avoid it if possible.</p>
 <h2 id="finally">Finally…</h2>
 <p>Wishing all readers a Merry Christmas! If you didn’t know about Aaron’s unofficial bash strict mode:</p>
-<div class="highlight"><pre><span class="nb">set</span> -euo pipefail
+<div class="highlight"><pre><span></span><span class="nb">set</span> -euo pipefail
 <span class="nv">IFS</span><span class="o">=</span><span class="s1">$'\n\t'</span>
 </pre></div>
 

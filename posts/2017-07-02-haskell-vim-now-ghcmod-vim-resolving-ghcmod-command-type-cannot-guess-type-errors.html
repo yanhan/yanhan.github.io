@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -94,18 +94,18 @@
   <p><strong>NOTE:</strong> This post features a very hacky way to work around things which will likely never be merged into the ghcmod-vim project. It is just a place for me to document what has worked for myself in case I encounter the same issue again. <strong>This also assumes you are primarily using <a href="https://docs.haskellstack.org/en/stable/README/">Stack</a> for your Haskell projects.</strong></p>
 <h2 id="introduction-problem-statement">Introduction / Problem Statement</h2>
 <p>Yesterday afternoon, I took some time to install <a href="https://github.com/begriffs/haskell-vim-now">haskell-vim-now</a>. Among the list of features I saw on the README, what caught my attention was its ability to show the type of an expression in Haskell source code by typing <code>,ht</code> in normal mode. So I tried it on a Haskell file and I see the following text in red at the status line:</p>
-<div class="highlight"><pre>ghcmod#command#type: Cannot guess type
+<div class="highlight"><pre><span></span>ghcmod#command#type: Cannot guess type
 </pre></div>
 
 <p>It was pretty devastating for me to see this. After all, the installation took closer to an hour than 10 minutes. This morning I decided to do more googling and figured out the reason, which is stated right here: <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a></p>
 <p>It turns out that haskell-vim-now uses ghcmod-vim which in turn calls ghc-mod to retrieve the type of the expression under our vim cursor when we press <code>,ht</code>. But because I was using Stack, the GHC and the libraries I was using to compile the Haskell source code is different from the GHC that ghcmod-vim was using to infer the types.</p>
 <p>Here’s the output I got:</p>
-<div class="highlight"><pre>$ ghc-mod --version
+<div class="highlight"><pre><span></span>$ ghc-mod --version
 ghc-mod version 5.7.0.0 compiled by GHC 8.0.2
 </pre></div>
 
 <p>versus</p>
-<div class="highlight"><pre>$ stack exec ghc -- --version
+<div class="highlight"><pre><span></span>$ stack exec ghc -- --version
 The Glorious Glasgow Haskell Compilation System, version 7.10.3
 </pre></div>
 
@@ -119,7 +119,7 @@ The Glorious Glasgow Haskell Compilation System, version 7.10.3
 </ol>
 <h3 id="step-1.-install-ghc-mod-inside-your-project">Step 1. Install ghc-mod inside your project</h3>
 <p>This assumes that your Haskell source code is inside its own Stack project (created by <code>stack new</code>). If so, cd into the project’s directory and run:</p>
-<div class="highlight"><pre>stack install ghc-mod
+<div class="highlight"><pre><span></span>stack install ghc-mod
 </pre></div>
 
 <p>This step is essentially the same as the workaround given in <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a></p>
@@ -128,30 +128,30 @@ The Glorious Glasgow Haskell Compilation System, version 7.10.3
 <p><strong>NOTE:</strong> The following required source code changes are based on commit <a href="https://github.com/eagletmt/ghcmod-vim/commit/1d192d13d68ab59f9f46497a0909bf24a7b7dfff">1d192d13d68ab59f9f46497a0909bf24a7b7dfff</a> of ghcmod-vim. Things may have changed since the time of writing of this post. Hence for the best effect, please run the <code>git grep -n &quot;\['ghc-mod'&quot;</code> command in <code>${HOME}/.vim/bundle/ghcmod-vim</code> to figure out where you need to change the code and use the files below as a reference.</p>
 <p><strong>Point one:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L248" class="uri">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L248</a></p>
 <p>Modify:</p>
-<div class="highlight"><pre>let l:cmd = ['ghc-mod', '--silent']
+<div class="highlight"><pre><span></span>let l:cmd = ['ghc-mod', '--silent']
 </pre></div>
 
 <p>to</p>
-<div class="highlight"><pre>let l:cmd = ['stack', 'exec', '--', 'ghc-mod', '--silent']
+<div class="highlight"><pre><span></span>let l:cmd = ['stack', 'exec', '--', 'ghc-mod', '--silent']
 </pre></div>
 
 <p>And in fact this was sufficient to let <code>,ht</code> correctly infer the type of an expression, because this code is inside the <code>ghcmod#build_command</code> vim function and is used by various parts of the code to build the actual <code>ghc-mod</code> command.</p>
 <p><strong>Point two:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L344" class="uri">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L344</a></p>
 <p>Modify:</p>
-<div class="highlight"><pre>\ substitute(vimproc#system(['ghc-mod', '--silent', 'root']), '\n*$', '', '')
+<div class="highlight"><pre><span></span>\ substitute(vimproc#system(['ghc-mod', '--silent', 'root']), '\n*$', '', '')
 </pre></div>
 
 <p>to:</p>
-<div class="highlight"><pre>\ substitute(vimproc#system(['stack', 'exec', '--', 'ghc-mod', '--silent', 'root']), '\n*$', '', '')
+<div class="highlight"><pre><span></span>\ substitute(vimproc#system(['stack', 'exec', '--', 'ghc-mod', '--silent', 'root']), '\n*$', '', '')
 </pre></div>
 
 <p><strong>Point three:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109" class="uri">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109</a></p>
 <p>Modify:</p>
-<div class="highlight"><pre>let l:ghcmod = vimproc#system(['ghc-mod','version'])
+<div class="highlight"><pre><span></span>let l:ghcmod = vimproc#system(['ghc-mod','version'])
 </pre></div>
 
 <p>to:</p>
-<div class="highlight"><pre>let l:ghcmod = vimproc#system(['stack', 'exec', 'ghc-mod','version'])
+<div class="highlight"><pre><span></span>let l:ghcmod = vimproc#system(['stack', 'exec', 'ghc-mod','version'])
 </pre></div>
 
 <h3 id="step-3-restart-vim">Step 3: Restart vim</h3>
@@ -160,16 +160,16 @@ The Glorious Glasgow Haskell Compilation System, version 7.10.3
 <p>What did not work for me in the workaround stated at <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue" class="uri">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a> was having the <code>,ht</code> command work after running vim using <code>stack exec</code>, like <code>stack exec -- vim source-file.hs</code>. Contrary to what is stated, running vim like this does not add the directory containing the current Haskell project’s <code>ghc-mod</code> binary (that we installed via <code>stack install ghc-mod</code> in Step 1 of the solution) to the <code>PATH</code> environment variable. As such, the <code>ghc-mod</code> vim that’s invoked by the ghcmod-vim plugin is still the one installed in <code>${HOME}/.local/bin</code>.</p>
 <p>Because there are a few layers of abstraction, you might want to check if using <code>ghc-mod</code> directly on a Haskell source file actually works. Assuming you have already carried out step 1 of the solution above, simply run <code>stack exec ghc-mod type source-file.hs row col</code> and see if there is meaningful output (of course replacing <code>source-file.hs</code>, <code>row</code>, <code>col</code> with appropriate values).</p>
 <p>For instance, given the following source file named <code>hello.hs</code>:</p>
-<div class="highlight"><pre>main :: IO ()
+<div class="highlight"><pre><span></span>main :: IO ()
 main = putStrLn &quot;Hello, World!&quot;
 </pre></div>
 
 <p>To find out the type of <code>putStrLn</code>, run:</p>
-<div class="highlight"><pre>stack exec ghc-mod type hello.hs 2 8
+<div class="highlight"><pre><span></span>stack exec ghc-mod type hello.hs 2 8
 </pre></div>
 
 <p>You should see the following output:</p>
-<div class="highlight"><pre>2 8 2 16 &quot;String -&gt; IO ()&quot;
+<div class="highlight"><pre><span></span>2 8 2 16 &quot;String -&gt; IO ()&quot;
 2 8 2 32 &quot;IO ()&quot;
 2 1 2 32 &quot;IO ()&quot;
 </pre></div>

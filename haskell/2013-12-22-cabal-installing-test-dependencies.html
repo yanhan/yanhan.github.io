@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -104,11 +104,11 @@
 tldr version
 </h2>
 <p>In short, suppose you have a cabalized project, and somehow when you run its test suite, cabal complains about missing dependencies. Now, inside the <code>.cabal</code> file of the project, you should find a section beginning with a line that looks something like this:</p>
-<div class="highlight"><pre>test-suite test
+<div class="highlight"><pre><span></span>test-suite test
 </pre></div>
 
 <p>and below it, there are some <code>build-depends</code> that look like libraries meant for testing. If so, then you are in luck. Simply execute the following commands:</p>
-<div class="highlight"><pre>cabal configure --enable-tests
+<div class="highlight"><pre><span></span>cabal configure --enable-tests
 cabal install --only-dependencies --enable-tests
 </pre></div>
 
@@ -118,24 +118,24 @@ cabal install --only-dependencies --enable-tests
 Long version
 </h2>
 <p>I was fiddling around with setting up a Yesod scaffolded site, and it went like this:</p>
-<div class="highlight"><pre>yesod init
+<div class="highlight"><pre><span></span>yesod init
 cd yesodtry &amp;&amp; cabal sandbox init &amp;&amp; cabal install &amp;&amp; yesod devel
 </pre></div>
 
 <p>So my project is named <code>yesodtry</code>. Everything went smoothly, and the Yesod scaffolding comes with a “demo” site, that looks like this:</p>
 <div class="figure">
-<img src="../images/2013-12-22/yesod_demo_site.png" alt />
+<img src="../images/2013-12-22/yesod_demo_site.png" />
 
 </div>
 <p>I noticed the <code>yesod test</code> line, and curiosity got the better of me. So I proceeded to enter <code>yesod test</code> onto the command line, and this was what I got:</p>
-<div class="highlight"><pre>Resolving dependencies...
+<div class="highlight"><pre><span></span>Resolving dependencies...
 Configuring yesodtry-0.0.0...
 cabal: At least the following dependencies are missing:
 hspec -any, yesod-test ==1.2.*
 </pre></div>
 
 <p>Ok, but I noticed that inside <code>yesodtry.cabal</code>, there is a <code>test-suite test</code> section, that looks like this:</p>
-<div class="highlight"><pre>test-suite test
+<div class="highlight"><pre><span></span>test-suite test
     type:              exitcode-stdio-1.0
     main-is:           main.hs
     hs-source-dirs:    tests
@@ -155,12 +155,12 @@ hspec -any, yesod-test ==1.2.*
 </pre></div>
 
 <p>Notice the <code>yesod-test &gt;= 1.2 &amp;&amp; &lt; 1.3</code> line. So somehow cabal is not installing that dependency. Out of desperation, I tried <code>cabal build test</code>, and I got:</p>
-<div class="highlight"><pre>cabal: Cannot build the test suite 'test' because test suites are not enabled.
+<div class="highlight"><pre><span></span>cabal: Cannot build the test suite 'test' because test suites are not enabled.
 Run configure with the flag --enable-tests
 </pre></div>
 
 <p>Ok, so it’s telling me to run <code>cabal configure --enable-tests</code>. Below is its output:</p>
-<div class="highlight"><pre>Resolving dependencies...
+<div class="highlight"><pre><span></span>Resolving dependencies...
 Configuring yesodtry-0.0.0...
 cabal: At least the following dependencies are missing:
 hspec -any, yesod-test ==1.2.*
@@ -168,11 +168,11 @@ hspec -any, yesod-test ==1.2.*
 
 <p>which was the exact same output I got from running <code>yesod test</code> !!! So it seems like we’re in a vicious cycle here, with no way out…</p>
 <p>So I proceeded to ask a <a href="http://stackoverflow.com/questions/20725611/yesod-test-missing-dependency-yesod-test">question on stack overflow</a>. After a few minutes, no one responded, and I could not find similar questions. A lucky google search yielded the following link:</p>
-<div class="highlight"><pre>https://groups.google.com/forum/#!topic/haskell-cafe/SFoNwaq8wdc
+<div class="highlight"><pre><span></span>https://groups.google.com/forum/#!topic/haskell-cafe/SFoNwaq8wdc
 </pre></div>
 
 <p>Which is an announcement for the release of cabal 1.18.0, and seemingly has nothing to do with our problem, until the following lines in the announcement:</p>
-<div class="highlight"><pre>* GHCi support. It's now much easier to use ghci when developing your
+<div class="highlight"><pre><span></span>* GHCi support. It's now much easier to use ghci when developing your
 packages, especially if those packages require preprocessors (e.g.
 hsc2hs).
 
@@ -189,16 +189,16 @@ Here's how working on a package might look like using the new features:
 
 <p>In particular, the <code>cabal install --only-dependencies --enable-tests</code> line. Could that be the magic one liner needed to solve our problems? Fortunately, yes.</p>
 <p>So I proceeded with:</p>
-<div class="highlight"><pre>cabal install --only-dependencies --enable-tests
+<div class="highlight"><pre><span></span>cabal install --only-dependencies --enable-tests
 </pre></div>
 
 <p>and cabal goes on to install the dependencies for the <code>test-suite test</code> section.</p>
 <p>Then, I proceeded to run:</p>
-<div class="highlight"><pre>yesod test
+<div class="highlight"><pre><span></span>yesod test
 </pre></div>
 
 <p>And here’s the last few lines of output:</p>
-<div class="highlight"><pre>Linking dist/build/test/test ...
+<div class="highlight"><pre><span></span>Linking dist/build/test/test ...
 Building yesodtry-0.0.0...
 Preprocessing library yesodtry-0.0.0...
 In-place registering yesodtry-0.0.0...

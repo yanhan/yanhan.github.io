@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -96,15 +96,15 @@
 <p>If the above sounds like the problem you’re trying to tackle, then this post and the accompanying code <a href="https://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables">here on GitHub</a> is what you need.</p>
 <h2 id="how-to-run-the-code">How to run the code:</h2>
 <p>Clone the git repository:</p>
-<div class="highlight"><pre>git clone git://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables.git
+<div class="highlight"><pre><span></span>git clone git://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables.git
 </pre></div>
 
 <p>Run the <code>setup.sh</code> script:</p>
-<div class="highlight"><pre>./setup.sh
+<div class="highlight"><pre><span></span>./setup.sh
 </pre></div>
 
 <p>Put all the YAML files of interest in one folder. Let’s call this folder <code>my_yaml_files</code>. NOTE: missing variables will cause the program to go into an infinite loop. Then run:</p>
-<div class="highlight"><pre>. venv/bin/activate
+<div class="highlight"><pre><span></span>. venv/bin/activate
 python main.py my_yaml_files
 deactivate
 </pre></div>
@@ -114,7 +114,7 @@ deactivate
 <p>Below is an outline of how all the codebase works.</p>
 <h2 id="our-sample-yaml-files">Our sample YAML files</h2>
 <p>Now, if you look at the <code>yaml_files</code> folder, there are 2 files. <code>sample_yaml_file.yml</code>:</p>
-<div class="highlight"><pre>home_dir: /home/ubuntu
+<div class="highlight"><pre><span></span>home_dir: /home/ubuntu
 home_bin_dir: &quot;{{ home_dir }}/bin&quot;
 march: x86_64
 docs_dir: &quot;{{ home_dir }}/docs&quot;
@@ -133,7 +133,7 @@ affected_users:
 </pre></div>
 
 <p>and <code>sample_yaml_file_two.yml</code>:</p>
-<div class="highlight"><pre>db: macey
+<div class="highlight"><pre><span></span>db: macey
 books: &quot;{{ my_home }}/books&quot;
 </pre></div>
 
@@ -142,12 +142,12 @@ books: &quot;{{ my_home }}/books&quot;
 <p>Link: <a href="https://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables/blob/master/main.py" class="uri">https://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables/blob/master/main.py</a></p>
 <p>I shall highlight the more important parts.</p>
 <p>First:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">argparse</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="c"># The following line allows us to use the `ansible` codebase.</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s">&quot;ansible&quot;</span><span class="p">,</span> <span class="s">&quot;lib&quot;</span><span class="p">))</span>
+<span class="c1"># The following line allows us to use the `ansible` codebase.</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;ansible&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">))</span>
 
 <span class="kn">from</span> <span class="nn">ansible.errors</span> <span class="kn">import</span> <span class="n">AnsibleUndefinedVariable</span>
 <span class="kn">from</span> <span class="nn">ansible.parsing.dataloader</span> <span class="kn">import</span> <span class="n">DataLoader</span>
@@ -156,7 +156,7 @@ books: &quot;{{ my_home }}/books&quot;
 
 <p>Notice the <code>sys.path.append(os.path.join(os.getcwd(), &quot;ansible&quot;, &quot;lib&quot;))</code> line and the subsequent 3 imports from various modules under the <code>ansible</code> module. Our code makes use of the <a href="https://github.com/ansible/ansible">ansible codebase</a> as a submodule at the commit with tag <code>v2.0.0-0.7.rc2</code>. This should explain the <code>git submodule init</code> and <code>git submodule update</code> lines in the <code>setup.sh</code> file.</p>
 <p>Next:</p>
-<div class="highlight"><pre>  <span class="c"># Load variables from the YAML files</span>
+<div class="highlight"><pre><span></span>  <span class="c1"># Load variables from the YAML files</span>
   <span class="n">yaml_files_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">yaml_files_dir</span><span class="p">)</span>
   <span class="n">var_files</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">yaml_files_dir</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
@@ -169,27 +169,27 @@ books: &quot;{{ my_home }}/books&quot;
 </pre></div>
 
 <p>For simplicity, we require that all YAML files we’re trying to template, including those containing variables required by those files, should be placed in one directory for convenience sake, so easily load them using an instance of the <code>ansible.parsing.dataloader.DataLoader</code> class provided by Ansible. Specifically, we make use of its <code>load_from_file</code> method. After this part, <code>vars_to_template</code> is a dict of all variables in all the YAML files, waiting to be templated:</p>
-<div class="highlight"><pre><span class="p">{</span>
-  <span class="s">u'my_user'</span><span class="p">:</span> <span class="s">u'jake'</span><span class="p">,</span>
-  <span class="s">u'march'</span><span class="p">:</span> <span class="s">u'x86_64'</span><span class="p">,</span>
-  <span class="s">u'language'</span><span class="p">:</span> <span class="s">u'english'</span><span class="p">,</span>
-  <span class="s">u'my_home'</span><span class="p">:</span> <span class="s">u'/home/{{ my_user }}'</span><span class="p">,</span>
-  <span class="s">u'db'</span><span class="p">:</span> <span class="s">u'macey'</span><span class="p">,</span>
-  <span class="s">u'home_dir'</span><span class="p">:</span> <span class="s">u'/home/ubuntu'</span><span class="p">,</span>
-  <span class="s">u'sisters_user'</span><span class="p">:</span> <span class="s">u'jane'</span><span class="p">,</span>
-  <span class="s">u'secret_doc'</span><span class="p">:</span> <span class="s">u'{{ docs_dir }}/secret.txt'</span><span class="p">,</span>
-  <span class="s">u'affected_users'</span><span class="p">:</span> <span class="p">[</span><span class="s">u'{{ my_user }}'</span><span class="p">,</span> <span class="s">u'ubuntu'</span><span class="p">,</span> <span class="s">u'{{ sisters_user }}'</span><span class="p">],</span>
-  <span class="s">u'books'</span><span class="p">:</span> <span class="s">u'{{ my_home }}/books'</span><span class="p">,</span>
-  <span class="s">u'translation_file'</span><span class="p">:</span> <span class="s">u'{{ my_home }}/dictionary/{{ language }}.txt'</span><span class="p">,</span>
-  <span class="s">u'home_bin_dir'</span><span class="p">:</span> <span class="s">u'{{ home_dir }}/bin'</span><span class="p">,</span>
-  <span class="s">u'destination'</span><span class="p">:</span> <span class="s">u'{{ my_home }}/python2.7'</span><span class="p">,</span>
-  <span class="s">u'start_everything'</span><span class="p">:</span> <span class="s">u'{{ home_bin_dir }}/start-everything'</span><span class="p">,</span>
-  <span class="s">u'docs_dir'</span><span class="p">:</span> <span class="s">u'{{ home_dir }}/docs'</span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="sa">u</span><span class="s1">'my_user'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'jake'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'march'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'x86_64'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'language'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'english'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'my_home'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/{{ my_user }}'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'db'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'macey'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'home_dir'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/ubuntu'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'sisters_user'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'jane'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'secret_doc'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'{{ docs_dir }}/secret.txt'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'affected_users'</span><span class="p">:</span> <span class="p">[</span><span class="sa">u</span><span class="s1">'{{ my_user }}'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'ubuntu'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'{{ sisters_user }}'</span><span class="p">],</span>
+  <span class="sa">u</span><span class="s1">'books'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'{{ my_home }}/books'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'translation_file'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'{{ my_home }}/dictionary/{{ language }}.txt'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'home_bin_dir'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'{{ home_dir }}/bin'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'destination'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'{{ my_home }}/python2.7'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'start_everything'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'{{ home_bin_dir }}/start-everything'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'docs_dir'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'{{ home_dir }}/docs'</span>
 <span class="p">}</span>
 </pre></div>
 
 <p>Moving on:</p>
-<div class="highlight"><pre>  <span class="n">templar</span> <span class="o">=</span> <span class="n">Templar</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">dl</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>  <span class="n">templar</span> <span class="o">=</span> <span class="n">Templar</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">dl</span><span class="p">)</span>
   <span class="n">result_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
   <span class="k">while</span> <span class="n">vars_to_template</span><span class="p">:</span>
@@ -210,27 +210,27 @@ books: &quot;{{ my_home }}/books&quot;
 <p>Instead, we maintain <code>result_vars</code>, a dict of all variables that do not need to be templated, and <code>vars_to_template</code>, which is all variables we’ve loaded from the YAML files into memory. Using the <code>while</code> loop, we repeatedly try to templating all variables in <code>vars_to_template</code> until we run out of variables. Successfully templated variables are added to <code>result_vars</code> and we use the <code>Templar.set_available_variables</code> method to make that variable available the next time we perform templating using the <code>Templar.template</code> method. In addition, we append the name of that variable to a list named <code>successfully_templated_vars</code>. At the end of each iteration of the <code>while</code> loop, we remove all successfully templated variables from <code>vars_to_template</code>. This is done until we run out of variables. If in the event that there are missing variables required for templating, the <code>while</code> loop will not terminate.</p>
 <h2 id="outputting-the-variables">Outputting the variables</h2>
 <p>At this point, if we print the <code>result_vars</code> dict, we will see this:</p>
-<div class="highlight"><pre><span class="p">{</span>
-  <span class="s">u'my_user'</span><span class="p">:</span> <span class="s">u'jake'</span><span class="p">,</span>
-  <span class="s">u'march'</span><span class="p">:</span> <span class="s">u'x86_64'</span><span class="p">,</span>
-  <span class="s">u'language'</span><span class="p">:</span> <span class="s">u'english'</span><span class="p">,</span>
-  <span class="s">u'my_home'</span><span class="p">:</span> <span class="s">u'/home/jake'</span><span class="p">,</span>
-  <span class="s">u'db'</span><span class="p">:</span> <span class="s">u'macey'</span><span class="p">,</span>
-  <span class="s">u'home_dir'</span><span class="p">:</span> <span class="s">u'/home/ubuntu'</span><span class="p">,</span>
-  <span class="s">u'sisters_user'</span><span class="p">:</span> <span class="s">u'jane'</span><span class="p">,</span>
-  <span class="s">u'secret_doc'</span><span class="p">:</span> <span class="s">u'/home/ubuntu/docs/secret.txt'</span><span class="p">,</span>
-  <span class="s">u'affected_users'</span><span class="p">:</span> <span class="p">[</span><span class="s">u'jake'</span><span class="p">,</span> <span class="s">u'ubuntu'</span><span class="p">,</span> <span class="s">u'jane'</span><span class="p">],</span>
-  <span class="s">u'books'</span><span class="p">:</span> <span class="s">u'/home/jake/books'</span><span class="p">,</span>
-  <span class="s">u'translation_file'</span><span class="p">:</span> <span class="s">u'/home/jake/dictionary/english.txt'</span><span class="p">,</span>
-  <span class="s">u'home_bin_dir'</span><span class="p">:</span> <span class="s">u'/home/ubuntu/bin'</span><span class="p">,</span>
-  <span class="s">u'destination'</span><span class="p">:</span> <span class="s">u'/home/jake/python2.7'</span><span class="p">,</span>
-  <span class="s">u'start_everything'</span><span class="p">:</span> <span class="s">u'/home/ubuntu/bin/start-everything'</span><span class="p">,</span>
-  <span class="s">u'docs_dir'</span><span class="p">:</span> <span class="s">u'/home/ubuntu/docs'</span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="sa">u</span><span class="s1">'my_user'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'jake'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'march'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'x86_64'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'language'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'english'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'my_home'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/jake'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'db'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'macey'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'home_dir'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/ubuntu'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'sisters_user'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'jane'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'secret_doc'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/ubuntu/docs/secret.txt'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'affected_users'</span><span class="p">:</span> <span class="p">[</span><span class="sa">u</span><span class="s1">'jake'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'ubuntu'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'jane'</span><span class="p">],</span>
+  <span class="sa">u</span><span class="s1">'books'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/jake/books'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'translation_file'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/jake/dictionary/english.txt'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'home_bin_dir'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/ubuntu/bin'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'destination'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/jake/python2.7'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'start_everything'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/ubuntu/bin/start-everything'</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">'docs_dir'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'/home/ubuntu/docs'</span>
 <span class="p">}</span>
 </pre></div>
 
 <p>while it may seem that the “most atomic” values are unicode strings, that is in fact not the case. They are <code>ansible.parsing.yaml.objects.AnsibleUnicode</code> objects. So if we use <code>yaml.dumps</code> to serialize <code>result_vars</code>, we’ll see some rather intimidating looking output like the following:</p>
-<div class="highlight"><pre>? !!python/object/new:ansible.parsing.yaml.objects.AnsibleUnicode
+<div class="highlight"><pre><span></span>? !!python/object/new:ansible.parsing.yaml.objects.AnsibleUnicode
   args: [!!python/unicode 'affected_users']
   state: {_column_number: 1, _data_source: /home/philip/templating-ansible-style-yaml-files-with-only-variables/yaml_files/sample_yaml_file.yml,
     _line_number: 13}
@@ -243,22 +243,22 @@ books: &quot;{{ my_home }}/books&quot;
 </pre></div>
 
 <p>Hence in <code>main.py</code>, I chose to use JSON as the default output format, which yields something a lot more friendly to humans:</p>
-<div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;my_user&quot;</span><span class="p">:</span> <span class="s">&quot;jake&quot;</span><span class="p">,</span>
-  <span class="s">&quot;march&quot;</span><span class="p">:</span> <span class="s">&quot;x86_64&quot;</span><span class="p">,</span>
-  <span class="s">&quot;language&quot;</span><span class="p">:</span> <span class="s">&quot;english&quot;</span><span class="p">,</span>
-  <span class="s">&quot;my_home&quot;</span><span class="p">:</span> <span class="s">&quot;/home/jake&quot;</span><span class="p">,</span>
-  <span class="s">&quot;db&quot;</span><span class="p">:</span> <span class="s">&quot;macey&quot;</span><span class="p">,</span>
-  <span class="s">&quot;home_dir&quot;</span><span class="p">:</span> <span class="s">&quot;/home/ubuntu&quot;</span><span class="p">,</span>
-  <span class="s">&quot;sisters_user&quot;</span><span class="p">:</span> <span class="s">&quot;jane&quot;</span><span class="p">,</span>
-  <span class="s">&quot;secret_doc&quot;</span><span class="p">:</span> <span class="s">&quot;/home/ubuntu/docs/secret.txt&quot;</span><span class="p">,</span>
-  <span class="s">&quot;affected_users&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;jake&quot;</span><span class="p">,</span> <span class="s">&quot;ubuntu&quot;</span><span class="p">,</span> <span class="s">&quot;jane&quot;</span><span class="p">],</span>
-  <span class="s">&quot;books&quot;</span><span class="p">:</span> <span class="s">&quot;/home/jake/books&quot;</span><span class="p">,</span>
-  <span class="s">&quot;translation_file&quot;</span><span class="p">:</span> <span class="s">&quot;/home/jake/dictionary/english.txt&quot;</span><span class="p">,</span>
-  <span class="s">&quot;home_bin_dir&quot;</span><span class="p">:</span> <span class="s">&quot;/home/ubuntu/bin&quot;</span><span class="p">,</span>
-  <span class="s">&quot;destination&quot;</span><span class="p">:</span> <span class="s">&quot;/home/jake/python2.7&quot;</span><span class="p">,</span>
-  <span class="s">&quot;start_everything&quot;</span><span class="p">:</span> <span class="s">&quot;/home/ubuntu/bin/start-everything&quot;</span><span class="p">,</span>
-  <span class="s">&quot;docs_dir&quot;</span><span class="p">:</span> <span class="s">&quot;/home/ubuntu/docs&quot;</span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;my_user&quot;</span><span class="p">:</span> <span class="s2">&quot;jake&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;march&quot;</span><span class="p">:</span> <span class="s2">&quot;x86_64&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;english&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;my_home&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/jake&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;db&quot;</span><span class="p">:</span> <span class="s2">&quot;macey&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;home_dir&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/ubuntu&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sisters_user&quot;</span><span class="p">:</span> <span class="s2">&quot;jane&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;secret_doc&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/ubuntu/docs/secret.txt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;affected_users&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;jake&quot;</span><span class="p">,</span> <span class="s2">&quot;ubuntu&quot;</span><span class="p">,</span> <span class="s2">&quot;jane&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;books&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/jake/books&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;translation_file&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/jake/dictionary/english.txt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;home_bin_dir&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/ubuntu/bin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;destination&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/jake/python2.7&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;start_everything&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/ubuntu/bin/start-everything&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;docs_dir&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/ubuntu/docs&quot;</span>
 <span class="p">}</span>
 </pre></div>
 

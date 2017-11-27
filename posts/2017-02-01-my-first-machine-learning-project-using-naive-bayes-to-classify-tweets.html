@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -113,7 +113,7 @@
 <p>When passed a tweet, each classifier computes the sum of the log likelihood of each token in the tweet. We pass the tweet to both classifiers and compare the two log probabilities - the higher one wins and we say that the tweet belongs to that class.</p>
 <p>The confusion matrix is as follows:</p>
 <div class="figure">
-<img src="../images/2017-02-01/hand-rolled-confusion-matrix.png" alt />
+<img src="../images/2017-02-01/hand-rolled-confusion-matrix.png" />
 
 </div>
 <p>Looks pretty good.</p>
@@ -126,14 +126,14 @@
 <li><a href="http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html" class="uri">http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html</a></li>
 </ul>
 <p>I figured out how to implement something similar to our hand-rolled Naive Bayes classifier using scikit-learn. Instead of using <code>CountVectorizer</code>, I decided to use <code>HashingVectorizer</code>. The hardest part in this implementation is to figure out how to use the <code>HashingVectorizer</code>. Eventually, it came down to this:</p>
-<div class="highlight"><pre><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
     <span class="nb">set</span><span class="p">(</span>
         <span class="n">sklearn</span><span class="o">.</span><span class="n">feature_extraction</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">ENGLISH_STOP_WORDS</span>
     <span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">_BANNED_TOKENS</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">HashingVectorizer</span><span class="p">(</span>
     <span class="n">stop_words</span><span class="o">=</span><span class="n">stop_words</span><span class="p">,</span>
-    <span class="n">token_pattern</span><span class="o">=</span><span class="s">r&quot;&quot;&quot;\b\w\w\w\w+\b&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">token_pattern</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;\b\w\w\w\w+\b&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="n">norm</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
     <span class="n">non_negative</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
 <span class="p">)</span>
@@ -143,14 +143,14 @@
 <p>We used the <code>HashingVectorizer.transform</code> method to transform all the training tweets into a sparse matrix, and fed that to <code>sklearn.naive_bayes.MultinomialNB</code> via its <code>fit</code> method. To evaluate this model on our test data, we need to use the <code>HashingVectorizer</code> to transform the test data, then pass them to the trained Naive Bayes model.</p>
 <p>The confusion matrix for the scikit-learn Multinomial Naive Bayes model:</p>
 <div class="figure">
-<img src="../images/2017-02-01/sklearn-naive-bayes-confusion-matrix.png" alt />
+<img src="../images/2017-02-01/sklearn-naive-bayes-confusion-matrix.png" />
 
 </div>
 <p>While this classifier performs better than our hand-rolled classifier for tweets about ReactJS, it performs worse for tweets that are not about ReactJS.</p>
 <h2 id="analysis">Analysis</h2>
 <h3 id="some-statistics-of-our-models">Some statistics of our models</h3>
 <div class="figure">
-<img src="../images/2017-02-01/hand-rolled-log-prob-unseen-token.png" alt />
+<img src="../images/2017-02-01/hand-rolled-log-prob-unseen-token.png" />
 
 </div>
 <p>The number 1895 refers to the size of the vocabulary for the entire training set (both tweets about React JS and not about React JS). The log probability for an unseen token is higher for the React JS model as compared to the non React JS model. The pitfall is that a tweet which consists entirely of unseen tokens will favor the React JS model - most likely that tweet is not about React JS, since most tweets about React JS will have some variant of the <code>#reactjs</code> hashtag which will exist in the training set.</p>
@@ -194,27 +194,27 @@
 <h3 id="analysis-of-false-negatives-for-hand-rolled-naive-bayes-model">Analysis of false negatives for hand rolled Naive Bayes model</h3>
 <p>For the tweet <code>Why I like Vue over React - http://buff.ly/2jWKpzJ  #vuejs #reactjs</code></p>
 <div class="figure">
-<img src="../images/2017-02-01/first-false-negative-analysis.png" alt />
+<img src="../images/2017-02-01/first-false-negative-analysis.png" />
 
 </div>
 <p>The main culprits are the tokens <code>over</code> and <code>like</code>. <code>over</code> is a stop word for scikit learn and its removal would have helped things slightly, but <code>like</code> is not a stop word and its relatively high log probability (compared to the other tokens which do not appear in the vocabulary) means that this tweet will still be incorrectly classified. Note that this tweet is not a false negative for the MultinomialNB model - some painstaking investigation into the log probabilities of the features of the MultinomialNB model revealed that the <code>reactjs</code> token greatly favored the React JS model and the <code>react</code> and <code>http</code> tokens slightly favored the React JS model; the other log probabilities are about even except for the token <code>like</code> favoring the non React JS model. Log probabilities given by the MultinomialNB model as follows:</p>
 <div class="figure">
-<img src="../images/2017-02-01/first-false-negative-multinomialnb.png" alt />
+<img src="../images/2017-02-01/first-false-negative-multinomialnb.png" />
 
 </div>
 <p>For the tweet <code>The power of React JS...  http://catchoftheday.wesbos.com/store/lazy-glamorous-knives …</code></p>
 <div class="figure">
-<img src="../images/2017-02-01/second-false-negative-analysis.png" alt />
+<img src="../images/2017-02-01/second-false-negative-analysis.png" />
 
 </div>
 <p>The culprit is the token <code>power</code>, which appears twice in the training set for non reactjs tweets but does not appear in the training set for reactjs tweets. Note that this tweet is correctly classified by the MultinomialNB model - most of the log probabilities for the tokens are pretty even and the difference makers for the React JS model are the tokens <code>http</code>, <code>wesbos</code> (there was an occurrence of <code>@wesbos</code> in the training set and after the processing by <code>HashingVectorizer</code> it became <code>wesbos</code>) and <code>store</code> (appeared once in training set) - notice that these are all tokens created as a result of removing all the punctuation in the URL and treating them just like whitespace. Seems like in a bag of words model, there may be more value chopping up URLs on top of leaving them as they are or maybe even as opposed to leaving them as they are. Log probabilities given by the MultinomialNB as follows:</p>
 <div class="figure">
-<img src="../images/2017-02-01/second-false-negative-multinomialnb.png" alt />
+<img src="../images/2017-02-01/second-false-negative-multinomialnb.png" />
 
 </div>
 <p>For the tweet <code>these &quot;google trends&quot; charts can show almost whatever you want. people search for &quot;React&quot; rather than &quot;React.js&quot; http://image.prntscr.com/image/42ff33c9b0da42ef8084f45a647ccc00.png …</code></p>
 <div class="figure">
-<img src="../images/2017-02-01/third-false-negative-analysis.png" alt />
+<img src="../images/2017-02-01/third-false-negative-analysis.png" />
 
 </div>
 <p>This is a rather long tweet so I am only showing some of the more interesting tokens here. First, the errors we made from tokenization - <code>trends&quot;</code>, <code>&quot;react&quot;</code>, <code>&quot;react.js&quot;</code>, <code>&quot;google</code>; these are highlighted in pink. In a larger data set, these might have affected results more because they will be unified with the correct tokens. In particular, the token <code>react.js</code> will favor the React JS model.</p>
@@ -222,7 +222,7 @@
 <p>Finally, the tokens <code>people</code> and <code>want</code>, which are neither stop words nor incorrect tokens. Especially <code>people</code> - it greatly favors the non React JS model.</p>
 <p>This tweet is also incorrectly classified by the MultinomialNB model. The HashingVectorizer will produce the following tokens: <code>google</code>, <code>trends</code>, <code>charts</code>, <code>want</code>, <code>people</code>, <code>search</code>, <code>react</code>, <code>http</code>, <code>image</code>, <code>prntscr</code>, <code>42ff33c9b0da42ef8084f45a647ccc00</code>. Of these, <code>react</code>, <code>http</code> and <code>image</code> give a slight edge to the React JS model, but it is not sufficient to counter the effect of the tokens <code>want</code> and especially <code>people</code>. The table below shows the log probabilities of these tokens given by the MultinomialNB model:</p>
 <div class="figure">
-<img src="../images/2017-02-01/third-false-negative-multinomialnb.png" alt />
+<img src="../images/2017-02-01/third-false-negative-multinomialnb.png" />
 
 </div>
 <h3 id="analysis-of-false-positives-for-hand-rolled-naive-bayes-model">Analysis of false positives for hand rolled Naive Bayes model</h3>
@@ -238,19 +238,19 @@
 <p>Tweet: <code>Star Wars superfans (and one feisty Rebel soldier) react to #RogueOne. http://strw.rs/60138rHgt</code></p>
 <p>More interesting log probabilities for hand rolled Naive Bayes model:</p>
 <div class="figure">
-<img src="../images/2017-02-01/second-false-positive-hand-roll.png" alt />
+<img src="../images/2017-02-01/second-false-positive-hand-roll.png" />
 
 </div>
 <p>More interesting log probabilities for the MultinomialNB model:</p>
 <div class="figure">
-<img src="../images/2017-02-01/second-false-positive-multinomialnb.png" alt />
+<img src="../images/2017-02-01/second-false-positive-multinomialnb.png" />
 
 </div>
 <p>Once again we see the flaw of a bag of words model - just because a token appears more frequently for documents of a given class doesn’t mean that a new document containing that token belongs to that class.</p>
 <p>Tweet: <code>Ants react to their infection by climbing up plants and sinking their mandibles into plant tissue</code></p>
 <p>More interesting log probabilities for our hand rolled model:</p>
 <div class="figure">
-<img src="../images/2017-02-01/third-false-positive-hand-roll.png" alt />
+<img src="../images/2017-02-01/third-false-positive-hand-roll.png" />
 
 </div>
 <p>Other than the above tokens, all the other tokens were unseen by both models. Recall that the log probability for an unseen token is about -8.1645 for the React JS model and -8.25088 for the non React JS model - these numbers add up to favor the React JS model, even if we remove all the stop words.</p>
@@ -262,13 +262,13 @@
 <p>Tweet: <code>Why ppl wud insult my father? Ppl wud react if I wud use my fathers name an absolute truth 2 impose n violate others basic rights.</code></p>
 <p>More interesting log probabilities for hand rolled model:</p>
 <div class="figure">
-<img src="../images/2017-02-01/fifth-false-positive-hand-roll.png" alt />
+<img src="../images/2017-02-01/fifth-false-positive-hand-roll.png" />
 
 </div>
 <p>Even though <code>insult</code> and <code>others</code> gave an edge to the non React JS model, it wasn’t sufficient to offset the effects of the <code>basic</code> and <code>react</code> tokens along with 9 other unseen tokens.</p>
 <p>More interesting log probabilities for MultinomialNB model:</p>
 <div class="figure">
-<img src="../images/2017-02-01/fifth-false-positive-multinomialnb.png" alt />
+<img src="../images/2017-02-01/fifth-false-positive-multinomialnb.png" />
 
 </div>
 <p>It is a similar situation for the MultinomialNB model with <code>react</code> and <code>basic</code> tilting the scales towards the React JS class.</p>
@@ -286,58 +286,58 @@
 <p>Stop words that will be considered by our hand rolled model: <code>everyone</code>, <code>should</code></p>
 <p>Log probabilities of the stop words for hand rolled classifiers:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-1st-false-positive-hand-rolled.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-1st-false-positive-hand-rolled.png" />
 
 </div>
 <p>So it was indeed the log probabilities of stop words that influenced the outcome for our hand rolled classifiers.</p>
 <p>Tweet: <code>At this point, no one is believing 20% mexico surcharge is real. We'd have to abrogate NAFTA in total to do that. That why no market react.</code></p>
 <p>More interesting log probabilities:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-2nd-false-positive.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-2nd-false-positive.png" />
 
 </div>
 <p>Stop words that will be considered by our hand rolled model: <code>this</code>, <code>have</code>, <code>that</code></p>
 <p>Log probabilities of stop words for hand rolled classifiers:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-2nd-false-positive-hand-rolled.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-2nd-false-positive-hand-rolled.png" />
 
 </div>
 <p><code>that</code> appeared twice in this tweet and hence its log probability was counted twice. Notice the <code>react.</code> ending with a fullstop. Stop words definitely influenced the outcome for our hand rolled models.</p>
 <p>Tweet: <code>This is amazing. Jack Eichel's Dad &amp; other Sabres parents in Nashville react to Eichel's game-winning goal in OT.</code></p>
 <p>More interesting log probabilities:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-3rd-false-positive.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-3rd-false-positive.png" />
 
 </div>
 <p>Stop words that will be considered by our hand rolled model: <code>this</code>, <code>other</code></p>
 <p>Log probabilities of stop words for hand rolled classifiers:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-3rd-false-positive-hand-rolled.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-3rd-false-positive-hand-rolled.png" />
 
 </div>
 <p>Again, stop words do influence the outcome in this case.</p>
 <p>Tweet: <code>Things to Consider: read the article &amp; not just the headline before you react &amp; retweet. Less exciting, but better for all.</code></p>
 <p>More interesting log probabilities:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-4th-false-positive.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-4th-false-positive.png" />
 
 </div>
 <p>Stop words that will be considered by our hand rolled model: <code>before</code>, <code>less</code></p>
 <p>Log probabilities of stop words for hand rolled classifiers:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-4th-false-positive-hand-rolled.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-4th-false-positive-hand-rolled.png" />
 
 </div>
 <p>Tweet: <code>If you're a #veteran, how do you react when someone calls you a hero? Here's my perspective on it http://ow.ly/EKQE308ex4i</code></p>
 <p>More interesting log probabilities:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-5th-false-positive.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-5th-false-positive.png" />
 
 </div>
 <p>Stop words that will be considered by our hand rolled model: <code>when</code>, <code>someone</code></p>
 <p>Log probabilities of stop words for hand rolled classifiers:</p>
 <div class="figure">
-<img src="../images/2017-02-01/multinomialnb-only-5th-false-positive-hand-rolled.png" alt />
+<img src="../images/2017-02-01/multinomialnb-only-5th-false-positive-hand-rolled.png" />
 
 </div>
 <p>This is a more interesting case. While the stop word <code>when</code> tilts the scales towards the non React JS class, the token <code>you're</code> does so as well - this token does not exist in the vocabulary of the MultinomialNB classifier (it would have been chopped up into <code>you</code> and <code>re</code> and both discarded). Our hand rolled classifier also does not chop up the URL and so <code>http</code> isn’t a token for our hand rolled models.</p>

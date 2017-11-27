@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -101,13 +101,13 @@
 <p>\( C \) - a box that is based on the base box \( B \)</p>
 <h2 id="before-you-create-the-vagrant-box">Before you create the Vagrant box</h2>
 <p>Before you use <code>vagrant up</code> to create box \( A \), ensure that you have this line of code into your <code>Vagrantfile</code>:</p>
-<div class="highlight"><pre>config.ssh.insert_key = false
+<div class="highlight"><pre><span></span>config.ssh.insert_key = false
 </pre></div>
 
 <p>If this line is not inside your <code>Vagrantfile</code>, I believe that Vagrant will generate an SSH keypair instead of using the default insecure keypair. If we provision box \( A \) using a generated SSH keypair instead of the insecure keypair, any box \( C \) that is based on base box \( B \) will encounter SSH connection issues during the <code>vagrant up</code> step.</p>
 <h2 id="after-provisioning-box-a-but-before-you-do-a-vagrant-package-to-create-the-base-box-b">After provisioning box \( A \) but before you do a <code>vagrant package</code> to create the base box \( B \)</h2>
 <p>Follow <a href="https://github.com/mitchellh/vagrant/issues/5186#issuecomment-81409295">mtchavez’s advice here</a> and run the following code as the <code>vagrant</code> user inside box \( A \):</p>
-<div class="highlight"><pre>wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys
+<div class="highlight"><pre><span></span>wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys
 chmod 700 .ssh
 chmod 600 .ssh/authorized_keys
 chown -R vagrant:vagrant .ssh

@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -93,92 +93,92 @@
 <div class="post">
   <h2 id="problem-statement">Problem Statement</h2>
 <p>Figure out the type of the following Haskell code, why it has that type, and what it does:</p>
-<div class="highlight"><pre><span class="p">(</span><span class="o">.</span><span class="p">)</span> <span class="o">.</span> <span class="p">(</span><span class="o">.</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="p">)</span> <span class="o">.</span> <span class="p">(</span><span class="o">.</span><span class="p">)</span>
 </pre></div>
 
 <h2 id="solution">Solution</h2>
 <p>It is trivial to type <code>:t (.) . (.)</code> into ghci to get the following:</p>
-<div class="highlight"><pre>(.) . (.) :: (b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c
+<div class="highlight"><pre><span></span>(.) . (.) :: (b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c
 </pre></div>
 
 <p>What is more difficult is to figure out why this, and not something else, is the type of <code>(.) . (.)</code>. We shall do exactly that here.</p>
 <p>First, we have to realize that <code>(.) . (.)</code> can also be written as:</p>
-<div class="highlight"><pre>(.) (.) (.)
+<div class="highlight"><pre><span></span>(.) (.) (.)
 </pre></div>
 
 <p>which is its prefix equivalent form. Then, we make use of the fact that in Haskell, function application is left associative. So the same code can be written as:</p>
-<div class="highlight"><pre>((.) (.)) (.)
+<div class="highlight"><pre><span></span>((.) (.)) (.)
 </pre></div>
 
 <p>Now, we have the job of figuring out the type of:</p>
-<div class="highlight"><pre>((.) (.))
+<div class="highlight"><pre><span></span>((.) (.))
 </pre></div>
 
 <p>If we type that into ghci, we get:</p>
-<div class="highlight"><pre>(a1 -&gt; b -&gt; c) -&gt; a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
+<div class="highlight"><pre><span></span>(a1 -&gt; b -&gt; c) -&gt; a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
 </pre></div>
 
 <p>which may actually look more intimidating than the type of <code>(.) . (.)</code>. So why does <code>(.) (.)</code> have the above type?</p>
 <p>Recall that the compose operator <code>(.)</code> has type:</p>
-<div class="highlight"><pre>(b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+<div class="highlight"><pre><span></span>(b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </pre></div>
 
 <p>Now we try to match the types. In <code>(.) (.)</code>, we rename the type variables so that the <code>(.)</code> that serves as the argument has the type</p>
-<div class="highlight"><pre>(b1 -&gt; c1) -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1
+<div class="highlight"><pre><span></span>(b1 -&gt; c1) -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1
 </pre></div>
 
 <p>Since this <code>(.)</code> is just 1 argument, we must have that <code>(b -&gt; c)</code> in the compose that’s being called be of type <code>(b1 -&gt; c1) -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1</code>. Using the fact that the <code>-&gt;</code> operator is right associative, we must have the following type matches:</p>
-<div class="highlight"><pre>b: (b1 -&gt; c1)
+<div class="highlight"><pre><span></span>b: (b1 -&gt; c1)
 c: (a1 -&gt; b1) -&gt; a1 -&gt; c1
 </pre></div>
 
 <p>So after taking <code>(.)</code> as its first argument, the type of the compose being called is now:</p>
-<div class="highlight"><pre>(a -&gt; b) -&gt; a -&gt; c
+<div class="highlight"><pre><span></span>(a -&gt; b) -&gt; a -&gt; c
 </pre></div>
 
 <p>before substitution. Now we perform the substitution and get:</p>
-<div class="highlight"><pre>(a -&gt; (b1 -&gt; c1)) -&gt; a -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1
+<div class="highlight"><pre><span></span>(a -&gt; (b1 -&gt; c1)) -&gt; a -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1
 </pre></div>
 
 <p>Renaming <code>b1</code> to <code>b</code> and <code>c1</code> to <code>c</code>, we get</p>
-<div class="highlight"><pre>(a -&gt; (b -&gt; c)) -&gt; a -&gt; (a1 -&gt; b) -&gt; a1 -&gt; c
+<div class="highlight"><pre><span></span>(a -&gt; (b -&gt; c)) -&gt; a -&gt; (a1 -&gt; b) -&gt; a1 -&gt; c
 </pre></div>
 
 <p>We can also remove the inner parentheses in <code>(a -&gt; (b -&gt; c))</code> (because there are only 1 argument functions in Haskell) to get:</p>
-<div class="highlight"><pre>(a -&gt; b -&gt; c) -&gt; a -&gt; (a1 -&gt; b) -&gt; a1 -&gt; c
+<div class="highlight"><pre><span></span>(a -&gt; b -&gt; c) -&gt; a -&gt; (a1 -&gt; b) -&gt; a1 -&gt; c
 </pre></div>
 
 <p>Then we swap the names of <code>a1</code> and <code>a</code> to get:</p>
-<div class="highlight"><pre>(a1 -&gt; b -&gt; c) -&gt; a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
+<div class="highlight"><pre><span></span>(a1 -&gt; b -&gt; c) -&gt; a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
 </pre></div>
 
 <p>which is the type of <code>(.) (.)</code> that we got from ghci.</p>
 <p>Now that we got the type of <code>(.) (.)</code>, we have to figure out the type of <code>((.) (.)) (.)</code>, or equivalently, <code>(.) (.) (.)</code>. We rename the type variables of the <code>(.)</code> argument so that it has type <code>(b2 -&gt; c2) -&gt; (a2 -&gt; b2) -&gt; a2 -&gt; c2</code>. Doing some pattern matching between this and the type of <code>(.) (.)</code>, we get:</p>
-<div class="highlight"><pre>a1: (b2 -&gt; c2)
+<div class="highlight"><pre><span></span>a1: (b2 -&gt; c2)
 b:  (a2 -&gt; b2)
 c:  a2 -&gt; c2
 </pre></div>
 
 <p>After applying <code>(.) (.)</code> with <code>(.)</code>, its type pre-substitution is:</p>
-<div class="highlight"><pre>a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
+<div class="highlight"><pre><span></span>a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
 </pre></div>
 
 <p>Now we substitute what we got from pattern matching on the types to get:</p>
-<div class="highlight"><pre>(b2 -&gt; c2) -&gt; (a -&gt; (a2 -&gt; b2)) -&gt; a -&gt; a2 -&gt; c2
+<div class="highlight"><pre><span></span>(b2 -&gt; c2) -&gt; (a -&gt; (a2 -&gt; b2)) -&gt; a -&gt; a2 -&gt; c2
 </pre></div>
 
 <p>We can get rid of the inner parentheses in the second argument and rename <code>b2</code> to <code>b</code>, rename <code>c2</code> to <code>c</code> to get:</p>
-<div class="highlight"><pre>(b -&gt; c) -&gt; (a -&gt; a2 -&gt; b) -&gt; a -&gt; a2 -&gt; c
+<div class="highlight"><pre><span></span>(b -&gt; c) -&gt; (a -&gt; a2 -&gt; b) -&gt; a -&gt; a2 -&gt; c
 </pre></div>
 
 <p>We can rename <code>a</code> to <code>a1</code> and <code>a2</code> to <code>a</code> to get</p>
-<div class="highlight"><pre>(b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c
+<div class="highlight"><pre><span></span>(b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c
 </pre></div>
 
 <p>which is what we want. If we erroneously started out pattern matching the type signature of compose with its 2 arguments which also happen to be compose, we can probably never arrive at the correct type signature. Just look at the type of the second argument of <code>(.) . (.)</code> - it is <code>a1 -&gt; a -&gt; b</code>, a function with 2 arguments! Who would have known!</p>
 <h2 id="context">Context</h2>
 <p>I was reading about the ST monad when I encountered this answer: <a href="https://stackoverflow.com/a/28146074" class="uri">https://stackoverflow.com/a/28146074</a>. When I saw the following snippet of code:</p>
-<div class="highlight"><pre><span class="nf">swap</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">=</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nf">swap</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">=</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="p">(</span><span class="o">.*</span><span class="p">)</span> <span class="ow">=</span> <span class="p">(</span><span class="o">.</span><span class="p">)</span> <span class="o">.</span> <span class="p">(</span><span class="o">.</span><span class="p">)</span>
 
 <span class="nf">filterAccum</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="n">b</span><span class="p">]</span>

@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -107,22 +107,22 @@
 <p>Ensure that you have the above software installed before you proceed.</p>
 <h2 id="setup">Setup</h2>
 <p>Clone the <a href="https://github.com/apache/incubator-storm">incubator-storm github repository</a>:</p>
-<div class="highlight"><pre>git clone https://github.com/apache/incubator-storm.git
+<div class="highlight"><pre><span></span>git clone https://github.com/apache/incubator-storm.git
 </pre></div>
 
 <p>You should see an <code>incubator-storm</code> directory. Go into it:</p>
-<div class="highlight"><pre>cd incubator-storm
+<div class="highlight"><pre><span></span>cd incubator-storm
 </pre></div>
 
 <p><strong>Important Step:</strong></p>
 <p>We’ll checkout the 0.9.0.1 tag:</p>
-<div class="highlight"><pre>git checkout 0.9.0.1
+<div class="highlight"><pre><span></span>git checkout 0.9.0.1
 </pre></div>
 
 <p>If you do an <code>ls</code>, you should see a <code>bin</code> directory, and a executable file named <code>storm</code> inside it. At this point, you might think that our job is done.</p>
 <h2 id="the-problem">The problem</h2>
 <p>That is, until you try running the <code>storm</code> binary in the <code>bin</code> directory:</p>
-<div class="highlight"><pre>bin/storm
+<div class="highlight"><pre><span></span>bin/storm
 </pre></div>
 
 <p>You will be greeted with the following:</p>
@@ -136,19 +136,19 @@
 <h2 id="building-the-storm-client">Building the Storm client</h2>
 <p>The more meticulous people among us may have observed that there is a <code>build_release.sh</code> file in the <code>bin</code> folder. It turns out that this is indeed the solution to our woes.</p>
 <p>Add executable permissions to <code>build_release.sh</code> and run it:</p>
-<div class="highlight"><pre>chmod a+x bin/build_release.sh
+<div class="highlight"><pre><span></span>chmod a+x bin/build_release.sh
 bin/build_release.sh
 </pre></div>
 
 <p>This might take some time to run. <strong>There will be some error and warning messages</strong> but they should not affect the overall build process.</p>
 <p>Once done, you should see 2 new files in the repository: <code>storm-0.9.0.1.tar.gz</code> and <code>storm-0.9.0.1.zip</code> . Let’s copy the <code>storm-0.9.0.1.tar.gz</code> to our <code>$HOME</code> directory and extract it:</p>
-<div class="highlight"><pre>cp storm-0.9.0.1.tar.gz ~
+<div class="highlight"><pre><span></span>cp storm-0.9.0.1.tar.gz ~
 cd ~
 tar xzf storm-0.9.0.1.tar.gz
 </pre></div>
 
 <p>You should see a <code>storm-0.9.0.1</code> directory. Inside it, there is a <code>bin/storm</code> binary. Running it displays the list of commands it supports. You might want to add <code>$HOME/storm-0.9.0.1/bin</code> to your <code>PATH</code>, like so:</p>
-<div class="highlight"><pre>echo 'PATH=$PATH:$HOME/storm-0.9.0.1/bin' &gt;&gt; ~/.bashrc
+<div class="highlight"><pre><span></span>echo 'PATH=$PATH:$HOME/storm-0.9.0.1/bin' &gt;&gt; ~/.bashrc
 </pre></div>
 
 <p>Mission accomplished.</p>

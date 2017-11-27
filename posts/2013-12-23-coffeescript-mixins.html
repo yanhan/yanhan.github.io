@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -96,7 +96,7 @@
 <p>Personally, I am rather new to the concept of Mixins. It was only through some Ruby work that I was first exposed to this idea. In short, Mixins are a way to <strong>mimick</strong> multiple inheritance. Now, before an angry mob of programmers kill me, I think we all agree that in general, multiple inheritance is a bad idea, but it does have its advantages. Mixins are a way of getting the best out of both worlds, gaining the power of multiple inheritance while keeping class hierarchies as a tree.</p>
 <p>To understand Mixins, let us take a look at a rather contrived example in Ruby.</p>
 <p>Suppose we have a <code>ComputerMonitor</code> class, which is a subclass of the <code>Display</code> class. However, we also want it to have the functionality of the <code>BlackObject</code> class (yea my monitors usually have black frames; I know this example is <em>really</em> contrived, but bear with me for a moment). How we will do it in Ruby is, instead of having <code>BlackObject</code> as a class, we organize it as a <strong>Module</strong>. So the <code>ComputerMonitor</code> class will <strong>extend</strong> the <code>Display</code> class, and <strong>include</strong> the <code>BlackObject</code> module, like this:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">ComputerMonitor</span> <span class="o">&lt;</span> <span class="no">Display</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ComputerMonitor</span> <span class="o">&lt;</span> <span class="no">Display</span>
   <span class="kp">include</span> <span class="no">BlackObject</span>
 </pre></div>
 
@@ -109,24 +109,24 @@
 <p>And while I’m pretty new to this, I think my last point should be particularly true for Mixins. The code should be sufficiently generic to permit reuse across several classes, otherwise, we might as well put the code inside the class making use of it in the first place.</p>
 <p>Since the above example is very contrived, here’s a more real world example. In Ruby, the <code>Array</code> and <code>Hash</code> classes are blueprints for the very indispensable data structures. When we do an <code>ri Array</code>, we see the following:</p>
 <div class="figure">
-<img src="../images/2013-12-23/ri_array.png" alt />
+<img src="../images/2013-12-23/ri_array.png" />
 
 </div>
 <p>and when we do an <code>ri Hash</code>, we see the following:</p>
 <div class="figure">
-<img src="../images/2013-12-23/ri_hash.png" alt />
+<img src="../images/2013-12-23/ri_hash.png" />
 
 </div>
 <p>See any similarities? They both include <code>Enumberable</code>, hence they share a lot of methods. An <code>ri Enumerable</code> confirms that yes, <code>Enumerable</code> is a Mixin:</p>
 <div class="figure">
-<img src="../images/2013-12-23/ri_enumerable.png" alt />
+<img src="../images/2013-12-23/ri_enumerable.png" />
 
 </div>
 <p>So I hope that is sufficiently real world, and an ok introduction to Mixins. Now, onto how they are implemented in CoffeeScript.</p>
 <h2 id="mixins-in-coffeescript">Mixins in CoffeeScript</h2>
 <p>By default, CoffeeScript does not have Mixins as a built-in language feature. However, it is possible to implement them in CoffeeScript, as the <strong>Mixins</strong> section of <a href="http://arcturo.github.io/library/coffeescript/03_classes.html">Chapter 3</a> of the Little Book on CoffeeScript shows us.</p>
 <p>That said, the full-fledged code for enabling Mixins in CoffeeScript is at the <strong>Extending classes</strong> section, which is right after the <strong>Mixins</strong> section. Here is the code:</p>
-<div class="highlight"><pre><span class="nv">moduleKeywords = </span><span class="p">[</span><span class="s">'extended'</span><span class="p">,</span> <span class="s">'included'</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="nv">moduleKeywords = </span><span class="p">[</span><span class="s">'extended'</span><span class="p">,</span> <span class="s">'included'</span><span class="p">]</span>
 
 <span class="k">class</span> <span class="nx">Module</span>
   <span class="vi">@extend: </span><span class="nf">(obj) -&gt;</span>
@@ -147,7 +147,7 @@
 
 <p>We will use <code>include</code> for “instance level” Mixins, in other words, to mix in methods or properties we want to appear in every <strong>instantiated object</strong> of the class and its descendents. We will use <code>extend</code> for “class level” Mixins, which adds the methods or properties of the given object onto the <strong>class</strong> itself, which makes this kind of like static methods/attributes in C++ / Java.</p>
 <p>The book provides an example usage:</p>
-<div class="highlight"><pre><span class="nv">classProperties =</span>
+<div class="highlight"><pre><span></span><span class="nv">classProperties =</span>
   <span class="nv">find: </span><span class="nf">(id) -&gt;</span>
   <span class="nv">create: </span><span class="nf">(attrs) -&gt;</span>
 
@@ -174,7 +174,7 @@
 <li>Either use the <code>@extend</code> or <code>@include</code>, and pass in an <strong>object</strong> to those functions. That object will contain the methods / properties we want to mix in to the class. We can write the methods as if they belong to a class (meaning that we can use the <code>@</code> notation)</li>
 </ol>
 <p>Now then, I skipped some details that I wish to go back to. Let’s take a look at the code for the <code>Module</code> class again:</p>
-<div class="highlight"><pre><span class="nv">moduleKeywords = </span><span class="p">[</span><span class="s">'extended'</span><span class="p">,</span> <span class="s">'included'</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="nv">moduleKeywords = </span><span class="p">[</span><span class="s">'extended'</span><span class="p">,</span> <span class="s">'included'</span><span class="p">]</span>
 
 <span class="k">class</span> <span class="nx">Module</span>
   <span class="vi">@extend: </span><span class="nf">(obj) -&gt;</span>
@@ -200,7 +200,7 @@
 <li>why use <code>@[key] = value</code> for <code>@extend</code>, but <code>@::[key] = value</code> for <code>@include</code> ?</li>
 </ol>
 <p>All these questions can be answered by looking at the last example given in Chapter 3 of the Little Book on CoffeeScript:</p>
-<div class="highlight"><pre><span class="nv">ORM =</span>
+<div class="highlight"><pre><span></span><span class="nv">ORM =</span>
   <span class="nv">find: </span><span class="nf">(id) -&gt;</span>
   <span class="nv">create: </span><span class="nf">(attrs) -&gt;</span>
   <span class="nv">extended: </span><span class="nf">-&gt;</span>
@@ -213,12 +213,12 @@
 
 <p>Essentially, this example is doing exactly the same thing as the example where we had the <code>User</code> class <code>@extend</code> the <code>classProperties</code> object and <code>@include</code> the <code>instanceProperties</code> object (so the <code>User</code> class will possess the <code>find</code> and <code>create</code> class methods, and the <code>save</code> instance method). But how can that be, they look so different. Yet it is truly the case. Let’s go into a bit more detail.</p>
 <p>Let’s start from the definition of the <code>User</code> class:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nx">User</span> <span class="k">extends</span> <span class="nx">Module</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nx">User</span> <span class="k">extends</span> <span class="nx">Module</span>
   <span class="nx">@extend</span> <span class="nx">ORM</span>
 </pre></div>
 
 <p>This should probably be familiar to us by now. It will call the <code>@extend</code> method of the <code>Module</code> class, with the <code>ORM</code> object passed in. Let’s look at how <code>@extend</code> is defined inside the <code>Module</code> class:</p>
-<div class="highlight"><pre>  <span class="vi">@extend: </span><span class="nf">(obj) -&gt;</span>
+<div class="highlight"><pre><span></span>  <span class="vi">@extend: </span><span class="nf">(obj) -&gt;</span>
     <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">obj</span> <span class="k">when</span> <span class="nx">key</span> <span class="o">not</span> <span class="k">in</span> <span class="nx">moduleKeywords</span>
       <span class="nx">@</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
 
@@ -228,7 +228,7 @@
 
 <p>our <code>ORM</code> object has the <code>find</code>, <code>create</code> and <code>extended</code> properties. There is something subtle with the name of the function. By writing it as <code>@extend</code> instead of <code>extend</code>, we are actually creating <code>extend</code> as a <strong>class method</strong>. Use of the <a href="http://js2coffee.org/#coffee2js">js2coffee</a> tool confirms this.</p>
 <p>The <code>@extend</code> function is compiled to the following JavaScript:</p>
-<div class="highlight"><pre>  <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span>  <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">_ref</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">value</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
@@ -244,7 +244,7 @@
 </pre></div>
 
 <p>Changing <code>@extend</code> to <code>extend</code> causes the same snippet of code to be compiled to:</p>
-<div class="highlight"><pre>  <span class="nx">Module</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span>  <span class="nx">Module</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">_ref</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">value</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
@@ -261,7 +261,7 @@
 
 <p>Notice how everything stays the same, except that <code>Module.extend</code> becomes <code>Module.prototype.extend</code>. As such, since the function is defined as <code>@extend</code>, the <code>@</code> refers to the Module <strong>class</strong>. This is why passing the an object to <code>@extend</code> will cause the object’s properties to be available to the target class.</p>
 <p>In a similar spirit, for <code>@include</code>:</p>
-<div class="highlight"><pre>  <span class="vi">@include: </span><span class="nf">(obj) -&gt;</span>
+<div class="highlight"><pre><span></span>  <span class="vi">@include: </span><span class="nf">(obj) -&gt;</span>
     <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">obj</span> <span class="k">when</span> <span class="nx">key</span> <span class="o">not</span> <span class="k">in</span> <span class="nx">moduleKeywords</span>
       <span class="c1"># Assign properties to the prototype</span>
       <span class="nx">@</span><span class="o">::</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
@@ -271,7 +271,7 @@
 </pre></div>
 
 <p>the code is compiled to the following JavaScript:</p>
-<div class="highlight"><pre>  <span class="nx">Module</span><span class="p">.</span><span class="nx">include</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span>  <span class="nx">Module</span><span class="p">.</span><span class="nx">include</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">_ref</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">value</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
@@ -288,7 +288,7 @@
 
 <p>Notice how <code>@::[key] = value</code> is compiled to <code>this.prototype[key] = value;</code>. This is what makes the properties of the object available to the <strong>instances</strong> of the target class.</p>
 <p>Going back to <code>@extend</code>:</p>
-<div class="highlight"><pre>  <span class="vi">@extend: </span><span class="nf">(obj) -&gt;</span>
+<div class="highlight"><pre><span></span>  <span class="vi">@extend: </span><span class="nf">(obj) -&gt;</span>
     <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">obj</span> <span class="k">when</span> <span class="nx">key</span> <span class="o">not</span> <span class="k">in</span> <span class="nx">moduleKeywords</span>
       <span class="nx">@</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
 
@@ -298,16 +298,16 @@
 
 <p>Recall that the <code>ORM</code> object we passed in to <code>@extend</code> has 3 properties: <code>find</code>, <code>create</code> and <code>extended</code>. So what the code here is doing is, for any key that is not in the <code>moduleKeywords</code> variable, make them available to the class.</p>
 <p>It happens that <code>moduleKeywords</code> is defined as follows:</p>
-<div class="highlight"><pre><span class="nv">moduleKeywords = </span><span class="p">[</span><span class="s">'extended'</span><span class="p">,</span> <span class="s">'included'</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="nv">moduleKeywords = </span><span class="p">[</span><span class="s">'extended'</span><span class="p">,</span> <span class="s">'included'</span><span class="p">]</span>
 </pre></div>
 
 <p>and we see that <code>extended</code> is in <code>moduleKeywords</code>, so that property is not added to the <code>User</code> class.</p>
 <p>We are done with the <code>for</code> loop in the <code>@extend</code> method, so now we are at this intimidating line:</p>
-<div class="highlight"><pre>    <span class="nx">obj</span><span class="p">.</span><span class="nx">extended</span><span class="o">?</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">@</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>    <span class="nx">obj</span><span class="p">.</span><span class="nx">extended</span><span class="o">?</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">@</span><span class="p">)</span>
 </pre></div>
 
 <p><code>obj.extended?</code> checks if <code>obj</code> has a property called <code>extended</code>. If so, then call its <code>apply</code> method, with <code>this</code> bounded to <code>@</code>. Taking another look at the <code>ORM</code> object we passed in to <code>@extend</code>:</p>
-<div class="highlight"><pre><span class="nv">ORM =</span>
+<div class="highlight"><pre><span></span><span class="nv">ORM =</span>
   <span class="nv">find: </span><span class="nf">(id) -&gt;</span>
   <span class="nv">create: </span><span class="nf">(attrs) -&gt;</span>
   <span class="nv">extended: </span><span class="nf">-&gt;</span>

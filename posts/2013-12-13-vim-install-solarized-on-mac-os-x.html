@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -95,17 +95,17 @@
 <p>Anyway, here is how Vim was displaying Ruby code prior to me using Solarized. Look at the comments in particular… it’s very straining to read them.</p>
 <p>Pre Solarized Vim:</p>
 <div class="figure">
-<img src="../images/2013-12-13/vim_ruby_pre_solarized-cropped.png" alt />
+<img src="../images/2013-12-13/vim_ruby_pre_solarized-cropped.png" />
 
 </div>
 <p>Here’s what the Solarized plugin does to beautify things (for dark theme):</p>
 <div class="figure">
-<img src="../images/2013-12-13/vim_ruby_solarized_dark-cropped.png" alt />
+<img src="../images/2013-12-13/vim_ruby_solarized_dark-cropped.png" />
 
 </div>
 <p>Or if you use the light theme:</p>
 <div class="figure">
-<img src="../images/2013-12-13/vim_ruby_solarized_light-cropped.png" alt />
+<img src="../images/2013-12-13/vim_ruby_solarized_light-cropped.png" />
 
 </div>
 <p>Looks a lot better, right? At the very least, I do think that with the Solarized plugin, reading comments are much easier on the eyes. Given how long a programmer has to stare at a computer screen daily, this is a tremendous boon.</p>
@@ -123,7 +123,7 @@
 <p>Now then, we need to slightly edit our <code>.vimrc</code> for it to function properly with Vundle.</p>
 <h2 id="step-2a-editing-.vimrc-for-vundle-usage">Step 2a: Editing .vimrc for Vundle usage</h2>
 <p>Here is my <code>.vimrc</code>, prior to Vundle:</p>
-<div class="highlight"><pre><span class="k">set</span> <span class="nb">nocompatible</span>
+<div class="highlight"><pre><span></span><span class="k">set</span> <span class="nb">nocompatible</span>
 <span class="k">set</span> <span class="nb">bs</span><span class="p">=</span><span class="m">2</span>
 <span class="k">set</span> <span class="k">ts</span><span class="p">=</span><span class="m">4</span>
 <span class="k">set</span> <span class="k">sw</span><span class="p">=</span><span class="m">4</span>
@@ -135,7 +135,7 @@
 
 <p>Very minimalistic, right? These settings are the bare minimum for me, and I can survive pretty well with them. I also use the bufexplorer plugin.</p>
 <p>Now that we are using Vundle, the <code>.vimrc</code> becomes:</p>
-<div class="highlight"><pre><span class="k">set</span> <span class="nb">nocompatible</span>   <span class="c">&quot; be iMproved</span>
+<div class="highlight"><pre><span></span><span class="k">set</span> <span class="nb">nocompatible</span>   <span class="c">&quot; be iMproved</span>
 <span class="k">filetype</span> off       <span class="c">&quot; required!</span>
 
 <span class="k">set</span> <span class="nb">rtp</span><span class="p">+=~</span><span class="sr">/.vim/</span>bundle/vundle
@@ -164,7 +164,7 @@ Bundle <span class="s1">'jlanzarotta/bufexplorer'</span>
 </pre></div>
 
 <p>In particular, these lines:</p>
-<div class="highlight"><pre><span class="k">set</span> <span class="nb">nocompatible</span>   <span class="c">&quot; be iMproved</span>
+<div class="highlight"><pre><span></span><span class="k">set</span> <span class="nb">nocompatible</span>   <span class="c">&quot; be iMproved</span>
 <span class="k">filetype</span> off       <span class="c">&quot; required!</span>
 
 <span class="k">set</span> <span class="nb">rtp</span><span class="p">+=~</span><span class="sr">/.vim/</span>bundle/vundle
@@ -179,14 +179,14 @@ Bundle <span class="s1">'gmarik/vundle'</span>
 
 <p>are absolutely required for Vundle to function properly, in particular the first 4 non blank lines. Be sure to have those 4 lines at the top of your <code>.vimrc</code> .</p>
 <p>For these 2 lines:</p>
-<div class="highlight"><pre>Bundle <span class="s1">'altercation/vim-colors-solarized'</span>
+<div class="highlight"><pre><span></span>Bundle <span class="s1">'altercation/vim-colors-solarized'</span>
 Bundle <span class="s1">'jlanzarotta/bufexplorer'</span>
 </pre></div>
 
 <p>The <code>Bundle 'altercation/vim-colors-solarized'</code> line is required here, it tells Vundle to install the Vim Solarized plugin.</p>
 <p>The <code>Bundle 'jlanzarotta/bufexplorer'</code> is for telling Vundle to install bufexplorer. It’s just another example of how we can use Vundle to keep manage plugins. You can even specify non github repos, local repos. More information is available at <a href="https://github.com/gmarik/vundle">Vundle’s github page</a> .</p>
 <p>This section here:</p>
-<div class="highlight"><pre><span class="c">&quot; For solarized plugin (color scheme)</span>
+<div class="highlight"><pre><span></span><span class="c">&quot; For solarized plugin (color scheme)</span>
 <span class="c">&quot; https://github.com/altercation/vim-colors-solarized</span>
 <span class="nb">syntax</span> enable
 <span class="k">set</span> <span class="nb">background</span><span class="p">=</span><span class="nb">dark</span>
@@ -197,20 +197,20 @@ Bundle <span class="s1">'jlanzarotta/bufexplorer'</span>
 <h2 id="step-2b-installing-vundle">Step 2b: Installing Vundle</h2>
 <p>Now that our <code>.vimrc</code> is set up, it’s time to install Vundle.</p>
 <p>Based on the Vundle git repository <a href="https://github.com/gmarik/vundle">here</a>:</p>
-<div class="highlight"><pre>git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+<div class="highlight"><pre><span></span>git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 </pre></div>
 
 <p>You dont have to manually create the ~/.vim/bundle/vundle directory hierarchy if they do not exist on your system. <code>git clone</code> does that automatically.</p>
 <p>Once done, fire up <code>vim</code> on the command line. Type <code>:BundleInstall</code> . This will install all the plugins you listed in your <code>.vimrc</code> (lines beginning with <code>Bundle</code>).</p>
 <h2 id="step-3-importing-solarized-color-palette-into-iterm2">Step 3: Importing Solarized Color Palette into iTerm2</h2>
 <p>Be sure you have installed iTerm2 before you continue. Now, clone the Solarized color palette repository:</p>
-<div class="highlight"><pre>git clone https://github.com/altercation/solarized.git
+<div class="highlight"><pre><span></span>git clone https://github.com/altercation/solarized.git
 </pre></div>
 
 <p>I will be assuming that the cloned repository is at <code>$HOME/solarized</code>. Now, fire up iTerm2, and on the menu, go to <code>iTerm</code> -&gt; <code>Preferences</code>.</p>
 <p>Click on the <code>Profiles</code> tab, and go to <code>Colors</code>. You should see something like this:</p>
 <div class="figure">
-<img src="../images/2013-12-13/iTerm2_colors-scaled.png" alt />
+<img src="../images/2013-12-13/iTerm2_colors-scaled.png" />
 
 </div>
 <p>Click on the <code>Load Presets..</code> button, and select <code>Import..</code> . Remember the solarized repository we just cloned? Select the <code>$HOME/solarized/iterm2-colors-solarized/Solarized Dark.itemcolors</code> file (or alternatively the <code>Solarized Light.itemcolors</code> file, depending on which you are using. you could import both of them as well). Use the Solarized color palette.</p>
@@ -218,7 +218,7 @@ Bundle <span class="s1">'jlanzarotta/bufexplorer'</span>
 <p>We are almost done… In fact, we are done. It’s just that, there are a few pain points that I wish to address.</p>
 <h2 id="pain-point-1-ls-no-longer-displays-colorized-output">Pain point 1: ls no longer displays colorized output</h2>
 <p>Somehow, <code>ls</code> does display colorized output once I started using the Solarized color palettes. To enable colorized output for <code>ls</code>, add the following line to your <code>.bashrc</code>:</p>
-<div class="highlight"><pre><span class="nb">export </span><span class="nv">CLICOLOR</span><span class="o">=</span>1
+<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CLICOLOR</span><span class="o">=</span><span class="m">1</span>
 </pre></div>
 
 <p>and you shall, once again, enjoy colorized output from <code>ls</code> .</p>
@@ -226,14 +226,14 @@ Bundle <span class="s1">'jlanzarotta/bufexplorer'</span>
 <p>If you are a new iTerm2 user like me, you will find that, out of the box, iTerm2 does not support Alt-Backspace for deleting a word, Alt-b for moving one word back, and Alt-f for moving one word forward. In other words, things we take for granted on a terminal with readline.</p>
 <p>To enable them, on the iTerm2 menu, go to <code>iTerm</code> -&gt; <code>Preferences</code>. Go to the <code>Profiles</code> tab, and click on <code>Keys</code>. You should see something like this:</p>
 <div class="figure">
-<img src="../images/2013-12-13/iTerm2_alt_keys-scaled.png" alt />
+<img src="../images/2013-12-13/iTerm2_alt_keys-scaled.png" />
 
 </div>
 <p>For the <code>Left option key acts as:</code> section, choose the <code>+Esc</code> radio button, and you’re all set.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Hopefully that worked for you too. Enjoy the beautiful Solarized color scheme! Here it is, once again, in its full glory:</p>
 <div class="figure">
-<img src="../images/2013-12-13/vim_ruby_solarized_dark-cropped.png" alt />
+<img src="../images/2013-12-13/vim_ruby_solarized_dark-cropped.png" />
 
 </div>
 </div>

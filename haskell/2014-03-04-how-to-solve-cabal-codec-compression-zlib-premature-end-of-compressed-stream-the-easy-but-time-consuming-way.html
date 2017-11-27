@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -93,7 +93,7 @@
 <div class="post">
   <h2 id="tldr">TLDR</h2>
 <p>If you are already extremely frustrated by this problem, the solution is just:</p>
-<div class="highlight"><pre>cd ~/.cabal/packages/hackage.haskell.org
+<div class="highlight"><pre><span></span>cd ~/.cabal/packages/hackage.haskell.org
 rm -rf *
 cabal update
 </pre></div>
@@ -101,7 +101,7 @@ cabal update
 <p>followed by a <code>cabal install X</code> where X is some package you’d like to install.</p>
 <h2 id="longer-version">Longer version</h2>
 <p>Doesn’t it irk you when you do a <code>cabal install somepackage</code>, and somewhere along the way you see something like:</p>
-<div class="highlight"><pre>Configuring zlib-bindings-0.1.1.3...
+<div class="highlight"><pre><span></span>Configuring zlib-bindings-0.1.1.3...
 Building zlib-bindings-0.1.1.3...
 Preprocessing library zlib-bindings-0.1.1.3...
 [1 of 2] Compiling Codec.Zlib.Lowlevel ( Codec/Zlib/Lowlevel.hs, dist/dist-sandbox-a9ff9784/build/Codec/Zlib/Lowlevel.o )
@@ -119,23 +119,23 @@ Failed to install 'hakyll-4.4.2.0'
 <p>It’s the dreaded <code>cabal: Codec.Compression.Zlib: premature end of compressed stream</code> error. Googling for this error shows you advice dating years back, asking you to check your network connection, inspect the output of <code>cabal update -v 3</code>, removing the <code>~/.cabal/packages/hackage.haskell.org/00-index.tar.gz</code> file, and so on.</p>
 <p>I don’t know about you, but none of the advice / answers worked for me. Don’t get me wrong, it’s sound advice, but it’s completely useless if the same error pops up when I do another <code>cabal update</code> followed by <code>cabal install</code>.</p>
 <p>However, let’s take a closer look at the error message:</p>
-<div class="highlight"><pre>cabal: Codec.Compression.Zlib: premature end of compressed stream
+<div class="highlight"><pre><span></span>cabal: Codec.Compression.Zlib: premature end of compressed stream
 </pre></div>
 
 <p>and combine this with the advice of removing the <code>~/.cabal/packages/hackage.haskell.org/00-index.tar.gz</code> file. Does that ring a bell?</p>
 <p>On curiosity (and frustration after <code>cabal install</code> failed repeatedly), I thought the error might have to do with uncompressing <strong>some other</strong> compressed file that is not <code>~/.cabal/packages/hackage.haskell.org/00-index.tar.gz</code>, and set out to execute:</p>
-<div class="highlight"><pre>find ~/.cabal -type f -name '*.gz'
+<div class="highlight"><pre><span></span>find ~/.cabal -type f -name '*.gz'
 </pre></div>
 
 <p>and I was rewarded with a whole bunch of <code>tar.gz</code> files under <code>~/.cabal/packages/hackage.haskell.org</code> in their package directories.</p>
 <p>I was impatient and quite frustrated at this point, so I proceeded with:</p>
-<div class="highlight"><pre>cd ~/.cabal/packages/hackage.haskell.org
+<div class="highlight"><pre><span></span>cd ~/.cabal/packages/hackage.haskell.org
 rm -rf *
 </pre></div>
 
 <p>thereby removing everything, under <code>~/.cabal/packages/hackage.haskell.org</code>, whether good or bad.</p>
 <p>This is followed by:</p>
-<div class="highlight"><pre>cabal update
+<div class="highlight"><pre><span></span>cabal update
 </pre></div>
 
 <p>After which, I proceeded with the <code>cabal install</code>, which successfully installs the package.</p>

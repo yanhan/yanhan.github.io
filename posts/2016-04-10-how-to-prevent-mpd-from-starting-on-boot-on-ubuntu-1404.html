@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -94,34 +94,34 @@
   <p>mpd refers to the Music Player Daemon, whose official website is at <a href="https://www.musicpd.org/" class="uri">https://www.musicpd.org/</a></p>
 <h2 id="tldr">TLDR</h2>
 <p>On the command line, run:</p>
-<div class="highlight"><pre>sudo update-rc.d mpd disable
+<div class="highlight"><pre><span></span>sudo update-rc.d mpd disable
 </pre></div>
 
 <p>Then make sure the following files do not exist:</p>
-<div class="highlight"><pre>~/.mpdconf
+<div class="highlight"><pre><span></span>~/.mpdconf
 $XDG_CONFIG_HOME/mpd/mpd.conf
 </pre></div>
 
 <p>And we are done!</p>
 <h2 id="explanation">Explanation</h2>
 <p>After installing mpd via <code>sudo apt-get install mpd</code>, mpd starts as a service on boot under the <code>mpd</code> user. To prevent mpd from starting as a service on boot, we have to run:</p>
-<div class="highlight"><pre>sudo update-rc.d mpd disable
+<div class="highlight"><pre><span></span>sudo update-rc.d mpd disable
 </pre></div>
 
 <p>But after doing this, for some reason, mpd still runs on my machine but this time, as my user, because the <code>~/.mpdconf</code> file exists. Moving it away solved the problem. Oh, in case you were thinking a <code>sudo service mpd stop</code> will solve the problem, it does not, because mpd is not being run as a service on startup.</p>
 <p>Even though I found out that the issue lies with the existence of <code>~/.mpdconf</code>, a glance at <code>man mpd</code> shows the following line:</p>
-<div class="highlight"><pre>MPD searches for a config file in $XDG_CONFIG_HOME/mpd/mpd.conf then ~/.mpdconf then /etc/mpd.conf or uses CONF_FILE.
+<div class="highlight"><pre><span></span>MPD searches for a config file in $XDG_CONFIG_HOME/mpd/mpd.conf then ~/.mpdconf then /etc/mpd.conf or uses CONF_FILE.
 </pre></div>
 
 <p>So it seems that other than <code>~/.mpdconf</code>, if <code>$XDG_CONFIG_HOME/mpd/mpd.conf</code> is present, it could cause mpd to start as my user as well. I moved my mpd config file over to <code>$XDG_CONFIG_HOME/mpd/mpd.conf</code>, rebooted my system and found that indeed that is the case. Hence these 2 files:</p>
-<div class="highlight"><pre>~/.mpdconf
+<div class="highlight"><pre><span></span>~/.mpdconf
 $XDG_CONFIG_HOME/mpd/mpd.conf
 </pre></div>
 
 <p>must not be present in order to prevent mpd from starting as the user on boot.</p>
 <h2 id="after-thoughts">After thoughts</h2>
 <p>I still have no idea why mpd will start as my user - I must admit that I’m too lazy to do an in depth investigation but I checked the usual suspects of:</p>
-<div class="highlight"><pre>~/.bashrc
+<div class="highlight"><pre><span></span>~/.bashrc
 ~/.bash_profile
 ~/.profile
 ~/.zshrc

@@ -27,7 +27,7 @@
             }
           });
         </script>
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
     </head>
 
@@ -104,21 +104,21 @@
 <li>Follow the instructions at <a href="https://github.com/pyenv/pyenv-virtualenv#installing-with-homebrew-for-os-x-users" class="uri">https://github.com/pyenv/pyenv-virtualenv#installing-with-homebrew-for-os-x-users</a> to install pyenv-virtualenv using brew</li>
 <li>Now we need to install some version of python using pyenv. To see a list of python versions you can download and install using pyenv, run:</li>
 </ol>
-<div class="highlight"><pre>pyenv install -l
+<div class="highlight"><pre><span></span>pyenv install -l
 </pre></div>
 
 <p>Suppose you want to install Python 3.5.1 . Run:</p>
-<div class="highlight"><pre>pyenv install 3.5.1
+<div class="highlight"><pre><span></span>pyenv install <span class="m">3</span>.5.1
 </pre></div>
 
 <ol start="4" style="list-style-type: decimal">
 <li>Suppose you have a project called <code>myproject</code> you want to create a virtualenv for. This project happens to use Python 3.5.1 . To create this virtualenv, we run:</li>
 </ol>
-<div class="highlight"><pre>pyenv virtualenv 3.5.1 myproject
+<div class="highlight"><pre><span></span>pyenv virtualenv <span class="m">3</span>.5.1 myproject
 </pre></div>
 
 <p>Now if you run <code>pyenv versions</code>, you should see something like the following:</p>
-<div class="highlight"><pre>* system (set by /home/tom/.pyenv/version)
+<div class="highlight"><pre><span></span>* system (set by /home/tom/.pyenv/version)
 2.7.11
 3.5.1
 3.5.1/envs/myproject
@@ -129,21 +129,21 @@ myproject
 <ol start="5" style="list-style-type: decimal">
 <li>To install libraries into the <code>myproject</code> virtualenv, we have to activate it using</li>
 </ol>
-<div class="highlight"><pre>pyenv activate myproject
+<div class="highlight"><pre><span></span>pyenv activate myproject
 </pre></div>
 
 <p>You should see a <code>(myproject)</code> prefix in your shell’s prompt.</p>
 <ol start="6" style="list-style-type: decimal">
 <li>As long as you have the virtualenv activated, any Python libraries you install using pip will be installed into the virtualenv. Just run pip as per normal, for instance:</li>
 </ol>
-<div class="highlight"><pre>pip install <span class="nv">redis</span><span class="o">==</span>2.10.5
+<div class="highlight"><pre><span></span>pip install <span class="nv">redis</span><span class="o">==</span><span class="m">2</span>.10.5
 pip install -r requirements.txt
 </pre></div>
 
 <ol start="7" style="list-style-type: decimal">
 <li>To deactivate the virtualenv:</li>
 </ol>
-<div class="highlight"><pre>pyenv deactivate
+<div class="highlight"><pre><span></span>pyenv deactivate
 </pre></div>
 
 </div>
