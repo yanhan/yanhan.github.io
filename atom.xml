@@ -8,8 +8,121 @@
         <name>Pang Yan Han</name>
         <email>pangyanhan@gmail.com</email>
     </author>
-    <updated>2018-02-11T10:34:00Z</updated>
+    <updated>2018-02-20T21:01:11Z</updated>
     <entry>
+    <title>Vim abbreviations for a specific file</title>
+    <link href="http://blog.pangyanhan.com/posts/vim-abbreviations-for-a-specific-file.html" />
+    <id>http://blog.pangyanhan.com/posts/vim-abbreviations-for-a-specific-file.html</id>
+    <published>2018-02-20T21:01:11Z</published>
+    <updated>2018-02-20T21:01:11Z</updated>
+    <summary type="html"><![CDATA[<h2>Vim abbreviations for a specific file</h2>
+<p class="meta">
+  20 Feb 2018,
+  
+    by <span class="italic">Pang Yan Han</span>
+  
+</p>
+<div class="post-tags">
+  <i class="fa fa-tags"></i>Tags: <a href="/tags/vim.html">vim</a>
+</div>
+<div class="post">
+  <p>Recently I came across Bram Moolenaar’s article <a href="http://moolenaar.net/habits.html">Vim: Seven habits of effective text editing</a> and learnt about vim abbreviations. Essentially, vim abbreviations allow you to specify shortform words that vim will automatically expand to their long form. For instance, with the following in your vimrc:</p>
+<div class="highlight"><pre><span></span>ab dev developer
+</pre></div>
+
+<p>Whenever you type the word <code>dev</code> followed by a space / enter / punctuation mark, vim will automatically expand it to <code>developer</code>. I am not entirely certain of the rule that vim uses to expand the abbreviation, but it seems to me that vim does it on a word boundary basis. Hence you do not have to be afraid that you cannot type <code>devops</code> for fear that it will be expanded to <code>developerops</code>.</p>
+<p>This is pretty useful and can save a lot of typing. There are other pieces of wisdom in the article and I highly encourage you to read it.</p>
+<h2 id="how-to-have-file-specific-vim-abbreviations">How to have file specific vim abbreviations</h2>
+<p>Which brings us to the meat of this post. How do we have abbreviations that apply to a specific file? Some Googling led to <a href="https://unix.stackexchange.com/a/31602">this Unix &amp; Linux Stack Exchange answer</a> and here’s some example code on how to do it:</p>
+<div class="highlight"><pre><span></span><span class="k">au</span> <span class="nb">BufRead</span><span class="p">,</span><span class="nb">BufNewFile</span> <span class="sr">/path/</span><span class="k">to</span>/<span class="k">file</span> <span class="k">call</span> YourAbbrevFunction<span class="p">()</span>
+<span class="k">function</span> YourAbbrevFunction<span class="p">()</span>
+  <span class="k">ab</span> dev developers
+<span class="c">  &quot; define your other abbreviations here</span>
+<span class="k">endfunction</span>
+</pre></div>
+
+<h3 id="instructions">Instructions</h3>
+<ol style="list-style-type: decimal">
+<li>Copy and paste the above code to your vimrc file</li>
+<li>Define all your desired abbreviations in the <code>YourAbbrevFunction</code> vim function</li>
+<li>Change the <code>/path/to/file</code> to the file you want the abbreviations to apply to</li>
+<li>If you have an existing vim session editing the <code>/path/to/file</code>, you will need to quit and start it again for the abbreviations to apply</li>
+</ol>
+<p>Enjoy!</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://unix.stackexchange.com/a/31602">Storing Abbreviations in Vim - Unix &amp; Linux Stack Exchange</a></li>
+<li><a href="http://moolenaar.net/habits.html">Vim: Seven habits of effective text editing</a></li>
+<li><a href="http://learnvimscriptthehardway.stevelosh.com/chapters/13.html">Learn Vimscript the Hard Way: Buffer-Local Abbreviations</a></li>
+<li><a href="http://vim.wikia.com/wiki/Using_abbreviations">Using abbreviations - Vim Tips Wiki</a></li>
+</ul>
+</div>
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
+        var disqus_identifier = "posts/vim-abbreviations-for-a-specific-file.md";
+        var disqus_url = "http://blog.pangyanhan.com/posts/vim-abbreviations-for-a-specific-file.html";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+]]></summary>
+</entry>
+<entry>
+    <title>How to disable Control Q on Firefox 57</title>
+    <link href="http://blog.pangyanhan.com/posts/disable-control-q-on-firefox-57.html" />
+    <id>http://blog.pangyanhan.com/posts/disable-control-q-on-firefox-57.html</id>
+    <published>2018-02-20T20:47:45Z</published>
+    <updated>2018-02-20T20:47:45Z</updated>
+    <summary type="html"><![CDATA[<h2>How to disable Control Q on Firefox 57</h2>
+<p class="meta">
+  20 Feb 2018,
+  
+    by <span class="italic">Pang Yan Han</span>
+  
+</p>
+<div class="post-tags">
+  <i class="fa fa-tags"></i>Tags: <a href="/tags/firefox.html">firefox</a>
+</div>
+<div class="post">
+  <p><strong>NOTE:</strong> This applies to Firefox 57 on Linux.</p>
+<ol style="list-style-type: decimal">
+<li>Open a new tab and type <code>about:config</code> in the address bar and press enter</li>
+</ol>
+<p>You will see a warning. Click on the <code>I accept the risk</code> button.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Search for the string <code>showquit</code>. You should see a <code>browser.showQuitWarning</code>. Double click so its value is toggled to True.</li>
+</ol>
+<p>When you press Control Q, there will be a prompt asking you if you actually want to quit Firefox.</p>
+<h2 id="credits">Credits</h2>
+<p><a href="https://www.reddit.com/r/firefox/comments/7fehbb/please_give_us_an_option_to_disable_ctrlq/dqbd8su/" class="uri">https://www.reddit.com/r/firefox/comments/7fehbb/please_give_us_an_option_to_disable_ctrlq/dqbd8su/</a></p>
+</div>
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
+        var disqus_identifier = "posts/disable-control-q-on-firefox-57.md";
+        var disqus_url = "http://blog.pangyanhan.com/posts/disable-control-q-on-firefox-57.html";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+]]></summary>
+</entry>
+<entry>
     <title>My notes / cheatsheet on the top program</title>
     <link href="http://blog.pangyanhan.com/posts/my-notes-on-the-top-program.html" />
     <id>http://blog.pangyanhan.com/posts/my-notes-on-the-top-program.html</id>
@@ -2582,395 +2695,6 @@ main = putStrLn &quot;Hello, World!&quot;
         var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
         var disqus_identifier = "posts/2017-07-02-haskell-vim-now-ghcmod-vim-resolving-ghcmod-command-type-cannot-guess-type-errors.md";
         var disqus_url = "http://blog.pangyanhan.com/posts/2017-07-02-haskell-vim-now-ghcmod-vim-resolving-ghcmod-command-type-cannot-guess-type-errors.html";
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-]]></summary>
-</entry>
-<entry>
-    <title>My first Machine Learning project: Using Naive Bayes to classify tweets</title>
-    <link href="http://blog.pangyanhan.com/posts/2017-02-01-my-first-machine-learning-project-using-naive-bayes-to-classify-tweets.html" />
-    <id>http://blog.pangyanhan.com/posts/2017-02-01-my-first-machine-learning-project-using-naive-bayes-to-classify-tweets.html</id>
-    <published>2017-02-01T21:34:00Z</published>
-    <updated>2017-02-01T21:34:00Z</updated>
-    <summary type="html"><![CDATA[<h2>My first Machine Learning project: Using Naive Bayes to classify tweets</h2>
-<p class="meta">
-  01 Feb 2017,
-  
-    by <span class="italic">Pang Yan Han</span>
-  
-</p>
-<div class="post-tags">
-  <i class="fa fa-tags"></i>Tags: <a href="/tags/machine%20learning.html">machine learning</a>
-</div>
-<div class="post">
-  <p>Source code: <a href="https://gist.github.com/yanhan/d9061c9575d14228d2a9ecc9519a55aa" class="uri">https://gist.github.com/yanhan/d9061c9575d14228d2a9ecc9519a55aa</a></p>
-<p>Before we go into the main content of this post, I have a confession to make - it’s pretty damned hard to get started with Machine Learning if you’re not doing it on the job and if you don’t happen to have some problem to solve (and have the appropriate data for it). One of the main hurdles I’ve faced is that after picking up some fundamentals, Machine Learning knowledge is like this hammer but there aren’t many suitable nails in sight, probably because of my lack of experience; a lot of problems also seem very, very tough. This post is my latest attempt to build up my skills in it - through some hands on experience on “real-world” data sets. Hopefully this trend keeps up and I’ll have many more projects under my belt over the course of the year.</p>
-<h2 id="inspiration">Inspiration</h2>
-<p>Recently, I’ve finished reading John Foreman’s <a href="http://a.co/9BR5zhg">Data Smart</a> and got quite inspired to try out some techniques in there. I spent an entire afternoon brainstorming about some project ideas. One of them is, why not do a variant of what’s covered in Data Smart chapter 3, which is, to use Naive Bayes to classify tweets? Except that, we’ll be using a programming language instead of Excel (thank goodness).</p>
-<h2 id="the-problem">The problem</h2>
-<p>Alright, we’ve decided on the algorithm - Naive Bayes. To make things simple, we will build a binary class classifier, just like in the book. So, what kind of tweets? The best kind of tweets are probably those involving some word with ambiguous meaning. This word may or may not be used as a hashtag in the tweets. The word ‘react’ was one of the first which came to my mind - after all, it is used in conventional speech / writing and is the name of a popular JavaScript framework, so the same word stands for two very distinct things/meanings. A human reading the tweets should not have much issue labelling the data but more importantly, these 2 attributes of the word ‘react’ should garner a sufficiently large number of tweets for both classes.</p>
-<h2 id="obtaining-the-data">Obtaining the data</h2>
-<p>I wish I could say that there was a data set that I just downloaded from somewhere or I used the Twitter API to do this, but I did a search on Twitter and manually copy and pasted tweets into 2 files, one for tweets about the React framework and the other containing tweets that are not about the React framework. For each class, I collected 250 tweets and all / most of them contain the word ‘react’ or ‘React’. This was a very painful and laborious process that took a few hours to complete. In particular, most tweets about the React JS framework do not contain the word ‘react’ or ‘React’ but contain ‘ReactJS’ (maybe in a different case), so it took a long time for me to find suitable tweets.</p>
-<p>For each class, I shuffled the 250 tweets and partitioned them into a training set of 180 tweets (72% of the data) and a test set of 70 tweets (28% of the data).</p>
-<h2 id="a-tiny-bit-of-exploratory-data-analysis-and-thoughts-before-starting">A tiny bit of exploratory data analysis and thoughts before starting</h2>
-<p>This is a toy problem and it is extremely easy to classify tweets about React JS correctly - in fact we don’t need machine learning to do it. During the process of gathering the data, other than the fact that most tweets about React JS contain the word <code>ReactJS</code> in some kind of case variant or use the hashtag <code>#ReactJS</code>, they typically don’t use the word <code>react</code> and even if they do, it is almost always spelt <code>React</code> with an uppercase R instead of <code>react</code>. Whereas in tweets not about the React JS framework, we don’t see the uppercase <code>React</code> - it is always <code>react</code>. Ok, to make things more fun, we lowercase everything.</p>
-<p>On the <code>#ReactJS</code> hashtag - by summing the token counts, we see that other than the token <code>react</code>, the next most common occurring token in the training set is <code>#reactjs</code> at 115 counts, followed by <code>#javascript</code> at 61 counts. Again, to make things more fun, we discard these two tokens.</p>
-<h2 id="the-hand-rolled-classifiers">The hand-rolled classifiers</h2>
-<p>There are 2 implementations: one hand-coded Naive Bayes implementation and one using scikit-learn.</p>
-<p>For the hand-coded implementation, we follow most of the implementation in Data Smart. For each tweet, we first replace all occurrences of <code>.</code>, <code>:</code>, <code>?</code>, <code>!</code>, <code>;</code>, <code>,</code> which are followed by a space character with a single space character. Then we split on whitespace and reject all tokens with three characters or less, along with the tokens <code>#reactjs</code> and <code>#javascript</code>. We train 2 classifiers - one for recognizing tweets about React JS and the other for recognizing tweets not about React JS. Instead of the additive smoothing method covered in the book (which adds 1 to the count for every token), we use the <a href="Additive_smoothing">Additive smoothing</a> covered on Wikipedia and <a href="http://stats.stackexchange.com/q/108797">this Cross Validated question</a>:</p>
-<p><br /><span class="math display">$$P(token | class) = \frac{x_i + \alpha}{N + \alpha * |V|} $$</span><br /></p>
-<p>where \(x_i\) is the token count in the class, \(\alpha = 1\), \( N \) is the sum of all token counts in the given class, and \( |V| \) is the size of the vocabulary in the entire training set (regardless of class). This is identical to the formula in the Cross Validated question, except that it doesn’t contain an additional \( + 1 \) in the denominator.</p>
-<p>To handle tokens which are not present in the training set but present in the test set, we default to using this probability:</p>
-<p><br /><span class="math display">$$P(unseen\ token | class) = \frac{1}{N + |V|}$$</span><br /></p>
-<p>When passed a tweet, each classifier computes the sum of the log likelihood of each token in the tweet. We pass the tweet to both classifiers and compare the two log probabilities - the higher one wins and we say that the tweet belongs to that class.</p>
-<p>The confusion matrix is as follows:</p>
-<div class="figure">
-<img src="/images/2017-02-01/hand-rolled-confusion-matrix.png" />
-
-</div>
-<p>Looks pretty good.</p>
-<h2 id="the-scikit-learn-classifier">The scikit-learn classifier</h2>
-<p>Originally, I didn’t want to do this because this is just a toy project but, since I’m doing it already, might as well figure out how to implement Naive Bayes using scikit-learn on something simple like this.</p>
-<p>After reading some stuff from the following links in the awesome scikit-learn documentation:</p>
-<ul>
-<li><a href="http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html">http://scikit-learn.org/stable/modules/naive_bayes.html</a></li>
-<li><a href="http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html">http://scikit-learn.org/stable/auto_examples/applications/plot_out_of_core_classification.html</a></li>
-<li><a href="http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html" class="uri">http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html</a></li>
-</ul>
-<p>I figured out how to implement something similar to our hand-rolled Naive Bayes classifier using scikit-learn. Instead of using <code>CountVectorizer</code>, I decided to use <code>HashingVectorizer</code>. The hardest part in this implementation is to figure out how to use the <code>HashingVectorizer</code>. Eventually, it came down to this:</p>
-<div class="highlight"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
-    <span class="nb">set</span><span class="p">(</span>
-        <span class="n">sklearn</span><span class="o">.</span><span class="n">feature_extraction</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">ENGLISH_STOP_WORDS</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">_BANNED_TOKENS</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">HashingVectorizer</span><span class="p">(</span>
-    <span class="n">stop_words</span><span class="o">=</span><span class="n">stop_words</span><span class="p">,</span>
-    <span class="n">token_pattern</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;\b\w\w\w\w+\b&quot;&quot;&quot;</span><span class="p">,</span>
-    <span class="n">norm</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-    <span class="n">non_negative</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-
-<p>We needed to add the stopwords <code>#reactjs</code> and <code>#javascript</code> to the default list of stopwords that the <code>HashingVectorizer</code> was using. A little googling yielded this useful <a href="http://stackoverflow.com/a/24386751">answer</a>. By default, <code>HashingVectorizer</code> uses the <code>u'(?u)\b\w\w+\b'</code> regex which captures any token of length 2 or more, but we only want tokens which are at least length 4, so we used <code>token_pattern=r&quot;&quot;&quot;\b\w\w\w\w+\b&quot;&quot;&quot;</code> to override that setting. We also didn’t want any normalization (default is <code>'l2'</code>) and we didn’t want any non-negative values - just raw counts.</p>
-<p>We used the <code>HashingVectorizer.transform</code> method to transform all the training tweets into a sparse matrix, and fed that to <code>sklearn.naive_bayes.MultinomialNB</code> via its <code>fit</code> method. To evaluate this model on our test data, we need to use the <code>HashingVectorizer</code> to transform the test data, then pass them to the trained Naive Bayes model.</p>
-<p>The confusion matrix for the scikit-learn Multinomial Naive Bayes model:</p>
-<div class="figure">
-<img src="/images/2017-02-01/sklearn-naive-bayes-confusion-matrix.png" />
-
-</div>
-<p>While this classifier performs better than our hand-rolled classifier for tweets about ReactJS, it performs worse for tweets that are not about ReactJS.</p>
-<h2 id="analysis">Analysis</h2>
-<h3 id="some-statistics-of-our-models">Some statistics of our models</h3>
-<div class="figure">
-<img src="/images/2017-02-01/hand-rolled-log-prob-unseen-token.png" />
-
-</div>
-<p>The number 1895 refers to the size of the vocabulary for the entire training set (both tweets about React JS and not about React JS). The log probability for an unseen token is higher for the React JS model as compared to the non React JS model. The pitfall is that a tweet which consists entirely of unseen tokens will favor the React JS model - most likely that tweet is not about React JS, since most tweets about React JS will have some variant of the <code>#reactjs</code> hashtag which will exist in the training set.</p>
-<p>For the MultinomialNB model, the numbers are -13.86442357 for a non React JS tweet and -13.86489007 for a React JS tweet. A much smaller discrepancy that slightly favors the non React JS class.</p>
-<h3 id="false-negatives-for-our-hand-rolled-naive-bayes-model">False negatives for our hand rolled Naive Bayes model:</h3>
-<ol style="list-style-type: decimal">
-<li>Why I like Vue over React - http://buff.ly/2jWKpzJ #vuejs #reactjs</li>
-<li>The power of React JS… http://catchoftheday.wesbos.com/store/lazy-glamorous-knives …</li>
-<li>these “google trends” charts can show almost whatever you want. people search for “React” rather than “React.js” http://image.prntscr.com/image/42ff33c9b0da42ef8084f45a647ccc00.png …</li>
-</ol>
-<p>For the first tweet, the only tokens that are counted are <code>like</code>, <code>over</code>, <code>react</code>, <code>http://buff.ly/2jWKpzJ</code> and <code>#vuejs</code>. Among those, only <code>#vuejs</code> has predictive power, since Vue.js is a JavaScript framework. However, the token <code>#vuejs</code> does not occur in the training set. So it is understandable that this tweet is misclassified.</p>
-<p>It is a similar story for the second tweet, with only <code>JS...</code> being the token with predictive power. However, that doesn’t occur in the training set.</p>
-<p>For the final tweet, the only token with predictive power is <code>&quot;react.js&quot;</code> (notice the quotes), but the presence of the quotes probably screwed things up.</p>
-<h3 id="false-negatives-for-the-sklearn-multinomialnb-model">False negatives for the sklearn MultinomialNB model:</h3>
-<ol style="list-style-type: decimal">
-<li>these “google trends” charts can show almost whatever you want. people search for “React” rather than “React.js” http://image.prntscr.com/image/42ff33c9b0da42ef8084f45a647ccc00.png …</li>
-</ol>
-<p>Which is pretty curious, since the vectorizer correctly tokenizes <code>&quot;React.js&quot;</code> into the token <code>react.js</code>.</p>
-<h3 id="false-positives-for-hand-rolled-naive-bayes-model">False positives for hand rolled Naive Bayes model:</h3>
-<ol style="list-style-type: decimal">
-<li>i may not react but trust me i saw it</li>
-<li>Star Wars superfans (and one feisty Rebel soldier) react to #RogueOne. http://strw.rs/60138rHgt</li>
-<li>Ants react to their infection by climbing up plants and sinking their mandibles into plant tissue</li>
-<li><span class="citation">@Khlil10x</span> react to the NFL games</li>
-<li>Why ppl wud insult my father? Ppl wud react if I wud use my fathers name an absolute truth 2 impose n violate others basic rights.</li>
-</ol>
-<h3 id="false-positives-for-sklearn-multinomialnb-model">False positives for sklearn MultinomialNB model:</h3>
-<ol style="list-style-type: decimal">
-<li>How everyone should react</li>
-<li>i may not react but trust me i saw it</li>
-<li>Star Wars superfans (and one feisty Rebel soldier) react to #RogueOne. http://strw.rs/60138rHgt</li>
-<li>At this point, no one is believing 20% mexico surcharge is real. We’d have to abrogate NAFTA in total to do that. That why no market react.</li>
-<li>This is amazing. Jack Eichel’s Dad &amp; other Sabres parents in Nashville react to Eichel’s game-winning goal in OT.</li>
-<li>Things to Consider: read the article &amp; not just the headline before you react &amp; retweet. Less exciting, but better for all.</li>
-<li>Ants react to their infection by climbing up plants and sinking their mandibles into plant tissue</li>
-<li>If you’re a #veteran, how do you react when someone calls you a hero? Here’s my perspective on it http://ow.ly/EKQE308ex4i</li>
-<li><span class="citation">@Khlil10x</span> react to the NFL games</li>
-<li>Why ppl wud insult my father? Ppl wud react if I wud use my fathers name an absolute truth 2 impose n violate others basic rights.</li>
-</ol>
-<p>Notice that all the false positives for the Naive Bayes model are also false positives for the MultinomialNB model. If there’s one thing I can say straight off the bat about these false positives, it is this - they are about pretty different things - there is a tweet about star wars, a tweet about ants, etc. This is a stark contrast to the tweets about ReactJS, which are well, about ReactJS. But all these is just guesswork - let’s look at more concrete stuff.</p>
-<h3 id="analysis-of-false-negatives-for-hand-rolled-naive-bayes-model">Analysis of false negatives for hand rolled Naive Bayes model</h3>
-<p>For the tweet <code>Why I like Vue over React - http://buff.ly/2jWKpzJ  #vuejs #reactjs</code></p>
-<div class="figure">
-<img src="/images/2017-02-01/first-false-negative-analysis.png" />
-
-</div>
-<p>The main culprits are the tokens <code>over</code> and <code>like</code>. <code>over</code> is a stop word for scikit learn and its removal would have helped things slightly, but <code>like</code> is not a stop word and its relatively high log probability (compared to the other tokens which do not appear in the vocabulary) means that this tweet will still be incorrectly classified. Note that this tweet is not a false negative for the MultinomialNB model - some painstaking investigation into the log probabilities of the features of the MultinomialNB model revealed that the <code>reactjs</code> token greatly favored the React JS model and the <code>react</code> and <code>http</code> tokens slightly favored the React JS model; the other log probabilities are about even except for the token <code>like</code> favoring the non React JS model. Log probabilities given by the MultinomialNB model as follows:</p>
-<div class="figure">
-<img src="/images/2017-02-01/first-false-negative-multinomialnb.png" />
-
-</div>
-<p>For the tweet <code>The power of React JS...  http://catchoftheday.wesbos.com/store/lazy-glamorous-knives …</code></p>
-<div class="figure">
-<img src="/images/2017-02-01/second-false-negative-analysis.png" />
-
-</div>
-<p>The culprit is the token <code>power</code>, which appears twice in the training set for non reactjs tweets but does not appear in the training set for reactjs tweets. Note that this tweet is correctly classified by the MultinomialNB model - most of the log probabilities for the tokens are pretty even and the difference makers for the React JS model are the tokens <code>http</code>, <code>wesbos</code> (there was an occurrence of <code>@wesbos</code> in the training set and after the processing by <code>HashingVectorizer</code> it became <code>wesbos</code>) and <code>store</code> (appeared once in training set) - notice that these are all tokens created as a result of removing all the punctuation in the URL and treating them just like whitespace. Seems like in a bag of words model, there may be more value chopping up URLs on top of leaving them as they are or maybe even as opposed to leaving them as they are. Log probabilities given by the MultinomialNB as follows:</p>
-<div class="figure">
-<img src="/images/2017-02-01/second-false-negative-multinomialnb.png" />
-
-</div>
-<p>For the tweet <code>these &quot;google trends&quot; charts can show almost whatever you want. people search for &quot;React&quot; rather than &quot;React.js&quot; http://image.prntscr.com/image/42ff33c9b0da42ef8084f45a647ccc00.png …</code></p>
-<div class="figure">
-<img src="/images/2017-02-01/third-false-negative-analysis.png" />
-
-</div>
-<p>This is a rather long tweet so I am only showing some of the more interesting tokens here. First, the errors we made from tokenization - <code>trends&quot;</code>, <code>&quot;react&quot;</code>, <code>&quot;react.js&quot;</code>, <code>&quot;google</code>; these are highlighted in pink. In a larger data set, these might have affected results more because they will be unified with the correct tokens. In particular, the token <code>react.js</code> will favor the React JS model.</p>
-<p>There are 5 stop words here, namely: rather, show, whatever, these, than. These would have been removed by the a scikit learn model using the default English stop words. Their presence in classification favors the non React JS model, which contains more of these tokens with the exception of <code>these</code>.</p>
-<p>Finally, the tokens <code>people</code> and <code>want</code>, which are neither stop words nor incorrect tokens. Especially <code>people</code> - it greatly favors the non React JS model.</p>
-<p>This tweet is also incorrectly classified by the MultinomialNB model. The HashingVectorizer will produce the following tokens: <code>google</code>, <code>trends</code>, <code>charts</code>, <code>want</code>, <code>people</code>, <code>search</code>, <code>react</code>, <code>http</code>, <code>image</code>, <code>prntscr</code>, <code>42ff33c9b0da42ef8084f45a647ccc00</code>. Of these, <code>react</code>, <code>http</code> and <code>image</code> give a slight edge to the React JS model, but it is not sufficient to counter the effect of the tokens <code>want</code> and especially <code>people</code>. The table below shows the log probabilities of these tokens given by the MultinomialNB model:</p>
-<div class="figure">
-<img src="/images/2017-02-01/third-false-negative-multinomialnb.png" />
-
-</div>
-<h3 id="analysis-of-false-positives-for-hand-rolled-naive-bayes-model">Analysis of false positives for hand rolled Naive Bayes model</h3>
-<ol style="list-style-type: decimal">
-<li>i may not react but trust me i saw it</li>
-<li>Star Wars superfans (and one feisty Rebel soldier) react to #RogueOne. http://strw.rs/60138rHgt</li>
-<li>Ants react to their infection by climbing up plants and sinking their mandibles into plant tissue</li>
-<li><span class="citation">@Khlil10x</span> react to the NFL games</li>
-<li>Why ppl wud insult my father? Ppl wud react if I wud use my fathers name an absolute truth 2 impose n violate others basic rights.</li>
-</ol>
-<p>Tweet: <code>i may not react but trust me i saw it</code></p>
-<p>Our hand rolled model sees the tokens <code>trust</code> and <code>react</code>, both of which slightly favor the React JS model - it is a very similar story for the MultinomialNB model. It seems that very short tweets like this one and tweets which contain many stop words (only 2 out of 10 tokens here are meaningful) can be easily misclassified by a Naive Bayes model.</p>
-<p>Tweet: <code>Star Wars superfans (and one feisty Rebel soldier) react to #RogueOne. http://strw.rs/60138rHgt</code></p>
-<p>More interesting log probabilities for hand rolled Naive Bayes model:</p>
-<div class="figure">
-<img src="/images/2017-02-01/second-false-positive-hand-roll.png" />
-
-</div>
-<p>More interesting log probabilities for the MultinomialNB model:</p>
-<div class="figure">
-<img src="/images/2017-02-01/second-false-positive-multinomialnb.png" />
-
-</div>
-<p>Once again we see the flaw of a bag of words model - just because a token appears more frequently for documents of a given class doesn’t mean that a new document containing that token belongs to that class.</p>
-<p>Tweet: <code>Ants react to their infection by climbing up plants and sinking their mandibles into plant tissue</code></p>
-<p>More interesting log probabilities for our hand rolled model:</p>
-<div class="figure">
-<img src="/images/2017-02-01/third-false-positive-hand-roll.png" />
-
-</div>
-<p>Other than the above tokens, all the other tokens were unseen by both models. Recall that the log probability for an unseen token is about -8.1645 for the React JS model and -8.25088 for the non React JS model - these numbers add up to favor the React JS model, even if we remove all the stop words.</p>
-<p>For the MultinomialNB model, it is the token <code>react</code> that made the big difference. All the other tokens are unseen in the training set, which gives a slight edge to the non React JS class but that was not enough to counter the effect of the <code>react</code> token.</p>
-<p>Tweet: <code>@Khlil10x react to the NFL games</code></p>
-<p>Another very short tweet.</p>
-<p>Our hand rolled models sees the tokens <code>@khlil10x</code>, <code>react</code> and <code>games</code>. The only seen token is <code>react</code>, which favors the React JS model. Since log probs for unseen tokens are higher for the React JS model, everything favors the React JS model.</p>
-<p>For the MultinomialNB model, it is again the token <code>react</code> that favored the React JS model. The other tokens <code>Khlil10x</code> and <code>games</code> are unseen and give a very very slight edge to the React JS model.</p>
-<p>Tweet: <code>Why ppl wud insult my father? Ppl wud react if I wud use my fathers name an absolute truth 2 impose n violate others basic rights.</code></p>
-<p>More interesting log probabilities for hand rolled model:</p>
-<div class="figure">
-<img src="/images/2017-02-01/fifth-false-positive-hand-roll.png" />
-
-</div>
-<p>Even though <code>insult</code> and <code>others</code> gave an edge to the non React JS model, it wasn’t sufficient to offset the effects of the <code>basic</code> and <code>react</code> tokens along with 9 other unseen tokens.</p>
-<p>More interesting log probabilities for MultinomialNB model:</p>
-<div class="figure">
-<img src="/images/2017-02-01/fifth-false-positive-multinomialnb.png" />
-
-</div>
-<p>It is a similar situation for the MultinomialNB model with <code>react</code> and <code>basic</code> tilting the scales towards the React JS class.</p>
-<h3 id="false-positives-for-the-multinomialnb-model-that-are-not-false-positives-for-the-hand-rolled-naive-bayes-model">False positives for the MultinomialNB model that are not false positives for the hand rolled Naive Bayes model</h3>
-<p>The bigger question is, why does the MultinomialNB model perform worse than our hand rolled Naive Bayes model? The following tweets were correctly classified as negatives by our hand rolled Naive Bayes model but incorrectly classified by the MultinomialNB model:</p>
-<ol style="list-style-type: decimal">
-<li>How everyone should react</li>
-<li>At this point, no one is believing 20% mexico surcharge is real. We’d have to abrogate NAFTA in total to do that. That why no market react.</li>
-<li>This is amazing. Jack Eichel’s Dad &amp; other Sabres parents in Nashville react to Eichel’s game-winning goal in OT.</li>
-<li>Things to Consider: read the article &amp; not just the headline before you react &amp; retweet. Less exciting, but better for all.</li>
-<li>If you’re a #veteran, how do you react when someone calls you a hero? Here’s my perspective on it http://ow.ly/EKQE308ex4i</li>
-</ol>
-<p>Tweet: <code>How everyone should react</code></p>
-<p>After HashingVectorizer processes this tweet, the only remaining token is <code>react</code>, which favors the React JS class. <code>How</code>, <code>everyone</code> and <code>should</code> are stop words.</p>
-<p>Stop words that will be considered by our hand rolled model: <code>everyone</code>, <code>should</code></p>
-<p>Log probabilities of the stop words for hand rolled classifiers:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-1st-false-positive-hand-rolled.png" />
-
-</div>
-<p>So it was indeed the log probabilities of stop words that influenced the outcome for our hand rolled classifiers.</p>
-<p>Tweet: <code>At this point, no one is believing 20% mexico surcharge is real. We'd have to abrogate NAFTA in total to do that. That why no market react.</code></p>
-<p>More interesting log probabilities:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-2nd-false-positive.png" />
-
-</div>
-<p>Stop words that will be considered by our hand rolled model: <code>this</code>, <code>have</code>, <code>that</code></p>
-<p>Log probabilities of stop words for hand rolled classifiers:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-2nd-false-positive-hand-rolled.png" />
-
-</div>
-<p><code>that</code> appeared twice in this tweet and hence its log probability was counted twice. Notice the <code>react.</code> ending with a fullstop. Stop words definitely influenced the outcome for our hand rolled models.</p>
-<p>Tweet: <code>This is amazing. Jack Eichel's Dad &amp; other Sabres parents in Nashville react to Eichel's game-winning goal in OT.</code></p>
-<p>More interesting log probabilities:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-3rd-false-positive.png" />
-
-</div>
-<p>Stop words that will be considered by our hand rolled model: <code>this</code>, <code>other</code></p>
-<p>Log probabilities of stop words for hand rolled classifiers:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-3rd-false-positive-hand-rolled.png" />
-
-</div>
-<p>Again, stop words do influence the outcome in this case.</p>
-<p>Tweet: <code>Things to Consider: read the article &amp; not just the headline before you react &amp; retweet. Less exciting, but better for all.</code></p>
-<p>More interesting log probabilities:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-4th-false-positive.png" />
-
-</div>
-<p>Stop words that will be considered by our hand rolled model: <code>before</code>, <code>less</code></p>
-<p>Log probabilities of stop words for hand rolled classifiers:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-4th-false-positive-hand-rolled.png" />
-
-</div>
-<p>Tweet: <code>If you're a #veteran, how do you react when someone calls you a hero? Here's my perspective on it http://ow.ly/EKQE308ex4i</code></p>
-<p>More interesting log probabilities:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-5th-false-positive.png" />
-
-</div>
-<p>Stop words that will be considered by our hand rolled model: <code>when</code>, <code>someone</code></p>
-<p>Log probabilities of stop words for hand rolled classifiers:</p>
-<div class="figure">
-<img src="/images/2017-02-01/multinomialnb-only-5th-false-positive-hand-rolled.png" />
-
-</div>
-<p>This is a more interesting case. While the stop word <code>when</code> tilts the scales towards the non React JS class, the token <code>you're</code> does so as well - this token does not exist in the vocabulary of the MultinomialNB classifier (it would have been chopped up into <code>you</code> and <code>re</code> and both discarded). Our hand rolled classifier also does not chop up the URL and so <code>http</code> isn’t a token for our hand rolled models.</p>
-<p>From these 5 examples, we see that stop word removal by the HashingVectorizer introduced more false positives.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>The Naive Bayes model works pretty well for a small data set and simple classification task like this one. For classification tasks involving text, it is probably a good starting point due to the simplicity of its implementation. As such, it makes a good baseline from which we can use to evaluate more sophisticated methods.</p>
-<p>It is also pretty instructive to open up the model and figure out the reasons for misclassifications.</p>
-<p>We summarize our findings here:</p>
-<ol style="list-style-type: decimal">
-<li>short tweets are prone to misclassification as it is very likely for them to mostly contain stop words. The remaining tokens will get “more weightage”</li>
-<li>tweets containing a lot of unseen tokens are also prone to misclassification for the same reason as 1</li>
-<li>a bag of words model only takes into account of word frequencies and can be tricked. Context and other language structures will help in classification but they are totally not taken into account of by a bag of words model</li>
-<li>stop words affect classification, as seen from our analysis of the false negatives for the MultinomialNB model.</li>
-</ol>
-<h2 id="afterthoughts">Afterthoughts</h2>
-<p>Even though this is a toy problem, we learnt how to do the following:</p>
-<ol style="list-style-type: decimal">
-<li>Hand roll Naive Bayes and at least have this one method to deal with text data</li>
-<li>Use scikit-learn’s <code>HashVectorizer</code> with some customizations</li>
-<li>Inspect the Naive Bayes model to figure out the reasons for misclassifications</li>
-</ol>
-<p>And we got our hands dirty with machine learning outside of a course like environment or following instructions in a book / tutorial.</p>
-<p>This also happens to be our first blog post in quite a while. To those reading this, Happy New Year folks!</p>
-</div>
-<div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
-        var disqus_identifier = "posts/2017-02-01-my-first-machine-learning-project-using-naive-bayes-to-classify-tweets.md";
-        var disqus_url = "http://blog.pangyanhan.com/posts/2017-02-01-my-first-machine-learning-project-using-naive-bayes-to-classify-tweets.html";
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-]]></summary>
-</entry>
-<entry>
-    <title>My notes on: Job Bouwman's answer to "What is the toughest question ever asked in any interview?"</title>
-    <link href="http://blog.pangyanhan.com/posts/2016-08-01-my-notes-on-job-bouwmans-answer-to-what-is-the-toughest-interview-question-ever-asked-in-any-interview.html" />
-    <id>http://blog.pangyanhan.com/posts/2016-08-01-my-notes-on-job-bouwmans-answer-to-what-is-the-toughest-interview-question-ever-asked-in-any-interview.html</id>
-    <published>2016-08-01T08:11:00Z</published>
-    <updated>2016-08-01T08:11:00Z</updated>
-    <summary type="html"><![CDATA[<h2>My notes on: Job Bouwman's answer to "What is the toughest question ever asked in any interview?"</h2>
-<p class="meta">
-  01 Aug 2016,
-  
-    by <span class="italic">Pang Yan Han</span>
-  
-</p>
-<div class="post-tags">
-  <i class="fa fa-tags"></i>Tags: <a href="/tags/mathematics.html">mathematics</a>
-</div>
-<div class="post">
-  <p>A while back, <a href="https://www.quora.com/What-is-the-toughest-question-ever-asked-in-any-interview/answer/Job-Bouwman">this answer</a> by <a href="https://www.quora.com/profile/Job-Bouwman">Job Bouwman</a> appeared in my Quora digest and I enjoyed reading it (Thank you Job!) so much that I intended to blog about some of the more tricky parts of the answer where I thought some explanations got skipped over.</p>
-<p>The question is:</p>
-<blockquote>
-<p>A right triangle has a hypotenuse equal to 10 and an altitude to the hypotenuse equal to 6. Find the area of the triangle.</p>
-</blockquote>
-<p>Like many other people, I thought it was \( 10 * 6 * \frac{1}{2} = 30 \) but was quite shocked when it turned out wrong. It is due to a misinterpretation of the following:</p>
-<blockquote>
-<p>altitude to the hypotenuse equal to 6</p>
-</blockquote>
-<p>I interpreted this as the height of the triangle. In otherwords, a triangle like this:</p>
-<div class="figure">
-<img src="/images/2016-08-01/wrong_triangle.jpg" />
-
-</div>
-<p>Let’s clarify what altitude to the hypotenuse means.</p>
-<p>Based on the <a href="https://en.wikipedia.org/wiki/Altitude_(triangle)">Wikpedia entry on the Altitude of a triangle</a>:</p>
-<blockquote>
-<p>In geometry, an altitude of a triangle is the line segment through a vertex and perpendicular to (ie. forming a right angle with) a line containing the base (the opposite side of the triangle).</p>
-</blockquote>
-<p>Therefore, the triangle should look something like this:</p>
-<div class="figure">
-<img src="/images/2016-08-01/correct_triangle.jpg" />
-
-</div>
-<p>But we are told that such a triangle cannot exist. Why? By looking at:</p>
-<div class="figure">
-<img src="https://qph.ec.quoracdn.net/main-qimg-3fc73b8551b19db248df929426e90882?convert_to_webp=true" />
-
-</div>
-<p>We see that the hypotenuse of all the right angle triangles is \( 10 \), which also happens to be the diameter of the circle. There are 2 edges other than the hypotenuse and both edges start at the opposite ends of the hypotenuse and meet at a point on the circle. At this point I wondered: Hmm, must triangles like these, ie triangles where one edge is the diameter of a circle, and the other 2 edges start from opposite ends of the hypotenuse and meet at the radius, always be right angle triangles?</p>
-<p>A google search on “<em>triangle with hypotenuse being diameter of circle always right angle</em>” yields the following Wikipedia page on <a href="https://en.wikipedia.org/wiki/Thales&#39;_theorem">Thale’s theorem</a> as the first result, which is exactly what we hoped is true (Google is just amazing). I highly recommend you read the proofs of Thales theorem on the Wiki page - it’s a pretty insightful read, although I can’t see how to extend the second proof to non unit circles.</p>
-<p>Now, this means that <strong>any</strong> right angle triangle with hypotenuse \( 10 \) has a maximum altitude to the hypotenuse of \( 5 \), since \( 5 \) is the radius of the circle and is the absolute maximum the altitude to the hypotenuse can go with the triangle still within the circle. In a very hand-wavy fashion, we can see that if we try to increase the altitude of the hypotenuse so the triangle juts out of the circle, the triangle will no longer be right angled. Similarly, if we increase the altitude of the hypotenuse such that it juts out of the circle but we insist on having it being right angled, then the hypotenuse of the triangle will exceed \( 10 \). I do not have the math chops or the will to prove this so hopefully this is a reasonable explanation.</p>
-<p>With that, the situation seems hopeless. A right angle triangle with hypotenuse \( 10 \) simply cannot have an altitude to the hypotenuse greater than \( 5 \).</p>
-<p>However, Mathematics and human ingenuity often surprises us. This is no exception. So far we’ve only been considering Euclidean geometry. Let’s step into the 3D realm (this is the hard part of coming up with the answer; I also cannot explain how people come up with these insights).</p>
-<p>Now, consider this (ignore the \( radius = \frac{20}{\pi} \) part for now):</p>
-<div class="figure">
-<img src="https://qph.ec.quoracdn.net/main-qimg-b0e50246c7ab05367862f25498cc10fd?convert_to_webp=true" />
-
-</div>
-<p>Imagine you have a deflated balloon. Draw a triangle on it. Now inflate the balloon to a sphere. The edges of the triangle you drew on the balloon will look curved and the triangle will not look like a triangle on a 2D plane, but it is still a triangle. Deflate the balloon and you get back the same triangle - recognize that whether the balloon is deflated or inflated, the triangle did not change - it just looks different to your eyes when the balloon is deflated vs. when it is inflated. The moral of the story is this: if we take any 2 points on the surface of a sphere and connect them with a straight line on the surface, that straight line will looked curved.</p>
-<p>But it seems that we can draw some triangles on the surface of the sphere that will not be triangles on the 2D plane when we deflate the sphere. Hence it is important to realize this: as long as we have a polygon that has 3 vertices and any of the 2 vertices are connected by straight lines on the sphere, we have a triangle on the sphere. This triangle may look strange compared to one on a 2D plane but it is a triangle.</p>
-<p>Let \( A \), \( B \) be on the equator and \( C \) be on the north pole. Let \( AC \) be the straight line on the surface of the sphere joining points \( A \) and \( C \). Let \( BC \) be the straight line on the surface of the sphere joining points \( B \) and \( C \). Let \( AB \) be the straight line on the surface of the sphere joining points \( A \) and \( B \). We have ourselves a triangle in \( ABC \).</p>
-<p>The circle formed by extending the arc \( AC \) is perpendicular to the circle formed by extending the arc \( AB \), so \( \angle CAB \) is a right angle and hence the triangle \( ABC \) is a right angle triangle. Similarly, the circle formed by extending the arc \( BC \) is perpendicular to the circle formed by extending the arc \( AB \) so angle \( \angle CBA \) is also a right angle. Let \( AC \) be the hypotenuse of length \( 10 \). Since \( BC \) has one end on the north pole and the other on the equator, it also has length \( 10 \). \( AB \) is a valid altitude to the hypotenuse \( AC \), since point \( B \) is a vertex on the triangle and point \( A \) sits at the hypotenuse and \( AB \) is perpendicular to the hypotenuse \( AC \). So there we go: we have a right angle triangle whose hypotenuse is \( 10 \) and and altitude to the hypotenuse is \( 6 \).</p>
-<p>To compute the area of this triangle, the key lies in computing its radius. \( C \) is the north pole while \( A \) lies on the equator, so this arc is \( \frac{1}{4} \) of the great circle formed by extending \( AC \). Hence the great circle has circumference \( 40 \), which is given by \( \pi * d \), where \( d \) is the diameter of the great circle and hence the sphere. Hence \( d = \frac{40}{\pi} \) and the radius \( r = \frac{1}{2} * d = \frac{1}{2} * \frac{40}{\pi} = \frac{20}{\pi} \), which is the number shown in the image above.</p>
-<p>We see that our triangle perfectly covers a portion on the upper hemisphere. To be exact, since the diameter of any great circle of the sphere is \( 40 \), our triangle covers \( \frac{6}{40} \) of the area of the upper hemisphere. The surface area of the sphere is given by \( 4 * \pi * r^{2} \), and the upper hemisphere has area half of that, which is \( 2 * \pi * r^{2} \) and our triangle has area \( \frac{6}{40} \) of that, which is \( \frac{6}{40} * 2 * \pi * (\frac{20}{\pi})^{2} = \frac{120}{\pi} \). Ingenious.</p>
-<h2 id="credits">Credits</h2>
-<p>Big thanks to by <a href="https://www.quora.com/profile/Job-Bouwman">Job Bouwman</a> for <a href="https://www.quora.com/What-is-the-toughest-question-ever-asked-in-any-interview/answer/Job-Bouwman">his answer</a>. The relevant images on Quora belongs to Quora and Job Bouwman.</p>
-</div>
-<div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
-        var disqus_identifier = "posts/2016-08-01-my-notes-on-job-bouwmans-answer-to-what-is-the-toughest-interview-question-ever-asked-in-any-interview.md";
-        var disqus_url = "http://blog.pangyanhan.com/posts/2016-08-01-my-notes-on-job-bouwmans-answer-to-what-is-the-toughest-interview-question-ever-asked-in-any-interview.html";
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {

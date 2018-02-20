@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>cabal - installing test dependencies - Pang Yan Han's blog</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pang Yan Han">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/foundation.min.css">
+        <link rel="stylesheet" href="../css/responsive-nav.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="../css/my-pygments-colorscheme.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+        <script src="../js/vendor/modernizr.js"></script>
+        <script src="../js/responsive-nav.min.js"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ["\\(", "\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49506023-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-49506023-1');
+        </script>
+    </head>
+
+    <body>
+      <div class="site">
+        <div class="row">
+          <div class="small-6 columns">
+            <h1 class="title"><a href="../">Pang Yan Han's blog</a></h1>
+          </div>
+          <div class="small-6 columns">
+            <div class="header-icons header-icons-translate show-for-medium-up">
+              <a href="../atom.xml" target="_blank">
+                <i class="fa fa-rss-square fa-4x"></i>
+              </a>
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-4x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-4x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-4x"></i>
+              </a>
+            </div>
+            <div class="header-icons show-for-small-only">
+              <a href="../atom.xml" target="_blank">
+                <i class="fa fa-rss-square fa-2x"></i>
+              </a>
+              <a href="https://github.com/yanhan" target="_blank">
+                <i class="fa fa-github-alt fa-2x"></i>
+              </a>
+              <a href="http://sg.linkedin.com/pub/yan-han-pang/92/158/91b" target="_blank">
+                <i class="fa fa-linkedin fa-2x"></i>
+              </a>
+              <a href="https://twitter.com/yanhan_pang" target="_blank">
+                <i class="fa fa-twitter fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <nav class="header nav-collapse">
+              <ul>
+                <li><a class="extra" href="../">home</a></li>
+                <li><a class="extra" href="../about.html">about</a></li>
+                <li><a class="extra" href="../bookshelf.html">bookshelf</a></li>
+                <li><a class="extra" href="../interesting-talks.html">interesting talks</a></li>
+                <li><a class="extra" href="../archive.html">archive</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <h2>cabal - installing test dependencies</h2>
+<p class="meta">
+  22 Dec 2013,
+  
+    by <span class="italic">Pang Yan Han</span>
+  
+</p>
+<div class="post-tags">
+  <i class="fa fa-tags"></i>Tags: <a href="../tags/haskell.html">haskell</a>, <a href="../tags/cabal.html">cabal</a>, <a href="../tags/yesod.html">yesod</a>
+</div>
+<div class="post">
+  <p><strong>Update Dec 2017:</strong> Dear reader, this post was written in a time when <a href="https://www.haskellstack.org/">Stack</a> did not exist and Haskell users had to deal with cabal directly. For most intents and purposes, you will have a much better experience using <a href="https://www.haskellstack.org/">Stack</a>.</p>
+<p>That being said, the content of this post <em>should</em> still be valid.</p>
+<hr />
+<p>If there is one serious pain point I’ve always felt about Haskell, it is the lack of documentation, or if documentation available, it’s usually very terse and feels like it’s meant more for experts than for beginners.</p>
+<p>This short article will show you how to install test dependencies for a cabalized project using cabal. The longer version is centred around Yesod, but should be generally applicable. There is a tldr version available below.</p>
+<h2 id="software-involved">Software involved:</h2>
+<ul>
+<li>ghc 7.4.1</li>
+<li>cabal 1.18.0.2</li>
+<li>yesod 1.2.4</li>
+<li>yesod-bin 1.2.5.1</li>
+</ul>
+<h2 class="section">
+tldr version
+</h2>
+<p>In short, suppose you have a cabalized project, and somehow when you run its test suite, cabal complains about missing dependencies. Now, inside the <code>.cabal</code> file of the project, you should find a section beginning with a line that looks something like this:</p>
+<div class="highlight"><pre><span></span>test-suite test
+</pre></div>
+
+<p>and below it, there are some <code>build-depends</code> that look like libraries meant for testing. If so, then you are in luck. Simply execute the following commands:</p>
+<div class="highlight"><pre><span></span>cabal configure --enable-tests
+cabal install --only-dependencies --enable-tests
+</pre></div>
+
+<p>And cabal will go on to install the test dependencies. Once that is done, you should be able to run the test suite.</p>
+<p>For a longer version of how I derived the above, read on.</p>
+<h2 class="section">
+Long version
+</h2>
+<p>I was fiddling around with setting up a Yesod scaffolded site, and it went like this:</p>
+<div class="highlight"><pre><span></span>yesod init
+cd yesodtry &amp;&amp; cabal sandbox init &amp;&amp; cabal install &amp;&amp; yesod devel
+</pre></div>
+
+<p>So my project is named <code>yesodtry</code>. Everything went smoothly, and the Yesod scaffolding comes with a “demo” site, that looks like this:</p>
+<div class="figure">
+<img src="../images/2013-12-22/yesod_demo_site.png" />
+
+</div>
+<p>I noticed the <code>yesod test</code> line, and curiosity got the better of me. So I proceeded to enter <code>yesod test</code> onto the command line, and this was what I got:</p>
+<div class="highlight"><pre><span></span>Resolving dependencies...
+Configuring yesodtry-0.0.0...
+cabal: At least the following dependencies are missing:
+hspec -any, yesod-test ==1.2.*
+</pre></div>
+
+<p>Ok, but I noticed that inside <code>yesodtry.cabal</code>, there is a <code>test-suite test</code> section, that looks like this:</p>
+<div class="highlight"><pre><span></span>test-suite test
+    type:              exitcode-stdio-1.0
+    main-is:           main.hs
+    hs-source-dirs:    tests
+    ghc-options:       -Wall
+
+    build-depends: base
+                 , yesodtry
+                 , yesod-test &gt;= 1.2 &amp;&amp; &lt; 1.3
+                 , yesod-core
+                 , yesod
+                 , persistent
+                 , persistent-sqlite
+                 , resourcet
+                 , monad-logger
+                 , transformers
+                 , hspec
+</pre></div>
+
+<p>Notice the <code>yesod-test &gt;= 1.2 &amp;&amp; &lt; 1.3</code> line. So somehow cabal is not installing that dependency. Out of desperation, I tried <code>cabal build test</code>, and I got:</p>
+<div class="highlight"><pre><span></span>cabal: Cannot build the test suite 'test' because test suites are not enabled.
+Run configure with the flag --enable-tests
+</pre></div>
+
+<p>Ok, so it’s telling me to run <code>cabal configure --enable-tests</code>. Below is its output:</p>
+<div class="highlight"><pre><span></span>Resolving dependencies...
+Configuring yesodtry-0.0.0...
+cabal: At least the following dependencies are missing:
+hspec -any, yesod-test ==1.2.*
+</pre></div>
+
+<p>which was the exact same output I got from running <code>yesod test</code> !!! So it seems like we’re in a vicious cycle here, with no way out…</p>
+<p>So I proceeded to ask a <a href="http://stackoverflow.com/questions/20725611/yesod-test-missing-dependency-yesod-test">question on stack overflow</a>. After a few minutes, no one responded, and I could not find similar questions. A lucky google search yielded the following link:</p>
+<div class="highlight"><pre><span></span>https://groups.google.com/forum/#!topic/haskell-cafe/SFoNwaq8wdc
+</pre></div>
+
+<p>Which is an announcement for the release of cabal 1.18.0, and seemingly has nothing to do with our problem, until the following lines in the announcement:</p>
+<div class="highlight"><pre><span></span>* GHCi support. It's now much easier to use ghci when developing your
+packages, especially if those packages require preprocessors (e.g.
+hsc2hs).
+
+Here's how working on a package might look like using the new features:
+
+    # Only once:
+    cabal sandbox init
+    cabal install --only-dependencies --enable-tests
+    # Configure, build, and run tests:
+    cabal test  # now implies configure and build
+    # Play around with the code in GHCi:
+    cabal repl
+</pre></div>
+
+<p>In particular, the <code>cabal install --only-dependencies --enable-tests</code> line. Could that be the magic one liner needed to solve our problems? Fortunately, yes.</p>
+<p>So I proceeded with:</p>
+<div class="highlight"><pre><span></span>cabal install --only-dependencies --enable-tests
+</pre></div>
+
+<p>and cabal goes on to install the dependencies for the <code>test-suite test</code> section.</p>
+<p>Then, I proceeded to run:</p>
+<div class="highlight"><pre><span></span>yesod test
+</pre></div>
+
+<p>And here’s the last few lines of output:</p>
+<div class="highlight"><pre><span></span>Linking dist/build/test/test ...
+Building yesodtry-0.0.0...
+Preprocessing library yesodtry-0.0.0...
+In-place registering yesodtry-0.0.0...
+Preprocessing test suite 'test' for yesodtry-0.0.0...
+Linking dist/build/test/test ...
+Running 1 test suites...
+Test suite test: RUNNING...
+Test suite test: PASS
+Test suite logged to: dist/test/yesodtry-0.0.0-test.log
+1 of 1 test suites (1 of 1 test cases) passed.
+</pre></div>
+
+<p>And I felt a sense of accomplishment… even though I wasn’t really interested in learning how to test a yesod web app at this point in time.</p>
+</div>
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'pangyanhan'; // required: replace example with your forum shortname
+        var disqus_identifier = "posts/2013-12-22-cabal-installing-test-dependencies.md";
+        var disqus_url = "http://blog.pangyanhan.com/posts/2013-12-22-cabal-installing-test-dependencies.html";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+          </div>
+        </div>
+
+        <div class="row footer">
+          <div class="medium-12 columns">
+            <div class="footer-item">
+              <span>Github</span>
+              <a href="https://github.com/yanhan/">github.com/yanhan</a>
+            </div>
+            <div class="hakyll-line">
+              Site proudly generated by
+              <a href="http://jaspervdj.be/hakyll" target="_blank">Hakyll</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="../js/vendor/jquery.js"></script>
+      <script src="../js/foundation.min.js"></script>
+      <script>
+        $(document).foundation();
+        var navigation = responsiveNav(".nav-collapse", {
+          animate: true,
+          transition: 284,
+          label: "",
+          insert: "after",
+          openPos: "relative",
+          navActiveClass: "js-nav-active"
+        });
+      </script>
+    </body>
+</html>
