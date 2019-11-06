@@ -108,6 +108,7 @@
   <i class="fa fa-tags"></i>Tags: <a href="../tags/storm.html">storm</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p>Just today, I have faced an issue which took up (wasted) several hours of my time in a rather painful way, so I thought I should share my findings so that others do not repeat the same mistake.</p>
 <p>I was learning <a href="http://storm.incubator.apache.org/">Storm</a> and one of the resources I found was the <a href="https://github.com/apache/incubator-storm/tree/master/examples/storm-starter">storm-starter</a> repository. While I was disappointed that there were no instructions for setup using Leiningen (other than a one-liner pointing to the Leiningen repo, more on this towards the end of this article), I proceeded to set up Maven, and ran the <code>WordCountTopology</code> using:</p>
 <div class="highlight"><pre><span></span>mvn compile exec:java -Dstorm.topology=storm.starter.WordCountTopology

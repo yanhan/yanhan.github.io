@@ -34,6 +34,7 @@
   <i class="fa fa-tags"></i>Tags: <a href="/tags/firefox.html">firefox</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p><strong>NOTE:</strong> This applies to Firefox 57 on Linux.</p>
 <ol style="list-style-type: decimal">
 <li>Open a new tab and type <code>about:config</code> in the address bar and press enter</li>
@@ -81,6 +82,7 @@
   <i class="fa fa-tags"></i>Tags: <a href="/tags/linux.html">linux</a>, <a href="/tags/unix.html">unix</a>, <a href="/tags/top.html">top</a>, <a href="/tags/devops.html">devops</a>, <a href="/tags/sre.html">sre</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p>Over the last week, I have been spending some of my free time learning how to use the <code>top</code> program.</p>
 <p>These are some notes I’ve written on it: <a href="https://github.com/yanhan/notes/blob/master/top.md" class="uri">https://github.com/yanhan/notes/blob/master/top.md</a>.</p>
 <p>I believe this is just a 5 minute read, so do check it out!</p>
@@ -138,6 +140,7 @@
   <i class="fa fa-tags"></i>Tags: <a href="/tags/haskell.html">haskell</a>, <a href="/tags/zsh.html">zsh</a>, <a href="/tags/zsh-git-prompt.html">zsh-git-prompt</a>, <a href="/tags/deep%20dive.html">deep dive</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p>In <a href="http://www.catb.org/esr/faqs/hacker-howto.html">How To Become A Hacker</a>, Eric S. Raymond gives the following golden advice:</p>
 <blockquote>
 <p>Learning to program is like learning to write good natural language. The best way to do it is to read some stuff written by masters of the form, write some things yourself, read a lot more, write a little more, read a lot more, write some more … and repeat until your writing begins to develop the kind of strength and economy you see in your models.</p>
@@ -1770,6 +1773,7 @@ A           U    unmerged, added by us
   <i class="fa fa-tags"></i>Tags: <a href="/tags/zsh.html">zsh</a>, <a href="/tags/zsh-git-prompt.html">zsh-git-prompt</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p>This post shows you how to install <a href="https://github.com/olivierverdier/zsh-git-prompt">zsh-git-prompt</a>, a program which customizes the zsh prompt by displaying additional information whenever a user cds into a git repository.</p>
 <p>It is meant for readers of my other blog post, <a href="/posts/haskell-deep-dive-zsh-git-prompt.html">Haskell deep dive: zsh-git-prompt</a>, who do not have zsh installed and/or do not have zsh-git-prompt installed.</p>
 <p><strong>NOTE:</strong> If you do not wish to install zsh and/or zsh-git-prompt but just want to check out what it does, head over to <a href="https://github.com/yanhan/zsh-git-prompt-docker" class="uri">https://github.com/yanhan/zsh-git-prompt-docker</a> for a Docker image that has zsh-git-prompt installed, along with instructions on how to use it.</p>
@@ -1855,6 +1859,7 @@ stack install
   <i class="fa fa-tags"></i>Tags: <a href="/tags/swagger.html">swagger</a>, <a href="/tags/swagger-ui.html">swagger-ui</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p>This post shows you how to use Swagger UI with any codebase. There are <strong>no library dependencies</strong> once you extract the assets. The only things you need are a web server and a file containing the API documentation in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md">OpenAPI format</a>.</p>
 <p>At the end of the post, you should be able to use your web server to host API documentation that looks something like <a href="http://petstore.swagger.io/">http://petstore.swagger.io</a></p>
 <p>Like many of my posts, this is technical and there are instructions you have to follow.</p>
@@ -2035,6 +2040,7 @@ pip install -r requirements.txt
   <i class="fa fa-tags"></i>Tags: <a href="/tags/gpg.html">gpg</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p>You want to exchange a message / file securely with another party and do not want anyone else to look at the information. This is where you can use GPG to encrypt the message / file you want to send.</p>
 <p>The overview of the steps are as follows:</p>
 <ol style="list-style-type: decimal">
@@ -2320,6 +2326,7 @@ Primary key fingerprint: 85AF 5410 058C FE1D 76DA  986F 910C B963 468A 0F16
   <i class="fa fa-tags"></i>Tags: <a href="/tags/python.html">python</a>, <a href="/tags/mac%20os%20x.html">mac os x</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p><strong>NOTE:</strong> This post is pretty much opinion based on my own experience. Also take note of the date it was written because things might have changed since then. Your mileage may vary.</p>
 <p>The best way to install python on Mac OS X is using <a href="https://github.com/pyenv/pyenv">pyenv</a>. Why do I say so?</p>
 <ul>
@@ -2411,6 +2418,7 @@ pip install -r requirements.txt
   <i class="fa fa-tags"></i>Tags: <a href="/tags/haskell.html">haskell</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <h2 id="problem-statement">Problem Statement</h2>
 <p>Figure out the type of the following Haskell code, why it has that type, and what it does:</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="p">)</span> <span class="o">.</span> <span class="p">(</span><span class="o">.</span><span class="p">)</span>
@@ -2547,6 +2555,7 @@ c:  a2 -&gt; c2
   <i class="fa fa-tags"></i>Tags: <a href="/tags/haskell.html">haskell</a>, <a href="/tags/vim.html">vim</a>, <a href="/tags/haskell-vim-now.html">haskell-vim-now</a>, <a href="/tags/ghcmod-vim.html">ghcmod-vim</a>, <a href="/tags/ghc-mod.html">ghc-mod</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p><strong>NOTE:</strong> This post features a very hacky way to work around things which will likely never be merged into the ghcmod-vim project. It is just a place for me to document what has worked for myself in case I encounter the same issue again. <strong>This also assumes you are primarily using <a href="https://docs.haskellstack.org/en/stable/README/">Stack</a> for your Haskell projects.</strong></p>
 <h2 id="introduction-problem-statement">Introduction / Problem Statement</h2>
 <p>Yesterday afternoon, I took some time to install <a href="https://github.com/begriffs/haskell-vim-now">haskell-vim-now</a>. Among the list of features I saw on the README, what caught my attention was its ability to show the type of an expression in Haskell source code by typing <code>,ht</code> in normal mode. So I tried it on a Haskell file and I see the following text in red at the status line:</p>

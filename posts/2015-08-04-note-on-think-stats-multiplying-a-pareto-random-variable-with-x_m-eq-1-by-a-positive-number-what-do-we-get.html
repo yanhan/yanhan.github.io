@@ -108,6 +108,7 @@
   <i class="fa fa-tags"></i>Tags: <a href="../tags/probability.html">probability</a>
 </div>
 <div class="post">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
   <p><strong>NOTE:</strong> Having only a very basic and recently acquired formal education in Probability and Statistics, I have no idea how to write a Pareto random variable in Math notation. And I can’t seem to find it on the Internet due to my poor googling skills. So I’m going to write: \( X \sim Pareto(x_m = j, \alpha = k) \) to mean that \( X \) is a Pareto random variable with parameters \( x_m = j, \alpha = k \). If you know the actual Math notation for writing a Pareto random variable, please share it with me, I’ll be very glad to know it!!!</p>
 <p>So I was onto Chapter 4.2 of <a href="http://greenteapress.com/thinkstats/">Think Stats</a> which featured the Pareto Distribution. Exercise 4.3 was on writing a function <code>paretovariate</code> to generate a Pareto random variable with parameters \( x_m, \alpha \). So it turns out that the <code>random</code> module in Python has a function <code>random.paretovariate</code> whose documentation looks like this:</p>
 <blockquote>
