@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="counting,combinatorics,math"><meta property="og:title" content="Note on Counting: Exercise 13.26 answer" />
+<meta property="og:description" content="Similar to the last post, this is a short note detailing some of my thoughts to the answer to Exercise 13.26 in the book Counting, by Prof Koh Khee Meng and Prof Tan Eng Guan. (NOTE: Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I&#39;ll do a review of it soon.)
+Question:
+ Find the number of 4-tuples of integers" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-08-13-note-on-counting-exercise-13.26-answer/" />
+<meta property="article:published_time" content="2015-08-13T22:48:00+00:00" />
+<meta property="article:modified_time" content="2015-08-13T22:48:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Note on Counting: Exercise 13.26 answer"/>
+<meta name="twitter:description" content="Similar to the last post, this is a short note detailing some of my thoughts to the answer to Exercise 13.26 in the book Counting, by Prof Koh Khee Meng and Prof Tan Eng Guan. (NOTE: Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I&#39;ll do a review of it soon.)
+Question:
+ Find the number of 4-tuples of integers"/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" href="https://yanhan.github.io/css/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://yanhan.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+  <script defer src="https://yanhan.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Note on Counting: Exercise 13.26 answer | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">13</span>
+<span class="rest">Aug 2015</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Note on Counting: Exercise 13.26 answer</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/combinatorics/"> combinatorics </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/counting/"> counting </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/math/"> math </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>Similar to the last post, this is a short note detailing some of my thoughts to the answer to Exercise 13.26 in the book <a href="http://amzn.com/B0058BNM7E">Counting</a>, by Prof Koh Khee Meng and Prof Tan Eng Guan. (<strong>NOTE:</strong> Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I'll do a review of it soon.)</p>
+
+<p>Question:</p>
+
+<blockquote>
+<p>Find the number of 4-tuples of integers</p>
+
+<p>(i) \( (a, b, c, d) \) satisfying \( 1 &lt;= a &lt; b &lt; c &lt; d &lt;= 30; \)</p>
+
+<p>(ii) \( (p, q, r, s) \) satisfying \( 1 &lt;= p &lt;= q &lt;= r &lt;= s &lt;= 30; \)</p>
+</blockquote>
+
+<p>The emphasis of this note is on part (ii). However, I shall talk a bit about part (i).</p>
+
+<h2 id="part-i">Part (i)</h2>
+
+<p>Without knowing the mathematics behind it, this problem will seem to be quite tedious if one tries to &quot;brute force&quot; it or approach it entirely from an entirely &quot;computational&quot; point of view. What I mean is this: we know that \( 1 &lt;= a &lt; b &lt; c &lt; d &lt;= 30 \), so \( 1 &lt;= a &lt;= 27 \). Now if we fix \( a = 1 \), we know that \( 2 &lt;= b &lt;= 28 \). Now if we go on to fix \( b = 2 \), we know that \( 3 &lt;= c &lt;= 29 \). If we carry on to fix \( c = 3 \), we know that \( 4 &lt;= d &lt;= 30 \). Ok so for \( a = 1, b = 2, c = 3 \), there are \( 30 - 4 + 1 = 27 \) possible 4-tuples \( a, b, c, d \). And this is just one branch of a huge tree. We can go on to try out \( a = 1, b = 3, ... \) . And we quickly see how &quot;difficult&quot; this problem can become.</p>
+
+<p>Now, enter the beauty of combinatorics. I only know the bare basics of this field (I've very briefly browsed through some books covering more advanced topics in combinatorics and man, they're difficult, very difficult) but I liken combinatorics to counting on a massive scale in an elegant way. Sometimes, we get an integer solution especially for a particular case of a more general problem, other times we get a formula and while it may not be computationally extremely fast to compute, it totally shines compared to a &quot;brute force&quot; method. So how does one think about this problem using combinatorics?</p>
+
+<p>Observe that since \( a &lt; b &lt; c &lt; d \), \ \(a, b, c \) and \( d \) must be unique. Combine this with \( 1 &lt;= a \) and \( d &lt;= 30 \), we quickly see that we're trying to pick 4 unique integers from \( \left\{ 1, 2, ..., 30 \right\} \) and there's only one way to arrange in ascending order any 4 unique integers from this set. Therefore, there are \( { 30 \choose 4 } \) ways to do this.</p>
+
+<h2 id="part-ii">Part (ii)</h2>
+
+<p>Part (ii) looks similar to Part (i) except that the less than signs have now become less than or equal to signs. Yet that changes the nature of the problem. My initial approach to Part (ii) was incorrect and I'm guessing that it is probably a common mistake made by newbies. I totally forgot what I was thinking about when I was doing it but my logic was probably something along the following lines: Since \( p &lt;= q &lt;= r &lt;= s \) and \( 1 &lt;= p \) and \( s &lt;= 30 \), then there are 30 ways to choose \( p \), 30 ways to choose \( q \), 30 ways to choose \( r \) and 30 ways to choose \( s \). Hence there are \( 30^4 \) such tuples \( (p, q, r, s) \) . The major mistake of approach is that it does not take into account of the fact that \( p &lt;= q &lt;= r &lt;= s \) and in fact implies that \( p, q, r, s \) can be unordered. The fact that this &quot;solution&quot; is the same as that of \( (p, q, r, s) \) where \( 1 &lt;= p, q, r, s &lt;= 30 \) should immediately sound an alarm.</p>
+
+<p>I shall present 2 approaches. The first I thought of it myself after reading the answer in the Solutions Manual and encountering something similar elsewhere, the second is from the Solutions Manual but elaborated in more detail.</p>
+
+<h2 id="part-ii-approach-1">Part (ii): Approach 1</h2>
+
+<p>Since \( p &lt;= q &lt;= r &lt;= s \), this means that it is possible to choose an integer from the set \( \left\{ 1, 2, ..., 30 \right\} \) more than once. Hence 4-tuples like \( (1, 1, 1, 1), (5, 5, 10, 20), (26, 26, 26, 30) \) are tuples satisfying the conditions. Now, it may seem very difficult to solve this problem, but things take a turn once we think about how to reduce this to the problem of distributing identical objects into distinct boxes, where boxes can be empty. Here, the boxes are numbered \( 1, 2, ..., 30 \) and we have 4 identical objects to distribute into 30 boxes. Putting one object into a box labelled \( i \) means that the integer \( i \) appears in the 4-tuple once. In general, placing \( k \) objects into a box labelled \( i \) means that the integer \( i \) appears \( k \) times in the 4-tuple. And there is only one way to arrange any 4 integers that are picked. It should not difficult to see that there is a bijection between the set of all \( (p, q, r, s) \) where \( 1 &lt;= p &lt;= q &lt;= r &lt;= s &lt;= 30 \) and the set of all configurations of distributing 4 identical objects into 30 distinct boxes, each of which may be empty. I shall not prove this bijection here. Hence the number of such 4-tuples is \( { 4 + 30 - 1 \choose 4 } = { 33 \choose 4 }\).</p>
+
+<h2 id="part-ii-approach-2-answer-in-the-solution-manual">Part (ii): Approach 2 (answer in the Solution Manual)</h2>
+
+<p>Solution in manual:</p>
+
+<blockquote>
+<p>Let \( q' = q + 1,  r' = r + 2 \) and \( s' = s + 3 \). Then the problem can be restated as: Find the number of 4-tuples of integers \( (p, q', r', s') \) satisfying \( 1 &lt;= p &lt; q' &lt; r' &lt; s' &lt;= 33 \). This is equivalent to choosing 4 integers from \( \left\{ 1, 2, ..., 33 \right\} \) and assigning them in increasing magnitude to \( p, q', r' \) and \( s' \). Thus, there are \( { 33 \choose 4 } \) ways.</p>
+</blockquote>
+
+<p>If we take this solution as correct, it shouldn't be too hard to see that the number of 4-tuples \( (p, q', r', s') \) satisfying \( 1 &lt;= p &lt; q' &lt; r' &lt; s' &lt;= 33 \) is exactly \( { 33 \choose 4 } \), especially after we've solved Part (i) of the question.</p>
+
+<p>The next question that'll probably come to mind is: is this given solution actually correct? The only way to find out is to prove it. We shall do it by establishing a bijection \( f : A \mapsto B \) where</p>
+
+<p><span  class="math">\[A = \left\{ (p, q, r, s) \right\} \text{ where } 1 <= p <= q <= r <= s <= 30  \\
+B = \left\{ (p, q', r', s') \right\} \text{ where } 1 <= p < q' < r' < s' <= 33 \\
+\text{ and } q' = q + 1, r' = r + 2, s' = s + 3
+\]</span></p>
+
+<p>First, we want to prove that the mapping \( f \) is injective.</p>
+
+<p>We will prove this using the tedious way, by showing that 2 tuples \( (a, b, c, d) \) and \( (e, f, g, h) \), both from the set \( A \), but differing in value in only one position, will result in different 4-tuples in the set \( B \) via the mapping \( f \). We shall do that for each position in the 4-tuple.</p>
+
+<p>First position: Consider \( (a, b, c, d) \in A \) and \( (a', b, c, d)\in A \) where \( a \neq a' \). Then \( f((a, b, c, d)) = (a, b + 1, c + 2, d + 3) \) and \( f((a', b, c, d)) = (a', b + 1, c + 2, d + 3) \) which differ in the first position.</p>
+
+<p>Second position: Consider \( (a, b, c, d) \in A \) and \( (a, b', c, d) \in A \) where \( b \neq b' \). Then \( f((a, b, c, d)) = (a, b + 1, c + 2, d + 3) \) and \( f((a, b', c, d)) = (a, b' + 1, c + 2, d + 3) \) which differ in the second position.</p>
+
+<p>Third position: Consider \( (a, b, c, d) \in A \) and \( (a, b, c', d) \in A \) where \( c \neq c' \). Then \( f((a, b, c, d)) = (a, b + 1, c + 2, d + 3) \) and \( f((a, b, c', d)) = (a, b + 1, c' + 2, d + 3) \) which differ in the third position.</p>
+
+<p>Fourth position: Consider \( (a, b, c, d) \in A \) and \( (a, b, c, d') \in A \) where \( d \neq d' \). Then \( f((a, b, c, d)) = (a, b + 1, c + 2, d + 3) \) and \( f((a, b, c, d')) = (a, b + 1, c + 2, d' + 3) \) which differ in the fourth position.</p>
+
+<p>Notice that for any 2 distinct 4-tuples \( (a, b, c, d) \) and \( (e, f, g, h) \), as long as some position differs, that position will still differ in \( f((a, b, c, d)) \) and \( f((e, f, g, h)) \). Hence \( f((a, b, c, d)) \neq f((e, f, g, h)) \) as long as \( (a, b, c, d) \neq (e, f, g, h) \) and the mapping \( f \) is injective.</p>
+
+<p>Now we want to prove that the mapping \( f \) is surjective.</p>
+
+<p>Consider \( (p, q', r', s') \in B \). We know that \( p &lt; q' &lt; r' &lt; s' \). Consider \( (p, q' - 1, r' - 2, s' - 3)  \), the 4-tuple that will result by applying the inverse operation of \( f \). We want to show that \( (p, q' - 1, r' - 2, s' - 3) \in A \).</p>
+
+<p>For \( p \): We know that \( 1 &lt;= p &lt;= 30 \).</p>
+
+<p>For \( q \): We know that \( p &lt; q' &lt;= 31 \), hence \( p &lt;= q' - 1 \). Combine this with \( 1 &lt;= p \) and \( q' - 1 &lt;= 30 \) and we have \( 1 &lt;= q' - 1 &lt;= 30 \).</p>
+
+<p>For \( r \): We know that \( q' &lt; r' &lt;= 32 \), hence \( q' &lt;= r' - 1 \) and \( q' - 1 &lt;= r' - 2 \). Combine this with \( 1 &lt;= q' - 1 \) and \( r' - 2 &lt;= 30 \) and we have \( 1 &lt;= r' - 2 &lt;= 30 \).</p>
+
+<p>For \( s \): We know that \( r' &lt; s' &lt;= 33 \), hence \( r' &lt;= s' - 1 \) and \( r' - 2 &lt;= s' - 3 \). Combine this with \( 1 &lt;= r' - 2 \) and \( s' - 3 &lt;=  30 \) and we have \( 1 &lt;= s' - 3 &lt;= 30 \).</p>
+
+<p>Therefore, \( 1 &lt;= p, q' - 1, r' - 2, s' - 3 &lt;= 30 \) and \( (p, q' - 1, r' - 2, s' - 3) \in A \) and the mapping \( f \) is surjective.</p>
+
+<p>Since \( f \) is injective and surjective, \( f \) is bijective. Hence \( \left\vert{A}\right\vert = \left\vert{B}\right\vert \) and we know that \( \left\vert{B}\right\vert = { 33 \choose 4 } \), so \( \left\vert{A}\right\vert = {33 \choose 4} \).</p>
+
+<p>Alright, we know for sure that the solution is correct, but, how does one come up with the insight that is the mapping \( f \)? To me, that is still a mystery. It's kind of like seeing Strassen Algorithm and wondering how Strassen came up with it; it does take a very smart and creative person to come up with such insights.</p>
+
+<p>Perhaps the authors intended for Part (i) of the question to be a hint, since we do know how to compute the size of the set \( \left\{(p, q, r, s)\right\} \) where \( 1 &lt;= p &lt; q &lt; r &lt; s &lt;= 30 \). Then perhaps the reader will think about reducing Part (ii) to something solvable by the same concept in Part (i)? Haha, only the authors will know.</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

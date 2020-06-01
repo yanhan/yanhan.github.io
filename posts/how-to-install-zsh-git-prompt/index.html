@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="zsh,zsh-git-prompt"><meta property="og:title" content="How to install zsh-git-prompt" />
+<meta property="og:description" content="This post shows you how to install zsh-git-prompt, a program which customizes the zsh prompt by displaying additional information whenever a user cds into a git repository.
+It is meant for readers of my other blog post, Haskell deep dive: zsh-git-prompt, who do not have zsh installed and/or do not have zsh-git-prompt installed.
+NOTE: If you do not wish to install zsh and/or zsh-git-prompt but just want to check out what it does, head over to https://github." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/how-to-install-zsh-git-prompt/" />
+<meta property="article:published_time" content="2017-12-09T13:19:00+00:00" />
+<meta property="article:modified_time" content="2017-12-09T13:19:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to install zsh-git-prompt"/>
+<meta name="twitter:description" content="This post shows you how to install zsh-git-prompt, a program which customizes the zsh prompt by displaying additional information whenever a user cds into a git repository.
+It is meant for readers of my other blog post, Haskell deep dive: zsh-git-prompt, who do not have zsh installed and/or do not have zsh-git-prompt installed.
+NOTE: If you do not wish to install zsh and/or zsh-git-prompt but just want to check out what it does, head over to https://github."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>How to install zsh-git-prompt | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">09</span>
+<span class="rest">Dec 2017</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">How to install zsh-git-prompt</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/zsh/"> zsh </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/zsh-git-prompt/"> zsh-git-prompt </a>
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>This post shows you how to install <a href="https://github.com/olivierverdier/zsh-git-prompt">zsh-git-prompt</a>, a program which customizes the zsh prompt by displaying additional information whenever a user cds into a git repository.</p>
+<p>It is meant for readers of my other blog post, <a href="/posts/haskell-deep-dive-zsh-git-prompt.html">Haskell deep dive: zsh-git-prompt</a>, who do not have zsh installed and/or do not have zsh-git-prompt installed.</p>
+<p><strong>NOTE:</strong> If you do not wish to install zsh and/or zsh-git-prompt but just want to check out what it does, head over to <a href="https://github.com/yanhan/zsh-git-prompt-docker">https://github.com/yanhan/zsh-git-prompt-docker</a> for a Docker image that has zsh-git-prompt installed, along with instructions on how to use it.</p>
+<h2 id="installing-zsh">Installing zsh</h2>
+<p>Follow the instructions at <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH">https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH</a>. For simplicity, you should use your system&rsquo;s package manager to do it.</p>
+<h2 id="recommended-oh-my-zsh">Recommended: oh-my-zsh</h2>
+<p>You are highly recommended to install <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>, because it comes with some nice default settings and has a pretty big ecosystem of plugins and themes that you can later on choose to use for your customized setup.</p>
+<p>Follow the installation instructions at <a href="https://github.com/robbyrussell/oh-my-zsh#basic-installation">https://github.com/robbyrussell/oh-my-zsh#basic-installation</a>. I use the following command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>This command might error out and say you are missing some programs. Install what it says that you lack using your package manager. When I was building <a href="https://github.com/yanhan/zsh-git-prompt-docker">the Docker image for this</a>, it was complaining about missing <code>make</code> and <code>xz</code>.</p>
+<h2 id="installing-zsh-git-prompt">Installing zsh-git-prompt</h2>
+<p>We will be cloning the zsh-git-prompt git repo at your home directory.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~
+git clone https://github.com/olivierverdier/zsh-git-prompt.git
+cd zsh-git-prompt
+stack setup
+stack build
+stack install
+</code></pre></div><p>The <code>stack install</code> command should install a binary named <code>gitstatus</code> in the <code>~/zsh-git-prompt/src/.bin/</code> directory (not to be confused with the actual <code>git status</code> command). Do verify that this is the case.</p>
+<p>Append the following to your <code>~/.zshrc</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">source ~/zsh-git-prompt/zshrc.sh
+GIT_PROMPT_EXECUTABLE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;haskell&#39;</span>
+<span style="color:#75715e"># an example prompt</span>
+PROMPT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;%B%m%~%b$(git_super_status) %# &#39;</span>
+</code></pre></div><p>Feel free to change the value of the <code>PROMPT</code>, so long it includes the <code>$(git_super_status)</code> somewhere. Personally, I use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">PROMPT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_super_status)&#39;</span>
+</code></pre></div><p>For more information on what those funny <code>%B</code>, <code>%m</code>, <code>%{$fg[cyan]%}</code>, <code>%c</code> and so on mean, please consult <a href="http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html">http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html</a></p>
+<h2 id="reload-the-shell-and-see-what-zsh-git-prompt-does">Reload the shell and see what zsh-git-prompt does</h2>
+<p>If you are already on zsh, just run the following to source the <code>~/.zshrc</code> and load the changes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">source</span> <span style="color:#f92672">~/.</span>zshrc
+</code></pre></div><p>Otherwise, run <code>zsh</code> to open a new zsh shell.</p>
+<p>To see what zsh-git-prompt does, cd to a git repository. You should see that your prompt has additional information about the git repository, similar to <code>(master|✔)</code> or <code>(somebranch|…)</code> or <code>(feature-branch|5↑2↓)</code>. If you cd to a directory which is not inside a git repo, you should not see that information.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/olivierverdier/zsh-git-prompt">https://github.com/olivierverdier/zsh-git-prompt</a> (zsh-git-prompt GitHub repo)</li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a> (oh-my-zsh GitHub repo)</li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH">https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH</a> (Instructions to install zsh, provided by oh-my-zsh)</li>
+<li><a href="http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html">http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html</a> (zsh prompt expansion)</li>
+</ul>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="probability"><meta property="og:title" content="Note on Think Stats: Multiplying a Pareto random variable with x_m = 1 by a positive number - what do we get?" />
+<meta property="og:description" content="NOTE: Having only a very basic and recently acquired formal education in Probability and Statistics, I have no idea how to write a Pareto random variable in Math notation. And I can&#39;t seem to find it on the Internet due to my poor googling skills. So I&#39;m going to write: \( X \sim Pareto(x_m = j, \alpha = k) \) to mean that \( X \) is a Pareto random variable with parameters \( x_m = j, \alpha = k \)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-08-04-note-on-think-stats-multiplying-a-pareto-random-variable-with-x_m-eq-1-by-a-positive-number-what-do-we-get/" />
+<meta property="article:published_time" content="2015-08-04T23:14:00+00:00" />
+<meta property="article:modified_time" content="2015-08-04T23:14:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Note on Think Stats: Multiplying a Pareto random variable with x_m = 1 by a positive number - what do we get?"/>
+<meta name="twitter:description" content="NOTE: Having only a very basic and recently acquired formal education in Probability and Statistics, I have no idea how to write a Pareto random variable in Math notation. And I can&#39;t seem to find it on the Internet due to my poor googling skills. So I&#39;m going to write: \( X \sim Pareto(x_m = j, \alpha = k) \) to mean that \( X \) is a Pareto random variable with parameters \( x_m = j, \alpha = k \)."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" href="https://yanhan.github.io/css/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://yanhan.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+  <script defer src="https://yanhan.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Note on Think Stats: Multiplying a Pareto random variable with x_m = 1 by a positive number - what do we get? | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">04</span>
+<span class="rest">Aug 2015</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Note on Think Stats: Multiplying a Pareto random variable with x_m = 1 by a positive number - what do we get?</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/probability/"> probability </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p><strong>NOTE:</strong> Having only a very basic and recently acquired formal education in Probability and Statistics, I have no idea how to write a Pareto random variable in Math notation. And I can't seem to find it on the Internet due to my poor googling skills. So I'm going to write: \( X \sim Pareto(x_m = j, \alpha = k) \) to mean that \( X \) is a Pareto random variable with parameters \( x_m = j, \alpha = k \). If you know the actual Math notation for writing a Pareto random variable, please share it with me, I'll be very glad to know it!!!</p>
+
+<p>So I was onto Chapter 4.2 of <a href="http://greenteapress.com/thinkstats/">Think Stats</a> which featured the Pareto Distribution. Exercise 4.3 was on writing a function <code>paretovariate</code> to generate a Pareto random variable with parameters \( x_m, \alpha \). So it turns out that the <code>random</code> module in Python has a function <code>random.paretovariate</code> whose documentation looks like this:</p>
+
+<blockquote>
+<p>Help on method paretovariate in module random:</p>
+
+<p><strong>paretovariate</strong>(self, alpha) method of random.Random instance</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Pareto distribution.  alpha is the shape parameter.</p>
+</blockquote>
+
+<p>And indeed the <code>random.paretovariate</code> does not take in a \( x_m \) parameter. The author mentioned that \( x_m = 1 \) for <code>random.paretovariate</code>, and that by multiplying the random variable generated by <code>random.paretovariate</code> by a positive number \( j \), we obtain a new Pareto random variable with \( x_m = j \) instead of \( x_m = 1 \). Writing a function called <code>paretovariate</code> which allows a custom \( x_m \) is one objective of Exercise 4.3. My code for it is as follows:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">import random
+
+def paretovariate(alpha, x_m):
+  return x_m * random.paretovariate(alpha)</code></pre>
+<p>But... how do we know that the author is telling us the truth? I mean, usually the author is correct, but, we are given this transformation without proof. So I set out to prove for myself the following:</p>
+
+<p>Given \( X \sim Pareto(x_m = 1, \alpha = k) \), multiplying \( X \) by \( j &gt; 0 \) and denoting the resulting random variable as \( Y \), we have \( Y \sim Pareto(x_m = j, \alpha = k) \).</p>
+
+<p>And... I must be really rusty. I forgot how to prove equivalence between 2 random variables. Eventually, I remembered that this can be done by showing that they share the same moment generating function. So first we gotta find out what the mgf of a Pareto random variable is. On the <a href="https://en.wikipedia.org/wiki/Pareto_distribution">Wikipedia entry of the Pareto Distribution</a>, we see this intimidating equation:</p>
+
+<p><span  class="math">\[ \alpha(-x_m t)^{\alpha} \Gamma(-\alpha, -x_m t) \ \ \text{for} \ \ t < 0\ \]</span></p>
+
+<p>which I must say again, looks really intimidating. And while I do understand most of the individual symbols, I don't know what the gamma symbol stands for (it's probably not the gamma function since that takes in a single value) and so proving things via the mgf route didn't seem very feasible to me.</p>
+
+<p>I'd probably have given up if not for recalling that we can prove the same thing by showing that the 2 random variables share the same CDF. In the book, the CDF of the Pareto distribution is given by:</p>
+
+<p><span  class="math">\[CDF(x) = 1 - (\frac{x}{x_m})^{-\alpha}
+\]</span></p>
+
+<p>which is slightly different from that given in Wikipedia but they're essentially the same thing. So \( X \sim Pareto(x_m = 1, \alpha = \alpha) \) has CDF \( F_X(x) = 1 - (\frac{x}{1})^{-\alpha} = 1 - x^{-\alpha} \).</p>
+
+<p>Now, let \( j &gt; 0 \) be a constant, \( X \sim Pareto(x_m = 1, \alpha = k) \) for some \( k &gt; 0 \). Let \( Y = j * X \). We want to show that \( Y \sim Pareto(x_m = j, \alpha = k) \) by showing that \( F_Y(x) = 1 - (\frac{x}{j})^{-k} \).</p>
+
+<p><strong>Proof:</strong></p>
+
+<p><span  class="math">\[
+\begin{aligned}
+F_Y(x) =& \ \ \mathbb{P}(Y <= x)\\
+=& \ \ \mathbb{P}(j * X <= x)\\
+=& \ \ \mathbb{P}(X <= \frac{x}{j})\\
+=& \ \ 1 - (\frac{x}{j})^{-k}
+\end{aligned}
+\]</span></p>
+
+<p>as desired. Hence \( Y \sim Pareto(x_m = j, \alpha = k) \), where \( X \sim Pareto(x_m = 1, \alpha = k), j &gt; 0, Y = j * X \).</p>
+
+<h2 id="afterthoughts">Afterthoughts</h2>
+
+<p>While the actual proof was pretty short, I thought that this was a rather meaningful exercise and it certainly helped me brush up my probability chops.</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

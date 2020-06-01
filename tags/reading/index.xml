@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>reading on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/reading/</link>
+    <description>Recent content in reading on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Tue, 31 Dec 2013 21:00:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/reading/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Year 2013: Top 10 Reads</title>
+      <link>https://yanhan.github.io/posts/2013-12-31-year-2013-top-10-reads/</link>
+      <pubDate>Tue, 31 Dec 2013 21:00:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2013-12-31-year-2013-top-10-reads/</guid>
+      <description>
+      
+      After seeing Michael Fogus’ review of year 2013 , I was inspired to do a similar, but less ambitious review, just ...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

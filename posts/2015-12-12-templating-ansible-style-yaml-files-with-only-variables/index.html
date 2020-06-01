@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="ansible,yaml"><meta property="og:title" content="Templating Ansible style YAML files with only variables" />
+<meta property="og:description" content="Introduction Suppose you are working on a project in Ansible and you need want to combine some YAML files which contain variables, such as those in group_vars, all into one single file. However, some / all of these YAML files make heavy use of interpolation and you do not want to reinvent the wheel just to achieve your objective. Ideally, you want to make use of the Ansible codebase to do this." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-12-12-templating-ansible-style-yaml-files-with-only-variables/" />
+<meta property="article:published_time" content="2015-12-12T22:42:00+00:00" />
+<meta property="article:modified_time" content="2015-12-12T22:42:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Templating Ansible style YAML files with only variables"/>
+<meta name="twitter:description" content="Introduction Suppose you are working on a project in Ansible and you need want to combine some YAML files which contain variables, such as those in group_vars, all into one single file. However, some / all of these YAML files make heavy use of interpolation and you do not want to reinvent the wheel just to achieve your objective. Ideally, you want to make use of the Ansible codebase to do this."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Templating Ansible style YAML files with only variables | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">12</span>
+<span class="rest">Dec 2015</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Templating Ansible style YAML files with only variables</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/ansible/"> ansible </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/yaml/"> yaml </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<h2 id="introduction">Introduction</h2>
+<p>Suppose you are working on a project in Ansible and you need want to combine some YAML files which contain variables, such as those in <code>group_vars</code>, all into one single file. However, some / all of these YAML files make heavy use of interpolation and you do not want to reinvent the wheel just to achieve your objective. Ideally, you want to make use of the Ansible codebase to do this.</p>
+<p>If the above sounds like the problem you&rsquo;re trying to tackle, then this post and the accompanying code <a href="https://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables">here on GitHub</a> is what you need.</p>
+<h2 id="how-to-run-the-code">How to run the code:</h2>
+<p>Clone the git repository:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone git://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables.git
+</code></pre></div><p>Run the <code>setup.sh</code> script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./setup.sh
+</code></pre></div><p>Put all the YAML files of interest in one folder. Let&rsquo;s call this folder <code>my_yaml_files</code>. NOTE: missing variables will cause the program to go into an infinite loop. Then run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">. venv/bin/activate
+python main.py my_yaml_files
+deactivate
+</code></pre></div><p>and all resulting variables will be dumped as JSON to the standard output.</p>
+<h2 id="how-does-this-work">How does this work</h2>
+<p>Below is an outline of how all the codebase works.</p>
+<h2 id="our-sample-yaml-files">Our sample YAML files</h2>
+<p>Now, if you look at the <code>yaml_files</code> folder, there are 2 files. <code>sample_yaml_file.yml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">home_dir</span>: /home/ubuntu
+<span style="color:#66d9ef">home_bin_dir</span>: <span style="color:#e6db74">&#34;{{ home_dir }}/bin&#34;</span>
+<span style="color:#66d9ef">march</span>: x86_64
+<span style="color:#66d9ef">docs_dir</span>: <span style="color:#e6db74">&#34;{{ home_dir }}/docs&#34;</span>
+<span style="color:#66d9ef">start_everything</span>: <span style="color:#e6db74">&#34;{{ home_bin_dir }}/start-everything&#34;</span>
+<span style="color:#66d9ef">secret_doc</span>: <span style="color:#e6db74">&#34;{{ docs_dir }}/secret.txt&#34;</span>
+<span style="color:#66d9ef">my_user</span>: jake
+<span style="color:#66d9ef">my_home</span>: <span style="color:#e6db74">&#34;/home/{{ my_user }}&#34;</span>
+<span style="color:#66d9ef">destination</span>: <span style="color:#e6db74">&#34;{{ my_home }}/python2.7&#34;</span>
+<span style="color:#66d9ef">language</span>: english
+<span style="color:#66d9ef">translation_file</span>: <span style="color:#e6db74">&#34;{{ my_home }}/dictionary/{{ language }}.txt&#34;</span>
+<span style="color:#66d9ef">sisters_user</span>: jane
+<span style="color:#66d9ef">affected_users</span>:
+  - <span style="color:#e6db74">&#34;{{ my_user }}&#34;</span>
+  - ubuntu
+  - <span style="color:#e6db74">&#34;{{ sisters_user }}&#34;</span>
+</code></pre></div><p>and <code>sample_yaml_file_two.yml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">db</span>: macey
+<span style="color:#66d9ef">books</span>: <span style="color:#e6db74">&#34;{{ my_home }}/books&#34;</span>
+</code></pre></div><p>Notice the heavy use of interpolation, especially in <code>sample_yaml_file.yml</code>. Note that the <code>books</code> variable in <code>sample_yaml_file_two.yml</code> makes use of the <code>my_home</code> variable in <code>smaple_yaml_file.yml</code>.</p>
+<h2 id="the-code">The code</h2>
+<p>Link: <a href="https://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables/blob/master/main.py">https://github.com/yanhan/templating-ansible-style-yaml-files-with-only-variables/blob/master/main.py</a></p>
+<p>I shall highlight the more important parts.</p>
+<p>First:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> argparse
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> os.path
+<span style="color:#f92672">import</span> sys
+<span style="color:#75715e"># The following line allows us to use the `ansible` codebase.</span>
+sys<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>append(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(os<span style="color:#f92672">.</span>getcwd(), <span style="color:#e6db74">&#34;ansible&#34;</span>, <span style="color:#e6db74">&#34;lib&#34;</span>))
+
+<span style="color:#f92672">from</span> ansible.errors <span style="color:#f92672">import</span> AnsibleUndefinedVariable
+<span style="color:#f92672">from</span> ansible.parsing.dataloader <span style="color:#f92672">import</span> DataLoader
+<span style="color:#f92672">from</span> ansible.template <span style="color:#f92672">import</span> Templar
+</code></pre></div><p>Notice the <code>sys.path.append(os.path.join(os.getcwd(), &quot;ansible&quot;, &quot;lib&quot;))</code> line and the subsequent 3 imports from various modules under the <code>ansible</code> module. Our code makes use of the <a href="https://github.com/ansible/ansible">ansible codebase</a> as a submodule at the commit with tag <code>v2.0.0-0.7.rc2</code>. This should explain the <code>git submodule init</code> and <code>git submodule update</code> lines in the <code>setup.sh</code> file.</p>
+<p>Next:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  <span style="color:#75715e"># Load variables from the YAML files</span>
+  yaml_files_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(args<span style="color:#f92672">.</span>yaml_files_dir)
+  var_files <span style="color:#f92672">=</span> [
+    os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(yaml_files_dir, file_name)
+      <span style="color:#66d9ef">for</span> file_name <span style="color:#f92672">in</span> os<span style="color:#f92672">.</span>listdir(yaml_files_dir)
+  ]
+  dl <span style="color:#f92672">=</span> DataLoader()
+  vars_to_template <span style="color:#f92672">=</span> dict()
+  <span style="color:#66d9ef">for</span> var_file <span style="color:#f92672">in</span> var_files:
+    vars_to_template<span style="color:#f92672">.</span>update(dl<span style="color:#f92672">.</span>load_from_file(var_file))
+</code></pre></div><p>For simplicity, we require that all YAML files we&rsquo;re trying to template, including those containing variables required by those files, should be placed in one directory for convenience sake, so easily load them using an instance of the <code>ansible.parsing.dataloader.DataLoader</code> class provided by Ansible. Specifically, we make use of its <code>load_from_file</code> method. After this part, <code>vars_to_template</code> is a dict of all variables in all the YAML files, waiting to be templated:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;my_user&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;jake&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;march&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;x86_64&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;language&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;english&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;my_home&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/{{ my_user }}&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;db&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;macey&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;home_dir&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/ubuntu&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;sisters_user&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;jane&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;secret_doc&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ docs_dir }}/secret.txt&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;affected_users&#39;</span>: [<span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ my_user }}&#39;</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;ubuntu&#39;</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ sisters_user }}&#39;</span>],
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;books&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ my_home }}/books&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;translation_file&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ my_home }}/dictionary/{{ language }}.txt&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;home_bin_dir&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ home_dir }}/bin&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;destination&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ my_home }}/python2.7&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;start_everything&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ home_bin_dir }}/start-everything&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;docs_dir&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;{{ home_dir }}/docs&#39;</span>
+}
+</code></pre></div><p>Moving on:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  templar <span style="color:#f92672">=</span> Templar(loader<span style="color:#f92672">=</span>dl)
+  result_vars <span style="color:#f92672">=</span> dict()
+
+  <span style="color:#66d9ef">while</span> vars_to_template:
+    successfully_templated_vars <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> var_name, value <span style="color:#f92672">in</span> vars_to_template<span style="color:#f92672">.</span>items():
+      <span style="color:#66d9ef">try</span>:
+        templated_value <span style="color:#f92672">=</span> templar<span style="color:#f92672">.</span>template(value)
+        result_vars[var_name] <span style="color:#f92672">=</span> templated_value
+        successfully_templated_vars<span style="color:#f92672">.</span>append(var_name)
+        templar<span style="color:#f92672">.</span>set_available_variables(result_vars<span style="color:#f92672">.</span>copy())
+      <span style="color:#66d9ef">except</span> AnsibleUndefinedVariable:
+        <span style="color:#66d9ef">pass</span>
+    <span style="color:#66d9ef">for</span> var_name <span style="color:#f92672">in</span> successfully_templated_vars:
+      <span style="color:#66d9ef">del</span> vars_to_template[var_name]
+</code></pre></div><p>We make use of an instance of the <code>ansible.template.Templar</code> class to perform the templating. The <code>Templar.template</code> method may raise a <code>AnsibleUndefinedVariable</code> if it happens to template a variable which requires some variable that&rsquo;s not found in its available variables. At this point, we have all the variables, those that require templating and those that do not, and we could perform a topological sort of variables so we can template all variables with all the dependencies fulfilled (assuming that all required variables are present), we&rsquo;re too lazy to do it.</p>
+<p>Instead, we maintain <code>result_vars</code>, a dict of all variables that do not need to be templated, and <code>vars_to_template</code>, which is all variables we&rsquo;ve loaded from the YAML files into memory. Using the <code>while</code> loop, we repeatedly try to templating all variables in <code>vars_to_template</code> until we run out of variables. Successfully templated variables are added to <code>result_vars</code> and we use the <code>Templar.set_available_variables</code> method to make that variable available the next time we perform templating using the <code>Templar.template</code> method. In addition, we append the name of that variable to a list named <code>successfully_templated_vars</code>. At the end of each iteration of the <code>while</code> loop, we remove all successfully templated variables from <code>vars_to_template</code>. This is done until we run out of variables. If in the event that there are missing variables required for templating, the <code>while</code> loop will not terminate.</p>
+<h2 id="outputting-the-variables">Outputting the variables</h2>
+<p>At this point, if we print the <code>result_vars</code> dict, we will see this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;my_user&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;jake&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;march&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;x86_64&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;language&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;english&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;my_home&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/jake&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;db&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;macey&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;home_dir&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/ubuntu&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;sisters_user&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;jane&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;secret_doc&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/ubuntu/docs/secret.txt&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;affected_users&#39;</span>: [<span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;jake&#39;</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;ubuntu&#39;</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;jane&#39;</span>],
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;books&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/jake/books&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;translation_file&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/jake/dictionary/english.txt&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;home_bin_dir&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/ubuntu/bin&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;destination&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/jake/python2.7&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;start_everything&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/ubuntu/bin/start-everything&#39;</span>,
+  <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;docs_dir&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;/home/ubuntu/docs&#39;</span>
+}
+</code></pre></div><p>while it may seem that the &ldquo;most atomic&rdquo; values are unicode strings, that is in fact not the case. They are <code>ansible.parsing.yaml.objects.AnsibleUnicode</code> objects. So if we use <code>yaml.dumps</code> to serialize <code>result_vars</code>, we&rsquo;ll see some rather intimidating looking output like the following:</p>
+<pre><code>? !!python/object/new:ansible.parsing.yaml.objects.AnsibleUnicode
+  args: [!!python/unicode 'affected_users']
+  state: {_column_number: 1, _data_source: /home/philip/templating-ansible-style-yaml-files-with-only-variables/yaml_files/sample_yaml_file.yml,
+    _line_number: 13}
+: - !!python/unicode 'jake'
+  - !!python/object/new:ansible.parsing.yaml.objects.AnsibleUnicode
+    args: [!!python/unicode 'ubuntu']
+    state: {_column_number: 5, _data_source: /home/philip/templating-ansible-style-yaml-files-with-only-variables/yaml_files/sample_yaml_file.yml,
+      _line_number: 15}
+  - !!python/unicode 'jane'
+</code></pre><p>Hence in <code>main.py</code>, I chose to use JSON as the default output format, which yields something a lot more friendly to humans:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{
+  <span style="color:#e6db74">&#34;my_user&#34;</span>: <span style="color:#e6db74">&#34;jake&#34;</span>,
+  <span style="color:#e6db74">&#34;march&#34;</span>: <span style="color:#e6db74">&#34;x86_64&#34;</span>,
+  <span style="color:#e6db74">&#34;language&#34;</span>: <span style="color:#e6db74">&#34;english&#34;</span>,
+  <span style="color:#e6db74">&#34;my_home&#34;</span>: <span style="color:#e6db74">&#34;/home/jake&#34;</span>,
+  <span style="color:#e6db74">&#34;db&#34;</span>: <span style="color:#e6db74">&#34;macey&#34;</span>,
+  <span style="color:#e6db74">&#34;home_dir&#34;</span>: <span style="color:#e6db74">&#34;/home/ubuntu&#34;</span>,
+  <span style="color:#e6db74">&#34;sisters_user&#34;</span>: <span style="color:#e6db74">&#34;jane&#34;</span>,
+  <span style="color:#e6db74">&#34;secret_doc&#34;</span>: <span style="color:#e6db74">&#34;/home/ubuntu/docs/secret.txt&#34;</span>,
+  <span style="color:#e6db74">&#34;affected_users&#34;</span>: [<span style="color:#e6db74">&#34;jake&#34;</span>, <span style="color:#e6db74">&#34;ubuntu&#34;</span>, <span style="color:#e6db74">&#34;jane&#34;</span>],
+  <span style="color:#e6db74">&#34;books&#34;</span>: <span style="color:#e6db74">&#34;/home/jake/books&#34;</span>,
+  <span style="color:#e6db74">&#34;translation_file&#34;</span>: <span style="color:#e6db74">&#34;/home/jake/dictionary/english.txt&#34;</span>,
+  <span style="color:#e6db74">&#34;home_bin_dir&#34;</span>: <span style="color:#e6db74">&#34;/home/ubuntu/bin&#34;</span>,
+  <span style="color:#e6db74">&#34;destination&#34;</span>: <span style="color:#e6db74">&#34;/home/jake/python2.7&#34;</span>,
+  <span style="color:#e6db74">&#34;start_everything&#34;</span>: <span style="color:#e6db74">&#34;/home/ubuntu/bin/start-everything&#34;</span>,
+  <span style="color:#e6db74">&#34;docs_dir&#34;</span>: <span style="color:#e6db74">&#34;/home/ubuntu/docs&#34;</span>
+}
+</code></pre></div><p>Mission accomplished.</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

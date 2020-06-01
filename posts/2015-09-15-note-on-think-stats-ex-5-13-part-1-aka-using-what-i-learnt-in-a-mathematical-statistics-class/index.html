@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="mathematical statistics,statistics,simulation,probability"><meta property="og:title" content="Note on Think Stats Exercise 5.13 Part 1 aka Using what I learnt in a Mathematical Statistics class" />
+<meta property="og:description" content="NOTE: This post has been delayed by 2 weeks due to me falling sick on the week beginning 23 August. A lot of momentum originally going into the post has been abruptly taken away but heck, I gotta pick up where I left off.
+This week I&#39;ve been using my spare time to crack my mind on Think Stats Exercise 5.13 part 1. After skipping Exercise 5.12 because I found it too open-ended and poorly defined for someone who has no experience in mathematical / statistical modelling, I resolved to work on Exercise 5." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-09-15-note-on-think-stats-ex-5-13-part-1-aka-using-what-i-learnt-in-a-mathematical-statistics-class/" />
+<meta property="article:published_time" content="2015-09-15T22:12:00+00:00" />
+<meta property="article:modified_time" content="2015-09-15T22:12:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Note on Think Stats Exercise 5.13 Part 1 aka Using what I learnt in a Mathematical Statistics class"/>
+<meta name="twitter:description" content="NOTE: This post has been delayed by 2 weeks due to me falling sick on the week beginning 23 August. A lot of momentum originally going into the post has been abruptly taken away but heck, I gotta pick up where I left off.
+This week I&#39;ve been using my spare time to crack my mind on Think Stats Exercise 5.13 part 1. After skipping Exercise 5.12 because I found it too open-ended and poorly defined for someone who has no experience in mathematical / statistical modelling, I resolved to work on Exercise 5."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" href="https://yanhan.github.io/css/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://yanhan.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+  <script defer src="https://yanhan.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Note on Think Stats Exercise 5.13 Part 1 aka Using what I learnt in a Mathematical Statistics class | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">15</span>
+<span class="rest">Sep 2015</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Note on Think Stats Exercise 5.13 Part 1 aka Using what I learnt in a Mathematical Statistics class</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/mathematical-statistics/"> mathematical-statistics </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/probability/"> probability </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/simulation/"> simulation </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/statistics/"> statistics </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p><strong>NOTE:</strong> This post has been delayed by 2 weeks due to me falling sick on the week beginning 23 August. A lot of momentum originally going into the post has been abruptly taken away but heck, I gotta pick up where I left off.</p>
+
+<p>This week I've been using my spare time to crack my mind on <a href="http://greenteapress.com/thinkstats/">Think Stats</a> Exercise 5.13 part 1. After skipping Exercise 5.12 because I found it too open-ended and poorly defined for someone who has no experience in mathematical / statistical modelling, I resolved to work on Exercise 5.13 even if the outcome doesn't seem &quot;good&quot;; well at least I resolved to work on Part 1 of it and I did. And I'm very glad I did. Because I got to use some knowledge I picked up in a Mathematical Statistics class I took in my final semester in university (ST2132 Mathematical Statistics).</p>
+
+<p><strong>NOTE:</strong> There is a very high likelihood that I've misused some terms due to my rudimentary knowledge in Probability and Statistics. Some of my approaches may also be completely wrong. But I don't have someone around to guide me and point out my mistakes (as do many many other people), so a lot of what I do is based on my own judgement and intuition.</p>
+
+<h2 id="source-code">Source Code</h2>
+
+<p>Before we continue, relevant source code is available here as a gist: <a href="https://gist.github.com/yanhan/d8fcafdbaa421f0262bf">https://gist.github.com/yanhan/d8fcafdbaa421f0262bf</a>. Most of it is from Think Stats and is licensed under the GNU GPL v3. My code specific to this post is in <code>ch05.py</code>.</p>
+
+<h2 id="the-problem">The problem</h2>
+
+<p>Here is the problem statement:</p>
+
+<blockquote>
+<p>Suppose that a particular cancer has an incidence of 1 case per thousand people per year. If you follow a particular cohort of 100 people for 10 years, you would expect to see about 1 case. If you saw two cases, that would not be very surprising, but more than two would be rare.</p>
+
+<p>Write a program that simulates a large number of cohorts over a 10 year period and estimates the distribution of total cases.</p>
+</blockquote>
+
+<h2 id="the-problem-solving-process-questions-and-assumptions">The &quot;problem solving&quot; process: Questions and Assumptions</h2>
+
+<p>Notice that the words problem solving are in quotes, because I don't think my approach is the only way to look at the problem.</p>
+
+<p>The first thing I asked myself was: Ok. So we gotta do a simulation. But how does one translate <strong>1 case per thousand people per year</strong> to a cohort of 100 people for 10 years? I mean, do we just assume that \( P(\text{person gets cancer}) = \frac{1}{1000} \)? Or should this probability be \( \frac{1}{10000} \) since there's only 100 people for each cohort?</p>
+
+<p>Even more questions:</p>
+
+<ul>
+<li>Are we assuming independence between the event that person \(A\) contracts cancer and the event that person \(B\) contracting cancer, where person \(A\) and \(B\) are distinct individuals?</li>
+<li>How do we perform the simulation? Do we do assume one of the above probabilities and do it for each person? Do we run the simulation 1 year at a time until we hit 10 years?</li>
+</ul>
+
+<p>So even before we get our hands dirty writing code for the simulation, there are so many things to think about and so many assumptions we have to make.</p>
+
+<p>So I thought for a while and here are my answers to the above questions:</p>
+
+<ul>
+<li>We indeed assume that \( P(\text{person gets cancer}) = \frac{1}{1000} \), since that's the assumption given in the question. The confusion about whether \( P(\text{person gets cancer}) \) should vary based on the cohort size we're looking at and become \( \frac{1}{10000} \) for a cohort of size 100 is a newbie's mistake. Initially, I couldn't explain why but while writing this sentence, somehow my mind came up with an explanation that I believe is correct: <strong>This confusion is the result of a confusion between the concept of underlying probability vs. the concept of Expectation</strong>. Indeed \( P(\text{person gets cancer}) =  \frac{1}{1000} \) and once we fix this probability, it will not change regardless of the number of people (very tempted to use the term <strong>population</strong> here but I'm not sure if it's the right term) we're looking at; what will vary when the cohort size changes is the expected number of people who will contract cancer. Case in point: If we look at \(1000\) people and assume that the probability of each one of them getting cancer is \( \frac{1}{1000} \) and any one person getting cancer does not affect whether anyone else gets cancer, then we can model this as a binomial random variable \( X \sim Binom(n = 1000, p = \frac{1}{1000}) \) and the expected number of people getting cancer is given by \( \mathbb{E} [X] = np = 1000 * \frac{1}{1000} = 1 \). However, if we make the same assumptions as before but change the cohort size to \(100\), then the expected number of people getting cancer becomes \( \mathbb{E}[X] = 100 * \frac{1}{1000} = 0.1 \) \ . Man am I glad I wrote this post, just this section alone clarifies a lot of things for me.</li>
+<li>For simplicity, we assume that the event that some person \(A\) contracts cancer is independent of the event that a distinct person \(B\) contracts cancer, regardless of the cohort they are from. In fact, I have no idea how to perform this simulation if we don't make this assumption.</li>
+<li>We perform the simulation on a per year basis; and for each year, we do it for each cohort; and for each cohort, we do it for each individual. Since we assumed that \( P(\text{person gets cancer}) = \frac{1}{1000} \) and each cohort is modelled as a \( Binom(n = 100, p = \frac{1}{1000}) \) random variable which is just a sum of \( 100 \) i.i.d. \( Ber(\frac{1}{1000}) \) random variables, we can use a CDF inversion algorithm to simulate each \( Ber(\frac{1}{1000}) \) random variable, by generating a \( Unif(0, 1) \) random variable and checking if its probability lies below \( \frac{1}{1000} \). If the value of the \( Unif(0, 1)\) is less than or equal to \( \frac{1}{1000} \), then that person contracts cancer in that year. Because we are tracking the total number of people in a cohort who contracted cancer in a 10 year period, as long as the person contracts cancer in some year, he/she is considered to have contracted cancer in the 10 year period. So to save a little bit of computing time for the simulation, we can effectively ignore that particular person for the rest of the years.</li>
+</ul>
+
+<p>Here's the code we use to perform the simulation:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python""># We&#39;ll do the simulation 1 year by 1 year
+# Each year, about 1 / 1000 people will contract the particular cancer.
+# So we assume that for each year, P(person gets cancer) = 1 / 1000
+prob_get_cancer = 1.0 / 1000
+
+# Performs a simulation and returns the simulated data
+def _perform_simulation(nr_cohorts):
+    cohort_size = 100
+    nr_years = 10
+    simulated_data = []
+    # we perform simulation one cohort at a time
+    for _ in range(nr_cohorts):
+        cancer_cases_in_cohort = 0
+        # and for each cohort, we perform the simulation 1 year at a
+        # time for `nr_years` years
+        for _ in range(nr_years):
+            nr_contracted_cancer_in_this_round = 0
+            # Once a patient contracts cancer, he/she is counted as a
+            # case. Therefore we don&#39;t need to perform simulation for
+            # that person anymore. The `nr_in_cohort_without_cancer`
+            # stores the number of people in the cohort who have not yet
+            # contracted cancer (we sound evil here but I don&#39;t know how
+            # else to put it)
+            nr_in_cohort_without_cancer = cohort_size - cancer_cases_in_cohort
+            for i in range(nr_in_cohort_without_cancer):
+                # this simulates a Ber(p) random variable, where p is
+                # the probability of the person contracting cancer
+                if random.uniform(0, 1) &lt;= prob_get_cancer:
+                    nr_contracted_cancer_in_this_round += 1
+            cancer_cases_in_cohort += nr_contracted_cancer_in_this_round
+        # we&#39;re done simulating the cohort and have the total number of
+        # cancer cases in the cohort over 10 years. append it to our
+        # data set.
+        simulated_data.append(cancer_cases_in_cohort)
+    return simulated_data</code></pre>
+<p>With that, we perform our simulation by:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">nr_cohorts = 1000
+simulated_data = _perform_simulation(nr_cohorts)</code></pre>
+<p>There's a reason why we place all our simulation code in a function. We'll see why later.</p>
+
+<h2 id="the-problem-solving-process-model-fitting">The &quot;problem solving&quot; process: Model fitting</h2>
+
+<p>Imho, Chapters 3 and 4 of the book have been the most insightful chapters so far, in particular Chapter 4, which introduces the idea of model fitting. Plotting the CDF of a single variable data set (not sure if I'm using the right term here) can offer a lot of insights, especially when you know how to quickly spot some common patterns, or better, fit a lot of commonly used models onto the data. That was exactly what I did.</p>
+
+<p>Let's take a look at the CDF from our simulation data:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf.png" alt=""></figure></p>
+
+<p>Hmmm ok, so slightly less than 40% of the cohorts have no cancer cases and slightly less than 40% of the cohorts have 1 cancer case. So overall, about slightly less than 80% of the cohorts have 1 or less cancer cases. About 10% to 15% of the cohorts have 2 cancer cases, and less than 10% cohorts see &gt;= 3 cases. So this kind of fits the description given in the book:</p>
+
+<blockquote>
+<p>If you follow a particular cohort of 100 people for 10 years, you would expect to see about 1 case. If you saw two cases, that would not be very surprising, but more than two would be rare.</p>
+</blockquote>
+
+<p>And serves as a verification that we are doing our simulation correctly.</p>
+
+<p>Now, let's transform the CDF in various ways as outlined in Chapter 4 and see if we observe certain trends that reveal to us that the a certain distribution will a good fit for the data.</p>
+
+<h3 id="trend-observation-i-the-exponential-distribution">Trend observation I: the Exponential distribution</h3>
+
+<p>The CDF of a random variable from an exponential distribution with parameter λ is given by:</p>
+
+<p><span  class="math">\[ F_{X}(x) = 1 - e^{-λx} \ \]</span></p>
+
+<p>From Chapter 4.1 of the book, we know that we can perform some transformations and see if we observe a linear trend, first by considering the CCDF (Complementary Cumulative Distribution Function) instead of the CDF:</p>
+
+<p><span  class="math">\[ 1 - F_{X}(x) = e^{-λx} \ \]</span></p>
+
+<p>So \( 1 - F_{X}(x) \) is the CCDF. We replace it with \( y \):</p>
+
+<p><span  class="math">\[ y = e^{-λx} \ \]</span></p>
+
+<p>Then take \( log \) on both sides:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+log(y) &= log(e^{-λx}) \\
+log(y) &= -λx
+\end{aligned}
+\]</span></p>
+
+<p>Hence, if we plot \( y = e^{-λx} \) where \( y \) is the CCDF on a \( log\ y \) scale and the exponential distribution happens to be a good model for the data, then we should be observing a linear trend, where \( -λ \) is the gradient of the line. Is that the case? Let's look at our plot:</p>
+
+<p><figure><img src="/images/2015-09-15/ccdf-logy-scale.png" alt=""></figure></p>
+
+<p>Looks like a reasonably linear trend to me. Because I don't know how to do it using matplotlib, allow me to use Gimp to hand draw a smooth curve:</p>
+
+<p><figure><img src="/images/2015-09-15/ccdf-logy-scale-with-hand-drawn-curve.png" alt=""></figure></p>
+
+<p>Ok, it wouldn't be too outrageous to call this linear, or at least very close to it. So the exponential distribution may very well be a good fit. Let's perform some other transformations on the CDF and see if we can spot other trends.</p>
+
+<h3 id="trend-observation-ii-the-pareto-distribution">Trend observation II: the Pareto distribution</h3>
+
+<p>Think Stats gives the CDF of the Pareto distribution as follows:</p>
+
+<p><span  class="math">\[
+CDF(x) = 1 - (\frac{x}{x_m})^{-\alpha}
+\]</span></p>
+
+<p>while the <a href="https://en.wikipedia.org/wiki/Pareto_distribution">Wikipedia entry for the Pareto Distribution</a> says it is:</p>
+
+<p><span  class="math">\[
+CDF(x) = 1 - (\frac{x_m}{x})^{\alpha}
+\]</span></p>
+
+<p>There is essentially no difference between the two. For consistency, we shall stick with the form given by Think Stats.</p>
+
+<p>Again, we consider the CCDF of the Pareto Distribution. That is:</p>
+
+<p><span  class="math">\[
+1 - CDF(x) = (\frac{x}{x_m})^{-\alpha}
+\]</span></p>
+
+<p>And we replace \( 1 - CDF(x) \) with \( y \) to get:</p>
+
+<p><span  class="math">\[
+y = (\frac{x}{x_m})^{-\alpha}
+\]</span></p>
+
+<p>Taking \( log \) on both sides:</p>
+
+<p><span  class="math">\[
+log(y) = -\alpha log(\frac{x}{x_m}) \\
+log(y) = -\alpha(log(x) - log(x_m)) \\
+log(y) = -\alpha log(x) + \alpha log(x_m)
+\]</span></p>
+
+<p>So if we plot the CCDF on a \( log \ log \) scale and the Pareto is a good model for the data, we should see a linear trend with gradient \( -\alpha \) and y-intercept \( \alpha log(x_m) \). Let's do a \( log \ log \) plot of the CCDF and see if that's the case:</p>
+
+<p><figure><img src="/images/2015-09-15/ccdf-log-log-scale.png" alt=""></figure></p>
+
+<p>And with a hand drawn curve:</p>
+
+<p><figure><img src="/images/2015-09-15/ccdf-log-log-scale-with-hand-drawn-curve.png" alt=""></figure></p>
+
+<p>It's pretty obvious that this is hardly linear. So the Pareto distribution does not seem to be a good model for the data.</p>
+
+<h3 id="trend-observation-iii-the-lognormal-distribution">Trend observation III: the Log-normal distribution</h3>
+
+<p>If we look at the CDF of our simulated data:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf.png" alt=""></figure></p>
+
+<p>We can see that it looks quite different from that of a normal CDF, which looks something like this:</p>
+
+<p><figure><img src="/images/2015-09-15/normal-cdf.png" alt=""></figure></p>
+
+<p>So the normal distribution is not a good fit for our data. But how about the Log-normal distribution? We say that if a random variable \( X \) is log-normally distributed, then \( Y = ln(X) \) has a normal distribution. So if the Log-normal distribution is a good fit for our data, we should see a plot that looks similar to the normal CDF when we plot the CDF on a \( log \ x \) scale. Let's do the plot:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-logx-scale.png" alt=""></figure></p>
+
+<p>And... it looks nothing like the CDF of a normal distribution. So the Log-normal distribution is not a good model for our data.</p>
+
+<h3 id="trend-observation-iv-the-weibull-distribution">Trend observation IV: the Weibull distribution</h3>
+
+<p>The other distribution that we've learnt about in Chapter 4, specifically from Exercise 4.6, is the Weibull distribution. Its CDF is given by:</p>
+
+<p><span  class="math">\[
+CDF(x) = 1 - e^{-(\frac{x}{λ})^{k}}
+\]</span></p>
+
+<p>Again, we consider the CCDF:</p>
+
+<p><span  class="math">\[
+1 - CDF(x) = e^{-(\frac{x}{λ})^{k}}
+\]</span></p>
+
+<p>and perform the following manipulations:</p>
+
+<p><span  class="math">\[
+1 - CDF(x) = e^{-(\frac{x}{λ})^{k}} \\
+log(1 - CDF(x)) = -(\frac{x}{λ})^{k} \\
+-log(1 - CDF(x)) = (\frac{x}{λ})^{k} \\
+log(-log(1 - CDF(x))) = k \cdot log(\frac{x}{λ}) \\
+log(-log(1 - CDF(x))) = k \cdot log(x) - k \cdot log(λ) \\
+log(log((1 - CDF(x))^{-1})) = k \cdot log(x) - k \cdot log(λ)
+\]</span></p>
+
+<p>Admittedly, this is quite a handful. Basically, if we do a \( log \ log \) plot with \( y = log((1 - CDF(x))^{-1}) = log(\frac{1}{1 - CDF(x)}) = log(\frac{1}{CCDF(x)}) \), then we should observe a linear trend with gradient \( k \) and y-intercept \( -k \cdot log(λ) \). Let's look at the plot:</p>
+
+<p><figure><img src="/images/2015-09-15/one-over-log-ccdf-log-log-scale.png" alt=""></figure></p>
+
+<p>And with a hand drawn curve:</p>
+
+<p><figure><img src="/images/2015-09-15/one-over-log-ccdf-log-log-scale-with-hand-drawn-curve.png" alt=""></figure></p>
+
+<p>And we indeed observe a linear trend.</p>
+
+<h3 id="conclusions-of-trend-observations">Conclusions of Trend Observations</h3>
+
+<p>So to recap, we performed various transformations on the CDF to see if any of the Exponential, Pareto, Log-normal or Weibull distributions will be a good model for our data. Based on what we see, it seems that the Exponential and Weibull distributions could be good models for our data. Let's take a look at the plots again:</p>
+
+<p>Plot of the transform to observe if the Exponential distribution is a good model:</p>
+
+<p><figure><img src="/images/2015-09-15/ccdf-logy-scale-with-hand-drawn-curve.png" alt=""></figure></p>
+
+<p>Plot of the transform to observe if the Weibull distribution is a good model:</p>
+
+<p><figure><img src="/images/2015-09-15/one-over-log-ccdf-log-log-scale-with-hand-drawn-curve.png" alt=""></figure></p>
+
+<h2 id="now-what">Now what?</h2>
+
+<p>Now that we've narrowed down the choices of models to the Exponential and Weibull distributions, what do we do next? It would be to verify if any of them are actually good models. And how do we do that? It seems that we have to find out the concrete Exponential and Weibull distributions that would make for good models. While Think Stats has shown us how to come up with various plots of the CDF of the data and observe if the data can be modelled using some commonly occurring distributions, it doesn't show us how to do this follow up step, which is to come up with the concrete distributions and see how well they correspond to the CDF.</p>
+
+<p>To make myself clear, let's say we want to find out the Exponential distribution that would best correspond to our data. We know that the Exponential distribution is parameterized by \( \lambda \). So our job is to find out this appropriate value of \( \lambda \), plot the CDF of the \( Exp(\lambda) \) distribution and compare that against the CDF of our data to see how well they match up. This seems to be a complicated step. Perhaps we should just stop here and call it a day and just move on, after all we did our best and it doesn't seem that we can do more.</p>
+
+<p>Or is it?</p>
+
+<h2 id="mathematical-statistics-to-the-rescue">Mathematical Statistics to the rescue</h2>
+
+<p>I happen to have taken a Mathematical Statistics class in my final semester of university. ST2132 Mathematical Statistics, to be exact. I didn't do very well for the class, having gotten a B. The paper was pretty tough and the concepts were pretty abstract for someone whose previous exposure to Statistics was about 3 years ago in a rather poorly taught class. Also, I didn't see the point to a lot of things I've learnt in the class; it all seemed like a bunch of mechanical calculations.</p>
+
+<p>Until I ran into this exercise in the Think Stats book.</p>
+
+<p>For some reason, I recalled that when given a data set that one suspects belongs to some distribution with some unknown parameter(s), one could perform parameter estimation. Ok, I must admit that when I did this exercise, I certainly didn't think of the term 'parameter estimation'; it only came up as I was writing this blog post. But I certainly did recall the <strong>Method of Moments</strong> and <strong>Maximum Likelihood Estimate</strong> techniques. And I was set.</p>
+
+<h2 id="model-fitting">Model Fitting</h2>
+
+<h3 id="model-i-exponential-distribution">Model I: Exponential distribution</h3>
+
+<p>So for the Method of Moments method, we take as many moments as necessary, starting from the first moment, and express the moments in terms of the parameters. Then we invert the role of the moments and the parameters and express the parameters in terms of the moments. Finally, we substitute the estimated parameters in place of the actual parameters, and the sample moments in place of the moments. Hopefully we'll only run into stuff like \( \bar{X} \) which we can easily compute from the data set and have an easier time computing the estimated parameters. The number of such equations we'll need is equivalent to the number of unknown parameters we need to estimate; sometimes we'll need to take more moments than unknowns because some moments are equal to \( 0 \), which is useless to us.</p>
+
+<p>Ok, that is quite a mouthful. To be more concrete, suppose we are trying to estimate parameters for a distribution parameterized by \( \alpha \) and \( \beta \). Then there are 3 steps we need to do:</p>
+
+<ol>
+<li>Take as many moments as necessary and express them in terms of unknown parameters. Suppose we took 2 moments and obtained the following:</li>
+</ol>
+
+<p><span  class="math">\[
+\mathbb{E}[X] = \alpha \\
+\mathbb{E}[X^2] = \frac{1}{\beta}
+\]</span></p>
+
+<ol start="2">
+<li>Express the parameters in terms of the moments.</li>
+</ol>
+
+<p><span  class="math">\[
+\alpha = \mathbb{E}[X] \\
+\beta = \frac{1}{\mathbb{E}[X^2]}
+\]</span></p>
+
+<ol start="3">
+<li>Substitute the estimated parameters in place of the actual parameters, and substitute the sample moments in place of the actual moments. We'll denote the estimated parameters by placing a caret (or a hat) symbol above how we write the actual parameters, so the estimated parameter for \( \alpha \) will be \( \hat{\alpha} \). For sample moments, the \(k\)th sample moment is defined as \( \frac{1}{n} \displaystyle \sum_^{n} X_i^{k} \). So performing the substitution on the above 2 equations:</li>
+</ol>
+
+<p><span  i="1" class="math">\[
+\hat{\alpha} = \frac{1}{n} \displaystyle \sum_{i=1}^{n} X_i \\
+\hat{\beta} = \frac{1}{\frac{1}{n} \displaystyle \sum_{i=1}^{n} X_i^2}
+\]</span></p>
+
+<p>Let's see it in action for the Exponential distribution.</p>
+
+<p>The Exponential distribution is parameterized by \( \lambda \), so we only need one equation. Let's begin by taking the first moment:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+\mathbb{E}[X] =& \int_{0}^{\infty} x \cdot f(x) dx \\
+=& \int_{0}^{\infty} x \cdot \lambda e^{- \lambda x} dx
+\end{aligned}
+\]</span></p>
+
+<p>At this point, my limited knowledge of Calculus (which I'm making an effort to pick up) means that it'll be quite difficult for me to compute this integral. However, there is a trick I've learnt from the Mathematical Statistics class, which is that a PDF integrated over its support equals to \( 1 \), and that for certain types of integrals, we can perform some algebraic manipulations to massage the symbols into a PDF that we recognize, barring some constant factors. As long as we can do that and we're trying to integrate over the same support, then we can simply replace the entire integral with 1.</p>
+
+<p>In this case, the \( x \cdot e^{- \lambda x} \) part of the integral looks like the PDF of a Gamma distribution parameterized by \( \alpha \) (shape) and \( \beta \) (rate), which is \( \frac{\beta ^ \alpha}{\Gamma (\alpha)} x^{\alpha - 1} e^{- \beta x} \), where \( \alpha = 2 \) and \( \beta = \lambda \), barring constant factors. So we pick up from where we left off:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+\mathbb{E}[X] =& \int_{0}^{\infty} x \cdot \lambda e^{- \lambda x} dx \\
+=& \ \lambda \cdot \int_{0}^{\infty} x^{2-1} \cdot e^{- \lambda x} dx \\
+=& \ \lambda \cdot \int_{0}^{\infty} \frac{\lambda^{2}}{\Gamma(2)} x^{2 - 1} \cdot e^{- \lambda x} \cdot \frac{\Gamma(2)}{\lambda^2} dx \\
+=& \ \lambda \cdot \frac{\Gamma(2)}{\lambda^2} \int_{0}^{\infty} \frac{\lambda^{2}}{\Gamma(2)} x^{2 - 1} \cdot e^{- \lambda x} dx \\
+=& \ \lambda \cdot \frac{\Gamma(2)}{\lambda^2} \cdot 1 \\
+=& \ \frac{\Gamma(2)}{\lambda} \\
+=& \ \frac{(2 - 1)!}{\lambda} \\
+=& \ \frac{1}{\lambda}
+\end{aligned}
+\]</span></p>
+
+<p>So our first step of taking moments and expressing them in terms of parameters is done. For our next step, we express the parameters in terms of the moments:</p>
+
+<p><span  class="math">\[
+\mathbb{E}[X] = \ \frac{1}{\lambda} \\
+\lambda = \frac{1}{\mathbb{E}[X]}
+\]</span></p>
+
+<p>Finally, we substitute the sample moments in place of the actual moments, and substitute the estimated parameter in place of the actual parameter. In other words, we substitute the first sample moment \( \frac{1}{n} \displaystyle \sum_{i = 1}^{n} X_i \) in place of \( \mathbb{E}[X] \), and substitute the estimated parameter \( \hat{\lambda} \) in place of the actual parameter \( \lambda \).</p>
+
+<p><span  class="math">\[
+\hat{\lambda} = \frac{1}{\frac{1}{n} \displaystyle \sum_{i=1}^{n}X_i}
+\]</span></p>
+
+<p>The first sample moment, \( \frac{1}{n} \sum_^{n} X_i \), also written as \( \bar{X} \), can be easily computed from the data set; it is simply the average of the \( X \)'s.</p>
+
+<p>How about the Maximum Likelihood Estimate?</p>
+
+<p>Suppose that the random variables \( X_1, X_2, ... , X_n \) have a joint density function \( f(x_1, x_2, ... , x_n | \theta) \) for parameter \( \theta \). Then, given observed values \( X_i = x_i \), for \( i = 1, 2, ..., n \), the likelihood function of \( \theta \) as a function of \( x_1, x_2, ..., x_n \) is given by:</p>
+
+<p><span  i="1" class="math">\[
+lik(\theta) = f(x_1, x_2, ... , x_n | \theta) \\
+\]</span></p>
+
+<p>To simplify things, we assume that the \( X_i \)'s are i.i.d. (independently and identically distributed). Then the joint density function can be expressed as a product of the marginal densities. Hence the likelihood function can be written as:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+lik(\theta) =& f(x_1, x_2, ... , x_n | \theta) \\
+=& \prod_{i=1}^{n} f(X_i | \theta)
+\end{aligned}
+\]</span></p>
+
+<p>So the maximum likelihood estimate of the parameter \( \theta \) is the value that maximizes the likelihood above. That is, it makes the observed data most likely (hence its name).</p>
+
+<p>Often times, it is much easier to maximize the log likelihood instead of the likelihood. Maximizing the likelihood is equivalent to maximizing the log likelihood since log is a monotonic function. Given an i.i.d. sample, the log likelihood is:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+l(\theta) =& \ log(lik(\theta)) \\
+=& \ log(\prod_{i=1}^{n} f(X_i | \theta)) \\
+=& \ log(f(X_1 | \theta) \cdot f(X_2 | \theta) \cdot \ \ldots \ \cdot f(X_n | \theta)) \\
+=& \ log(f(X_1 | \theta)) + log(f(X_2 | \theta)) \ + \ \ldots \ + \ log(f(X_n | \theta)) \\
+=& \ \sum_{i=1}^{n} log(f(X_i | \theta))
+\end{aligned}
+\]</span></p>
+
+<p>To use this for our scenario, suppose \( X_1, X_2, ... , X_n \) are i.i.d \( Exp(\lambda) \). Then the log likelihood is given by:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+l(\lambda ) =& \sum_{i=1}^{n} log(f(X_i | \lambda)) \\
+=& \sum_{i=1}^{n} log(\lambda e^{- \lambda X_i}) \\
+=& \sum_{i=1}^{n} [log(\lambda) + log(e^{- \lambda X_i})] \\
+=& \sum_{i=1}^{n} [log(\lambda) -\lambda X_i ] \\
+=& \sum_{i=1}^{n} [log(\lambda)] - \sum_{i=1}^{n} [\lambda X_i] \\
+=& \ n \cdot log(\lambda) - \lambda \sum_{i=1}^{n} X_i
+\end{aligned}
+\]</span></p>
+
+<p>To maximize the log likelihood, we set its first derivative to zero:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+l'(\lambda) =& \frac{d}{d \lambda} l(\lambda) \\
+=& \frac{d}{d \lambda} ( n \cdot log(\lambda) - \lambda \sum_{i=1}^{n} X_i ) \\
+=& \frac{n}{\lambda} - \sum_{i=1}^{n} X_i \\
+\\
+0 =& \ \frac{n}{\lambda} - \sum_{i=1}^{n} X_i \\
+\frac{n}{\lambda} =& \sum_{i=1}^{n} X_i \\
+\lambda =& \ \frac{n}{\sum_{i=1}^{n} X_i} \\
+=& \ \frac{1}{\frac{1}{n} \sum_{i=1}^{n} X_i} \\
+=& \ \frac{1}{\bar{X}}
+\end{aligned}
+\]</span></p>
+
+<p>Hence, the maximum likelihood estimate of \( \lambda \), which we denote as \( \tilde{\lambda} \), is also \( \frac{1}{\bar{X}} \), which is exactly the same as the method of moments estimate \( \hat{\lambda} \).</p>
+
+<p>To visually see how well the \( Exp(\hat{\lambda}) \) model is a fit for our data, I came up with 2 plots. First, the plot of the CCDF and the \( Exp(\hat{\lambda}) \) with a similar transform done. Before showing you the plots, here's the code we use to compute \( \hat{\lambda} \) and draw the Exponential CDF:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python""># First, we compute lambda = 1 / Xbar
+xBar = Mean(simulated_data)
+exp_lambda = 1.0 / xBar
+# Here, we plot the Exp(lambda) CDF, over increments of 0.01 to make
+# it more smooth when we plot it. Otherwise, we&#39;ll be getting a plot
+# which looks similar to the empirical CDF, which is only defined at
+# discrete points.
+max_val = max(simulated_data)
+exp_lambda_pdf = lambda x: exp_lambda * exp(-exp_lambda * x)
+val_to_density = {}
+i, incr = 0, 0.01
+while i &lt;= max_val:
+    val_to_density[i] = exp_lambda_pdf(i)
+    i += incr
+exp_model_cdf = Cdf.MakeCdfFromDict(val_to_density,
+    name=&#34;model&#34;
+)</code></pre>
+<p>Plot for the empirical CCDF and CCDF of our exponential model:</p>
+
+<p><figure><img src="/images/2015-09-15/ccdf-with-ccdf-of-exp-model-logy-scale.png" alt=""></figure></p>
+
+<p>followed by the CDF with the exponential model:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-with-exp-model.png" alt=""></figure></p>
+
+<p>While it is not perfect, other than the fact that the the probability of 0 cancer cases is way off for the model, the rest of the differences are arguably still acceptable. But it seems that we can do better. Suppose that \( X \) is a random variable for the simulated data and \( \mathbb{P}(X &lt;= 0) = p \), so \( p \) is the y-coordinate where \( x = 0 \) for the blue curve and is very close to 0.4 . Suppose \( Y \sim Exp(\hat{\lambda}) \), so the CDF plot of \( Y \) is the green curve. What we want is the value \( y \) such that \( \mathbb{P}(Y &lt;= y) = p \). In other words, the value on the x-axis where the green curve intersects with the blue curve at y-coordinate \( p \). It seems that if we shift the CDF plot of \( Y \sim Exp(\hat{\lambda}) \) by \( y \) units to the left on the x-axis, then the CDF of our model will be a much better fit for the simulated data.</p>
+
+<p>We can obtain \( p \) quite easily, since that is just the fraction of cohorts with zero cancer cases in our simulated data. Once we obtain \( p \), since we know the exact value of \( \hat{\lambda} \), we can perform CDF inversion to get \( y \).</p>
+
+<p>Here is the resulting plot after we shift the Exponential model:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-with-shifted-exp-model.png" alt=""></figure></p>
+
+<p>Seems like our modification to the \( Exp(\hat{\lambda}) \) model is a good fit for the data. Let's move on to our next model, the Weibull distribution.</p>
+
+<h3 id="model-ii-weibull-distribution">Model II: Weibull distribution</h3>
+
+<p>According to the <a href="https://en.wikipedia.org/wiki/Weibull_distribution">Wikipedia entry for the Weibull distribution</a>, the PDF of the Weibull distribution is given by \( \frac{k}{\lambda} (\frac{x}{\lambda})^{k-1} e^{-(x / \lambda)^{k}} \). I have to admit that I cheated a bit and looked at the moments for the Weibull distribution and it seems that we'll need the gamma function, which is defined as \( \Gamma(n) = (n - 1)! \) if \( n \) is a positive integer, or \( \Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx \) for complex numbers with a positive real part.</p>
+
+<p>Suppose \( X \sim Weibull(k, \lambda) \). Let us first use the Method of Moments method and take the first moment:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+\mathbb{E}[X] =& \int_{0}^{\infty} x \cdot f(x) dx \\
+=& \int_{0}^{\infty} x \cdot \frac{k}{x} (\frac{x}{\lambda})^{k-1} e^{-(x / \lambda)^{k}} dx \\
+=& \int_{0}^{\infty} k (\frac{x}{\lambda})^{k} e^{-(x / \lambda)^{k}} dx
+\end{aligned}
+\]</span></p>
+
+<p>Now I'm stuck. I decided to perform an integration by substitution. Let \( y = \frac{x}{\lambda} \). Then \( dy = \frac{1}{\lambda} dx \), so \( dx = \lambda dy \). Performing this substitution:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+\mathbb{E}[X] =& \int_{0}^{\infty} k (\frac{x}{\lambda})^{k} e^{-(x / \lambda)^{k}} dx \\
+=& \int_{0}^{\infty} k y^k e^{-y^k} \lambda dy \\
+=& \ \lambda k \int_{0}^{\infty} y^k e^{-y^k} dy \\
+=& \ \lambda k \int_{0}^{\infty} (y^k)^{2-1} e^{-(y^k)} dy \\
+=& \ \lambda k \Gamma(2) \\
+=& \ \lambda k \cdot (2-1)! \\
+=& \ \lambda k
+\end{aligned}
+\]</span></p>
+
+<p>However, according to Wikipedia, the first moment of a Weibull random variable is \( \lambda \Gamma(1 + \frac{1}{k}) \), which is very different from \( \lambda k \); I mean, in general, it doesn't seem like \( \Gamma(1 + \frac{1}{k}) = k \) is going to hold. So somewhere along the way, we made a mistake.</p>
+
+<p>After some thinking, I realized that the mistake is here:</p>
+
+<p><span  class="math">\[
+\lambda k \int_{0}^{\infty} (y^k)^{2-1} e^{-(y^k)} dy = \ \lambda k \Gamma(2) \\
+\]</span></p>
+
+<p>Recall that the Gamma function is defined as \( \Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx \). However, notice that in \( \int_{0}^{\infty} ( y^k )^{2-1} e^{-( y^k )} dy \), we are treating \( y^k \) as \( x \), but notice that we are integrating with respect to \( dy \) and not \( dy^k \). If we were integrating with respect to \( dy^k \), then indeed the integral would have evaluated to \( \lambda k \Gamma(2) \).</p>
+
+<p>So it seems like the correct substitution to perform is to let \( y = ( \frac{x}{\lambda} )^k \). Then \( dy = \frac{k}{\lambda} ( \frac{x}{\lambda} )^{k-1} dx \) and \( dx = ( \frac{x}{\lambda} )^{1-k} \cdot \frac{\lambda}{k} dy = y^{\frac{1-k}{k}} \cdot \frac{\lambda}{k} \). Performing the substitutions:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+\mathbb{E}[X] =& \int_{0}^{\infty} k (\frac{x}{\lambda})^{k} e^{-(x / \lambda)^{k}} dx \\
+=& \int_{0}^{\infty} k \cdot y \cdot e^{-y} \cdot y^{\frac{1-k}{k}} \cdot \frac{\lambda}{k} dy \\
+=& \int_{0}^{\infty} \lambda \cdot y^{1 + \frac{1-k}{k}} \cdot e^{-y} dy \\
+=& \lambda \int_{0}^{\infty} y^{\frac{k+1-k}{k}} \cdot e^{-y} dy \\
+=& \lambda \int_{0}^{\infty} y^{\frac{1}{k}} e^{-y} dy \\
+=& \lambda \int_{0}^{\infty} y^{(1 + \frac{1}{k}) - 1} e^{-y} dy \\
+=& \lambda \Gamma(1 + \frac{1}{k})
+\end{aligned}
+\]</span></p>
+
+<p>Let us carry on by taking the second moment:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+\mathbb{E}[X^2] =& \int_{0}^{\infty} x^2 f(x) dx \\
+=& \int_{0}^{\infty} x^2 \cdot \frac{k}{\lambda} ( \frac{x}{\lambda} )^{k-1} e^{-(x / \lambda)^k} dx \\
+=& \int_{0}^{\infty} x \cdot k ( \frac{x}{\lambda} )^k e^{-(x / \lambda)^k} dx
+\end{aligned}
+\]</span></p>
+
+<p>Again, we let \( y = ( \frac{x}{\lambda} )^k \), so \( x = \lambda \cdot y^{\frac{1}{k}} \), \( dy = \frac{k}{\lambda} \cdot ( \frac{x}{\lambda} )^{k-1} dx \), \( dx = \frac{\lambda}{k} \cdot ( \frac{x}{\lambda} )^{1-k} dy = \frac{\lambda}{k} \cdot y^{\frac{1-k}{k}} dy \). Performing the necessary substitutions:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+\mathbb{E}[X^2] =& \int_{0}^{\infty} x \cdot k ( \frac{x}{\lambda} )^k e^{-(x / \lambda)^k} dx \\
+=& \int_{0}^{\infty} \lambda \cdot y^{\frac{1}{k}} \cdot k \cdot y \cdot e^{-y} \cdot \frac{\lambda}{k} \cdot y^{\frac{1-k}{k}} dy \\
+=& \int_{0}^{\infty} \lambda^2 y^{\frac{1 + 1 - k}{k} + 1} e^{-y} dy \\
+=& \ \lambda^2 \int_{0}^{\infty} y^{\frac{2 - k + k}{k}} e^{-y} dy \\
+=& \ \lambda^2 \int_{0}^{\infty} y^{\frac{2}{k}} e^{-y} dy \\
+=& \ \lambda^2 \int_{0}^{\infty} y^{(1 + \frac{2}{k}) - 1} e^{-y} dy \\
+=& \ \lambda^2 \Gamma(1 + \frac{2}{k})
+\end{aligned}
+\]</span></p>
+
+<p>So we have:</p>
+
+<p><span  class="math">\[
+\mathbb{E}[X] = \lambda \Gamma(1 + \frac{1}{k}) \\
+\mathbb{E}[X^2] = \lambda^2 \Gamma(1 + \frac{2}{k})
+\]</span></p>
+
+<p>Which is not very useful to us, since the parameter \( k \) is stuck inside the gamma function. In fact, the Wikipedia entry for the Weibull distribution states that in general, the \(n\)th moment of a Weibull random variable is given by \( \lambda^n \Gamma(1 + \frac{n}{k}) \). So it doesn't seem like we'll be going anywhere by taking additional moments. Time to try the method of Maximum Likelihood Estimate.</p>
+
+<p>Assume that \( X_1, X_2, ... X<em>n \) are i.i.d. \( Weibull(k, \lambda) \), then the joint likelihood is given by \( \displaystyle \prod</em>^{n} f(X<em>i) = \prod</em>^{n} \frac{k}{\lambda} ( \frac{X_i}{\lambda} )^{k-1} e^{-(X_i / \lambda)^k} \). Maximizing the likelihood is equivalent to maximizing the log likelihood, which is given by:</p>
+
+<p><span  i="1" class="math">\[
+\begin{aligned}
+l = log(\prod_{i=1}^{n} f(x_i) ) =& \sum_{i=1}^{n} log(f(X_i)) \\
+=& \sum_{i=1}^{n} log(\frac{k}{\lambda} ( \frac{X_i}{\lambda} )^{k-1} e^{-(X_i / \lambda)^k} ) \\
+=& \sum_{i=1}^{n}[ log(\frac{k}{\lambda}) + (k - 1) \cdot log(\frac{X_i}{\lambda}) - ( \frac{X_i}{\lambda} )^k ] \\
+=& \sum_{i=1}^{n} [ log(k) - log(\lambda) + (k - 1) \cdot log(X_i) - (k-1) \cdot log(\lambda) - ( \frac{X_i}{\lambda} )^k ] \\
+=& \sum_{i=1}^{n} [ log(k) - k \cdot log(\lambda) + (k-1) \cdot log(X_i) - ( \frac{X_i}{\lambda} )^k ] \\
+=& \ n \cdot log(k) - nk \cdot log(\lambda) + \sum_{i=1}^{n}[ (k-1) \cdot log(X_i) - ( \frac{X_i}{\lambda} )^k ]
+\end{aligned}
+\]</span></p>
+
+<p>Taking derivatives with respect to \( k \):</p>
+
+<p><span  class="math">\[
+\frac{\partial l}{\partial k} = \frac{n}{k} - n \cdot log(\lambda) + \sum_{i=1}^{n} [ log(X_i) - ( \frac{X_i}{\lambda} )^k log(\frac{X_i}{\lambda}) ] \\
+\]</span></p>
+
+<p>Taking derivatives with respect to \( \lambda \):</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+\frac{\partial l}{\partial \lambda} =& - \frac{nk}{\lambda} + \sum_{i=1}^{n} [ -(-k) \frac{X_i^k}{\lambda^{k+1}} ] \\
+=& - \frac{nk}{\lambda} + k \cdot \sum_{i=1}^{n} \frac{X_i^k}{\lambda^{k+1}} \\
+=& - \frac{nk}{\lambda} + \frac{k}{\lambda^{k+1}} \cdot \sum_{i=1}^{n}X_i^k
+\end{aligned}
+\]</span></p>
+
+<p>Setting \( \frac{\partial l}{\partial \lambda} = 0 \):</p>
+
+<p><span  class="math">\[
+-\frac{nk}{\lambda} + \frac{k}{\lambda^{k+1}} \cdot \sum_{i=1}^{n} X_i^k = 0 \\
+\frac{nk}{\lambda} = \frac{k}{\lambda^{k+1}} \cdot \sum_{i=1}^{n} X_i^k \\
+\frac{\lambda^{k+1}}{\lambda} = \frac{k}{nk} \cdot \sum_{i=1}^{n} X_i^k \\
+\lambda^k = \frac{1}{n} \sum_{i=1}^{n} X_i^k
+\]</span></p>
+
+<p>Setting \( \frac{\partial l}{\partial k} = 0 \):</p>
+
+<p><span  class="math">\[
+\frac{n}{k} - n \cdot log(\lambda) + \sum_{i=1}^{n} [ log(X_i) - ( \frac{X_i}{\lambda} )^k \cdot log(\frac{X_i}{\lambda}) ] = 0 \\
+\frac{n}{k} - n \cdot log(\lambda) + \sum_{i=1}^{n} [ log(X_i) - ( \frac{X_i}{\lambda} )^k \cdot log(X_i) + ( \frac{X_i}{\lambda} )^k \cdot log(\lambda) ] = 0 \\
+\frac{n}{k} - n \cdot log(\lambda) + \sum_{i=1}^{n} [ log(X_i) ] - \frac{1}{\lambda^k} \cdot \sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ] + \frac{log(\lambda)}{\lambda^k} \sum_{i=1}^{n} [X_i^k] = 0 \\
+\frac{n}{k} - \frac{1}{\lambda^k} \sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ] + \frac{log(\lambda)}{\lambda^k} \sum_{i=1}^{n} [ X_i^k ] = n \cdot log(\lambda) - \sum_{i=1}^{n} [ log(X_i) ] \\
+\]</span></p>
+
+<p>Substituting \( \lambda^k = \frac{1}{n} \sum_{i=1}^{n} X_i^k \):</p>
+
+<p><span  class="math">\[
+\frac{n}{k} - \frac{1}{\lambda^k} \sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ] + \frac{log(\lambda)}{\lambda^k} \sum_{i=1}^{n} [ X_i^k ] = n \cdot log(\lambda) - \sum_{i=1}^{n} [ log(X_i) ] \\
+\frac{n}{k} - \frac{1}{\frac{1}{n} \sum_{i=1}^{n} [ X_i^k ] } \sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ] + \frac{log(\lambda)}{\frac{1}{n} \sum_{i=1}^{n} [ X_i^k ]} \sum_{i=1}^{n} [ X_i^k ] = n \cdot log(\lambda) - \sum_{i=1}^{n} [ log(X_i) ] \\
+\frac{n}{k} - \frac{\sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ]}{\frac{1}{n} \sum_{i=1}^{n} [ X_i^k ]} + \frac{log(\lambda)}{\frac{1}{n}} = n \cdot log(\lambda) - \sum_{i=1}^{n} [ log(X_i) ] \\
+\frac{n}{k} - \frac{n \cdot \sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ]}{\sum_{i=1}^{n} [ X_i^k ]} + n \cdot log(\lambda) = n \cdot log(\lambda) - \sum_{i=1}^{n} [ log(X_i) ] \\
+\frac{n}{k} - \frac{n \cdot \sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ]}{\sum_{i=1}^{n} [ X_i^k ]} = - \sum_{i=1}^{n} [ log(X_i) ] \\
+\frac{n}{k} = \frac{n \cdot \sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ]}{\sum_{i=1}^{n} [ X_i^k ]} - \sum_{i=1}^{n} [ log(X_i) ] \\
+k^{-1} = \frac{\sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ]}{\sum_{i=1}^{n} [ X_i^k ]} - \frac{1}{n} \sum_{i=1}^{n} [ log(X_i) ] \\
+k = ( \frac{\sum_{i=1}^{n} [ X_i^k \cdot log(X_i) ]}{\sum_{i=1}^{n} [ X_i^k ]} - \frac{1}{n} \sum_{i=1}^{n} [ log(X_i) ] )^{-1} \\
+\]</span></p>
+
+<p>So now we have these 2 equations: \( \lambda^k = \frac{1}{n} \sum_{i=1}^{n} X_i^k \) and \( k = ( \frac{ \sum_{1}^{n} X_i^k \cdot log(X_i) }{ \sum_{1}^{n} X_i^k } - \frac{1}{n} \sum_{i=1}^{n} [ log(X_i) ] )^{-1} \), and we see that the one for \( \lambda^k \) depends on the value of \( k \), whereas the one for \( k \) does not depend on \( \lambda \), but is expressed in terms of itself and... I don't know how to solve it. Typically, this is where things are glossed over during a Mathematical Statistics class, where students are told that &quot;oh, you can solve the equation for \( k \) using a statistical software package&quot;, but aren't actually shown how to do it.</p>
+
+<p>I did remember such situations happening in ST2132 (the Mathematical Statistics class I've taken), where we were trying to maximize the log likelihood for i.i.d. \( X_1, ... X_n \) and the underlying distribution is one which is quite well studied. And we ran into this situation and the the lecturer and the notes mentioned that these are non-linear equations which will be quite difficult to evaluate by hand and can be solved numerically using a statistical software package.</p>
+
+<p>I was trying to do this in Python, after all that is the language that Think Stats uses. So I googled a bit and read some questions and answers on Stack Overflow that seemed to be doing what I wanted. But I wasn't sure, after all I was pretty new to all these and know absolutely nothing about it. I remembered I have a friend doing a PhD in Operations Research at MIT who might be familiar with these things. So I asked him for a bit of help which he kindly rendered.</p>
+
+<p>Perhaps it was luck and persistence that got me through. I guess it was the query &quot;python solve numerical equation&quot; that yielded what I needed. Namely, <a href="http://stackoverflow.com/a/25208202">this answer on Stack Overflow by CT Zhu</a> and <a href="http://stackoverflow.com/a/22743440">this answer on Stack Overflow by nibot</a>. It seemed to me that one of <a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.root.html">scipy.optimize.root</a> or <a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve</a> was what I needed. Since the answer by CT Zhu and nibot both made use of <code>scipy.optimize.fsolve</code> and there was code there, I decided to go ahead with <code>scipy.optimize.fsolve</code>.</p>
+
+<p><a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve`">Documentation for scipy.optimize.fsolve</a> states that it:</p>
+
+<blockquote>
+<p>Returns the roots of the (non-linear) equations defined by <code>func(x) = 0</code> given a starting estimate.</p>
+</blockquote>
+
+<p>Notice that we have</p>
+
+<p><span  class="math">\[
+k = ( \frac{ \sum_{i=1}^{n} [ X_i^k \cdot log(X_i)] }{ \sum_{i=1}^{n} [ X_i^k ] } - \frac{1}{n} \sum_{i=1}^{n} [ log(X_i) ] )^{-1}
+\]</span></p>
+
+<p>So in order to make use of <code>scipy.optimize.fsolve</code>, we have to convert it to a function equal to \( 0 \). That is simply \( ( \frac{ \sum_{1}^{n} [ X_i^k \cdot log(X_i)] }{ \sum_{1}^{n} [ X_i^k ] } - \frac{1}{n} \sum_{1}^{n} [ log(X_i) ] )^{-1} - k = 0 \) .</p>
+
+<p>And how about the initial estimate? <a href="http://stackoverflow.com/a/22743440">nibot's answer</a> states the following helpful tip:</p>
+
+<blockquote>
+<p>A good way to find such an initial guess is to just plot the expression and look for the zero crossing.</p>
+</blockquote>
+
+<p>So I did just that:</p>
+
+<p><figure><img src="/images/2015-09-15/weibull-k-parameter-plot.png" alt=""></figure></p>
+
+<p>Values of \( x \) are supplied to the equation \( f(k) = ( \frac{ \sum_{1}^{n} [ X_i^k \cdot log(X_i)] }{ \sum_{1}^{n} [ X_i^k ] } - \frac{1}{n} \sum_{1}^{n} [ log(X_i) ] )^{-1} - k \) (so \( k \) takes on each value of \( x \) 's we are plotting). We see that the curve intersects with the line \( y = 0 \) at approximately \( x = 2 \). So \( 2.0 \) is an ok initial guess to supply to <code>scipy.optimize.fsolve</code>.</p>
+
+<p>Notice that in \( f(k) = ( \frac{ \sum_{1}^{n} [ X_i^k \cdot log(X_i)] }{ \sum_{1}^{n} [ X_i^k ] } - \frac{1}{n} \sum_{1}^{n} [ log(X_i) ] )^{-1} - k \), there is \( log(X_i) \). For our simulated data, a large number of cohorts have 0 cancer cases, so \( X_i = 0 \) for those \( i \). However, \( log \) is undefined at \( 0 \). Hence, we have to exclude those data points during parameter estimation.</p>
+
+<p>Here's the code for parameter estimation of \( k \) using the method of Maximum Likelihood Estimate:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">X_without_zero = list(filter(lambda x: x &gt; 0, simulated_data))
+X_without_zero_len = len(X_without_zero)
+log_X_without_zero = [log(x) for x in X_without_zero]
+one_over_n_sum_of_log_X_without_zero = \
+    sum(log_X_without_zero) / float(X_without_zero_len)
+# equation we&#39;re trying to find roots
+def _eqn_for_k(k):
+    numer = 0.0
+    for i in range(X_without_zero_len):
+        numer += (X_without_zero[i] ** k) * (log_X_without_zero[i])
+    denom = 0.0
+    for i in range(X_without_zero_len):
+        denom += (X_without_zero[i] ** k)
+    return 1.0 / (numer / denom - one_over_n_sum_of_log_X_without_zero) - k
+
+# This is a rough estimate from looking at the k parameter plot
+initial_guess = 2.0
+weibull_model_shape = scipy.optimize.fsolve(_eqn_for_k,
+    [initial_guess]
+)[0]</code></pre>
+<p>And once we obtain the MLE for \( k \), we can easily compute the MLE for \( \lambda \). Since \( \lambda^k = \frac{1}{n} \sum_{i=1}^{n} X_i^k \), then \( \lambda = ( \frac{1}{n} \sum_{i=1}^{n} X_i^k )^{ \frac{1}{k} } \). The question is, since we excluded the zero data points when computing the MLE for \( k \), should we also exclude those points when computing the MLE for \( \lambda \)? Frankly speaking, I do not know. So I computed one value of \( \lambda \) that uses the zero data points and another one that excludes them:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">weibull_model_scale_on_full_data = (
+    sum((x ** weibull_model_shape for x in simulated_data)) / \
+        float(nr_cohorts)
+) ** (1.0 / weibull_model_shape)
+weibull_model_scale_on_non_zero_data = (
+    sum((x ** weibull_model_shape for x in X_without_zero)) / \
+        float(X_without_zero_len)
+) ** (1.0 / weibull_model_shape)</code></pre>
+<p>From this point, we're going to use \( \hat{\lambda} \) to denote the value of \( \lambda \) that is computed using the full data set, and we're going to use \( \widetilde{\lambda} \) to denote the value of \( \lambda \) that is computed using the non-zero values in the data set.</p>
+
+<p>We're going to do some plots. We'll be needing the PDF of the Weibull, defined as \( f(x) = \frac{k}{\lambda} ( \frac{x}{\lambda} )^{k-1} e^{-(x / \lambda)^k} \) for \( x \geqslant 0 \). In code:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">def _weibull_pdf(shape, scale, x):
+    return (shape / scale * (x / scale) ** (shape - 1) *
+        exp(-((x / scale) ** shape))</code></pre>
+<p>This next part makes use of a <code>for</code> loop to do some plots for the 2 values of \( \lambda \):</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">for scale, root_suffix in [
+    (weibull_model_scale_on_full_data, &#34;scale-on-full-data&#34;,),
+    (weibull_model_scale_on_non_zero_data, &#34;scale-on-non-zero-data&#34;,),
+]:</code></pre>
+<p>First, I did a CDF plot of the simulated data along with the Weibull model:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">weibull_val_to_density = {}
+i, incr, max_val = 0, 0.01, max(simulated_data)
+while i &lt;= max_val:
+    weibull_val_to_density[i] = _weibull_pdf(
+        weibull_model_shape, scale, i
+    )
+    i += incr
+weibull_model_cdf = Cdf.MakeCdfFromDict(weibull_val_to_density,
+    name=&#34;model&#34;
+)
+myplot.Cdfs([empirical_cdf, weibull_model_cdf])
+myplot.Save(
+    root=&#34;ex5-13-p1-cdf-with-weibull-model-{}&#34;.format(
+        root_suffix
+    ),
+    formats=[&#34;pdf&#34;, &#34;png&#34;,],
+    xlabel=&#34;cancer cases&#34;,
+    ylabel=&#34;CDF(x)&#34;,
+    title=&#34;CDF &amp; Weibull model&#34;,
+)</code></pre>
+<p>Plot of empirical CDF and \( Weibull(\hat{\lambda}, k) \) CDF:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-with-weibull-model-scale-on-full-data.png" alt=""></figure></p>
+
+<p>Plot of empirical CDF and \( Weibull(\widetilde{\lambda}, k) \) CDF:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-with-weibull-model-scale-on-non-zero-data.png" alt=""></figure></p>
+
+<p>If we let \( W \) denote either one of our Weibull random variable, notice that \( \mathbb{P}(W &lt;= 0) \approx 0 \). However, it is about \( 0.4 \) for the empirical CDF. It also seems that if we shift the Weibull CDF plot to the left by 1 unit in the x-axis, then either model will be much better for our data, that is, if we ignore the region from \( [-1, 0) \). Let's do it:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">weibull_val_minus_one_to_density = dict(
+    map(lambda x: (x[0] - 1, x[1]),
+        weibull_val_to_density.items()
+    )
+)
+weibull_model_minus_one_cdf = Cdf.MakeCdfFromDict(
+    weibull_val_minus_one_to_density, name=&#34;model&#34;
+)</code></pre>
+<p>Plot of empirical CDF and \( Weibull(\hat{\lambda}, k) \) CDF shifted by -1 unit along the x-axis:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-with-weibull-model-left-shifted-by-one-scale-on-full-data.png" alt=""></figure></p>
+
+<p>Plot of empirical CDF and \( Weibull(\widetilde{\lambda}, k) \) CDF shifted by -1 unit along the x-axis:</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-with-weibull-model-left-shifted-by-one-scale-on-non-zero-data.png" alt=""></figure></p>
+
+<p>Hmm, despite some discrepancies, that indeed is the case. Let us take it a step further and accumulate all the densities from \( [-1, 0) \) and put them under \( 0 \) and leave the rest of the densities as they are:</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">sum_of_negative_and_zero_density = sum(
+    map(lambda y: y[1],
+        filter(lambda x: x[0] &lt;= 0,
+            weibull_val_minus_one_to_density.items()
+        )
+    )
+)
+weibull_val_to_density = dict(
+    filter(lambda x: x[0] &gt; 0,
+        weibull_val_minus_one_to_density.items()
+    )
+)
+weibull_val_to_density[0] = sum_of_negative_and_zero_density
+weibull_model_negative_grouped_with_zero_cdf = Cdf.MakeCdfFromDict(
+    weibull_val_to_density, name=&#34;model&#34;
+)</code></pre>
+<p>Resulting plot for \( Weibull(\hat{\lambda}, k) \):</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-full-data.png" alt=""></figure></p>
+
+<p>Resulting plot for \( Weibull(\widetilde{\lambda}, k) \):</p>
+
+<p><figure><img src="/images/2015-09-15/cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-non-zero-data.png" alt=""></figure></p>
+
+<p>So \( \hat{\lambda} \) offers a good start for \( x = 0 \), but using \( \widetilde{\lambda} \) is a lot better for \( x = 1 \) onwards.</p>
+
+<h2 id="validating-our-models">Validating our models</h2>
+
+<p>We've done model fitting using the Exponential and Weibull distributions. The question is, how well do they generalize? Let's perform another simulation to find out (and this is where our <code>_perform_simulation</code> function really shines):</p>
+<pre><code class="language-lang="python"" data-lang="lang="python"">test_data = _perform_simulation(nr_cohorts)
+test_data_cdf = Cdf.MakeCdfFromList(test_data, name=&#34;test data&#34;)</code></pre>
+<p>Exponential model:</p>
+
+<p><figure><img src="/images/2015-09-15/test-data-cdf-with-shifted-exp-model.png" alt=""></figure></p>
+
+<p>\(Weibull(\hat{\lambda}, k) \) model:</p>
+
+<p><figure><img src="/images/2015-09-15/test-data-cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-full-data.png" alt=""></figure></p>
+
+<p>\(Weibull(\widetilde{\lambda}, k) \) model:</p>
+
+<p><figure><img src="/images/2015-09-15/test-data-cdf-with-weibull-model-negative-densities-accum-with-zero-scale-on-non-zero-data.png" alt=""></figure></p>
+
+<p>I think there are much more mathematically rigorous ways to assess the strength of our models, but I don't know them well and at this point, I feel that I've spent too much time and effort writing this blog post (it took me <em>much</em> longer to write this post than work on the actual problem).</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>There are probably a lot of things that can be done better. These are the ones that I know of:</p>
+
+<ul>
+<li>Using proper stopping rules to determine the number of cohorts we should use for the simulation, instead of using an arbitrary number like \( 1000000 \) as I did</li>
+<li>Using more rigorous ways to determine how well our models fare on other simulated data sets</li>
+<li>I did something crazy by shifting the model based on the Exponential distribution to the left by accumulating densities, and the same trick was used for the model based on the Weibull distribution. I have to confess that for this step, mathematically I have no idea whether what I'm doing is valid and how we can characterize the resulting distribution.</li>
+<li>During parameter estimation of \( k \) for the Weibull model, I discarded all the \( X_i = 0 \) values. Later on, I didn't know whether to use the entire simulated data set or the same truncated data set that we used for paramter estimation of \( k \) to estimate \( \lambda \).</li>
+</ul>
+
+<p>I learnt a lot from thinking a bit more about this exercise and wondering:</p>
+
+<ul>
+<li>Can we do more than just doing the various variants of the CDF plots and observing trends?</li>
+<li>What is the next step that we can do?</li>
+<li>Should we try to plot the distributions we're using as models and see visually how well they fit the data?</li>
+<li>What will enable us to plot such distributions?</li>
+</ul>
+
+<p>Then I realized that I have some familiarity with the Exponential and Normal distributions, and while the Pareto and Weibull distributions are new to me, <a href="/posts/2015-08-04-note-on-think-stats-multiplying-a-pareto-random-variable-with-x_m-eq-1-by-a-positive-number-what-do-we-get.html">I did a small blog post on the Pareto Distribution</a> and also an exercise on the Weibull distribution so they are not entirely unfamiliar to me. I went on to realize that these distributions are are defined by parameters. For instance, the Exponential distribution is parameterized by \( \lambda \), while the Normal distribution is parameterized by its mean \( \mu \) and variance \( \sigma^2 \).</p>
+
+<p>Probably because of the preparation I did for the final exam of the ST2132 Mathematical Statistics class I took earlier this year, I recalled that there are ways in which we can figure out the parameters given a data set that we know (or in this case, believe) comes from a certain distribution - namely the Method of Moments and Maximum Likelihood Estimate method. This gave me the possibility to explore the exercise on a deeper level instead of just stopping at the step where we look at the various variants of the CDF plots to see if they display some trend. Taking action on this newfound knowledge was the next very crucial step.</p>
+
+<p>While some people may think that it's a waste of time to derive the algebraic form of the Method of Moments and MLE parameter estimates of the various distributions by hand, especially when the results are available on the Internet, I think that this is a very good revision of the Statistics that I've picked up earlier this year. In particular, it was a very interesting exercise to figure out the parameter estimates for the Weibull distribution - not just because I figured out a really bad Calculus mistake I made along the way, but also because it forced me to figure out which libraries to use to solve for an equation \( f(x) = 0 \) numerically - just so I could come up with a model based on the Weibull distribution.</p>
+
+<p>After doing all that work, I figured that it would be great it I could blog about it - it was a terrific decision. Some of the benefits I've gained out of writing this blog post:</p>
+
+<ul>
+<li>Writing this blog post clarified a lot of things for me, because whenever I'm trying to explain something that I don't fully understand, I'm forced to spend time to think through what exactly I'm trying to explain, after all I can't just write some incoherent junk. This leads to a much greater understanding and solidification of the knowledge I've picked up compared to if I was to just do the exercise and call it a day. Some examples of what I've spent time figuring out are:
+
+<ul>
+<li>Expectation vs. Probability (yes, I know I'm a noob to even confuse them)</li>
+<li>Why we can use Bernoulli random variables to simulate whether each individual in a cohort contracts cancer</li>
+<li>Greater confidence that we're doing the simulation correctly</li>
+</ul></li>
+<li>That the Method of Moments and the method of Maximum Likelihood Estimate are used for <strong>parameter estimation</strong>. I was using them in the Python code without realizing I was doing parameter estimation - it only occurred to me when I was writing this post. It is my belief that knowing the name of something makes a difference.</li>
+<li>Somewhere in the middle of writing this post, I decided to make the source code available as well. As such, I was forced to clean up a lot of the code I wrote, which was in a rather messy state. It's still somewhat messy after the cleanup but a lot better than before the cleanup.</li>
+<li>A combination of 1. making mistakes in the code 2. refactoring the code 3. making changes to the code so it does new things meant that I had to regenerate the various plots. Many many times. Initially, the code generated the plots in EPS and PDF format. Each time I had to regenerate the plots, I would open up the PDF file, take a screenshot, crop it, then copy and paste it to the images folder for the blog. It was very tedious. Add on to the fact that there were some plots on which I manually drew a curve in red ink using Gimp. After several times, I got sick of doing everything manually. There was nothing I could do about the part where I had to draw a curve manually for some of the plots (thankfully there were not a lot of those and I could delay this process to after everything else was done), but the process by which I had to obtain the final images of the plots for this post was annoying me greatly. So I wondered: can I generate images of the plots instead of just EPS and PDF? Like, PNG images. Turns out that matplotlib can generate plots in PNG format. Next thing on my mind was: ok, is there a way I can programmatically resize the plots so I don't have to manually crop them anymore? There's a way to do that as well, using ImageMagick. And I can write a shell script to resize all the images using ImageMagick, dumping the output of each resize to a destination image in the blog's images folder. All by running 2 commands, one for the python code to generate the plots, the other to do the image resizing. Automation at its finest.</li>
+<li>For <code>scipy.optimize.fsolve</code>, we need to specify an initial guess. Initially, I supplied \( 1.0 \) probably because \( 0 \) didn't work. I didn't actually know the use of the initial guess and essentially filled in a number just because I had to fill in something, until I read <a href="http://stackoverflow.com/a/22743440">nibot's answer</a> and thought that it would be a good idea to plot a curve of the \( k \) parameter and see where it crosses the \( y = 0 \) line. Visual inspection of the plot determined that \( 2.0 \) will be a closer estimate to the parameter than \( 1.0 \). So I changed my code to use that. Through this process, I obtained a much better understanding of the purpose of the initial guess in <code>scipy.optimize.fsolve</code>. I don't know if this is true (but I'm thinking that it is), I also read <a href="http://stackoverflow.com/a/22743496">behzad.nouri's answer</a> which says that no numerical algorithm can figure out all the solutions. I assume I have to add this: &quot;especially if the initial guess is way off&quot;.</li>
+</ul>
+
+<p>There might be more stuff I've left out but these are probably the most important ones.</p>
+
+<p>This is also the second rather long blog post I've written since my first real blog post (if you don't count the &quot;Hello World!&quot; blog post), <a href="/posts/2013-08-27-ngtut.html">A very long AngularJS tutorial</a>. And it's slightly more than 2 years since then. This blog post is a lot more obscure than the AngularJS tutorial and is a purely academic exercise that is probably of interest only to myself, but the sense of accomplishment that I feel for completing this post is much greater than that for the AngularJS tutorial, especially because I feel that the topic of this post, Mathematical Statistics, is harder than AngularJS. And unlike the last time, I'm no longer a student and I did this during my spare time outside working hours - that means a lot to me because it is a demonstration that I had the discipline to pull through. I hope to author more posts of this nature (a longer and more involved nature) in the future on some topic in Mathematics, Statistics or Machine Learning - preferrably all of them at the same time =P I hope I'm not biting off more than I can chew (again).</p>
+
+<p>To greater knowledge!</p>
+
+<h2 id="credits">Credits</h2>
+
+<p>Ng Yee Sian, for providing assistance.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="http://stackoverflow.com/a/25208202">python - Function returns a vector, how to minimize in via Numpy (answer by CT Zhu)</a></li>
+<li><a href="http://stackoverflow.com/a/22743440">Solve an equation using a python numerical solver in numpy (answer by nibot)</a></li>
+<li><a href="http://stackoverflow.com/a/22743496">Solve an equation using a python numerical solver in numpy (answer by behzad.nouri)</a></li>
+<li><a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.root.html">scipy.optimize.root - SciPy v0.13.0 Reference Guide</a></li>
+<li><a href="http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve - SciPy v0.13.0 Reference Guide</a></li>
+</ul>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

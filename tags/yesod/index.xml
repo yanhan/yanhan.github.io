@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>yesod on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/yesod/</link>
+    <description>Recent content in yesod on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Sun, 22 Dec 2013 11:05:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/yesod/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>cabal - installing test dependencies</title>
+      <link>https://yanhan.github.io/posts/2013-12-22-cabal-installing-test-dependencies/</link>
+      <pubDate>Sun, 22 Dec 2013 11:05:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2013-12-22-cabal-installing-test-dependencies/</guid>
+      <description>
+      
+      Update Dec 2017: Dear reader, this post was written in a time when Stack did not exist and Haskell users had to deal wit...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="haskell,cabal"><meta property="og:title" content="How to solve &#34;cabal: Codec.Compression.Zlib: premature end of compressed stream&#34; - the easy but time consuming way" />
+<meta property="og:description" content="TLDR If you are already extremely frustrated by this problem, the solution is just:
+cd ~/.cabal/packages/hackage.haskell.org rm -rf * cabal update followed by a cabal install X where X is some package you&rsquo;d like to install.
+Longer version Doesn&rsquo;t it irk you when you do a cabal install somepackage, and somewhere along the way you see something like:
+Configuring zlib-bindings-0.1.1.3... Building zlib-bindings-0.1.1.3... Preprocessing library zlib-bindings-0.1.1.3... [1 of 2] Compiling Codec.Zlib.Lowlevel ( Codec/Zlib/Lowlevel." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2014-03-04-how-to-solve-cabal-codec-compression-zlib-premature-end-of-compressed-stream-the-easy-but-time-consuming-way/" />
+<meta property="article:published_time" content="2014-03-04T21:00:00+00:00" />
+<meta property="article:modified_time" content="2014-03-04T21:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to solve &#34;cabal: Codec.Compression.Zlib: premature end of compressed stream&#34; - the easy but time consuming way"/>
+<meta name="twitter:description" content="TLDR If you are already extremely frustrated by this problem, the solution is just:
+cd ~/.cabal/packages/hackage.haskell.org rm -rf * cabal update followed by a cabal install X where X is some package you&rsquo;d like to install.
+Longer version Doesn&rsquo;t it irk you when you do a cabal install somepackage, and somewhere along the way you see something like:
+Configuring zlib-bindings-0.1.1.3... Building zlib-bindings-0.1.1.3... Preprocessing library zlib-bindings-0.1.1.3... [1 of 2] Compiling Codec.Zlib.Lowlevel ( Codec/Zlib/Lowlevel."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>How to solve &#34;cabal: Codec.Compression.Zlib: premature end of compressed stream&#34; - the easy but time consuming way | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">04</span>
+<span class="rest">Mar 2014</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">How to solve &#34;cabal: Codec.Compression.Zlib: premature end of compressed stream&#34; - the easy but time consuming way</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/cabal/"> cabal </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/haskell/"> haskell </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<h2 id="tldr">TLDR</h2>
+<p>If you are already extremely frustrated by this problem, the solution is just:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/.cabal/packages/hackage.haskell.org
+rm -rf *
+cabal update
+</code></pre></div><p>followed by a <code>cabal install X</code> where X is some package you&rsquo;d like to install.</p>
+<h2 id="longer-version">Longer version</h2>
+<p>Doesn&rsquo;t it irk you when you do a <code>cabal install somepackage</code>, and somewhere
+along the way you see something like:</p>
+<pre><code>Configuring zlib-bindings-0.1.1.3...
+Building zlib-bindings-0.1.1.3...
+Preprocessing library zlib-bindings-0.1.1.3...
+[1 of 2] Compiling Codec.Zlib.Lowlevel ( Codec/Zlib/Lowlevel.hs, dist/dist-sandbox-a9ff9784/build/Codec/Zlib/Lowlevel.o )
+[2 of 2] Compiling Codec.Zlib       ( Codec/Zlib.hs, dist/dist-sandbox-a9ff9784/build/Codec/Zlib.o )
+In-place registering zlib-bindings-0.1.1.3...
+Installing library in
+/home/yh/haskellsandbox/hakyll-4.4.2.0/.cabal-sandbox/lib/x86_64-linux-ghc-7.4.1/zlib-bindings-0.1.1.3
+Registering zlib-bindings-0.1.1.3...
+Installed zlib-bindings-0.1.1.3
+cabal: Codec.Compression.Zlib: premature end of compressed stream
+Done.
+Failed to install 'hakyll-4.4.2.0'
+</code></pre>
+<p>It&rsquo;s the dreaded <code>cabal: Codec.Compression.Zlib: premature end of compressed stream</code>
+error. Googling for this error shows you advice dating years back, asking you to
+check your network connection, inspect the output of <code>cabal update -v 3</code>,
+removing the <code>~/.cabal/packages/hackage.haskell.org/00-index.tar.gz</code> file, and
+so on.</p>
+<p>I don&rsquo;t know about you, but none of the advice / answers worked for me.
+Don&rsquo;t get me wrong, it&rsquo;s sound advice, but it&rsquo;s completely useless if the same
+error pops up when I do another <code>cabal update</code> followed by <code>cabal install</code>.</p>
+<p>However, let&rsquo;s take a closer look at the error message:</p>
+<pre><code>cabal: Codec.Compression.Zlib: premature end of compressed stream
+</code></pre>
+<p>and combine this with the advice of removing the
+<code>~/.cabal/packages/hackage.haskell.org/00-index.tar.gz</code> file. Does that ring a
+bell?</p>
+<p>On curiosity (and frustration after <code>cabal install</code> failed repeatedly), I
+thought the error might have to do with uncompressing <strong>some other</strong>
+compressed file that is not
+<code>~/.cabal/packages/hackage.haskell.org/00-index.tar.gz</code>, and set out to execute:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find ~/.cabal -type f -name <span style="color:#e6db74">&#39;*.gz&#39;</span>
+</code></pre></div><p>and I was rewarded with a whole bunch of <code>tar.gz</code> files under
+<code>~/.cabal/packages/hackage.haskell.org</code> in their package directories.</p>
+<p>I was impatient and quite frustrated at this point, so I proceeded with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/.cabal/packages/hackage.haskell.org
+rm -rf *
+</code></pre></div><p>thereby removing everything, under <code>~/.cabal/packages/hackage.haskell.org</code>,
+whether good or bad.</p>
+<p>This is followed by:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cabal update
+</code></pre></div><p>After which, I proceeded with the <code>cabal install</code>, which successfully installs
+the package.</p>
+<p>As such, my guess is correct. <strong>Some</strong> <code>tar.gz</code> file within
+<code>~/.cabal/packages/hackage.haskell.org</code> is corrupted, causing the error, just
+not <code>~/.cabal/packages/hackage.haskell.org/00-index.tar.gz</code>.</p>
+<p>Why do I call this the easy but time consuming way? Because we delete all
+previously downloaded packages, regardless of whether they are corrupted or
+otherwise. Subsequent cabal operations could have made use of the working
+packages. Now, missing packages must be downloaded, which does take a little
+time.</p>
+<p>A more clever solution will be to check every single <code>tar.gz</code> file under
+<code>~/.cabal/packages/hackage.haskell.org</code> and only delete the corrupted ones.
+This should not be too difficult to do.</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

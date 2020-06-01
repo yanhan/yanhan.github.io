@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bash on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/bash/</link>
+    <description>Recent content in bash on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Fri, 25 Dec 2015 21:16:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>On the Unofficial Bash Strict Mode by Aaron Maxwell</title>
+      <link>https://yanhan.github.io/posts/2015-12-25-on-the-unofficial-bash-strict-mode-by-aaron-maxwell/</link>
+      <pubDate>Fri, 25 Dec 2015 21:16:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2015-12-25-on-the-unofficial-bash-strict-mode-by-aaron-maxwell/</guid>
+      <description>
+      
+      A few weeks ago, I chanced upon a blog post by Aaron Maxwell of redsymbol.net, titled Use the Unofficial Bash Strict Mod...
+      
+      </description>
+    </item>
+    <item>
+      <title>Bash stuff I recently encountered</title>
+      <link>https://yanhan.github.io/posts/2015-06-20-bash-stuff-that-i-recently-encountered/</link>
+      <pubDate>Sat, 20 Jun 2015 15:30:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2015-06-20-bash-stuff-that-i-recently-encountered/</guid>
+      <description>
+      
+      Last week, I’ve been working on my provision-ubuntu repository and getting it in a better shape to put in on Githu...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

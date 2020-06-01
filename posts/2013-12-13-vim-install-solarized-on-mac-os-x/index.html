@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="vim,solarized,mac os x"><meta property="og:title" content="Vim: Install Solarized on Mac OS X" />
+<meta property="og:description" content="Today, I finally got sufficiently irritated about the color Vim uses to display comments in Ruby (on a Mac OS X system), so much so that I decided to look for an alternate colorscheme. Somewhere along the way, I stumbled upon Solarized, which looks really nice.
+Anyway, here is how Vim was displaying Ruby code prior to me using Solarized. Look at the comments in particular&hellip; it&rsquo;s very straining to read them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2013-12-13-vim-install-solarized-on-mac-os-x/" />
+<meta property="article:published_time" content="2013-12-13T22:52:00+00:00" />
+<meta property="article:modified_time" content="2013-12-13T22:52:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vim: Install Solarized on Mac OS X"/>
+<meta name="twitter:description" content="Today, I finally got sufficiently irritated about the color Vim uses to display comments in Ruby (on a Mac OS X system), so much so that I decided to look for an alternate colorscheme. Somewhere along the way, I stumbled upon Solarized, which looks really nice.
+Anyway, here is how Vim was displaying Ruby code prior to me using Solarized. Look at the comments in particular&hellip; it&rsquo;s very straining to read them."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Vim: Install Solarized on Mac OS X | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">13</span>
+<span class="rest">Dec 2013</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Vim: Install Solarized on Mac OS X</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/mac-os-x/"> mac-os-x </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/solarized/"> solarized </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/vim/"> vim </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>Today, I finally got sufficiently irritated about the color Vim uses to
+display comments in Ruby (on a Mac OS X system), so much so that I decided
+to look for an alternate colorscheme.
+Somewhere along the way, I stumbled upon Solarized, which looks really nice.</p>
+<p>Anyway, here is how Vim was displaying Ruby code prior to me using Solarized.
+Look at the comments in particular&hellip; it&rsquo;s very straining to read them.</p>
+<p>Pre Solarized Vim:</p>
+<p><img src="/images/2013-12-13/vim_ruby_pre_solarized-cropped.png" alt=""></p>
+<p>Here&rsquo;s what the Solarized plugin does to beautify things (for dark theme):</p>
+<p><img src="/images/2013-12-13/vim_ruby_solarized_dark-cropped.png" alt=""></p>
+<p>Or if you use the light theme:</p>
+<p><img src="/images/2013-12-13/vim_ruby_solarized_light-cropped.png" alt=""></p>
+<p>Looks a lot better, right? At the very least, I do think that with the
+Solarized plugin, reading comments are much easier on the eyes. Given
+how long a programmer has to stare at a computer screen daily, this is
+a tremendous boon.</p>
+<p>Now that you&rsquo;ve seen what happens before and after, should you wish to
+continue reading, what follows will be a pretty short walkthrough on
+installing the Solarized plugin for Vim on Mac OS X. Specifically, the
+instructions below are meant for Mac OS X Mavericks, but they should work
+a modern Mac OS X installation.</p>
+<h2 id="step-1-install-iterm2">Step 1: Install iTerm2</h2>
+<p>Based on what I&rsquo;ve read from the <code>README</code> inside the Terminal subdirectory
+of the Solarized color palette repository, it is slightly more troublesome to
+install the Solarized color palette for the Terminal application.
+Because of that, I will not be going through installing the Solarized color
+palette for Terminal. Feel free to try that out once you&rsquo;ve gone through this
+article and have become more familiar with the installation process.</p>
+<p>Now, to install iTerm2,
+go to <a href="http://www.iterm2.com/">http://www.iterm2.com/</a> to download the zip
+file, extract the executable, and you can start using it.</p>
+<h2 id="step-2-use-vundle-to-manage-your-vim-plugins">Step 2: Use Vundle to manage your Vim plugins</h2>
+<p>Using Vundle to manage your Vim plugins will simplify things.
+Personally, my Vim setup is pretty minimalistic and I have always managed
+the very few plugins I use manually. It is manageable precisely because there
+are so few of them.
+But I do see the point of using a plugin manager like Vundle when one uses
+a lot of plugins.</p>
+<p>If you are new to Vundle (like me), here are a few articles I&rsquo;ve found
+useful:</p>
+<ul>
+<li><a href="http://rmitc.org/2013/04/modern-vim-plugin-management-pathogen-vs-vundle/">http://rmitc.org/2013/04/modern-vim-plugin-management-pathogen-vs-vundle/</a></li>
+<li><a href="http://lepture.com/en/2012/vundle-vs-pathogen">http://lepture.com/en/2012/vundle-vs-pathogen</a></li>
+</ul>
+<p>Now then, we need to slightly edit our <code>.vimrc</code> for it to function properly
+with Vundle.</p>
+<h2 id="step-2a-editing-vimrc-for-vundle-usage">Step 2a: Editing .vimrc for Vundle usage</h2>
+<p>Here is my <code>.vimrc</code>, prior to Vundle:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">nocompatible</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">bs</span>=<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">ts</span>=<span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">sw</span>=<span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">number</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">&#34; shows row and column number at bottom right corner</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">ruler</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">syntax</span> <span style="color:#a6e22e">on</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Very minimalistic, right? These settings are the bare minimum for me, and I can
+survive pretty well with them. I also use the bufexplorer plugin.</p>
+<p>Now that we are using Vundle, the <code>.vimrc</code> becomes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">nocompatible</span>   <span style="color:#75715e">&#34; be iMproved</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">filetype</span> <span style="color:#a6e22e">off</span>       <span style="color:#75715e">&#34; required!</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">rtp</span>+=~<span style="color:#e6db74">/.vim/</span><span style="color:#a6e22e">bundle</span>/<span style="color:#a6e22e">vundle</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">call</span> <span style="color:#a6e22e">vundle</span>#<span style="color:#a6e22e">rc</span>()<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">
+</span><span style="color:#75715e">&#34; let Vundle manage Vundle</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">&#34; required!</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">Bundle</span> <span style="color:#e6db74">&#39;gmarik/vundle&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">Bundle</span> <span style="color:#e6db74">&#39;altercation/vim-colors-solarized&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">Bundle</span> <span style="color:#e6db74">&#39;jlanzarotta/bufexplorer&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">filetype</span> <span style="color:#a6e22e">plugin</span> <span style="color:#a6e22e">indent</span> <span style="color:#a6e22e">on</span>  <span style="color:#75715e">&#34; required!</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">bs</span>=<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">ts</span>=<span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">sw</span>=<span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">number</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">&#34; shows row and column number at bottom right corner</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">ruler</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">
+</span><span style="color:#75715e">&#34; For solarized plugin (color scheme)</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">&#34; https://github.com/altercation/vim-colors-solarized</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">syntax</span> <span style="color:#a6e22e">enable</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">background</span>=dark<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">colorscheme</span> <span style="color:#a6e22e">solarized</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>In particular, these lines:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">nocompatible</span>   <span style="color:#75715e">&#34; be iMproved</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">filetype</span> <span style="color:#a6e22e">off</span>       <span style="color:#75715e">&#34; required!</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">rtp</span>+=~<span style="color:#e6db74">/.vim/</span><span style="color:#a6e22e">bundle</span>/<span style="color:#a6e22e">vundle</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">call</span> <span style="color:#a6e22e">vundle</span>#<span style="color:#a6e22e">rc</span>()<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">
+</span><span style="color:#75715e">&#34; let Vundle manage Vundle</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">&#34; required!</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">Bundle</span> <span style="color:#e6db74">&#39;gmarik/vundle&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">filetype</span> <span style="color:#a6e22e">plugin</span> <span style="color:#a6e22e">indent</span> <span style="color:#a6e22e">on</span>  <span style="color:#75715e">&#34; required!</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>are absolutely required for Vundle to function properly, in particular the
+first 4 non blank lines. Be sure to have those 4 lines at the top of your
+<code>.vimrc</code> .</p>
+<p>For these 2 lines:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#a6e22e">Bundle</span> <span style="color:#e6db74">&#39;altercation/vim-colors-solarized&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">Bundle</span> <span style="color:#e6db74">&#39;jlanzarotta/bufexplorer&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>The <code>Bundle 'altercation/vim-colors-solarized'</code> line is required here,
+it tells Vundle to install the Vim Solarized plugin.</p>
+<p>The <code>Bundle 'jlanzarotta/bufexplorer'</code> is for telling Vundle to install
+bufexplorer. It&rsquo;s just another example of how we can use Vundle to keep
+manage plugins. You can even specify non github repos, local repos. More
+information is available at
+<a href="https://github.com/gmarik/vundle">Vundle&rsquo;s github page</a> .</p>
+<p>This section here:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#75715e">&#34; For solarized plugin (color scheme)</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">&#34; https://github.com/altercation/vim-colors-solarized</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">syntax</span> <span style="color:#a6e22e">enable</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">background</span>=dark<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">colorscheme</span> <span style="color:#a6e22e">solarized</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>tells Vim to use the Solarized dark colorscheme. To use the Solarized light
+colorscheme, change the <code>set background=dark</code> line to <code>set background=light</code>.</p>
+<h2 id="step-2b-installing-vundle">Step 2b: Installing Vundle</h2>
+<p>Now that our <code>.vimrc</code> is set up, it&rsquo;s time to install Vundle.</p>
+<p>Based on the Vundle git repository <a href="https://github.com/gmarik/vundle">here</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+</code></pre></div><p>You dont have to manually create the ~/.vim/bundle/vundle directory hierarchy
+if they do not exist on your system. <code>git clone</code> does that automatically.</p>
+<p>Once done, fire up <code>vim</code> on the command line.
+Type <code>:BundleInstall</code> . This will install all the plugins you listed in
+your <code>.vimrc</code> (lines beginning with <code>Bundle</code>).</p>
+<h2 id="step-3-importing-solarized-color-palette-into-iterm2">Step 3: Importing Solarized Color Palette into iTerm2</h2>
+<p>Be sure you have installed iTerm2 before you continue.
+Now, clone the Solarized color palette repository:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/altercation/solarized.git
+</code></pre></div><p>I will be assuming that the cloned repository is at <code>$HOME/solarized</code>.
+Now, fire up iTerm2, and on the menu, go to <code>iTerm</code> -&gt; <code>Preferences</code>.</p>
+<p>Click on the <code>Profiles</code> tab, and go to <code>Colors</code>.
+You should see something like this:</p>
+<p><img src="/images/2013-12-13/iTerm2_colors-scaled.png" alt=""></p>
+<p>Click on the <code>Load Presets..</code> button, and select <code>Import..</code> .
+Remember the solarized repository we just cloned? Select the
+<code>$HOME/solarized/iterm2-colors-solarized/Solarized Dark.itemcolors</code>
+file (or alternatively the <code>Solarized Light.itemcolors</code> file, depending
+on which you are using. you could import both of them as well).
+Use the Solarized color palette.</p>
+<p>Now, iTerm2 should be using the Solarized color palette, and vim should
+be using the Solarized plugin for syntax highlighting.</p>
+<p>We are almost done&hellip; In fact, we are done. It&rsquo;s just that, there are a few
+pain points that I wish to address.</p>
+<h2 id="pain-point-1-ls-no-longer-displays-colorized-output">Pain point 1: ls no longer displays colorized output</h2>
+<p>Somehow, <code>ls</code> does display colorized output once I started using the
+Solarized color palettes. To enable colorized output for <code>ls</code>, add the
+following line to your <code>.bashrc</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export CLICOLOR<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</code></pre></div><p>and you shall, once again, enjoy colorized output from <code>ls</code> .</p>
+<h2 id="pain-point-2-iterm2-alt-backspace-alt-b-alt-f">Pain point 2: iTerm2: Alt-Backspace, Alt-b, Alt-f</h2>
+<p>If you are a new iTerm2 user like me, you will find that, out of the box,
+iTerm2 does not support Alt-Backspace for deleting a word, Alt-b for moving
+one word back, and Alt-f for moving one word forward. In other words, things
+we take for granted on a terminal with readline.</p>
+<p>To enable them, on the iTerm2 menu, go to <code>iTerm</code> -&gt; <code>Preferences</code>.
+Go to the <code>Profiles</code> tab, and click on <code>Keys</code>. You should see something
+like this:</p>
+<p><img src="/images/2013-12-13/iTerm2_alt_keys-scaled.png" alt=""></p>
+<p>For the <code>Left option key acts as:</code> section, choose the <code>+Esc</code> radio
+button, and you&rsquo;re all set.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Hopefully that worked for you too. Enjoy the beautiful Solarized color scheme!
+Here it is, once again, in its full glory:</p>
+<p><img src="/images/2013-12-13/vim_ruby_solarized_dark-cropped.png" alt=""></p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

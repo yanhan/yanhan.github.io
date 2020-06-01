@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mathematics on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/mathematics/</link>
+    <description>Recent content in mathematics on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Mon, 01 Aug 2016 08:11:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/mathematics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>My notes on: Job Bouwman&#39;s answer to &#34;What is the toughest question ever asked in any interview?&#34;</title>
+      <link>https://yanhan.github.io/posts/2016-08-01-my-notes-on-job-bouwmans-answer-to-what-is-the-toughest-interview-question-ever-asked-in-any-interview/</link>
+      <pubDate>Mon, 01 Aug 2016 08:11:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2016-08-01-my-notes-on-job-bouwmans-answer-to-what-is-the-toughest-interview-question-ever-asked-in-any-interview/</guid>
+      <description>
+      
+      A while back, this answer by Job Bouwman appeared in my Quora digest and I enjoyed reading it (Thank you Job!) so much t...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="vagrant"><meta property="og:title" content="Creating a Vagrant base box: some important details" />
+<meta property="og:description" content="If you have not done this before Instead of reinventing the wheel, I highly recommend that you read Nicholas Cerminara&rsquo;s excellent tutorial titled &ldquo;How to Create a Vagrant Base Box from an Existing One&rdquo;.
+Once you&rsquo;ve done that, continue reading my post for some important details.
+NOTE: Please finish reading this tutorial before you start creating your base box. You will be saving yourself a lot of time especially if you need to run a lot of provisioning scripts." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-11-10-creating-a-vagrant-base-box/" />
+<meta property="article:published_time" content="2015-11-10T22:34:00+00:00" />
+<meta property="article:modified_time" content="2015-11-10T22:34:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Creating a Vagrant base box: some important details"/>
+<meta name="twitter:description" content="If you have not done this before Instead of reinventing the wheel, I highly recommend that you read Nicholas Cerminara&rsquo;s excellent tutorial titled &ldquo;How to Create a Vagrant Base Box from an Existing One&rdquo;.
+Once you&rsquo;ve done that, continue reading my post for some important details.
+NOTE: Please finish reading this tutorial before you start creating your base box. You will be saving yourself a lot of time especially if you need to run a lot of provisioning scripts."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Creating a Vagrant base box: some important details | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">10</span>
+<span class="rest">Nov 2015</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Creating a Vagrant base box: some important details</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/vagrant/"> vagrant </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<h2 id="if-you-have-not-done-this-before">If you have not done this before</h2>
+<p>Instead of reinventing the wheel, I highly recommend that you read Nicholas Cerminara&rsquo;s excellent tutorial titled <a href="http://scotch.io/tutorials/how-to-create-a-vagrant-base-box-from-an-existing-one">&ldquo;How to Create a Vagrant Base Box from an Existing One&rdquo;</a>.</p>
+<p>Once you&rsquo;ve done that, continue reading my post for some important details.</p>
+<p><strong>NOTE:</strong> Please finish reading this tutorial before you start creating your base box. You will be saving yourself a lot of time especially if you need to run a lot of provisioning scripts.</p>
+<h2 id="some-terminology">Some terminology</h2>
+<p>\( A \) - the box that we will be using to create the base box</p>
+<p>\( B \) - the base box. This will be imported using <code>vagrant box add</code> so we can <code>vagrant up</code> and <code>vagrant provision</code> boxes based on it</p>
+<p>\( C \) - a box that is based on the base box \( B \)</p>
+<h2 id="before-you-create-the-vagrant-box">Before you create the Vagrant box</h2>
+<p>Before you use <code>vagrant up</code> to create box \( A \), ensure that you have this line of code into your <code>Vagrantfile</code>:</p>
+<pre><code>config.ssh.insert_key = false
+</code></pre>
+<p>If this line is not inside your <code>Vagrantfile</code>, I believe that Vagrant will generate an SSH keypair instead of using the default insecure keypair. If we provision box \( A \) using a generated SSH keypair instead of the insecure keypair, any box \( C \) that is based on base box \( B \) will encounter SSH connection issues during the <code>vagrant up</code> step.</p>
+<h2 id="after-provisioning-box--a--but-before-you-do-a-vagrant-package-to-create-the-base-box--b-">After provisioning box \( A \) but before you do a <code>vagrant package</code> to create the base box \( B \)</h2>
+<p>Follow <a href="https://github.com/mitchellh/vagrant/issues/5186#issuecomment-81409295">mtchavez&rsquo;s advice here</a> and run the following code as the <code>vagrant</code> user inside box \( A \):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys
+chmod <span style="color:#ae81ff">700</span> .ssh
+chmod <span style="color:#ae81ff">600</span> .ssh/authorized_keys
+chown -R vagrant:vagrant .ssh
+</code></pre></div><p>This will make the insecure public key an authorized key. I believe that by doing so, when we create boxes \( C \) based on the base box \( B \), Vagrant will be able to connect to box \( C \) via SSH, detect the presence of this insecure key and go on to generate a new SSH keypair - which is exactly what we want.</p>
+<h2 id="for-a-good-explanation-as-to-why-you-need-to-do-all-that">For a good explanation as to why you need to do all that</h2>
+<p>Read <a href="https://github.com/mitchellh/vagrant/issues/5186#issuecomment-112052573">Rustem&rsquo;s explanation</a>.</p>
+<h2 id="credits">Credits</h2>
+<ul>
+<li><a href="https://twitter.com/nickforthought">Nicholas Cerminara</a>, for <a href="https://scotch.io/tutorials/how-to-create-a-vagrant-base-box-from-an-existing-one">this excellent tutorial on how to create a Vagrant base box</a></li>
+<li><a href="https://github.com/dylanschoenmakers">dylanschoenmakers</a>, for his <a href="https://github.com/mitchellh/vagrant/issues/5186#issuecomment-77681605">reply to the GitHub issue</a></li>
+<li><a href="https://github.com/mtchavez">mtchavez</a>, for putting everything together in <a href="https://github.com/mitchellh/vagrant/issues/5186#issuecomment-81409295">his reply to the GitHub issue</a></li>
+<li><a href="https://github.com/Rustem">Rustem</a>, <a href="https://github.com/mitchellh/vagrant/issues/5186#issuecomment-112052573">for explaining the problem</a></li>
+</ul>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

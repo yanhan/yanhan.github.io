@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>angularjs on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/angularjs/</link>
+    <description>Recent content in angularjs on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Tue, 27 Aug 2013 00:12:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A very long AngularJS tutorial</title>
+      <link>https://yanhan.github.io/posts/2013-08-27-ngtut/</link>
+      <pubDate>Tue, 27 Aug 2013 00:12:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2013-08-27-ngtut/</guid>
+      <description>
+      
+      Update Dec 2017: Dear reader, this post was written in 2013 and covers Angular JS 1.0, which is very ancient. In case yo...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>swagger on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/swagger/</link>
+    <description>Recent content in swagger on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Sun, 26 Nov 2017 14:43:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/swagger/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using Swagger UI with any codebase</title>
+      <link>https://yanhan.github.io/posts/2017-11-26-using-swagger-ui-with-any-codebase/</link>
+      <pubDate>Sun, 26 Nov 2017 14:43:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2017-11-26-using-swagger-ui-with-any-codebase/</guid>
+      <description>
+      
+      This post shows you how to use Swagger UI with any codebase. There are no library dependencies once you extract the asse...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

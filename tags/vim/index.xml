@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/vim/</link>
+    <description>Recent content in vim on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Tue, 20 Feb 2018 21:01:11 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Vim abbreviations for a specific file</title>
+      <link>https://yanhan.github.io/posts/vim-abbreviations-for-a-specific-file/</link>
+      <pubDate>Tue, 20 Feb 2018 21:01:11 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/vim-abbreviations-for-a-specific-file/</guid>
+      <description>
+      
+      How to have vim abbreviations that apply to a specific file
+      
+      </description>
+    </item>
+    <item>
+      <title>haskell-vim-now / ghcmod-vim: Resolving &#39;ghcmod#command#type Cannot guess type&#39; errors</title>
+      <link>https://yanhan.github.io/posts/2017-07-02-haskell-vim-now-ghcmod-vim-resolving-ghcmod-command-type-cannot-guess-type-errors/</link>
+      <pubDate>Sun, 02 Jul 2017 10:14:05 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2017-07-02-haskell-vim-now-ghcmod-vim-resolving-ghcmod-command-type-cannot-guess-type-errors/</guid>
+      <description>
+      
+      NOTE: This post features a very hacky way to work around things which will likely never be merged into the ghcmod-vim pr...
+      
+      </description>
+    </item>
+    <item>
+      <title>Vim: Install Solarized on Mac OS X</title>
+      <link>https://yanhan.github.io/posts/2013-12-13-vim-install-solarized-on-mac-os-x/</link>
+      <pubDate>Fri, 13 Dec 2013 22:52:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2013-12-13-vim-install-solarized-on-mac-os-x/</guid>
+      <description>
+      
+      Today, I finally got sufficiently irritated about the color Vim uses to display comments in Ruby (on a Mac OS X system),...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

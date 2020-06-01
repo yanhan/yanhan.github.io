@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="python,mac os x"><meta property="og:title" content="The best way to install python on Mac OS X" />
+<meta property="og:description" content="NOTE: This post is pretty much opinion based on my own experience. Also take note of the date it was written because things might have changed since then. Your mileage may vary.
+The best way to install python on Mac OS X is using pyenv. Why do I say so?
+ Mac OS X ships with python but does not seem to ship with virtualenv You can install python using brew but again it does not seem to ship with virtualenv  To me, using a sandbox environment like virtualenv or conda is absolutely essential for pretty much any project that makes use of 3rd party libraries because I do not want to install any 3rd party library globally if possible." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2017-08-11-the-best-way-to-install-python-on-mac-os-x/" />
+<meta property="article:published_time" content="2017-08-11T08:10:15+00:00" />
+<meta property="article:modified_time" content="2017-08-11T08:10:15+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The best way to install python on Mac OS X"/>
+<meta name="twitter:description" content="NOTE: This post is pretty much opinion based on my own experience. Also take note of the date it was written because things might have changed since then. Your mileage may vary.
+The best way to install python on Mac OS X is using pyenv. Why do I say so?
+ Mac OS X ships with python but does not seem to ship with virtualenv You can install python using brew but again it does not seem to ship with virtualenv  To me, using a sandbox environment like virtualenv or conda is absolutely essential for pretty much any project that makes use of 3rd party libraries because I do not want to install any 3rd party library globally if possible."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>The best way to install python on Mac OS X | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">11</span>
+<span class="rest">Aug 2017</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">The best way to install python on Mac OS X</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/mac-os-x/"> mac-os-x </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/python/"> python </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p><strong>NOTE:</strong> This post is pretty much opinion based on my own experience. Also take note of the date it was written because things might have changed since then. Your mileage may vary.</p>
+<p>The best way to install python on Mac OS X is using <a href="https://github.com/pyenv/pyenv">pyenv</a>. Why do I say so?</p>
+<ul>
+<li>Mac OS X ships with python but does not seem to ship with virtualenv</li>
+<li>You can install python using brew but again it does not seem to ship with virtualenv</li>
+</ul>
+<p>To me, using a sandbox environment like <a href="https://virtualenv.pypa.io/en/stable/">virtualenv</a> or <a href="https://conda.io/docs/intro.html">conda</a> is absolutely essential for pretty much any project that makes use of 3rd party libraries because I do not want to install any 3rd party library globally if possible. I am more familiar with virtualenv so most of the time it is my choice.</p>
+<h2 id="installation-instructions">Installation instructions</h2>
+<ol>
+<li>Follow the instructions at <a href="https://github.com/pyenv/pyenv#homebrew-on-mac-os-x">https://github.com/pyenv/pyenv#homebrew-on-mac-os-x</a> to install pyenv using brew</li>
+<li>Follow the instructions at <a href="https://github.com/pyenv/pyenv-virtualenv#installing-with-homebrew-for-os-x-users">https://github.com/pyenv/pyenv-virtualenv#installing-with-homebrew-for-os-x-users</a> to install pyenv-virtualenv using brew</li>
+<li>Now we need to install some version of python using pyenv. To see a list of python versions you can download and install using pyenv, run:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pyenv install -l
+</code></pre></div><p>Suppose you want to install Python 3.5.1 . Run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pyenv install 3.5.1
+</code></pre></div><ol start="4">
+<li>Suppose you have a project called <code>myproject</code> you want to create a virtualenv for. This project happens to use Python 3.5.1 . To create this virtualenv, we run:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pyenv virtualenv 3.5.1 myproject
+</code></pre></div><p>Now if you run <code>pyenv versions</code>, you should see something like the following:</p>
+<pre><code>* system (set by /home/tom/.pyenv/version)
+2.7.11
+3.5.1
+3.5.1/envs/myproject
+myproject
+</code></pre><p>So we see that the virtualenv <code>myproject</code> is created successfully.</p>
+<ol start="5">
+<li>To install libraries into the <code>myproject</code> virtualenv, we have to activate it using</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pyenv activate myproject
+</code></pre></div><p>You should see a <code>(myproject)</code> prefix in your shell&rsquo;s prompt.</p>
+<ol start="6">
+<li>As long as you have the virtualenv activated, any Python libraries you install using pip will be installed into the virtualenv. Just run pip as per normal, for instance:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install redis<span style="color:#f92672">==</span>2.10.5
+pip install -r requirements.txt
+</code></pre></div><ol start="7">
+<li>To deactivate the virtualenv:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pyenv deactivate
+</code></pre></div>
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

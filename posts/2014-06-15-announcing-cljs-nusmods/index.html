@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="Clojure,ClojureScript,cljs-nusmods"><meta property="og:title" content="Announcing: cljs-nusmods (alpha release)" />
+<meta property="og:description" content="Update Dec 2017: This project is long dead. And it will stay dead. Like a lot of things I have built in the past, this is one of those things that I eventually just lost interest in. And in this case, eventually is just a few short months.
+Like many other posts that have become irrelevant over time, I am keeping this one for old time&rsquo;s sake.
+ I&rsquo;ve been a long time fan of functional programming, and it is my pleasure to announce the alpha release of cljs-nusmods, a project I&rsquo;ve been working on for the past 2 months during my free time." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2014-06-15-announcing-cljs-nusmods/" />
+<meta property="article:published_time" content="2014-06-15T23:45:00+00:00" />
+<meta property="article:modified_time" content="2014-06-15T23:45:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Announcing: cljs-nusmods (alpha release)"/>
+<meta name="twitter:description" content="Update Dec 2017: This project is long dead. And it will stay dead. Like a lot of things I have built in the past, this is one of those things that I eventually just lost interest in. And in this case, eventually is just a few short months.
+Like many other posts that have become irrelevant over time, I am keeping this one for old time&rsquo;s sake.
+ I&rsquo;ve been a long time fan of functional programming, and it is my pleasure to announce the alpha release of cljs-nusmods, a project I&rsquo;ve been working on for the past 2 months during my free time."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Announcing: cljs-nusmods (alpha release) | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">15</span>
+<span class="rest">Jun 2014</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Announcing: cljs-nusmods (alpha release)</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/cljs-nusmods/"> cljs-nusmods </a>
+        
+        
+        
+        
+        
+        <a href="/tags/clojure/"> clojure </a>
+        
+        
+        
+        
+        
+        <a href="/tags/clojurescript/"> clojurescript </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p><strong>Update Dec 2017:</strong> This project is long dead. And it will stay dead. Like a lot of things I have built in the past, this is one of those things that I eventually just lost interest in. And in this case, eventually is just a few short months.</p>
+<p>Like many other posts that have become irrelevant over time, I am keeping this one for old time&rsquo;s sake.</p>
+<hr>
+<p>I&rsquo;ve been a long time fan of functional programming, and it is my pleasure to
+announce the alpha release of <strong>cljs-nusmods</strong>, a project I&rsquo;ve been working on
+for the past 2 months during my free time. You can probably deduce from its name
+that it is powered by <a href="https://github.com/clojure/clojurescript">ClojureScript</a>.
+I&rsquo;ve made it a goal to release this alpha version by 15 June 2014, but by the
+time this blog post is done it&rsquo;ll be 16 June. Lol.</p>
+<p><strong>Working demo:</strong>
+<a href="http://cljs-nusmods.pangyanhan.com">http://cljs-nusmods.pangyanhan.com</a></p>
+<p><strong>Github repository:</strong>
+<a href="https://github.com/yanhan/cljs-nusmods">https://github.com/yanhan/cljs-nusmods</a></p>
+<p>For those of you know <a href="http://nusmods.com">NUSMods</a>, cljs-nusmods will seem
+eerily familiar. In fact, cljs-nusmods is based on NUSMods, and tries to mimic
+it as much as possible. I&rsquo;d like to thank <a href="https://github.com/ahbeng">Beng</a> for
+making his NUSMods project <a href="https://github.com/ahbeng/NUSMods">open source</a> and
+for creating the <a href="https://github.com/ahbeng/NUSModsAPI">NUSModsAPI</a> project;
+this project would very likely not be possible without your great
+contributions to open source and to the NUS student population.</p>
+<p>That said, I&rsquo;ve tried as much as possible not to look at the implementation of
+NUSMods. As such, if one digs into the innards, the implementation of both will
+likely look very different.</p>
+<h2 id="why-another-nus-timetable-builder">Why another NUS Timetable Builder</h2>
+<p>Let&rsquo;s just say that everyone has things that he/she wants to do in their life.
+To me, writing this piece of software is one of them. I also needed a project
+to work on, after all it&rsquo;s the best way to learn a new language, and I&rsquo;m very
+bad at coming up with original ideas. This project seems to be a right fit -
+it&rsquo;ll be eventually doable (since someone has already done it), yet be very
+challenging at the same time.</p>
+<h2 id="why-clojurescript">Why ClojureScript?</h2>
+<p>cljs-nusmods is purely a personal project, with the explicit aim of using
+ClojureScript for a front end web application.
+So you might ask, why ClojureScript?</p>
+<p>First of all, I&rsquo;ve been dealing with JavaScript for a while and I honestly do
+not like the language. Despite its widespread use and availability, I only use
+it when I have no choice (such as when working on someone else&rsquo;s projects) or
+for writing <strong>small</strong> programs involving a lot of JSON manipulation, where it
+is clearly the language of choice.</p>
+<p>Some of you may argue that JavaScript is not that bad if you only use the
+<a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">good parts</a>,
+and yes, it is not <strong>that</strong> bad, but it is not that good either.
+There is an increasing use in JavaScript over these few years, and despite its
+flaws as a language, an ecosystem of libraries are out there that make things
+a lot better. Despite all the nice libraries out there, whenever I write
+JavaScript code, I just feel that things do not have to be this way; they can
+be a lot better. What if I could get the goodness of JavaScript (huge ecosystem
+of libraries) without using the language?</p>
+<p>In fact, that is no longer a fairy tale. The rise of JavaScript has seen the
+rise of programmers who like me, do not like JavaScript, yet have to use it;
+but unlike me, they are so highly skilled, they can make a computer generate the
+JavaScript for them by writing a program that takes a different input language
+and outputs JavaScript - a compiler. Enter the world of JavaScript alternatives.</p>
+<p>I&rsquo;ve been looking at JavaScript alternatives for a while; there are lots of
+them. Among the more promising ones (based on what little I&rsquo;ve read) are:</p>
+<ul>
+<li>Google&rsquo;s <a href="https://www.dartlang.org/">Dart</a></li>
+<li>Microsoft&rsquo;s <a href="http://www.typescriptlang.org/">TypeScript</a></li>
+<li><a href="http://www.scala-js.org/">Scala.js</a></li>
+<li><a href="https://github.com/faylang/fay/wiki">Fay</a></li>
+<li><a href="http://elm-lang.org/">Elm</a></li>
+<li><a href="http://ocsigen.org/js_of_ocaml/">js_of_ocaml</a></li>
+<li>and of course <a href="https://github.com/clojure/clojurescript">ClojureScript</a></li>
+</ul>
+<p>Nope, <a href="http://coffeescript.org">CoffeeScript</a> is not one of those alternatives
+I considered. In fact, I&rsquo;d rather use JavaScript than CoffeeScript.</p>
+<p>If you look at the list above, Fay and Elm are both Haskell based languages.
+In fact, it was most probably this article on the Haskell wiki,
+<a href="http://www.haskell.org/haskellwiki/The_JavaScript_Problem">The JavaScript Problem</a>,
+that sowed the seeds of my rebellion against JavaScript, and eventually
+culminated in cljs-nusmods.</p>
+<p>I&rsquo;m a rather big fan of functional languages, so that leaves out Dart and
+TypeScript. I didn&rsquo;t have a good experience with OCaml from a class I&rsquo;ve taken,
+and while I&rsquo;ve tried a bit Scala and am a fan of types in general, Scala is
+quite the beast of a language. So only one of the Haskell JS derivatives and
+ClojureScript remains.</p>
+<p>If I were sufficiently confident, I&rsquo;d go ahead with one of the Haskell JS
+derivatives. However, I&rsquo;ve had a shaky experience with Haskell - having learnt
+the language on and off for several years, not using it much, and finding it
+rather hard to use in production settings. The Haskell JavaScript alternatives
+also feel rather unstable and incomplete to me - I wanted to do something &ldquo;real&rdquo;</p>
+<ul>
+<li>JavaScript interop was of the utmost importance to me.</li>
+</ul>
+<p>On the other hand, Clojure is sufficiently close enough to the Lisp family of
+languages to not pose such a big barrier, since the first
+programming course I took at NUS was taught using Scheme. I still
+remember writing a lot of Scheme code for that course on pen and paper; it was
+one of the very few languages that I wouldn&rsquo;t mind doing that.
+Of course, those were very simple programs compared to things I&rsquo;m dealing with
+now; but still, Scheme has always felt like a simple language to me.</p>
+<p>Clojure is a modern Lisp, and takes a very functional approach to things.
+Furthermore, ClojureScript supports the use of JavaScript libraries, with great
+wrapper libraries such as <a href="https://github.com/ibdknox/jayq">jayq</a> available.
+It uses the
+<a href="https://developers.google.com/closure/compiler/">Google Closure Compiler</a> and
+with advanced compilations, efficient JavaScript code can be generated.
+Of course, getting advanced compilations to work with JavaScript libraries that
+were not written with Google Closure in mind (almost all of them) turned out to
+be a different story, but I kind of figured that one out. Kind of.</p>
+<p>So I went ahead with ClojureScript.</p>
+<h2 id="on-hindsight">On hindsight</h2>
+<p>On hindsight, I think was a very good choice to use Clojurescript.
+My experience with Scheme paid off; Clojure felt a lot more modern than Scheme
+and Common Lisp and I did not have to go through the Lisp fear/shock factor (of
+seeing parentheses on the different side of code than one is used to).
+After writing this bit of ClojureScript, I have to say that Clojure is a
+<strong>very</strong> well designed language. It&rsquo;s quite safe to say that most of the pain
+points I&rsquo;ve faced working on this project <strong>do not</strong> lie with Clojure as a
+programming language; this is actually a rare thing for me - I tend to see the
+flaws of programming languages quickly, and so far Clojure has been really
+pleasant. Of course I need to write more code to find out if that is really the
+case =P</p>
+<p>At work, I have a colleague whom I talk to on technical topics, and in recent
+times he&rsquo;s taken an interest in Clojure. In fact, I rewatched Rich Hickey&rsquo;s
+<a href="http://www.infoq.com/presentations/Simple-Made-Easy">Simple Made Easy</a> talk
+after he showed it to me. To be honest, I didn&rsquo;t really get the big deal about
+Rich Hickey&rsquo;s points the first time I watched the talk (which was several years
+ago). When I watched the talk for a second time (after having more experience
+than the past me, and having some Clojure experience through this project),
+I felt like I had only barely begun to understand the talk.
+That made me feel that I&rsquo;ve made the right choice in using ClojureScript.
+Anyways, do watch the talk; it&rsquo;s awesome.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Currently, the source code for cljs-nusmods is rather ugly and nowhere near
+purely functional. That said, I&rsquo;ve tried my best to stick to being functional.
+I&rsquo;m also pretty new to Clojure and ClojureScript, so much of the code is
+probably non-idiomatic. There is a lot of refactoring to be done, and many
+features have not been implemented. I&rsquo;ve put in a lot of <code>console.log</code> with
+some weird messages to aid debugging, and I&rsquo;ve left a few Git commits labelled
+<code>[TEMP COMMIT]</code> and didn&rsquo;t bother to rework them because they were too far back.
+However, there is something we can play around with, and that&rsquo;s what&rsquo;s
+important.</p>
+<p>Once again, I&rsquo;d like to thank <a href="https://github.com/ahbeng">Beng</a> for making his
+<a href="https://github.com/ahbeng/NUSMods">NUSMods</a> project open source.
+cljs-nusmods will have taken a very different path without it. Thank you Beng!</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

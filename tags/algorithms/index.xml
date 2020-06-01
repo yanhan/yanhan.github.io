@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithms on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/algorithms/</link>
+    <description>Recent content in algorithms on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Wed, 16 Oct 2013 20:39:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Algorithms Presentation @ General Hackers, 11 Oct 2013</title>
+      <link>https://yanhan.github.io/posts/2013-10-16-algorithms-presentation-at-general-hackers/</link>
+      <pubDate>Wed, 16 Oct 2013 20:39:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2013-10-16-algorithms-presentation-at-general-hackers/</guid>
+      <description>
+      
+      Shortly before the end of my internship at BillPin, I was introduced to Calvin Cheng. I was told that Calvin is a founde...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

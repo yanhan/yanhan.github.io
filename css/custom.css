@@ -1,0 +1,55 @@
+body {
+  letter-spacing: 0.1px;
+}
+
+p, li {
+  line-height: 2rem;
+}
+
+.post ul li {
+  margin-bottom: 0;
+}
+
+code:not([data-lang]) {
+  background-color: #ECECEC;
+  padding: 0.1em 0.2em;
+}
+
+.post .post-header {
+  margin-bottom: 0;
+}
+
+/* Tags */
+.tags {
+  padding: 0;
+}
+
+.tags p {
+  margin: 0;
+}
+
+.tags table {
+  margin-bottom: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tags table td {
+  border-bottom: 0px;
+  padding: 0.75rem 0.75rem 0 0.75rem;
+}
+
+.tags table td:nth-child(1) {
+  width: 10%;
+}
+
+.tags table td:nth-child(2) {
+  width: 90%;
+  text-align: left;
+}
+
+/* Disclaimer */
+div.disclaimer {
+  background-color: #ECECEC;
+  padding: 0 1rem 0 1rem;
+}

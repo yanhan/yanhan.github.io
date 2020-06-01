@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="algorithms,presentations"><meta property="og:title" content="Algorithms Presentation @ General Hackers, 11 Oct 2013" />
+<meta property="og:description" content="Shortly before the end of my internship at BillPin, I was introduced to Calvin Cheng. I was told that Calvin is a founder of several successful startups, which is a pretty amazing thing. I had a great chat with Calvin, and it&rsquo;s really nice to see that there are people in Singapore who are passionate about up and coming technologies (some would say it&rsquo;s already proven, depending on who you ask) such as Scala." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2013-10-16-algorithms-presentation-at-general-hackers/" />
+<meta property="article:published_time" content="2013-10-16T20:39:00+00:00" />
+<meta property="article:modified_time" content="2013-10-16T20:39:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Algorithms Presentation @ General Hackers, 11 Oct 2013"/>
+<meta name="twitter:description" content="Shortly before the end of my internship at BillPin, I was introduced to Calvin Cheng. I was told that Calvin is a founder of several successful startups, which is a pretty amazing thing. I had a great chat with Calvin, and it&rsquo;s really nice to see that there are people in Singapore who are passionate about up and coming technologies (some would say it&rsquo;s already proven, depending on who you ask) such as Scala."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Algorithms Presentation @ General Hackers, 11 Oct 2013 | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">16</span>
+<span class="rest">Oct 2013</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Algorithms Presentation @ General Hackers, 11 Oct 2013</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        <a href="/tags/algorithms/"> algorithms </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/presentations/"> presentations </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>Shortly before the end of my internship at BillPin, I was introduced to
+<a href="http://calvinx.com/">Calvin Cheng</a>. I was told that Calvin is a founder of
+several successful startups, which is a pretty amazing thing.
+I had a great chat with Calvin, and it&rsquo;s
+really nice to see that there are people in Singapore who are passionate about
+up and coming technologies (some would say it&rsquo;s already proven, depending on
+who you ask) such as Scala. I also found out that he organizes weekly sharing
+sessions on Fridays, inviting speakers to give a talk on their own expertise,
+mostly to do with an area in computer technology.</p>
+<p>With some of my colleagues, I sat in for a
+sharing session on AngularJS; it was ok, most of the things I&rsquo;ve learnt from
+my work. So it was then that I discovered that Calvin is really
+technical, discussing some AngularJS details with the speakers, and editing
+some code for one of his products to use better AngularJS practices, kind of
+like a mini code review session.
+I was like, wow. It&rsquo;s quite rare to see someone in a leadership position care
+about all these nitty gritty details and understand that such details are one
+of the key difference makers.</p>
+<p>Somehow, one thing led to
+another, and I was invited to be the speaker for a sharing session
+on algorithms. I gladly accepted this opportunity, seeing how I&rsquo;ve enjoyed
+some <em>really</em> good algorithms modules taught by
+<a href="http://www.comp.nus.edu.sg/~stevenha/">Steven Halim</a>,
+one of my mentors at NUS. (Side note: If you are a CS student at NUS, I highly
+recommend you take his modules)</p>
+<p>So the sharing session happened on a sunny 11 October afternoon. The slides
+can be found here:</p>
+<p><a href="http://yanhan.github.io/algo_ghackers/#/">http://yanhan.github.io/algo_ghackers/#/</a></p>
+<p>It was <em>really</em> challenging to prepare for this. But the main challenges are
+as follows:</p>
+<ul>
+<li>The audience may or may not have a formal Computer Science background.
+In fact, this is the main challenge.</li>
+<li>Algorithms is commonly viewed as a very dry topic. And truthfully, it can be,
+and very commonly, is the case, depending on the way one presents it.</li>
+<li>Most of the people attending the talk are probably very experienced software
+engineers with an eye on practicality. Truth to be told, learning about
+computer algorithms may not be the most immediately rewarding endeavour.</li>
+</ul>
+<p>To address these challenges, I decided to focus on a few things:</p>
+<ul>
+<li>Cut down on unnecessary theory, and focus on the important ideas.
+Only as much theory should be presented to sufficiently get ideas across.</li>
+<li>Present some interesting applications. I find Steven&rsquo;s use of algorithmic
+problems in his various algorithms modules quite interesting and effective,
+so I took that approach.</li>
+<li>Give an overview of some areas that are very often too deeply wound up in
+theory in a formal Computer Science course, such as NP-Completeness, and
+show their practical importance.</li>
+</ul>
+<p>As with a lot of things in life go, you may start out thinking like this:</p>
+<p>&ldquo;Hey, I&rsquo;m on a beach, the ocean seems pretty nice&hellip; how nice would it
+be if I could just go into the ocean&hellip;&rdquo;</p>
+<figure>
+    <img src="http://farm5.staticflickr.com/4092/5025958697_399c1e5b2a.jpg"
+         alt="Sunrise 4" width="500" height="281"/> 
+</figure>
+
+<p>But for all you know, when you do actually go in, you may be heading straight
+into this:</p>
+<figure>
+    <img src="http://farm1.staticflickr.com/91/233322923_09eb15e372.jpg"
+         alt="I Think I&#39;m Gonna Get Wet!" width="500" height="375"/> 
+</figure>
+
+<p>And that was exactly what happened to me. I still feel quite apologetic to
+those who attended the session and expected something more.</p>
+<p>First, let us take a look at an overview of what I decided to cover:</p>
+<ul>
+<li>A crash course on Big O notation</li>
+<li>Algorithms - some practical motivations</li>
+<li>Graphs - Terminology</li>
+<li>Graph Algorithm I - Breadth First Search</li>
+<li>Graph Algorithm II - Dijkstra&rsquo;s Algorithm</li>
+<li>NP-Completeness - on the Travelling Salesman Problem</li>
+<li>Undecidability</li>
+</ul>
+<p>You can probably tell that I didn&rsquo;t finish on time, given this long list of
+topics. In fact, I greatly exceeded the time allocated and I stopped at the
+end of the NP-Completeness portion. So it is to my horror that I discovered
+that I was already 45 min into the session when I reached the section
+on Breadth First Search&hellip; Soon, I started seeing people leaving (due
+to time constraints), and everything just went downhill. Thanks for those
+who stayed till the end.</p>
+<p>Some key mistakes:</p>
+<ul>
+<li>Trying to cover too many topics</li>
+<li>Slides are too wordy and probably not too good for a presentation</li>
+<li>Too many details in going through the 4 algorithmic problems in the BFS
+and SSSP sections, unable to cover them thoroughly</li>
+</ul>
+<p>So if you are a really smart CS student and wondering why your lecturer
+cannot go faster, it&rsquo;s really not that your lecturer doesn&rsquo;t want to go
+faster, but that he/she cannot go any faster. You can only cover 1 or maybe
+just 2 topics in detail within a span of 1 to 2 hours. Trying to do more
+will be suicide. This is speaking from my very disastrous experience.</p>
+<p>Some reasons for the choices of topics:</p>
+<ul>
+<li>Big O notation and algorithm analysis - needed to have some common ground
+for discussion.</li>
+<li>Practical motivations - hopefully get the audience interested. Admittedly,
+a good portion of this can be omitted.</li>
+<li>Graphs - I didn&rsquo;t want to cover the usual things in a first algorithms
+course, such as classic sorting and searching algorithms. Graphs are very
+pervasive and appear in day to day software engineering work, and as such,
+may be more immediately applicable.</li>
+<li>NP-Completeness - Something I think didn&rsquo;t get covered too well in school,
+or maybe I&rsquo;m just a bad student. In particular, I find that the practical
+aspects are often left out, and CS students have to learn some examples of
+pretty difficult reductions, and do some even more complicated ones as part
+of a homework assignment. All the while, they may not know the practical
+importance of such problems, yet they have to stare at complicated
+reduction proofs. Not exactly a good motivation recipe.</li>
+<li>Undecidability - These days, totally not covered unless you take a theory
+of computation class or something similar at upper undergraduate or
+graduate level. I do not know too much about this, but then, I do not think
+that one can call himself a CS graduate without knowing a bit about this;
+in particular, that there are some things which we can never compute.
+Yes, maybe not very directly useful to your day to day work, but
+some of the stuff I&rsquo;ve read on this topic is simply mind blowing.
+The fact that there are things that we can never compute should set you
+thinking. Oh and, by the way, that was discovered by
+<a href="http://en.wikipedia.org/wiki/Alan_Turing">Alan Turing</a> in 1936, before the
+first electronic computer was invented.
+You can read more about it <a href="http://en.wikipedia.org/wiki/Halting_problem">here</a>.</li>
+</ul>
+<p>I promised to upload the slides somewhere, so here&rsquo;s the link again:</p>
+<p><a href="http://yanhan.github.io/algo_ghackers/#/">http://yanhan.github.io/algo_ghackers/#/</a></p>
+<p>which is, <em>kind of</em> abusing Github. Actually, nah. That is to be followed up
+in the next post.</p>
+<p>On a serious note, I think
+the slides may make for some ok reading. Come to think of it, I was reading
+through it all the while I was preparing them, so maybe it seemed natural to
+me that I wouldn&rsquo;t exceed the time limit. Ah well.
+Verdict: <!-- raw HTML omitted --><!-- raw HTML omitted -->TLE<!-- raw HTML omitted --><!-- raw HTML omitted -->.
+Time to think of better algorithms to get
+<!-- raw HTML omitted --><!-- raw HTML omitted -->AC<!-- raw HTML omitted --><!-- raw HTML omitted -->.</p>
+<p>On closing, if you do know of good talks on algorithms that take up 1 hour or
+less, preferrably not in some really specialized area, I will be interested to
+know more.</p>
+<h2 id="credits">Credits</h2>
+<p>Big thanks to Calvin for giving me this opportunity. I sure hope I didn&rsquo;t
+decrease everyone&rsquo;s interest in algorithms.</p>
+<p>Big thanks to Steven for sharing his knowledge with the world, and kindling my
+interest in algorithms.</p>
+<p>And to those who came down for the session; I truly appreciate it.</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cljs-nusmods on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/cljs-nusmods/</link>
+    <description>Recent content in cljs-nusmods on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Sun, 15 Jun 2014 23:45:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/cljs-nusmods/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Announcing: cljs-nusmods (alpha release)</title>
+      <link>https://yanhan.github.io/posts/2014-06-15-announcing-cljs-nusmods/</link>
+      <pubDate>Sun, 15 Jun 2014 23:45:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2014-06-15-announcing-cljs-nusmods/</guid>
+      <description>
+      
+      Update Dec 2017: This project is long dead. And it will stay dead. Like a lot of things I have built in the past, this i...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CS3216 on Yan Han&#39;s blog</title>
+    <link>https://yanhan.github.io/tags/cs3216/</link>
+    <description>Recent content in CS3216 on yanhan.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
+    <lastBuildDate>Sun, 21 Dec 2014 17:59:00 +0000</lastBuildDate>
+    
+    <atom:link href="https://yanhan.github.io/tags/cs3216/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Why I dropped CS3216</title>
+      <link>https://yanhan.github.io/posts/2014-12-21-why-i-dropped-cs3216/</link>
+      <pubDate>Sun, 21 Dec 2014 17:59:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2014-12-21-why-i-dropped-cs3216/</guid>
+      <description>
+      
+      Primary reason - for CS1010S. Being a tutor for CS1010S takes up a lot of time. Didn’t want to shortchange my team...
+      
+      </description>
+    </item>
+    <item>
+      <title>What I hope to learn in CS3216</title>
+      <link>https://yanhan.github.io/posts/2014-08-09-what-i-hope-to-learn-in-cs3216/</link>
+      <pubDate>Sat, 09 Aug 2014 21:08:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/2014-08-09-what-i-hope-to-learn-in-cs3216/</guid>
+      <description>
+      
+      CS3216, one of the two premier Software Engineering modules at the School of Computing, National University of Singapore...
+      
+      </description>
+    </item>
+    
+  </channel>
+</rss>

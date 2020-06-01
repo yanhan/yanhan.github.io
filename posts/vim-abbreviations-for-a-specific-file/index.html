@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="vim"><meta name="description" content="How to have vim abbreviations that apply to a specific file"><meta property="og:title" content="Vim abbreviations for a specific file" />
+<meta property="og:description" content="How to have vim abbreviations that apply to a specific file" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/vim-abbreviations-for-a-specific-file/" />
+<meta property="article:published_time" content="2018-02-20T21:01:11+00:00" />
+<meta property="article:modified_time" content="2018-02-20T21:01:11+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vim abbreviations for a specific file"/>
+<meta name="twitter:description" content="How to have vim abbreviations that apply to a specific file"/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>Vim abbreviations for a specific file | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">20</span>
+<span class="rest">Feb 2018</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">Vim abbreviations for a specific file</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/vim/"> vim </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>Recently I came across Bram Moolenaar&rsquo;s article <a href="http://moolenaar.net/habits.html">Vim: Seven habits of effective text editing</a> and learnt about vim abbreviations. Essentially, vim abbreviations allow you to specify shortform words that vim will automatically expand to their long form. For instance, with the following in your vimrc:</p>
+<pre><code>ab dev developer
+</code></pre><p>Whenever you type the word <code>dev</code> followed by a space / enter / punctuation mark, vim will automatically expand it to <code>developer</code>. I am not entirely certain of the rule that vim uses to expand the abbreviation, but it seems to me that vim does it on a word boundary basis. Hence you do not have to be afraid that you cannot type <code>devops</code> for fear that it will be expanded to <code>developerops</code>.</p>
+<p>This is pretty useful and can save a lot of typing. There are other pieces of wisdom in the article and I highly encourage you to read it.</p>
+<h2 id="how-to-have-file-specific-vim-abbreviations">How to have file specific vim abbreviations</h2>
+<p>Which brings us to the meat of this post. How do we have abbreviations that apply to a specific file? Some Googling led to <a href="https://unix.stackexchange.com/a/31602">this Unix &amp; Linux Stack Exchange answer</a> and here&rsquo;s some example code on how to do it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#a6e22e">au</span> <span style="color:#a6e22e">BufRead</span>,<span style="color:#a6e22e">BufNewFile</span> <span style="color:#e6db74">/path/</span><span style="color:#a6e22e">to</span>/<span style="color:#a6e22e">file</span> <span style="color:#a6e22e">call</span> <span style="color:#a6e22e">YourAbbrevFunction</span>()<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">YourAbbrevFunction</span>()<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#a6e22e">ab</span> <span style="color:#a6e22e">dev</span> <span style="color:#a6e22e">developers</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">  &#34; define your other abbreviations here</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">endfunction</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h3 id="instructions">Instructions</h3>
+<ol>
+<li>Copy and paste the above code to your vimrc file</li>
+<li>Define all your desired abbreviations in the <code>YourAbbrevFunction</code> vim function</li>
+<li>Change the <code>/path/to/file</code> to the file you want the abbreviations to apply to</li>
+<li>If you have an existing vim session editing the <code>/path/to/file</code>, you will need to quit and start it again for the abbreviations to apply</li>
+</ol>
+<p>Enjoy!</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://unix.stackexchange.com/a/31602">Storing Abbreviations in Vim - Unix &amp; Linux Stack Exchange</a></li>
+<li><a href="http://moolenaar.net/habits.html">Vim: Seven habits of effective text editing</a></li>
+<li><a href="http://learnvimscriptthehardway.stevelosh.com/chapters/13.html">Learn Vimscript the Hard Way: Buffer-Local Abbreviations</a></li>
+<li><a href="http://vim.wikia.com/wiki/Using_abbreviations">Using abbreviations - Vim Tips Wiki</a></li>
+</ul>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

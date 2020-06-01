@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.71.1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="mathematics"><meta property="og:title" content="My notes on: Job Bouwman&#39;s answer to &#34;What is the toughest question ever asked in any interview?&#34;" />
+<meta property="og:description" content="A while back, this answer by Job Bouwman appeared in my Quora digest and I enjoyed reading it (Thank you Job!) so much that I intended to blog about some of the more tricky parts of the answer where I thought some explanations got skipped over.
+The question is:
+ A right triangle has a hypotenuse equal to 10 and an altitude to the hypotenuse equal to 6. Find the area of the triangle." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2016-08-01-my-notes-on-job-bouwmans-answer-to-what-is-the-toughest-interview-question-ever-asked-in-any-interview/" />
+<meta property="article:published_time" content="2016-08-01T08:11:00+00:00" />
+<meta property="article:modified_time" content="2016-08-01T08:11:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="My notes on: Job Bouwman&#39;s answer to &#34;What is the toughest question ever asked in any interview?&#34;"/>
+<meta name="twitter:description" content="A while back, this answer by Job Bouwman appeared in my Quora digest and I enjoyed reading it (Thank you Job!) so much that I intended to blog about some of the more tricky parts of the answer where I thought some explanations got skipped over.
+The question is:
+ A right triangle has a hypotenuse equal to 10 and an altitude to the hypotenuse equal to 6. Find the area of the triangle."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>My notes on: Job Bouwman&#39;s answer to &#34;What is the toughest question ever asked in any interview?&#34; | Yan Han&#39;s blog</title></head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">01</span>
+<span class="rest">Aug 2016</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">My notes on: Job Bouwman&#39;s answer to &#34;What is the toughest question ever asked in any interview?&#34;</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/mathematics/"> mathematics </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>A while back, <a href="https://www.quora.com/What-is-the-toughest-question-ever-asked-in-any-interview/answer/Job-Bouwman">this answer</a> by <a href="https://www.quora.com/profile/Job-Bouwman">Job Bouwman</a> appeared in my Quora digest and I enjoyed reading it (Thank you Job!) so much that I intended to blog about some of the more tricky parts of the answer where I thought some explanations got skipped over.</p>
+<p>The question is:</p>
+<blockquote>
+<p>A right triangle has a hypotenuse equal to 10 and an altitude to the hypotenuse equal to 6. Find the area of the triangle.</p>
+</blockquote>
+<p>Like many other people, I thought it was \( 10 * 6 * \frac{1}{2} = 30 \) but was quite shocked when it turned out wrong. It is due to a misinterpretation of the following:</p>
+<blockquote>
+<p>altitude to the hypotenuse equal to 6</p>
+</blockquote>
+<p>I interpreted this as the height of the triangle. In otherwords, a triangle like this:</p>
+<p><img src="/images/2016-08-01/wrong_triangle.jpg" alt=""></p>
+<p>Let&rsquo;s clarify what altitude to the hypotenuse means.</p>
+<p>Based on the <a href="https://en.wikipedia.org/wiki/Altitude_(triangle)">Wikpedia entry on the Altitude of a triangle</a>:</p>
+<blockquote>
+<p>In geometry, an altitude of a triangle is the line segment through a vertex and perpendicular to (ie. forming a right angle with) a line containing the base (the opposite side of the triangle).</p>
+</blockquote>
+<p>Therefore, the triangle should look something like this:</p>
+<p><img src="/images/2016-08-01/correct_triangle.jpg" alt=""></p>
+<p>But we are told that such a triangle cannot exist. Why? By looking at:</p>
+<p><img src="https://qph.ec.quoracdn.net/main-qimg-3fc73b8551b19db248df929426e90882?convert_to_webp=true" alt=""></p>
+<p>We see that the hypotenuse of all the right angle triangles is \( 10 \), which also happens to be the diameter of the circle. There are 2 edges other than the hypotenuse and both edges start at the opposite ends of the hypotenuse and meet at a point on the circle. At this point I wondered: Hmm, must triangles like these, ie triangles where one edge is the diameter of a circle, and the other 2 edges start from opposite ends of the hypotenuse and meet at the radius, always be right angle triangles?</p>
+<p>A google search on &ldquo;<em>triangle with hypotenuse being diameter of circle always right angle</em>&rdquo; yields the following Wikipedia page on <a href="https://en.wikipedia.org/wiki/Thales'_theorem">Thale&rsquo;s theorem</a> as the first result, which is exactly what we hoped is true (Google is just amazing). I highly recommend you read the proofs of Thales theorem on the Wiki page - it&rsquo;s a pretty insightful read, although I can&rsquo;t see how to extend the second proof to non unit circles.</p>
+<p>Now, this means that <strong>any</strong> right angle triangle with hypotenuse \( 10 \) has a maximum altitude to the hypotenuse of \( 5 \), since \( 5 \) is the radius of the circle and is the absolute maximum the altitude to the hypotenuse can go with the triangle still within the circle. In a very hand-wavy fashion, we can see that if we try to increase the altitude of the hypotenuse so the triangle juts out of the circle, the triangle will no longer be right angled. Similarly, if we increase the altitude of the hypotenuse such that it juts out of the circle but we insist on having it being right angled, then the hypotenuse of the triangle will exceed \( 10 \). I do not have the math chops or the will to prove this so hopefully this is a reasonable explanation.</p>
+<p>With that, the situation seems hopeless. A right angle triangle with hypotenuse \( 10 \) simply cannot have an altitude to the hypotenuse greater than \( 5 \).</p>
+<p>However, Mathematics and human ingenuity often surprises us. This is no exception. So far we&rsquo;ve only been considering Euclidean geometry. Let&rsquo;s step into the 3D realm (this is the hard part of coming up with the answer; I also cannot explain how people come up with these insights).</p>
+<p>Now, consider this (ignore the \( radius = \frac{20}{\pi} \) part for now):</p>
+<p><img src="https://qph.ec.quoracdn.net/main-qimg-b0e50246c7ab05367862f25498cc10fd?convert_to_webp=true" alt=""></p>
+<p>Imagine you have a deflated balloon. Draw a triangle on it. Now inflate the balloon to a sphere. The edges of the triangle you drew on the balloon will look curved and the triangle will not look like a triangle on a 2D plane, but it is still a triangle. Deflate the balloon and you get back the same triangle - recognize that whether the balloon is deflated or inflated, the triangle did not change - it just looks different to your eyes when the balloon is deflated vs. when it is inflated. The moral of the story is this: if we take any 2 points on the surface of a sphere and connect them with a straight line on the surface, that straight line will looked curved.</p>
+<p>But it seems that we can draw some triangles on the surface of the sphere that will not be triangles on the 2D plane when we deflate the sphere. Hence it is important to realize this: as long as we have a polygon that has 3 vertices and any of the 2 vertices are connected by straight lines on the sphere, we have a triangle on the sphere. This triangle may look strange compared to one on a 2D plane but it is a triangle.</p>
+<p>Let \( A \), \( B \) be on the equator and \( C \) be on the north pole. Let \( AC \) be the straight line on the surface of the sphere joining points \( A \) and \( C \). Let \( BC \) be the straight line on the surface of the sphere joining points \( B \) and \( C \). Let \( AB \) be the straight line on the surface of the sphere joining points \( A \) and \( B \). We have ourselves a triangle in \( ABC \).</p>
+<p>The circle formed by extending the arc \( AC \) is perpendicular to the circle formed by extending the arc \( AB \), so \( \angle CAB \) is a right angle and hence the triangle \( ABC \) is a right angle triangle. Similarly, the circle formed by extending the arc \( BC \) is perpendicular to the circle formed by extending the arc \( AB \) so angle \( \angle CBA \) is also a right angle. Let \( AC \) be the hypotenuse of length \( 10 \). Since \( BC \) has one end on the north pole and the other on the equator, it also has length \( 10 \). \( AB \) is a valid altitude to the hypotenuse \( AC \), since point \( B \) is a vertex on the triangle and point \( A \) sits at the hypotenuse and \( AB \) is perpendicular to the hypotenuse \( AC \). So there we go: we have a right angle triangle whose hypotenuse is \( 10 \) and and altitude to the hypotenuse is \( 6 \).</p>
+<p>To compute the area of this triangle, the key lies in computing its radius. \( C \) is the north pole while \( A \) lies on the equator, so this arc is \( \frac{1}{4} \) of the great circle formed by extending \( AC \). Hence the great circle has circumference \( 40 \), which is given by \( \pi * d \), where \( d \) is the diameter of the great circle and hence the sphere. Hence \( d = \frac{40}{\pi} \) and the radius \( r = \frac{1}{2} * d = \frac{1}{2} * \frac{40}{\pi} = \frac{20}{\pi} \), which is the number shown in the image above.</p>
+<p>We see that our triangle perfectly covers a portion on the upper hemisphere. To be exact, since the diameter of any great circle of the sphere is \( 40 \), our triangle covers \( \frac{6}{40} \) of the area of the upper hemisphere. The surface area of the sphere is given by \( 4 * \pi * r^{2} \), and the upper hemisphere has area half of that, which is \( 2 * \pi * r^{2} \) and our triangle has area \( \frac{6}{40} \) of that, which is \( \frac{6}{40} * 2 * \pi * (\frac{20}{\pi})^{2} = \frac{120}{\pi} \). Ingenious.</p>
+<h2 id="credits">Credits</h2>
+<p>Big thanks to by <a href="https://www.quora.com/profile/Job-Bouwman">Job Bouwman</a> for <a href="https://www.quora.com/What-is-the-toughest-question-ever-asked-in-any-interview/answer/Job-Bouwman">his answer</a>. The relevant images on Quora belongs to Quora and Job Bouwman.</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>
