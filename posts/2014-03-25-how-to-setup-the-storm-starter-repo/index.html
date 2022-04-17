@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +9,10 @@
 <meta property="og:description" content="Just today, I have faced an issue which took up (wasted) several hours of my time in a rather painful way, so I thought I should share my findings so that others do not repeat the same mistake.
 I was learning Storm and one of the resources I found was the storm-starter repository. While I was disappointed that there were no instructions for setup using Leiningen (other than a one-liner pointing to the Leiningen repo, more on this towards the end of this article), I proceeded to set up Maven, and ran the WordCountTopology using:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2014-03-25-how-to-setup-the-storm-starter-repo/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2014-03-25-how-to-setup-the-storm-starter-repo/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-03-25T22:00:00+00:00" />
 <meta property="article:modified_time" content="2014-03-25T22:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to setup the storm-starter repo"/>
 <meta name="twitter:description" content="Just today, I have faced an issue which took up (wasted) several hours of my time in a rather painful way, so I thought I should share my findings so that others do not repeat the same mistake.
@@ -87,6 +88,34 @@ I was learning Storm and one of the resources I found was the storm-starter repo
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -430,8 +459,8 @@ repository. While I was disappointed that there were no instructions for setup
 using Leiningen (other than a one-liner pointing to the Leiningen repo,
 more on this towards the end of this article), I proceeded to set up Maven,
 and ran the <code>WordCountTopology</code> using:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mvn compile exec:java -Dstorm.topology<span style="color:#f92672">=</span>storm.starter.WordCountTopology
-</code></pre></div><p>however, this was met with rather cryptic error messages from Maven (which I
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mvn compile exec:java -Dstorm.topology<span style="color:#f92672">=</span>storm.starter.WordCountTopology
+</span></span></code></pre></div><p>however, this was met with rather cryptic error messages from Maven (which I
 shall omit here due to my frustration earlier today) and it took
 me literally hours of googling, trying the command and variations of the
 command at both the root directory of the repo and the <code>examples/storm-starter</code>
@@ -443,14 +472,14 @@ use <a href="https://github.com/nathanmarz/storm-starter">this one</a> instead, 
 the same instructions. One thing to take note of is that in this repository,
 the <code>pom.xml</code> file is named <code>m2-pom.xml</code> . So to execute the WordCountTopology
 code, you will run the command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mvn -f m2-pom.xml compile exec:java -Dstorm.topology<span style="color:#f92672">=</span>storm.starter.WordCountTopology
-</code></pre></div><p>A kind reader, Jorge Plaza, has pointed out that the following series of
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mvn -f m2-pom.xml compile exec:java -Dstorm.topology<span style="color:#f92672">=</span>storm.starter.WordCountTopology
+</span></span></code></pre></div><p>A kind reader, Jorge Plaza, has pointed out that the following series of
 commands will work too (Thank you Jorge!). If you can&rsquo;t run the
 WordCountTopology with the above command, these should do the trick:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mvn -f m2-pom.xml clean
-mvn -f m2-pom.xml package
-storm jar target/storm-starter-0.0.1-SNAPSHOT.jar storm.starter.WordCountTopology
-</code></pre></div><p><strong>A note of caution:</strong> this make use of the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mvn -f m2-pom.xml clean
+</span></span><span style="display:flex;"><span>mvn -f m2-pom.xml package
+</span></span><span style="display:flex;"><span>storm jar target/storm-starter-0.0.1-SNAPSHOT.jar storm.starter.WordCountTopology
+</span></span></code></pre></div><p><strong>A note of caution:</strong> this make use of the
 <a href="https://github.com/nathanmarz/storm/wiki/Command-line-client">storm client</a> and
 if you&rsquo;ve set up the Storm client to deploy to a production server, that is what
 the <code>storm jar</code> command will do. However, if you&rsquo;ve not set up the Storm client

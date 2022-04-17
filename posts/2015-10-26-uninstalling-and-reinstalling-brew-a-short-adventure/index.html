@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 ruby -e &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&#34; which I did.
 Then I proceeded to run my script, which contains the following line of code (from the brew website) to install brew:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2015-10-26-uninstalling-and-reinstalling-brew-a-short-adventure/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-10-26-uninstalling-and-reinstalling-brew-a-short-adventure/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-10-26T08:23:00+00:00" />
 <meta property="article:modified_time" content="2015-10-26T08:23:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to uninstall then install brew: a short adventure"/>
 <meta name="twitter:description" content="Roughly 2 weeks ago I was writing a Bash script to automate some stuff, one of them being installing brew. To test if this script was working, I needed to uninstall brew. So I googled for it and came across the homebrew FAQ which says to run the following:
@@ -222,7 +223,35 @@ Then I proceeded to run my script, which contains the following line of code (fr
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="/tags/homebrew/"> homebrew </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -428,24 +457,24 @@ Then I proceeded to run my script, which contains the following line of code (fr
 
 <div class="markdown">
 <p>Roughly 2 weeks ago I was writing a Bash script to automate some stuff, one of them being installing brew. To test if this script was working, I needed to uninstall brew. So I googled for it and came across <a href="https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/FAQ.md#how-do-i-uninstall-homebrew">the homebrew FAQ</a> which says to run the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</code></pre></div><p>which I did.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>which I did.</p>
 <p>Then I proceeded to run my script, which contains the following line of code (from the <a href="http://brew.sh">brew website</a>) to install brew:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</code></pre></div><p>However, this command caused the following error:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>However, this command caused the following error:</p>
 <blockquote>
 <p>It appears Homebrew is already installed. If your intent is to reinstall you</p>
 <p>should do the following before running this installer again:</p>
 <p>\ \ \ \ ruby -e &ldquo;$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/uninstall)%22">https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&quot;</a></p>
 </blockquote>
 <p>Ok, I thought I uninstalled brew already. Never mind, maybe the uninstallation script went wrong. So I ran it again:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</code></pre></div><p>and if memory serves (after all, it was about 2 weeks ago), I got the following error:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>and if memory serves (after all, it was about 2 weeks ago), I got the following error:</p>
 <pre><code>Failed to locate Homebrew!
 </code></pre>
 <p>Ok&hellip; let&rsquo;s install brew again:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</code></pre></div><p>and I got the same error again:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>and I got the same error again:</p>
 <blockquote>
 <p>It appears Homebrew is already installed. If your intent is to reinstall you</p>
 <p>should do the following before running this installer again:</p>
@@ -459,16 +488,16 @@ Then I proceeded to run my script, which contains the following line of code (fr
 <p>and I was definitely not insane. So to solve this problem, I had to do something different. I googled around but couldn&rsquo;t find anything helpful. After some time, the following thought firmly presented itself in my mind: <strong>I screwed up my brew installation and there is a chance I won&rsquo;t be able to install brew again</strong>.</p>
 <p>But I needed brew back. And while there is indeed a chance that I screwed things up so bad that I wouldn&rsquo;t be able to install brew ever again, that&rsquo;s a pretty slim chance. <strong>I knew for a fact that brew was uninstalled</strong>, because 1. brew itself was gone and 2. all the programs that were installed using brew were gone as well. So the uninstallation mostly worked properly. The script that fucked up was probably the installation script. I knew that I&rsquo;d have to look inside the brew installation script to see what went wrong. Kind of intimidating. I was also pretty tired and needed a break, so I went for one.</p>
 <p>After my break, I downloaded the brew installation script file. Ok. So it&rsquo;s over 200 but below 300 line of ruby code. Not so intimidating after all. Then I looked around for text that resembled the above error I got that complained about brew being installed on my system. And I found it! Here&rsquo;s how the ruby code looked like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">abort <span style="color:#e6db74">&lt;&lt;-EOABORT unless Dir[&#34;#{HOMEBREW_PREFIX}/.git/*&#34;].empty?
-</span><span style="color:#e6db74"></span><span style="color:#66d9ef">It</span> appears <span style="color:#66d9ef">Homebrew</span> is already installed<span style="color:#f92672">.</span> <span style="color:#66d9ef">If</span> your intent is to reinstall you
-should <span style="color:#66d9ef">do</span> the following before running this installer <span style="color:#e6db74">again</span>:
-    ruby <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&#34;</span>
-<span style="color:#66d9ef">EOABORT</span>
-</code></pre></div><p>Hmm, so to trigger this abort, <code>Dir[&quot;#{HOMEBREW_PREFIX}/.git/*&quot;].empty?</code> must be false. So what is <code>HOMEBREW_PREFIX</code> ? Turns out it&rsquo;s defined right at the top of the brew installation script as <code>/usr/local</code> . Ok, so <code>/usr/local/.git</code> must be present on my mac. And indeed it is. That&rsquo;s the cause of the error. And indeed it looks like a <code>.git</code> directory whenever one clones a git repository. Let&rsquo;s remove it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rm -rf /usr/local/.git
-</code></pre></div><p>And run the brew installation script:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</code></pre></div><p>which worked flawlessly this time.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>abort <span style="color:#e6db74">&lt;&lt;-EOABORT unless Dir[&#34;#{HOMEBREW_PREFIX}/.git/*&#34;].empty?
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span><span style="color:#66d9ef">It</span> appears <span style="color:#66d9ef">Homebrew</span> is already installed<span style="color:#f92672">.</span> <span style="color:#66d9ef">If</span> your intent is to reinstall you
+</span></span><span style="display:flex;"><span>should <span style="color:#66d9ef">do</span> the following before running this installer <span style="color:#e6db74">again</span>:
+</span></span><span style="display:flex;"><span>    ruby <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">EOABORT</span>
+</span></span></code></pre></div><p>Hmm, so to trigger this abort, <code>Dir[&quot;#{HOMEBREW_PREFIX}/.git/*&quot;].empty?</code> must be false. So what is <code>HOMEBREW_PREFIX</code> ? Turns out it&rsquo;s defined right at the top of the brew installation script as <code>/usr/local</code> . Ok, so <code>/usr/local/.git</code> must be present on my mac. And indeed it is. That&rsquo;s the cause of the error. And indeed it looks like a <code>.git</code> directory whenever one clones a git repository. Let&rsquo;s remove it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -rf /usr/local/.git
+</span></span></code></pre></div><p>And run the brew installation script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ruby -e <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>which worked flawlessly this time.</p>
 <p>What did I learn from this?</p>
 <ol>
 <li>Taking a break can be very helpful when you&rsquo;ve gotten stuck on a problem for a long time. It may seem counterintuitive, but it has worked for me many, many times.</li>

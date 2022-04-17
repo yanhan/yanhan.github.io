@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 NOTE: There may be some (ok perhaps a lot of) mistakes with regards to Phabricator and Arcanist terminology because of my lack of familiarity with these tools. But I think you should be able to get the gist of this post despite my mistakes.
 Backstory / Scenario Suppose you are using Phabricator and like a true command line addict, you make use of Arcanist and create a feature branch using arc feature." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2015-07-06-how-to-restore-a-deleted-arc-feature-branch/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-07-06-how-to-restore-a-deleted-arc-feature-branch/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-07-06T22:59:00+00:00" />
 <meta property="article:modified_time" content="2015-07-06T22:59:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to restore a deleted `arc feature` branch"/>
 <meta name="twitter:description" content="Updated: 17 July 2015
@@ -192,7 +193,35 @@ Backstory / Scenario Suppose you are using Phabricator and like a true command l
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="/tags/git/"> git </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -434,7 +463,7 @@ Backstory / Scenario Suppose you are using Phabricator and like a true command l
 <p><strong>Updated:</strong> 17 July 2015</p>
 <p><strong>NOTE:</strong> There may be some (ok perhaps a lot of) mistakes with regards to Phabricator and Arcanist terminology because of my lack of familiarity with these tools. But I think you should be able to get the gist of this post despite my mistakes.</p>
 <h2 id="backstory--scenario">Backstory / Scenario</h2>
-<p>Suppose you are using Phabricator and like a true command line addict, you make use of Arcanist and create a feature branch using <code>arc feature</code>. Being the git power user that you are, you go on to perform many <code>git reset</code>s (various flavors), <code>git rebase</code>s (various flavors again), <code>git merge</code>s, <code>git branch -D</code>'s, etc as you are making changes to your code. Along with several <code>arc diff</code>s as you update your Revision on Phabricator. One thing led to another and suddenly you realize&hellip; you deleted the branch you created using <code>arc feature</code>, or messed it up to the point of no recognition. And you want to get it back to exactly the same state as the Revision on Phabricator, but you don&rsquo;t know how.</p>
+<p>Suppose you are using Phabricator and like a true command line addict, you make use of Arcanist and create a feature branch using <code>arc feature</code>. Being the git power user that you are, you go on to perform many <code>git reset</code>s (various flavors), <code>git rebase</code>s (various flavors again), <code>git merge</code>s, <code>git branch -D</code>&rsquo;s, etc as you are making changes to your code. Along with several <code>arc diff</code>s as you update your Revision on Phabricator. One thing led to another and suddenly you realize&hellip; you deleted the branch you created using <code>arc feature</code>, or messed it up to the point of no recognition. And you want to get it back to exactly the same state as the Revision on Phabricator, but you don&rsquo;t know how.</p>
 <p>That was exactly the scenario that happened to me. Reading the Phabricator docs and googling around for answers didn&rsquo;t help much. Eventually I tried something which has worked for me. I hope it works for you, too.</p>
 <h2 id="step-0-assumptions">Step 0: Assumptions</h2>
 <ol>
@@ -466,8 +495,8 @@ Backstory / Scenario Suppose you are using Phabricator and like a true command l
 <h2 id="step-1-delete-the-branch-with-the-same-name-as-the-feature-branch">Step 1: Delete the branch with the same name as the feature branch</h2>
 <p>That is assuming you have, in your effort to restore the feature branch, actually created a branch of the same name. If you have indeed done so and on that branch, you have changes that you want to play on top of the a restored feature branch, please rename the branch to something else before you carry on.</p>
 <p>Delete the branch using:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch -D awesome-feature-X
-</code></pre></div><h2 id="step-2-create-a-new-branch-whose-head-is-the-same-as-the-parent-of-the-oldest-commit-in-the-feature-branch-you-want-to-restore">Step 2: Create a new branch whose HEAD is the same as the parent of the oldest commit in the feature branch you want to restore</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git branch -D awesome-feature-X
+</span></span></code></pre></div><h2 id="step-2-create-a-new-branch-whose-head-is-the-same-as-the-parent-of-the-oldest-commit-in-the-feature-branch-you-want-to-restore">Step 2: Create a new branch whose HEAD is the same as the parent of the oldest commit in the feature branch you want to restore</h2>
 <p>In Step 0, we assumed that Phabricator Revision, <code>D1882</code>, contains the following commits, from least recent to most recent, in chronological order:</p>
 <pre><code>fec32ab8 Add README.md
 25ad51ee Create AwesomeController
@@ -475,21 +504,21 @@ Backstory / Scenario Suppose you are using Phabricator and like a true command l
 </code></pre>
 <p>The commit we&rsquo;re interested in is the parent of <code>fec32ab8</code>, which we earlier assumed is <code>da1522c3</code>.</p>
 <p>We need a temporary branch whose <code>HEAD</code> is <code>da1522c3</code>. Let&rsquo;s call this temporary branch <code>temp-helper-branch</code> and create it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout -b temp-helper-branch da1522c3
-</code></pre></div><h2 id="step-3-use-arc-feature-to-create-a-branch-with-the-same-name-as-the-feature-branch">Step 3: Use <code>arc feature</code> to create a branch with the same name as the feature branch</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout -b temp-helper-branch da1522c3
+</span></span></code></pre></div><h2 id="step-3-use-arc-feature-to-create-a-branch-with-the-same-name-as-the-feature-branch">Step 3: Use <code>arc feature</code> to create a branch with the same name as the feature branch</h2>
 <p>At the end of the last step, <code>temp-helper-branch</code> should be the currently active branch and its <code>HEAD</code> should be commit <code>da1522c3</code>. Now you gotta use <code>arc feature</code> to create a feature branch with the same name as the one you want to restore:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">arc feature awesome-feature-X
-</code></pre></div><h2 id="step-4-fetch-from-the-origin-remote">Step 4: Fetch from the <code>origin</code> remote</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>arc feature awesome-feature-X
+</span></span></code></pre></div><h2 id="step-4-fetch-from-the-origin-remote">Step 4: Fetch from the <code>origin</code> remote</h2>
 <p>At Step 0, we assumed that at the <code>origin</code> remote, there is a branch named <code>FBR_D1882_awesome-feature-X</code> that&rsquo;s created by Phbricator for <code>D1882</code>. Let&rsquo;s fetch all the updates from <code>origin</code>, which will also update the remote tracking branch <code>origin/FBR_D1882_awesome-feature-X</code> on your local git repository (or create it if it does not exist):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git fetch origin
-</code></pre></div><h2 id="step-5-fast-forward-merge-originfbr_d1882_awesome-feature-x-branch-on-top-of-awesome-feature-x">Step 5: Fast forward merge <code>origin/FBR_D1882_awesome-feature-X</code> branch on top of <code>awesome-feature-X</code></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git fetch origin
+</span></span></code></pre></div><h2 id="step-5-fast-forward-merge-originfbr_d1882_awesome-feature-x-branch-on-top-of-awesome-feature-x">Step 5: Fast forward merge <code>origin/FBR_D1882_awesome-feature-X</code> branch on top of <code>awesome-feature-X</code></h2>
 <p>You should still be at branch <code>awesome-feature-X</code>. Now execute:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git merge --ff-only origin/FBR_D1882_awesome-feature-X
-</code></pre></div><p>Tadah! You got your feature branch back. Now you can apply any changes you want on top of this and run <code>arc diff</code> as if your feature branch was never accidentally deleted in the first place.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git merge --ff-only origin/FBR_D1882_awesome-feature-X
+</span></span></code></pre></div><p>Tadah! You got your feature branch back. Now you can apply any changes you want on top of this and run <code>arc diff</code> as if your feature branch was never accidentally deleted in the first place.</p>
 <h2 id="step-6-delete-the-unnecessary-branch-weve-created-along-the-way">Step 6: Delete the unnecessary branch we&rsquo;ve created along the way</h2>
 <p>Namely, <code>temp-helper-branch</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch -D temp-helper-branch
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git branch -D temp-helper-branch
+</span></span></code></pre></div>
 </div>
 
 <div class="disclaimer">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 If you haven&rsquo;t read Aaron&rsquo;s blog post, you should.
 If you haven&rsquo;t started using his unofficial bash strict mode, you should, too." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2015-12-25-on-the-unofficial-bash-strict-mode-by-aaron-maxwell/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-12-25-on-the-unofficial-bash-strict-mode-by-aaron-maxwell/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-12-25T21:16:00+00:00" />
 <meta property="article:modified_time" content="2015-12-25T21:16:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="On the Unofficial Bash Strict Mode by Aaron Maxwell"/>
 <meta name="twitter:description" content="A few weeks ago, I chanced upon a blog post by Aaron Maxwell of redsymbol.net, titled Use the Unofficial Bash Strict Mode (Unless you Looove Debugging). I thought it was brilliant, and just want to share some of my thoughts after having used this unofficial bash strict mode since that time.
@@ -410,6 +411,34 @@ If you haven&rsquo;t started using his unofficial bash strict mode, you should, 
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
       </td>
     </tr>
   </tbody>
@@ -428,22 +457,22 @@ If you haven&rsquo;t started using his unofficial bash strict mode, you should, 
 <p>If you haven&rsquo;t started using his unofficial bash strict mode, you should, too.</p>
 <h2 id="the-evolution-of-my-original-unofficial-bash-strict-mode">The evolution of my original unofficial bash strict mode</h2>
 <p>For a very long time before I read Aaron&rsquo;s blog post, this was my unofficial bash strict mode, which I used in most of my bash scripts:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set -e
-</code></pre></div><p>It is certainly much less comprehensive than Aaron&rsquo;s unofficial bash strict mode, having the effect of erroring out on commands which return a non-zero exit code. But this flag alone eased a lot of debugging pain for bash scripts.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set -e
+</span></span></code></pre></div><p>It is certainly much less comprehensive than Aaron&rsquo;s unofficial bash strict mode, having the effect of erroring out on commands which return a non-zero exit code. But this flag alone eased a lot of debugging pain for bash scripts.</p>
 <p>After some time, I encountered <code>set -u</code>, which errors out on the use of undefined variables. So my unofficial bash strict mode became:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set -eu
-</code></pre></div><p>which is just 2 things shy of Aaron&rsquo;s unofficial bash strict mode. With <code>set -u</code>, debugging bash scripts becomes even easier, since use of undefined variables is a big source of bugs, especially when we factor in typos.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set -eu
+</span></span></code></pre></div><p>which is just 2 things shy of Aaron&rsquo;s unofficial bash strict mode. With <code>set -u</code>, debugging bash scripts becomes even easier, since use of undefined variables is a big source of bugs, especially when we factor in typos.</p>
 <h2 id="thoughts-on-the-other-2-flags">Thoughts on the other 2 flags</h2>
 <p>In fact, with <code>set -eu</code>, writing bash scripts becomes very smooth for me. So as much as Aaron&rsquo;s blog post convinced me that his unofficial bash strict mode was superior to the one I&rsquo;ve been using, after adopting its usage, I didn&rsquo;t really detect much noticeable difference in how <code>set -o pipefail</code> and <code>IFS=$'\n\t'</code> helped with debugging, or how I had to adjust my code to work around some of their quirks.</p>
 <p>That being said, if I were to choose among those 2 to aid in the ease of writing bash scripts, it&rsquo;ll be:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set -o pipefail
-</code></pre></div><p>Since that is such a natural next step from <code>set -eu</code>. And detecting intermediate failures in a very long chain of commands in a pipeline is an extremely welcome addition.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set -o pipefail
+</span></span></code></pre></div><p>Since that is such a natural next step from <code>set -eu</code>. And detecting intermediate failures in a very long chain of commands in a pipeline is an extremely welcome addition.</p>
 <p>As for <code>IFS=$'\n\t'</code>, while it does seem useful, I&rsquo;m still a bit confused about bash arrays and don&rsquo;t use them too often in my bash scripts. For string manipulation, I rely on a mix of <code>grep</code>, <code>perl</code> and a little bit of <code>sed</code> and when I&rsquo;m really really confused about those 3 tools, I stick to a trusty Python script. So it is probably the least useful addition to my arsenal. Hopefully I&rsquo;ll be making full use of it as my bash-fu improves. But the thing about bash is, it is actually quite difficult to pick up, or at least it gives people the impression of that. There is probably some truth to both, seeing how quite a number of programmers I know don&rsquo;t know how to write bash scripts and see it as some kind of alien language when I get them to fire up their text editor to open a bash script I&rsquo;ve written so we can debug something in it together; and for those who know how to write them, it certainly isn&rsquo;t their favourite language and they&rsquo;d rather avoid it if possible.</p>
 <h2 id="finally">Finally&hellip;</h2>
 <p>Wishing all readers a Merry Christmas! If you didn&rsquo;t know about Aaron&rsquo;s unofficial bash strict mode:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set -euo pipefail
-IFS<span style="color:#f92672">=</span><span style="color:#e6db74">$&#39;\n\t&#39;</span>
-</code></pre></div><p>I hope this is a good Christmas gift for you. Happy Holidays!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set -euo pipefail
+</span></span><span style="display:flex;"><span>IFS<span style="color:#f92672">=</span><span style="color:#e6db74">$&#39;\n\t&#39;</span>
+</span></span></code></pre></div><p>I hope this is a good Christmas gift for you. Happy Holidays!</p>
 
 </div>
 

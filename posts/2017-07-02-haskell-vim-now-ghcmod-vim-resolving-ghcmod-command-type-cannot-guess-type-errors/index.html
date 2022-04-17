@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +9,10 @@
 <meta property="og:description" content="NOTE: This post features a very hacky way to work around things which will likely never be merged into the ghcmod-vim project. It is just a place for me to document what has worked for myself in case I encounter the same issue again. This also assumes you are primarily using Stack for your Haskell projects.
 Introduction / Problem Statement Yesterday afternoon, I took some time to install haskell-vim-now. Among the list of features I saw on the README, what caught my attention was its ability to show the type of an expression in Haskell source code by typing ,ht in normal mode." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2017-07-02-haskell-vim-now-ghcmod-vim-resolving-ghcmod-command-type-cannot-guess-type-errors/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2017-07-02-haskell-vim-now-ghcmod-vim-resolving-ghcmod-command-type-cannot-guess-type-errors/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-07-02T10:14:05+00:00" />
 <meta property="article:modified_time" content="2017-07-02T10:14:05+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="haskell-vim-now / ghcmod-vim: Resolving &#39;ghcmod#command#type Cannot guess type&#39; errors"/>
 <meta name="twitter:description" content="NOTE: This post features a very hacky way to work around things which will likely never be merged into the ghcmod-vim project. It is just a place for me to document what has worked for myself in case I encounter the same issue again. This also assumes you are primarily using Stack for your Haskell projects.
@@ -87,6 +88,18 @@ Introduction / Problem Statement Yesterday afternoon, I took some time to instal
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -386,6 +399,22 @@ Introduction / Problem Statement Yesterday afternoon, I took some time to instal
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="/tags/vim/"> vim </a>
         
         
@@ -462,31 +491,31 @@ The Glorious Glasgow Haskell Compilation System, version 7.10.3
 <p><strong>NOTE:</strong> The following required source code changes are based on commit <a href="https://github.com/eagletmt/ghcmod-vim/commit/1d192d13d68ab59f9f46497a0909bf24a7b7dfff">1d192d13d68ab59f9f46497a0909bf24a7b7dfff</a> of ghcmod-vim. Things may have changed since the time of writing of this post. Hence for the best effect, please run the <code>git grep -n &quot;\['ghc-mod'&quot;</code> command in <code>${HOME}/.vim/bundle/ghcmod-vim</code> to figure out where you need to change the code and use the files below as a reference.</p>
 <p><strong>Point one:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L248">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L248</a></p>
 <p>Modify:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">l</span>:<span style="color:#a6e22e">cmd</span> = [<span style="color:#e6db74">&#39;ghc-mod&#39;</span>, <span style="color:#e6db74">&#39;--silent&#39;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>to</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">l</span>:<span style="color:#a6e22e">cmd</span> = [<span style="color:#e6db74">&#39;stack&#39;</span>, <span style="color:#e6db74">&#39;exec&#39;</span>, <span style="color:#e6db74">&#39;--&#39;</span>, <span style="color:#e6db74">&#39;ghc-mod&#39;</span>, <span style="color:#e6db74">&#39;--silent&#39;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>And in fact this was sufficient to let <code>,ht</code> correctly infer the type of an expression, because this code is inside the <code>ghcmod#build_command</code> vim function and is used by various parts of the code to build the actual <code>ghc-mod</code> command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">l</span>:<span style="color:#a6e22e">cmd</span> = [<span style="color:#e6db74">&#39;ghc-mod&#39;</span>, <span style="color:#e6db74">&#39;--silent&#39;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>to</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">l</span>:<span style="color:#a6e22e">cmd</span> = [<span style="color:#e6db74">&#39;stack&#39;</span>, <span style="color:#e6db74">&#39;exec&#39;</span>, <span style="color:#e6db74">&#39;--&#39;</span>, <span style="color:#e6db74">&#39;ghc-mod&#39;</span>, <span style="color:#e6db74">&#39;--silent&#39;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>And in fact this was sufficient to let <code>,ht</code> correctly infer the type of an expression, because this code is inside the <code>ghcmod#build_command</code> vim function and is used by various parts of the code to build the actual <code>ghc-mod</code> command.</p>
 <p><strong>Point two:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L344">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod.vim#L344</a></p>
 <p>Modify:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim">\ <span style="color:#a6e22e">substitute</span>(<span style="color:#a6e22e">vimproc</span>#<span style="color:#a6e22e">system</span>([<span style="color:#e6db74">&#39;ghc-mod&#39;</span>, <span style="color:#e6db74">&#39;--silent&#39;</span>, <span style="color:#e6db74">&#39;root&#39;</span>]), <span style="color:#e6db74">&#39;\n*$&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>to:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim">\ <span style="color:#a6e22e">substitute</span>(<span style="color:#a6e22e">vimproc</span>#<span style="color:#a6e22e">system</span>([<span style="color:#e6db74">&#39;stack&#39;</span>, <span style="color:#e6db74">&#39;exec&#39;</span>, <span style="color:#e6db74">&#39;--&#39;</span>, <span style="color:#e6db74">&#39;ghc-mod&#39;</span>, <span style="color:#e6db74">&#39;--silent&#39;</span>, <span style="color:#e6db74">&#39;root&#39;</span>]), <span style="color:#e6db74">&#39;\n*$&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p><strong>Point three:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span>\ <span style="color:#a6e22e">substitute</span>(<span style="color:#a6e22e">vimproc</span>#<span style="color:#a6e22e">system</span>([<span style="color:#e6db74">&#39;ghc-mod&#39;</span>, <span style="color:#e6db74">&#39;--silent&#39;</span>, <span style="color:#e6db74">&#39;root&#39;</span>]), <span style="color:#e6db74">&#39;\n*$&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span>\ <span style="color:#a6e22e">substitute</span>(<span style="color:#a6e22e">vimproc</span>#<span style="color:#a6e22e">system</span>([<span style="color:#e6db74">&#39;stack&#39;</span>, <span style="color:#e6db74">&#39;exec&#39;</span>, <span style="color:#e6db74">&#39;--&#39;</span>, <span style="color:#e6db74">&#39;ghc-mod&#39;</span>, <span style="color:#e6db74">&#39;--silent&#39;</span>, <span style="color:#e6db74">&#39;root&#39;</span>]), <span style="color:#e6db74">&#39;\n*$&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p><strong>Point three:</strong> <a href="https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109">https://github.com/eagletmt/ghcmod-vim/blob/1d192d13d68ab59f9f46497a0909bf24a7b7dfff/autoload/ghcmod/util.vim#L109</a></p>
 <p>Modify:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">l</span>:<span style="color:#a6e22e">ghcmod</span> = <span style="color:#a6e22e">vimproc</span>#<span style="color:#a6e22e">system</span>([<span style="color:#e6db74">&#39;ghc-mod&#39;</span>,<span style="color:#e6db74">&#39;version&#39;</span>])<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>to:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">l</span>:<span style="color:#a6e22e">ghcmod</span> = <span style="color:#a6e22e">vimproc</span>#<span style="color:#a6e22e">system</span>([<span style="color:#e6db74">&#39;stack&#39;</span>, <span style="color:#e6db74">&#39;exec&#39;</span>, <span style="color:#e6db74">&#39;ghc-mod&#39;</span>,<span style="color:#e6db74">&#39;version&#39;</span>])<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><h3 id="step-3-restart-vim">Step 3: Restart vim</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">l</span>:<span style="color:#a6e22e">ghcmod</span> = <span style="color:#a6e22e">vimproc</span>#<span style="color:#a6e22e">system</span>([<span style="color:#e6db74">&#39;ghc-mod&#39;</span>,<span style="color:#e6db74">&#39;version&#39;</span>])<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">l</span>:<span style="color:#a6e22e">ghcmod</span> = <span style="color:#a6e22e">vimproc</span>#<span style="color:#a6e22e">system</span>([<span style="color:#e6db74">&#39;stack&#39;</span>, <span style="color:#e6db74">&#39;exec&#39;</span>, <span style="color:#e6db74">&#39;ghc-mod&#39;</span>,<span style="color:#e6db74">&#39;version&#39;</span>])<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h3 id="step-3-restart-vim">Step 3: Restart vim</h3>
 <p>This should be pretty obvious but it&rsquo;s here for completeness.</p>
 <h2 id="afterthoughts--additional-notes">Afterthoughts / Additional Notes</h2>
 <p>What did not work for me in the workaround stated at <a href="https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue">https://github.com/DanielG/ghc-mod/wiki#most-common-stack-related-issue</a> was having the <code>,ht</code> command work after running vim using <code>stack exec</code>, like <code>stack exec -- vim source-file.hs</code>. Contrary to what is stated, running vim like this does not add the directory containing the current Haskell project&rsquo;s <code>ghc-mod</code> binary (that we installed via <code>stack install ghc-mod</code> in Step 1 of the solution) to the <code>PATH</code> environment variable. As such, the <code>ghc-mod</code> vim that&rsquo;s invoked by the ghcmod-vim plugin is still the one installed in <code>${HOME}/.local/bin</code>.</p>
 <p>Because there are a few layers of abstraction, you might want to check if using <code>ghc-mod</code> directly on a Haskell source file actually works. Assuming you have already carried out step 1 of the solution above, simply run <code>stack exec ghc-mod type source-file.hs row col</code> and see if there is meaningful output (of course replacing <code>source-file.hs</code>, <code>row</code>, <code>col</code> with appropriate values).</p>
 <p>For instance, given the following source file named <code>hello.hs</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">main</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">IO</span> ()
-<span style="color:#a6e22e">main</span> <span style="color:#f92672">=</span> putStrLn <span style="color:#e6db74">&#34;Hello, World!&#34;</span>
-</code></pre></div><p>To find out the type of <code>putStrLn</code>, run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">stack exec ghc-mod type hello.hs <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">8</span>
-</code></pre></div><p>You should see the following output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">main</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">IO</span> ()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span> <span style="color:#f92672">=</span> putStrLn <span style="color:#e6db74">&#34;Hello, World!&#34;</span>
+</span></span></code></pre></div><p>To find out the type of <code>putStrLn</code>, run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>stack exec ghc-mod type hello.hs <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">8</span>
+</span></span></code></pre></div><p>You should see the following output:</p>
 <pre><code>2 8 2 16 &quot;String -&gt; IO ()&quot;
 2 8 2 32 &quot;IO ()&quot;
 2 1 2 32 &quot;IO ()&quot;

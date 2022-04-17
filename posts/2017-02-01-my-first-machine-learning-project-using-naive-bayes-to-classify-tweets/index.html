@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +9,10 @@
 <meta property="og:description" content="Source code: https://gist.github.com/yanhan/d9061c9575d14228d2a9ecc9519a55aa
 Before we go into the main content of this post, I have a confession to make - it&rsquo;s pretty damned hard to get started with Machine Learning if you&rsquo;re not doing it on the job and if you don&rsquo;t happen to have some problem to solve (and have the appropriate data for it). One of the main hurdles I&rsquo;ve faced is that after picking up some fundamentals, Machine Learning knowledge is like this hammer but there aren&rsquo;t many suitable nails in sight, probably because of my lack of experience; a lot of problems also seem very, very tough." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2017-02-01-my-first-machine-learning-project-using-naive-bayes-to-classify-tweets/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2017-02-01-my-first-machine-learning-project-using-naive-bayes-to-classify-tweets/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-02-01T21:34:00+00:00" />
 <meta property="article:modified_time" content="2017-02-01T21:34:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="My first Machine Learning project: Using Naive Bayes to classify tweets"/>
 <meta name="twitter:description" content="Source code: https://gist.github.com/yanhan/d9061c9575d14228d2a9ecc9519a55aa
@@ -87,6 +88,34 @@ Before we go into the main content of this post, I have a confession to make - i
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -453,14 +482,14 @@ Before we go into the main content of this post, I have a confession to make - i
 <li><a href="http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html">http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html</a></li>
 </ul>
 <p>I figured out how to implement something similar to our hand-rolled Naive Bayes classifier using scikit-learn. Instead of using <code>CountVectorizer</code>, I decided to use <code>HashingVectorizer</code>. The hardest part in this implementation is to figure out how to use the <code>HashingVectorizer</code>. Eventually, it came down to this:</p>
-<pre><code class="language-{lang="python"}" data-lang="{lang="python"}">stop_words = list(
+<pre tabindex="0"><code class="language-{lang="python"}" data-lang="{lang="python"}">stop_words = list(
     set(
         sklearn.feature_extraction.text.ENGLISH_STOP_WORDS
     ).union(_BANNED_TOKENS)
 )
 vectorizer = HashingVectorizer(
     stop_words=stop_words,
-    token_pattern=r&quot;&quot;&quot;\b\w\w\w\w+\b&quot;&quot;&quot;,
+    token_pattern=r&#34;&#34;&#34;\b\w\w\w\w+\b&#34;&#34;&#34;,
     norm=None,
     non_negative=True,
 )

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 (.) . (.) Solution It is trivial to type :t (.) . (.) into ghci to get the following:
 (.) . (.) :: (b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c What is more difficult is to figure out why this, and not something else, is the type of (." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2017-08-10-haskell-demystifying-composing-compose-with-compose/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2017-08-10-haskell-demystifying-composing-compose-with-compose/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-08-10T23:05:10+00:00" />
 <meta property="article:modified_time" content="2017-08-10T23:05:10+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Haskell: demystifying composing compose with compose"/>
 <meta name="twitter:description" content="Problem Statement Figure out the type of the following Haskell code, why it has that type, and what it does:
@@ -89,6 +90,18 @@
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -410,6 +423,22 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
       </td>
     </tr>
   </tbody>
@@ -425,59 +454,59 @@
 <div class="markdown">
 <h2 id="problem-statement">Problem Statement</h2>
 <p>Figure out the type of the following Haskell code, why it has that type, and what it does:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell">(<span style="color:#f92672">.</span>) <span style="color:#f92672">.</span> (<span style="color:#f92672">.</span>)
-</code></pre></div><h2 id="solution">Solution</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span>(<span style="color:#f92672">.</span>) <span style="color:#f92672">.</span> (<span style="color:#f92672">.</span>)
+</span></span></code></pre></div><h2 id="solution">Solution</h2>
 <p>It is trivial to type <code>:t (.) . (.)</code> into ghci to get the following:</p>
-<pre><code>(.) . (.) :: (b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c
+<pre tabindex="0"><code>(.) . (.) :: (b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c
 </code></pre><p>What is more difficult is to figure out why this, and not something else, is the type of <code>(.) . (.)</code>. We shall do exactly that here.</p>
 <p>First, we have to realize that <code>(.) . (.)</code> can also be written as:</p>
-<pre><code>(.) (.) (.)
+<pre tabindex="0"><code>(.) (.) (.)
 </code></pre><p>which is its prefix equivalent form. Then, we make use of the fact that in Haskell, function application is left associative. So the same code can be written as:</p>
-<pre><code>((.) (.)) (.)
+<pre tabindex="0"><code>((.) (.)) (.)
 </code></pre><p>Now, we have the job of figuring out the type of:</p>
-<pre><code>((.) (.))
+<pre tabindex="0"><code>((.) (.))
 </code></pre><p>If we type that into ghci, we get:</p>
-<pre><code>(a1 -&gt; b -&gt; c) -&gt; a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
+<pre tabindex="0"><code>(a1 -&gt; b -&gt; c) -&gt; a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
 </code></pre><p>which may actually look more intimidating than the type of <code>(.) . (.)</code>. So why does <code>(.) (.)</code> have the above type?</p>
 <p>Recall that the compose operator <code>(.)</code> has type:</p>
-<pre><code>(b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+<pre tabindex="0"><code>(b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </code></pre><p>Now we try to match the types. In <code>(.) (.)</code>, we rename the type variables so that the <code>(.)</code> that serves as the argument has the type</p>
-<pre><code>(b1 -&gt; c1) -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1
+<pre tabindex="0"><code>(b1 -&gt; c1) -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1
 </code></pre><p>Since this <code>(.)</code> is just 1 argument, we must have that <code>(b -&gt; c)</code> in the compose that&rsquo;s being called be of type <code>(b1 -&gt; c1) -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1</code>. Using the fact that the <code>-&gt;</code> operator is right associative, we must have the following type matches:</p>
-<pre><code>b: (b1 -&gt; c1)
+<pre tabindex="0"><code>b: (b1 -&gt; c1)
 c: (a1 -&gt; b1) -&gt; a1 -&gt; c1
 </code></pre><p>So after taking <code>(.)</code> as its first argument, the type of the compose being called is now:</p>
-<pre><code>(a -&gt; b) -&gt; a -&gt; c
+<pre tabindex="0"><code>(a -&gt; b) -&gt; a -&gt; c
 </code></pre><p>before substitution. Now we perform the substitution and get:</p>
-<pre><code>(a -&gt; (b1 -&gt; c1)) -&gt; a -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1
+<pre tabindex="0"><code>(a -&gt; (b1 -&gt; c1)) -&gt; a -&gt; (a1 -&gt; b1) -&gt; a1 -&gt; c1
 </code></pre><p>Renaming <code>b1</code> to <code>b</code> and <code>c1</code> to <code>c</code>, we get</p>
-<pre><code>(a -&gt; (b -&gt; c)) -&gt; a -&gt; (a1 -&gt; b) -&gt; a1 -&gt; c
+<pre tabindex="0"><code>(a -&gt; (b -&gt; c)) -&gt; a -&gt; (a1 -&gt; b) -&gt; a1 -&gt; c
 </code></pre><p>We can also remove the inner parentheses in <code>(a -&gt; (b -&gt; c))</code> (because there are only 1 argument functions in Haskell) to get:</p>
-<pre><code>(a -&gt; b -&gt; c) -&gt; a -&gt; (a1 -&gt; b) -&gt; a1 -&gt; c
+<pre tabindex="0"><code>(a -&gt; b -&gt; c) -&gt; a -&gt; (a1 -&gt; b) -&gt; a1 -&gt; c
 </code></pre><p>Then we swap the names of <code>a1</code> and <code>a</code> to get:</p>
-<pre><code>(a1 -&gt; b -&gt; c) -&gt; a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
+<pre tabindex="0"><code>(a1 -&gt; b -&gt; c) -&gt; a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
 </code></pre><p>which is the type of <code>(.) (.)</code> that we got from ghci.</p>
 <p>Now that we got the type of <code>(.) (.)</code>, we have to figure out the type of <code>((.) (.)) (.)</code>, or equivalently, <code>(.) (.) (.)</code>. We rename the type variables of the <code>(.)</code> argument so that it has type <code>(b2 -&gt; c2) -&gt; (a2 -&gt; b2) -&gt; a2 -&gt; c2</code>. Doing some pattern matching between this and the type of <code>(.) (.)</code>, we get:</p>
-<pre><code>a1: (b2 -&gt; c2)
+<pre tabindex="0"><code>a1: (b2 -&gt; c2)
 b:  (a2 -&gt; b2)
 c:  a2 -&gt; c2
 </code></pre><p>After applying <code>(.) (.)</code> with <code>(.)</code>, its type pre-substitution is:</p>
-<pre><code>a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
+<pre tabindex="0"><code>a1 -&gt; (a -&gt; b) -&gt; a -&gt; c
 </code></pre><p>Now we substitute what we got from pattern matching on the types to get:</p>
-<pre><code>(b2 -&gt; c2) -&gt; (a -&gt; (a2 -&gt; b2)) -&gt; a -&gt; a2 -&gt; c2
+<pre tabindex="0"><code>(b2 -&gt; c2) -&gt; (a -&gt; (a2 -&gt; b2)) -&gt; a -&gt; a2 -&gt; c2
 </code></pre><p>We can get rid of the inner parentheses in the second argument and rename <code>b2</code> to <code>b</code>, rename <code>c2</code> to <code>c</code> to get:</p>
-<pre><code>(b -&gt; c) -&gt; (a -&gt; a2 -&gt; b) -&gt; a -&gt; a2 -&gt; c
+<pre tabindex="0"><code>(b -&gt; c) -&gt; (a -&gt; a2 -&gt; b) -&gt; a -&gt; a2 -&gt; c
 </code></pre><p>We can rename <code>a</code> to <code>a1</code> and <code>a2</code> to <code>a</code> to get</p>
-<pre><code>(b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c
+<pre tabindex="0"><code>(b -&gt; c) -&gt; (a1 -&gt; a -&gt; b) -&gt; a1 -&gt; a -&gt; c
 </code></pre><p>which is what we want. If we erroneously started out pattern matching the type signature of compose with its 2 arguments which also happen to be compose, we can probably never arrive at the correct type signature. Just look at the type of the second argument of <code>(.) . (.)</code> - it is <code>a1 -&gt; a -&gt; b</code>, a function with 2 arguments! Who would have known!</p>
 <h2 id="context">Context</h2>
 <p>I was reading about the ST monad when I encountered this answer: <a href="https://stackoverflow.com/a/28146074">https://stackoverflow.com/a/28146074</a>. When I saw the following snippet of code:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">swap</span> (x, y) <span style="color:#f92672">=</span> (y, x)
-(<span style="color:#f92672">.*</span>) <span style="color:#f92672">=</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">.</span> (<span style="color:#f92672">.</span>)
-
-<span style="color:#a6e22e">filterAccum</span> <span style="color:#f92672">::</span> (a <span style="color:#f92672">-&gt;</span> b <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Bool</span>, a)) <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> [b] <span style="color:#f92672">-&gt;</span> [b]
-<span style="color:#a6e22e">filterAccum</span> f a xs <span style="color:#f92672">=</span> [x <span style="color:#f92672">|</span> (x, <span style="color:#66d9ef">True</span>) <span style="color:#f92672">&lt;-</span> zip xs <span style="color:#f92672">$</span> snd <span style="color:#f92672">$</span> mapAccumL (swap <span style="color:#f92672">.*</span> f) a xs]
-</code></pre></div><p>I was flabbergasted at the definition <code>(.*) = (.) . (.)</code>, and how <code>.*</code> was later used in <code>(swap .* f)</code>. It looked so surreal (just like a lot of Haskell code I&rsquo;m seeing). I was thinking - no way this works. Then I copied and pasted a slightly modified version of this into a file and compiled it, and it worked. Magically.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">swap</span> (x, y) <span style="color:#f92672">=</span> (y, x)
+</span></span><span style="display:flex;"><span>(<span style="color:#f92672">.*</span>) <span style="color:#f92672">=</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">.</span> (<span style="color:#f92672">.</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">filterAccum</span> <span style="color:#f92672">::</span> (a <span style="color:#f92672">-&gt;</span> b <span style="color:#f92672">-&gt;</span> (<span style="color:#66d9ef">Bool</span>, a)) <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> [b] <span style="color:#f92672">-&gt;</span> [b]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">filterAccum</span> f a xs <span style="color:#f92672">=</span> [x <span style="color:#f92672">|</span> (x, <span style="color:#66d9ef">True</span>) <span style="color:#f92672">&lt;-</span> zip xs <span style="color:#f92672">$</span> snd <span style="color:#f92672">$</span> mapAccumL (swap <span style="color:#f92672">.*</span> f) a xs]
+</span></span></code></pre></div><p>I was flabbergasted at the definition <code>(.*) = (.) . (.)</code>, and how <code>.*</code> was later used in <code>(swap .* f)</code>. It looked so surreal (just like a lot of Haskell code I&rsquo;m seeing). I was thinking - no way this works. Then I copied and pasted a slightly modified version of this into a file and compiled it, and it worked. Magically.</p>
 <p>Next thing I know, I was figuring out the type of <code>(.) . (.)</code> the wrong way, by pattern matching the types of the arguments directly onto the type of the function, which was exactly what I said not to do at the end of the solution. I thought this will make a good, short blog post, so here we are. I believe that once upon a time I have chanced across a blog post explaining this same topic, but obviously my googling skills weren&rsquo;t up to par.</p>
 <h2 id="references">References</h2>
 <ul>

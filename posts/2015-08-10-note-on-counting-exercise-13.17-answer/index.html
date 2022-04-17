@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Pang Yan Han"><meta name="keywords" content="counting,combinatorics,math"><meta property="og:title" content="Note on Counting: Exercise 13.17 answer" />
-<meta property="og:description" content="This is a short note detailing some of my thoughts to the answer to Exercise 13.17 in the book Counting, by Prof Koh Khee Meng and Prof Tan Eng Guan. (NOTE: Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I&#39;ll do a review of it soon.)
+<meta property="og:description" content="This is a short note detailing some of my thoughts to the answer to Exercise 13.17 in the book Counting, by Prof Koh Khee Meng and Prof Tan Eng Guan. (NOTE: Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I&rsquo;ll do a review of it soon.)
 Question:
  Six scientists are working on a secret project. They wish to lock up the documents in a cabinet so that the cabinet can be opened when and only when three or more of the scientists are present." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2015-08-10-note-on-counting-exercise-13.17-answer/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-08-10-note-on-counting-exercise-13.17-answer/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-08-10T21:16:00+00:00" />
 <meta property="article:modified_time" content="2015-08-10T21:16:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Note on Counting: Exercise 13.17 answer"/>
-<meta name="twitter:description" content="This is a short note detailing some of my thoughts to the answer to Exercise 13.17 in the book Counting, by Prof Koh Khee Meng and Prof Tan Eng Guan. (NOTE: Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I&#39;ll do a review of it soon.)
+<meta name="twitter:description" content="This is a short note detailing some of my thoughts to the answer to Exercise 13.17 in the book Counting, by Prof Koh Khee Meng and Prof Tan Eng Guan. (NOTE: Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I&rsquo;ll do a review of it soon.)
 Question:
  Six scientists are working on a secret project. They wish to lock up the documents in a cabinet so that the cabinet can be opened when and only when three or more of the scientists are present."/>
 
@@ -150,6 +151,18 @@ Question:
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="/tags/combinatorics/"> combinatorics </a>
         
         
@@ -159,6 +172,22 @@ Question:
         
         
         <a href="/tags/counting/"> counting </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -429,55 +458,35 @@ Question:
 </div>
 
 <div class="markdown">
-<p>This is a short note detailing some of my thoughts to the answer to Exercise 13.17 in the book <a href="http://amzn.com/B0058BNM7E">Counting</a>, by Prof Koh Khee Meng and Prof Tan Eng Guan. (<strong>NOTE:</strong> Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I'll do a review of it soon.)</p>
-
+<p>This is a short note detailing some of my thoughts to the answer to Exercise 13.17 in the book <a href="http://amzn.com/B0058BNM7E">Counting</a>, by Prof Koh Khee Meng and Prof Tan Eng Guan. (<strong>NOTE:</strong> Despite the lone one star review on Amazon for the first edition of the book, this is imho a pretty good book. I&rsquo;ll do a review of it soon.)</p>
 <p>Question:</p>
-
 <blockquote>
 <p>Six scientists are working on a secret project. They wish to lock up the documents in a cabinet so that the cabinet can be opened when and only when three or more of the scientists are present. What is the smallest number of locks needed? What is the smallest number of keys each scientist must carry?</p>
 </blockquote>
-
-<p>I must admit that I totally went wtf when I saw this question. First thought in my mind was: Wtf is this? Second thought was: what does this have got anything to do with combinatorics? Then I attacked the problem for a while and couldn't solve it. In my opinion, this is one of the toughest problems in the whole book.</p>
-
-<p>So after I completed most of the exercises for Chapter 13, which is the final chapter, I read through the Solutions Manual. And what I saw surprised me. Here's the core part of the solution:</p>
-
+<p>I must admit that I totally went wtf when I saw this question. First thought in my mind was: Wtf is this? Second thought was: what does this have got anything to do with combinatorics? Then I attacked the problem for a while and couldn&rsquo;t solve it. In my opinion, this is one of the toughest problems in the whole book.</p>
+<p>So after I completed most of the exercises for Chapter 13, which is the final chapter, I read through the Solutions Manual. And what I saw surprised me. Here&rsquo;s the core part of the solution:</p>
 <blockquote>
 <p>Since the cabinet can be opened only when three or more of the scientists are present, no group of 2 scientists can open all the locks, i.e. each group of 2 scientists cannot open at least one lock. Suppose the group consisting of scientists \(A\) and \(B\) cannot open a particular lock \(L\). Then, each of the other 4 scientists must be able to open lock \(L\); otherwise the combined group of 3 scientists (\(A, B\) and any one of the other 4) will not be able to unlock the cabinet, a contradiction. Thus, each group of 2 scientists cannot open at least one lock unique to their group. There are \( { 6 \choose 2 } = 15 \) groups of two scientists, each of which cannot open at least one lock unique to their group. Hence, there are at least 15 locks.</p>
-
 <p>Let \(X\) be one of the scientists. There are \( { 5 \choose 2 } = 10 \) groups of two scientists which do not include \(X\), each of which cannot open one distinct lock. Since every group of 3 scientists can open all the locks, \(X\) must have the keys to each of these distinct 10 locks. Thus, each scientist must carry at least 10 keys.</p>
 </blockquote>
-
 <p>The part which confused me was in the first paragraph, namely:</p>
-
 <blockquote>
 <p>Thus, each group of 2 scientists cannot open at least one lock <strong>unique</strong> to their group.</p>
 </blockquote>
-
-<p>Like, why must every group of 2 scientists have at least one lock that they and only they can't unlock but any other group of 2 scientists can unlock? Why can't some of the locks be not unlockable by 2 or more distinct pairs of scientists? (My language my be a bit confusing, &quot;not unlockable&quot; means the lock cannot be unlocked)</p>
-
+<p>Like, why must every group of 2 scientists have at least one lock that they and only they can&rsquo;t unlock but any other group of 2 scientists can unlock? Why can&rsquo;t some of the locks be not unlockable by 2 or more distinct pairs of scientists? (My language my be a bit confusing, &ldquo;not unlockable&rdquo; means the lock cannot be unlocked)</p>
 <p>After several wrong paths, I finally proved this by contradiction. Or so I thought. Until I wrote the section below and had to rethink my proof to make it a lot more robust.</p>
-
 <h2 id="proof-of-why-each-pair-of-scientists-must-have-at-least-one-lock-unique-to-their-group-that-they-cannot-open">Proof of why each pair of scientists must have at least one lock unique to their group that they cannot open</h2>
-
 <p>Suppose for the sake of contradiction that some locks cannot be unlocked by 2 or more distinct pairs of scientists. Without loss of generality, we focus on one such lock and denote it as \(L_a\) and suppose that the pair of scientists \(S_1, S_2\) and the pair of scientists \(S_3, S_4\) cannot unlock lock \(L_a\).</p>
-
 <p>Consider any group of 3 scientists from \(S_1, S_2, S_3, S_4\). They are unable to unlock \(L_a\). This is a contradiction, since any group of 3 scientists must be able to unlock all the locks. Therefore, our assumption must be false and there are no locks that cannot be unlocked by 2 or more distinct pairs of scientists.</p>
-
 <p>In other words, every lock can either be unlocked by all pairs of scientists, or is not unlockable by one pair of scientists.</p>
-
 <p>By the combination of these 2 facts:</p>
-
 <ul>
 <li>Every pair of scientists cannot unlock at least one lock</li>
 <li>Every lock can either be unlocked by all pairs of scientists, or is not unlockable by one pair of scientists</li>
 </ul>
-
 <p>It follows that every pair of scientists cannot unlock at least one lock, and for every lock the pair cannot unlock, that particular lock is only not unlockable by that pair. This is equivalent to saying that every pair of scientists cannot unlock at least one lock unique to their group, which was what we were trying to prove. The rest of this part of the proof follows. (Since there are \({ 6 \choose 2 } = 15\) pairs of scientists, each of which cannot open at least one lock distinct to their group, there are at least 15 locks.)</p>
-
 <h2 id="afterthoughts">Afterthoughts</h2>
-
 <p>My initial proof only proved that it is impossible for any lock to be not unlockable by 2 or more distinct pairs of scientists. I realized that that alone is not sufficient to prove that every pair of scientists cannot unlock at least one lock unique to their group. I wrote a much longer proof but realized after a while that I was confusing 1. what I was trying to prove 2. the fact that I will be proving as the result of a contradiction 3. the concept of all vs. some. The English I was using probably helped a lot in confusing me. It was only until the end that I think I got it. Writing this post definitely helped to organize my thoughts.</p>
-
 <p>More posts coming up soon.</p>
 
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +13,10 @@ We assume that there is the following folder hierarchy somewhere on your system:
 your_repo |--- requirements.txt |--- venv where:
  your_repo is a folder that you have some Python code using matplotlib venv is a folder created using virtualenv venv; you&rsquo;ll activate the virtualenv in the your_repo folder using the ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2015-07-25-how-to-install-matplotlib-using-virtualenv-on-ubuntu/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-07-25-how-to-install-matplotlib-using-virtualenv-on-ubuntu/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-07-25T09:58:00+00:00" />
 <meta property="article:modified_time" content="2015-07-25T09:58:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to install matplotlib using virtualenv on Ubuntu"/>
 <meta name="twitter:description" content="System Requirements This was done on a system with the following specifications:
@@ -95,6 +96,34 @@ your_repo |--- requirements.txt |--- venv where:
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -445,7 +474,7 @@ your_repo |--- requirements.txt |--- venv where:
 <h2 id="assumptions">Assumptions</h2>
 <p>We&rsquo;ll be installing matplotlib <strong>1.4.3</strong> .</p>
 <p>We assume that there is the following folder hierarchy somewhere on your system:</p>
-<pre><code>your_repo
+<pre tabindex="0"><code>your_repo
 |--- requirements.txt
 |--- venv
 </code></pre><p>where:</p>
@@ -455,18 +484,18 @@ your_repo |--- requirements.txt |--- venv where:
 <li><code>requirements.txt</code> contains a line to install <code>matplotlib</code>. For me, this line is <code>matplotlib==1.4.3</code></li>
 </ul>
 <h2 id="commands-to-run">Commands to run</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get -y build-dep matplotlib
-cd your_repo
-. venv/bin/activate
-pip install -r requirements.txt
-</code></pre></div><p>The magic is in the <code>sudo apt-get -y build-dep matplotlib</code> line, which will install all the build dependencies for matplotlib.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get -y build-dep matplotlib
+</span></span><span style="display:flex;"><span>cd your_repo
+</span></span><span style="display:flex;"><span>. venv/bin/activate
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span></code></pre></div><p>The magic is in the <code>sudo apt-get -y build-dep matplotlib</code> line, which will install all the build dependencies for matplotlib.</p>
 <h2 id="check-that-matplotlib-has-been-installed-properly">Check that matplotlib has been installed properly</h2>
 <p>Save the following code into <code>check_matplotlib.py</code> in the <code>your_repo</code> folder:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> pyplot
-pyplot<span style="color:#f92672">.</span>pie([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>])
-pyplot<span style="color:#f92672">.</span>show()
-</code></pre></div><p>Activate the virtualenv if you have not, and run <code>python check_matplotlib.py</code>. You should see something like this:</p>
-<p><!-- raw HTML omitted --></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> pyplot
+</span></span><span style="display:flex;"><span>pyplot<span style="color:#f92672">.</span>pie([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>pyplot<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p>Activate the virtualenv if you have not, and run <code>python check_matplotlib.py</code>. You should see something like this:</p>
+<!-- raw HTML omitted -->
 <p>And voila, there you have it =)</p>
 <h2 id="credits">Credits</h2>
 <p>Based on <a href="http://stackoverflow.com/a/15791614/732396">this answer on Stack Overflow</a> by <a href="http://stackoverflow.com/users/691142/hiddenghost">HiddenGhost</a>.</p>

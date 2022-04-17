@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +11,10 @@ cd ~/.cabal/packages/hackage.haskell.org rm -rf * cabal update followed by a cab
 Longer version Doesn&rsquo;t it irk you when you do a cabal install somepackage, and somewhere along the way you see something like:
 Configuring zlib-bindings-0.1.1.3... Building zlib-bindings-0.1.1.3... Preprocessing library zlib-bindings-0.1.1.3... [1 of 2] Compiling Codec.Zlib.Lowlevel ( Codec/Zlib/Lowlevel." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2014-03-04-how-to-solve-cabal-codec-compression-zlib-premature-end-of-compressed-stream-the-easy-but-time-consuming-way/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2014-03-04-how-to-solve-cabal-codec-compression-zlib-premature-end-of-compressed-stream-the-easy-but-time-consuming-way/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-03-04T21:00:00+00:00" />
 <meta property="article:modified_time" content="2014-03-04T21:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to solve &#34;cabal: Codec.Compression.Zlib: premature end of compressed stream&#34; - the easy but time consuming way"/>
 <meta name="twitter:description" content="TLDR If you are already extremely frustrated by this problem, the solution is just:
@@ -125,6 +126,18 @@ Configuring zlib-bindings-0.1.1.3... Building zlib-bindings-0.1.1.3... Preproces
         
         
         <a href="/tags/cabal/"> cabal </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -414,6 +427,22 @@ Configuring zlib-bindings-0.1.1.3... Building zlib-bindings-0.1.1.3... Preproces
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
       </td>
     </tr>
   </tbody>
@@ -429,10 +458,10 @@ Configuring zlib-bindings-0.1.1.3... Building zlib-bindings-0.1.1.3... Preproces
 <div class="markdown">
 <h2 id="tldr">TLDR</h2>
 <p>If you are already extremely frustrated by this problem, the solution is just:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/.cabal/packages/hackage.haskell.org
-rm -rf *
-cabal update
-</code></pre></div><p>followed by a <code>cabal install X</code> where X is some package you&rsquo;d like to install.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/.cabal/packages/hackage.haskell.org
+</span></span><span style="display:flex;"><span>rm -rf *
+</span></span><span style="display:flex;"><span>cabal update
+</span></span></code></pre></div><p>followed by a <code>cabal install X</code> where X is some package you&rsquo;d like to install.</p>
 <h2 id="longer-version">Longer version</h2>
 <p>Doesn&rsquo;t it irk you when you do a <code>cabal install somepackage</code>, and somewhere
 along the way you see something like:</p>
@@ -468,17 +497,17 @@ bell?</p>
 thought the error might have to do with uncompressing <strong>some other</strong>
 compressed file that is not
 <code>~/.cabal/packages/hackage.haskell.org/00-index.tar.gz</code>, and set out to execute:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find ~/.cabal -type f -name <span style="color:#e6db74">&#39;*.gz&#39;</span>
-</code></pre></div><p>and I was rewarded with a whole bunch of <code>tar.gz</code> files under
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find ~/.cabal -type f -name <span style="color:#e6db74">&#39;*.gz&#39;</span>
+</span></span></code></pre></div><p>and I was rewarded with a whole bunch of <code>tar.gz</code> files under
 <code>~/.cabal/packages/hackage.haskell.org</code> in their package directories.</p>
 <p>I was impatient and quite frustrated at this point, so I proceeded with:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/.cabal/packages/hackage.haskell.org
-rm -rf *
-</code></pre></div><p>thereby removing everything, under <code>~/.cabal/packages/hackage.haskell.org</code>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/.cabal/packages/hackage.haskell.org
+</span></span><span style="display:flex;"><span>rm -rf *
+</span></span></code></pre></div><p>thereby removing everything, under <code>~/.cabal/packages/hackage.haskell.org</code>,
 whether good or bad.</p>
 <p>This is followed by:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cabal update
-</code></pre></div><p>After which, I proceeded with the <code>cabal install</code>, which successfully installs
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cabal update
+</span></span></code></pre></div><p>After which, I proceeded with the <code>cabal install</code>, which successfully installs
 the package.</p>
 <p>As such, my guess is correct. <strong>Some</strong> <code>tar.gz</code> file within
 <code>~/.cabal/packages/hackage.haskell.org</code> is corrupted, causing the error, just

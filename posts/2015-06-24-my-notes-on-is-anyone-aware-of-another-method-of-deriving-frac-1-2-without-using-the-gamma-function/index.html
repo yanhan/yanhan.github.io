@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Pang Yan Han"><meta name="keywords" content="math"><meta property="og:title" content="My notes on: Is anyone aware of another method of deriving 1/2! without using the gamma function?" />
-<meta property="og:description" content="NOTE: Sometimes I chance across brilliant answers to interesting Math questions on Quora and felt like rearranging and/or adding some steps into the original answer. I think these should be placed in a different section of my blog but due to time constraint, I&#39;ll place it here for now.
-Backstory: This answer is authored by Anders Kaseorg. I&#39;m just adding on and rearranging some stuff to aid my own understanding. Due to my limited Math ability, some of what I&#39;ll be writing below may very well be wrong." />
+<meta property="og:description" content="NOTE: Sometimes I chance across brilliant answers to interesting Math questions on Quora and felt like rearranging and/or adding some steps into the original answer. I think these should be placed in a different section of my blog but due to time constraint, I&rsquo;ll place it here for now.
+Backstory: This answer is authored by Anders Kaseorg. I&rsquo;m just adding on and rearranging some stuff to aid my own understanding. Due to my limited Math ability, some of what I&rsquo;ll be writing below may very well be wrong." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2015-06-24-my-notes-on-is-anyone-aware-of-another-method-of-deriving-frac-1-2-without-using-the-gamma-function/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-06-24-my-notes-on-is-anyone-aware-of-another-method-of-deriving-frac-1-2-without-using-the-gamma-function/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-06-24T00:01:00+00:00" />
 <meta property="article:modified_time" content="2015-06-24T00:01:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="My notes on: Is anyone aware of another method of deriving 1/2! without using the gamma function?"/>
-<meta name="twitter:description" content="NOTE: Sometimes I chance across brilliant answers to interesting Math questions on Quora and felt like rearranging and/or adding some steps into the original answer. I think these should be placed in a different section of my blog but due to time constraint, I&#39;ll place it here for now.
-Backstory: This answer is authored by Anders Kaseorg. I&#39;m just adding on and rearranging some stuff to aid my own understanding. Due to my limited Math ability, some of what I&#39;ll be writing below may very well be wrong."/>
+<meta name="twitter:description" content="NOTE: Sometimes I chance across brilliant answers to interesting Math questions on Quora and felt like rearranging and/or adding some steps into the original answer. I think these should be placed in a different section of my blog but due to time constraint, I&rsquo;ll place it here for now.
+Backstory: This answer is authored by Anders Kaseorg. I&rsquo;m just adding on and rearranging some stuff to aid my own understanding. Due to my limited Math ability, some of what I&rsquo;ll be writing below may very well be wrong."/>
 
   <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
@@ -89,6 +90,34 @@ Backstory: This answer is authored by Anders Kaseorg. I&#39;m just adding on and
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -423,252 +452,181 @@ Backstory: This answer is authored by Anders Kaseorg. I&#39;m just adding on and
 </div>
 
 <div class="markdown">
-<p><strong>NOTE:</strong> Sometimes I chance across brilliant answers to interesting Math questions on Quora and felt like rearranging and/or adding some steps into the original answer. I think these should be placed in a different section of my blog but due to time constraint, I'll place it here for now.</p>
-
-<p><strong>Backstory:</strong> <a href="http://www.quora.com/Is-anyone-aware-of-another-method-of-deriving-frac-1-2-without-using-the-gamma-function/answer/Anders-Kaseorg">This answer</a> is authored by <a href="http://www.quora.com/Anders-Kaseorg">Anders Kaseorg</a>. I'm just adding on and rearranging some stuff to aid my own understanding. Due to my limited Math ability, some of what I'll be writing below may very well be wrong. Read at your own risk.</p>
-
-<h2 id="method-1-using-stirlings-approximation">Method 1: Using Stirling's Approximation</h2>
-
+<p><strong>NOTE:</strong> Sometimes I chance across brilliant answers to interesting Math questions on Quora and felt like rearranging and/or adding some steps into the original answer. I think these should be placed in a different section of my blog but due to time constraint, I&rsquo;ll place it here for now.</p>
+<p><strong>Backstory:</strong> <a href="http://www.quora.com/Is-anyone-aware-of-another-method-of-deriving-frac-1-2-without-using-the-gamma-function/answer/Anders-Kaseorg">This answer</a> is authored by <a href="http://www.quora.com/Anders-Kaseorg">Anders Kaseorg</a>. I&rsquo;m just adding on and rearranging some stuff to aid my own understanding. Due to my limited Math ability, some of what I&rsquo;ll be writing below may very well be wrong. Read at your own risk.</p>
+<h2 id="method-1-using-stirlings-approximation">Method 1: Using Stirling&rsquo;s Approximation</h2>
 <p>So we start off with:</p>
-
-<p><span  class="math">\[
-\forall n \in N, \\
+<p>$$
+\forall n \in N, \
 \frac{1}{2}!
-= \frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \cdot \frac{1}{2}!}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \\
+= \frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \cdot \frac{1}{2}!}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \
 = 2^{2n - 1} \frac{n!(n - \frac{1}{2})!}{(2n)!}
-\]</span></p>
-
+$$</p>
 <p>This step:</p>
-
-<p><span  class="math">\[
+<p>$$
 \frac{1}{2}!
-= \frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \cdot \frac{1}{2}!}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \\
-\]</span></p>
-
+= \frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \cdot \frac{1}{2}!}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \
+$$</p>
 <p>is really just:</p>
-
-<p><span  class="math">\[
+<p>$$
 \frac{1}{2}!
 = 1 \cdot \frac{1}{2} !
-= \frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \cdot \frac{1}{2}! \\
-\]</span></p>
-
+= \frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \cdot \frac{1}{2}! \
+$$</p>
 <p>For this step:</p>
-
-<p><span  class="math">\[
-\frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \cdot \frac{1}{2}!}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \\
-\]</span></p>
-
-<p>we first look at the numerator. Observe that each term in the numerator and the next term differs by \( \frac{1}{2} \). Hence, we can find the terms \( n, n - 1, n - 2, ... , 2, 1 \) and \( n - \frac{1}{2}, n - \frac{3}{2}, ... , \frac{3}{2} \). We group the whole number terms together and the fractional terms together:</p>
-
-<p><span  class="math">\[
-\frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \cdot \frac{1}{2}!}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \\ \\
-\]</span></p>
-
+<p>$$
+\frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \cdot \frac{1}{2}!}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \
+$$</p>
+<p>we first look at the numerator. Observe that each term in the numerator and the next term differs by \( \frac{1}{2} \). Hence, we can find the terms \( n, n - 1, n - 2, &hellip; , 2, 1 \) and \( n - \frac{1}{2}, n - \frac{3}{2}, &hellip; , \frac{3}{2} \). We group the whole number terms together and the fractional terms together:</p>
+<p>$$
+\frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \cdot \frac{1}{2}!}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \ \
+$$</p>
 <p>Now we look at the denominator, \( n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1 \). We can multiply every term in the denominator by \( 1 = \frac{2}{2} \) to get \( (\frac{2}{2} \cdot n)(\frac{2}{2} \cdot (n - \frac{1}{2}))(\frac{2}{2} \cdot (n - 1))(\frac{2}{2} \cdot (n - \frac{3}{2})) \cdot \cdot \cdot (\frac{2}{2} \cdot \frac{3}{2}) \cdot (\frac{2}{2} \cdot 1) \). This is equivalent to \( \frac{2n}{2} \cdot \frac{2n - 1}{2} \cdot \frac{2n - 2}{2} \cdot \frac{2n - 3}{2} \cdot \cdot \cdot \frac{3}{2} \cdot \frac{2}{2} \). Observe that there are \( 2n - 2 + 1 = 2n - 1 \) terms in total, so we can rewrite that as \( \frac{(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2}{2^{2n - 1}} \). Now for the full equation:</p>
-
-<p><span  class="math">\[
-\frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \\ \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{(\frac{2}{2} \cdot n)(\frac{2}{2} \cdot (n - \frac{1}{2}))(\frac{2}{2} \cdot (n - 1))(\frac{2}{2} \cdot (n - \frac{3}{2})) \cdot \cdot \cdot (\frac{2}{2} \cdot \frac{3}{2}) \cdot (\frac{2}{2} \cdot 1)} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{\frac{2n}{2} \cdot \frac{2n - 1}{2} \cdot \frac{2n - 2}{2} \cdot \frac{2n - 3}{2} \cdot \cdot \cdot \frac{3}{2} \cdot \frac{2}{2}} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{\frac{(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2}{2^{2n - 1}}} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \\
-\]</span></p>
-
+<p>$$
+\frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \ \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{(\frac{2}{2} \cdot n)(\frac{2}{2} \cdot (n - \frac{1}{2}))(\frac{2}{2} \cdot (n - 1))(\frac{2}{2} \cdot (n - \frac{3}{2})) \cdot \cdot \cdot (\frac{2}{2} \cdot \frac{3}{2}) \cdot (\frac{2}{2} \cdot 1)} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{\frac{2n}{2} \cdot \frac{2n - 1}{2} \cdot \frac{2n - 2}{2} \cdot \frac{2n - 3}{2} \cdot \cdot \cdot \frac{3}{2} \cdot \frac{2}{2}} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{\frac{(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2}{2^{2n - 1}}} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \
+$$</p>
 <p>This step is pretty straightforward and I feel no need to explain it:</p>
-
-<p><span  class="math">\[
-\frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \\
+<p>$$
+\frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \
 = 2^{2n - 1} \frac{n!(n - \frac{1}{2})!}{(2n)!}
-\]</span></p>
-
-<p>Here's everything we have so far:</p>
-
-<p><span  class="math">\[
-\forall n \in N, \\
+$$</p>
+<p>Here&rsquo;s everything we have so far:</p>
+<p>$$
+\forall n \in N, \
 \frac{1}{2}!
 = 1 \cdot \frac{1}{2} !
-= \frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \cdot \frac{1}{2}! \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{(\frac{2}{2} \cdot n)(\frac{2}{2} \cdot (n - \frac{1}{2}))(\frac{2}{2} \cdot (n - 1))(\frac{2}{2} \cdot (n - \frac{3}{2})) \cdot \cdot \cdot (\frac{2}{2} \cdot \frac{3}{2}) \cdot (\frac{2}{2} \cdot 1)} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{\frac{2n}{2} \cdot \frac{2n - 1}{2} \cdot \frac{2n - 2}{2} \cdot \frac{2n - 3}{2} \cdot \cdot \cdot \frac{3}{2} \cdot \frac{2}{2}} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{\frac{(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2}{2^{2n - 1}}} \\
-= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \\
+= \frac{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \cdot \frac{1}{2}! \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{n(n - \frac{1}{2})(n - 1)(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot 1} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{(\frac{2}{2} \cdot n)(\frac{2}{2} \cdot (n - \frac{1}{2}))(\frac{2}{2} \cdot (n - 1))(\frac{2}{2} \cdot (n - \frac{3}{2})) \cdot \cdot \cdot (\frac{2}{2} \cdot \frac{3}{2}) \cdot (\frac{2}{2} \cdot 1)} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{\frac{2n}{2} \cdot \frac{2n - 1}{2} \cdot \frac{2n - 2}{2} \cdot \frac{2n - 3}{2} \cdot \cdot \cdot \frac{3}{2} \cdot \frac{2}{2}} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{\frac{(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2}{2^{2n - 1}}} \
+= \frac{[n(n - 1) \cdot \cdot \cdot 1][(n - \frac{1}{2})(n - \frac{3}{2}) \cdot \cdot \cdot \frac{3}{2} \cdot \frac{1}{2}!]}{2^{-2n + 1}(2n)(2n - 1)(2n - 2)(2n - 3) \cdot \cdot \cdot 3 \cdot 2} \
 = 2^{2n - 1} \frac{n!(n - \frac{1}{2})!}{(2n)!}
-\]</span></p>
-
-<p>The next part requires us to use <a href="https://en.wikipedia.org/wiki/Stirling's_approximation">Stirling's approximation</a>:</p>
-
-<p><span  class="math">\[
+$$</p>
+<p>The next part requires us to use <a href="https://en.wikipedia.org/wiki/Stirling's_approximation">Stirling&rsquo;s approximation</a>:</p>
+<p>$$
 n! \sim \sqrt{2 \pi n}(\frac{n}{e})^{n}
-\]</span></p>
-
+$$</p>
 <p>And as \( n \to + \infty \), \( \frac{n!}{\sqrt{2 \pi n } (n / e)^{n}} \to 1 \), so \( n! \to \sqrt{2 \pi n}(n / e)^{n} \). Applying that to \( 2^{2n - 1} \frac{n!(n - \frac{1}{2})!}{(2n)!} \) and doing each step slowly, we get:</p>
-
-<p><span  class="math">\[
-2^{2n - 1} \frac{n!(n - \frac{1}{2})!}{(2n)!} \sim 2^{2n - 1} \frac{\sqrt{2 \pi n}(\frac{n}{e})^{n} \cdot \sqrt{2 \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{\sqrt{2 \pi (2n)}(2n / e)^{2n}} \\
-= 2^{2n - 1} \frac{\sqrt{2 \pi n}(\frac{n}{e})^{n} \cdot \sqrt{2 \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{\sqrt{2 \pi n}\sqrt{2}(2n / e)^{2n}} \\
-= 2^{2n - 1} \frac{(\frac{n}{e})^{n} \cdot \sqrt{2 \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{\sqrt{2}(2n / e)^{2n}} \\
-= 2^{2n - 1} \frac{\sqrt{2}(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{\sqrt{2}(2n / e)^{2n}} \\
-= 2^{2n - 1} \frac{(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{(2n / e)^{2n}} \\
-= 2^{2n - 1} \frac{(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{2^{2n}(n / e)^{2n}} \\
-= \frac{2^{2n - 1}}{2^{2n}} \frac{(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{(n / e)^{2n}} \\
-= \frac{(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{2 (n / e)^{2n}} \\
-= \frac{(\frac{n}{e})^{-n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{2} \\
-= \frac{n^{-n} \cdot (\frac{1}{e})^{-n} \cdot (\frac{1}{e})^{n - \frac{1}{2}} \cdot \sqrt{ \pi (n - \frac{1}{2})}(n - \frac{1}{2})^{n - \frac{1}{2}}}{2} \\
-= \frac{n^{-n} \cdot (\frac{1}{e})^{-\frac{1}{2}} \cdot \sqrt{ \pi (n - \frac{1}{2})}(n - \frac{1}{2})^{n - \frac{1}{2}}}{2} \\
-= \frac{n^{-n} \cdot (\frac{1}{e})^{-\frac{1}{2}} \cdot \sqrt{ \pi } (n - \frac{1}{2})^{\frac{1}{2}}(n - \frac{1}{2})^{n - \frac{1}{2}}}{2} \\
-= \frac{n^{-n} \cdot (\frac{1}{e})^{-\frac{1}{2}} \cdot \sqrt{ \pi } (n - \frac{1}{2})^{n}}{2} \\
-= \frac{n^{-n} \cdot (e^{-1})^{-\frac{1}{2}} \cdot \sqrt{ \pi } (n - \frac{1}{2})^{n}}{2} \\
-= \frac{n^{-n} \cdot e^{\frac{1}{2}} \cdot \sqrt{ \pi } (n - \frac{1}{2})^{n}}{2} \\
-= \frac{n^{-n} \cdot \sqrt{ \pi e } (n - \frac{1}{2})^{n}}{2} \\
-= \frac{(\frac{1}{n})^{n} \cdot \sqrt{ \pi e } (n - \frac{1}{2})^{n}}{2} \\
-= \frac{\sqrt{ \pi e } (\frac{n - \frac{1}{2}}{n})^{n}}{2} \\
-= \frac{\sqrt{ \pi e } (1 - \frac{1}{2n})^{n}}{2} \\
+<p>$$
+2^{2n - 1} \frac{n!(n - \frac{1}{2})!}{(2n)!} \sim 2^{2n - 1} \frac{\sqrt{2 \pi n}(\frac{n}{e})^{n} \cdot \sqrt{2 \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{\sqrt{2 \pi (2n)}(2n / e)^{2n}} \
+= 2^{2n - 1} \frac{\sqrt{2 \pi n}(\frac{n}{e})^{n} \cdot \sqrt{2 \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{\sqrt{2 \pi n}\sqrt{2}(2n / e)^{2n}} \
+= 2^{2n - 1} \frac{(\frac{n}{e})^{n} \cdot \sqrt{2 \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{\sqrt{2}(2n / e)^{2n}} \
+= 2^{2n - 1} \frac{\sqrt{2}(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{\sqrt{2}(2n / e)^{2n}} \
+= 2^{2n - 1} \frac{(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{(2n / e)^{2n}} \
+= 2^{2n - 1} \frac{(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{2^{2n}(n / e)^{2n}} \
+= \frac{2^{2n - 1}}{2^{2n}} \frac{(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{(n / e)^{2n}} \
+= \frac{(\frac{n}{e})^{n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{2 (n / e)^{2n}} \
+= \frac{(\frac{n}{e})^{-n} \cdot \sqrt{ \pi (n - \frac{1}{2})}(\frac{n - \frac{1}{2}}{e})^{n - \frac{1}{2}}}{2} \
+= \frac{n^{-n} \cdot (\frac{1}{e})^{-n} \cdot (\frac{1}{e})^{n - \frac{1}{2}} \cdot \sqrt{ \pi (n - \frac{1}{2})}(n - \frac{1}{2})^{n - \frac{1}{2}}}{2} \
+= \frac{n^{-n} \cdot (\frac{1}{e})^{-\frac{1}{2}} \cdot \sqrt{ \pi (n - \frac{1}{2})}(n - \frac{1}{2})^{n - \frac{1}{2}}}{2} \
+= \frac{n^{-n} \cdot (\frac{1}{e})^{-\frac{1}{2}} \cdot \sqrt{ \pi } (n - \frac{1}{2})^{\frac{1}{2}}(n - \frac{1}{2})^{n - \frac{1}{2}}}{2} \
+= \frac{n^{-n} \cdot (\frac{1}{e})^{-\frac{1}{2}} \cdot \sqrt{ \pi } (n - \frac{1}{2})^{n}}{2} \
+= \frac{n^{-n} \cdot (e^{-1})^{-\frac{1}{2}} \cdot \sqrt{ \pi } (n - \frac{1}{2})^{n}}{2} \
+= \frac{n^{-n} \cdot e^{\frac{1}{2}} \cdot \sqrt{ \pi } (n - \frac{1}{2})^{n}}{2} \
+= \frac{n^{-n} \cdot \sqrt{ \pi e } (n - \frac{1}{2})^{n}}{2} \
+= \frac{(\frac{1}{n})^{n} \cdot \sqrt{ \pi e } (n - \frac{1}{2})^{n}}{2} \
+= \frac{\sqrt{ \pi e } (\frac{n - \frac{1}{2}}{n})^{n}}{2} \
+= \frac{\sqrt{ \pi e } (1 - \frac{1}{2n})^{n}}{2} \
 = \frac{\sqrt{ \pi e }}{2} \cdot (1 - \frac{1}{2n})^{n}
-\]</span></p>
-
-<p>Using \( \lim_{n \to \infty} (1 + \frac{1}{n})^{n} \to e \), we want to prove that \( \lim_{n \to \infty} (1 - \frac{1}{2n})^{n} \to \frac{1}{\sqrt{e}} \), and hence \( \lim_{n \to \infty} \frac{\sqrt{\pi e}}{2} \cdot (1 - \frac{1}{2n})^{n} \to \frac{\sqrt{\pi e}}{2 \sqrt{e}} = \frac{\sqrt{\pi}}{2} \) . <strong>NOTE:</strong> Due to gaps in my knowledge of Math, I'll have to use proofs from the Internet here and just trust that they are correct. Hopefully I can fill in these missing gaps in time. Alright. Here we go.</p>
-
+$$</p>
+<p>Using \( \lim_{n \to \infty} (1 + \frac{1}{n})^{n} \to e \), we want to prove that \( \lim_{n \to \infty} (1 - \frac{1}{2n})^{n} \to \frac{1}{\sqrt{e}} \), and hence \( \lim_{n \to \infty} \frac{\sqrt{\pi e}}{2} \cdot (1 - \frac{1}{2n})^{n} \to \frac{\sqrt{\pi e}}{2 \sqrt{e}} = \frac{\sqrt{\pi}}{2} \) . <strong>NOTE:</strong> Due to gaps in my knowledge of Math, I&rsquo;ll have to use proofs from the Internet here and just trust that they are correct. Hopefully I can fill in these missing gaps in time. Alright. Here we go.</p>
 <p>First we massage \( (1 - \frac{1}{2n})^{n} \) to \( (1 + \frac{1}{-2n})^{-2n} \) so that we can apply \( \lim_{n \to \infty}(1 + \frac{1}{n})^{n} \) where we substitute \( n = 2n \) so that it converges to \( e \). <strong>This is the part which looks a bit dubious to me and which I currently do not know how to prove.</strong></p>
-
-<p><span  class="math">\[
-(1 - \frac{1}{2n})^{n} \\
-= (1 - \frac{1}{2n})^{n \cdot - \frac{1}{2} \cdot -2} \\
-= (1 - \frac{1}{2n})^{-2n \cdot - \frac{1}{2}} \\
-= (1 + \frac{1}{-2n})^{-2n \cdot - \frac{1}{2}} \\
-= ((1 + \frac{1}{-2n})^{-2n})^{ - \frac{1}{2}} \\
-\]</span></p>
-
+<p>$$
+(1 - \frac{1}{2n})^{n} \
+= (1 - \frac{1}{2n})^{n \cdot - \frac{1}{2} \cdot -2} \
+= (1 - \frac{1}{2n})^{-2n \cdot - \frac{1}{2}} \
+= (1 + \frac{1}{-2n})^{-2n \cdot - \frac{1}{2}} \
+= ((1 + \frac{1}{-2n})^{-2n})^{ - \frac{1}{2}} \
+$$</p>
 <p>Then we apply \( \lim_{n \to \infty}(1 + \frac{1}{n})^{n} \), substituting \( n = 2n \), to get \( e^{- \frac{1}{2}} \). Hence we have \( \frac{\sqrt{\pi e}}{2} \cdot (1 - \frac{1}{2n})^{n} \to \frac{\sqrt{\pi e}}{2} \cdot e^{- \frac{1}{2}} = \frac{\sqrt{\pi}}{2} \) as desired. So we just proved that \( \frac{1}{2}! \to \frac{\sqrt{\pi}}{2} \).</p>
-
-<h2 id="method-2-without-using-stirlings-approximation">Method 2: Without using Stirling's Approximation</h2>
-
+<h2 id="method-2-without-using-stirlings-approximation">Method 2: Without using Stirling&rsquo;s Approximation</h2>
 <p>Assuming \( (n - \frac{1}{2})! \) is non-zero and well-defined, we have</p>
-
-<p><span  class="math">\[
+<p>$$
 \frac{n!}{(n - \frac{1}{2})!} \cdot \frac{(n - \frac{1}{2})!}{(n - 1)!} = n
-\]</span></p>
-
-<p>Next, Anders writes that &quot;it's at least reasonable to assume - and, in fact, true - that we should have&quot;</p>
-
-<p><span  class="math">\[
+$$</p>
+<p>Next, Anders writes that &ldquo;it&rsquo;s at least reasonable to assume - and, in fact, true - that we should have&rdquo;</p>
+<p>$$
 \frac{n!}{(n - \frac{1}{2})!} \sim \frac{(n - \frac{1}{2})!}{(n - 1)!} \sim \sqrt{n}
-\]</span></p>
-
+$$</p>
 <p>I believe that this relies on the following assumptions:</p>
-
 <ul>
 <li>For large \( n \), \( n! \sim (n - \frac{1}{2})! \)</li>
 <li>For large \( n \), \( (n - \frac{1}{2})! \sim (n - 1)! \)</li>
 </ul>
-
 <p>And so \( \frac{n!}{(n - \frac{1}{2})!} \sim \frac{(n - \frac{1}{2})}{(n - 1)!} \), so \( \frac{n!}{(n - \frac{1}{2})!} \cdot \frac{(n - \frac{1}{2})!}{(n - 1)!} \sim \frac{n!}{(n - \frac{1}{2})} \cdot \frac{n!}{(n - \frac{1}{2})!} = n \), so \( \frac{n}{(n - \frac{1}{2})!} \sim \sqrt{n} \) and also \( \frac{(n - \frac{1}{2})!}{(n - 1)!} \sim \sqrt{n} \)</p>
-
-<p>Next, Anders writes in a comment that &quot;The natural generalization \( \frac{n!}{(n - p)!} \sim n^{p} \) is enough to <a href="http://www.quora.com/How-exactly-does-the-gamma-function-extend-the-factorial-function-to-the-reals/answer/Sridhar-Ramesh">derive the gamma function from scratch</a>.&quot; Due to time constraint and laziness (primarily laziness), I have not read that Quora answer so we shall not touch on that in this article =)</p>
-
-<p>Recall that in the proof for Method 1, before we made use of Stirling's Approximation, we arrived at the following result:</p>
-
-<p><span  class="math">\[
+<p>Next, Anders writes in a comment that &ldquo;The natural generalization \( \frac{n!}{(n - p)!} \sim n^{p} \) is enough to <a href="http://www.quora.com/How-exactly-does-the-gamma-function-extend-the-factorial-function-to-the-reals/answer/Sridhar-Ramesh">derive the gamma function from scratch</a>.&rdquo; Due to time constraint and laziness (primarily laziness), I have not read that Quora answer so we shall not touch on that in this article =)</p>
+<p>Recall that in the proof for Method 1, before we made use of Stirling&rsquo;s Approximation, we arrived at the following result:</p>
+<p>$$
 \frac{1}{2}! = 2^{2n - 1} \frac{n!(n - \frac{1}{2})!}{(2n)!}
-\]</span></p>
-
+$$</p>
 <p>Using \( \frac{n!}{(n - \frac{1}{2})!} \sim \sqrt{n} \), we know that its reciprocal \( \frac{(n - \frac{1}{2})!}{n!} \sim \frac{1}{\sqrt{n}} \) and \( (n - \frac{1}{2})! \sim \frac{n!}{\sqrt{n}} \). Substituting that into the equation above, we have:</p>
-
-<p><span  class="math">\[
+<p>$$
 2^{2n - 1} \frac{n!(n - \frac{1}{2})!}{(2n)!}
 \sim 2^{2n - 1} \frac{n!}{(2n!)} \cdot \frac{n!}{\sqrt{n}}
 = 2^{2n - 1} \frac{(n!)^{2}}{(2n!)\sqrt{n}}
 = 2^{2n - 1} \frac{n! \cdot n!}{(2n!)} \cdot \frac{1}{\sqrt{n}}
 = 2^{2n - 1} \frac{1}{{2n \choose n} \sqrt{n}}
-\]</span></p>
-
+$$</p>
 <p>The next part is nothing short of brilliant and is imho the best part of the answer.</p>
-
-<p>The Binomial Distribution \( B(2n, \frac{1}{2}) \) has mean \( \mu = 2n \cdot \frac{1}{2} = n \) and variance \( \sigma^{2} = 2n \cdot \frac{1}{2} \cdot (1 - \frac{1}{2}) = \frac{n}{2} \). As \( n \to \infty \), we can make use of the Normal approximation to the Binomial. Formally, it is given by the <a href="https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem">De Moivre-Laplace Theorem</a>, which according to the book <a href="http://amzn.com/032179477X">A First Course in Probability, 9th Edition by Sheldon Ross</a> on page 209, is a special case of the Central Limit Theorem. (Anyways, don't mind the 3/5 stars rating for the Sheldon Ross book; imho it's pretty decent, having read through parts of it.)</p>
-
+<p>The Binomial Distribution \( B(2n, \frac{1}{2}) \) has mean \( \mu = 2n \cdot \frac{1}{2} = n \) and variance \( \sigma^{2} = 2n \cdot \frac{1}{2} \cdot (1 - \frac{1}{2}) = \frac{n}{2} \). As \( n \to \infty \), we can make use of the Normal approximation to the Binomial. Formally, it is given by the <a href="https://en.wikipedia.org/wiki/De_Moivre%E2%80%93Laplace_theorem">De Moivre-Laplace Theorem</a>, which according to the book <a href="http://amzn.com/032179477X">A First Course in Probability, 9th Edition by Sheldon Ross</a> on page 209, is a special case of the Central Limit Theorem. (Anyways, don&rsquo;t mind the 3/5 stars rating for the Sheldon Ross book; imho it&rsquo;s pretty decent, having read through parts of it.)</p>
 <p>Basically, using the Normal Approximation to the Binomial, for any Binomial distribution \( B(n, p) \), when \( n \) is large, it can be approximated using a Normal Distribution with the same mean and variance as the Binomial. Hence, we can use a Normal Distribution with mean \( n \) and variance \( \frac{n}{2} \) in place of the Binomial. In mathematical notation, we use a \( N(n, \frac{n}{2}) \) in place of \( B(2n, \frac{1}{2}) \).</p>
-
 <p>There are 2 ways to derive this next part:</p>
-
-<p><span  class="math">\[
+<p>$$
 \frac{1}{2^{2n}}{2n \choose k} \sim \frac{1}{\sqrt{\pi n}}e^{-(k-n)^2 / n}
-\]</span></p>
-
-<p>The first way (which I just discovered after glancing the De Moivre-Laplace theorem's Wikipedia page), makes use of this piece of knowledge stated on the <a href="https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem">De Moivre-Laplace theorem Wikipedia page</a>:</p>
-
+$$</p>
+<p>The first way (which I just discovered after glancing the De Moivre-Laplace theorem&rsquo;s Wikipedia page), makes use of this piece of knowledge stated on the <a href="https://en.wikipedia.org/wiki/De_Moivre%E2%80%93Laplace_theorem">De Moivre-Laplace theorem Wikipedia page</a>:</p>
 <p>As n grows large, for \( k \) in the neighborhood of \( np \) we can approximiate</p>
-
-<p><span  class="math">\[
-{ n \choose k }p^{k}q^{n - k} \sim \frac{1}{\sqrt{2 \pi npq}}e^{-\frac{(k - np)^2}{2npq}} , p + q = 1, p, q > 0
-\]</span></p>
-
+<p>$$
+{ n \choose k }p^{k}q^{n - k} \sim \frac{1}{\sqrt{2 \pi npq}}e^{-\frac{(k - np)^2}{2npq}} , p + q = 1, p, q &gt; 0
+$$</p>
 <p>in the sense that the ratio of the left-hand side to the right-hand side converges to 1 as \( n \to \infty \).</p>
-
-<p>Ok, I must admit that I do not know what is meant by &quot;neighborhood&quot; in this context, but here, we are interested in the quantity \( { 2n \choose n} \). Based on the parameters of the original Binomial Distribution \( B(2n, \frac{1}{2}) \), we find that \( np = 2n \cdot \frac{1}{2} = n \), and the \( k \) we are interested in is precisely \( n \), which well, should be in the neighborhood of \( n \). Moreover, \( p = \frac{1}{2} &gt; 0, q = \frac{1}{2} &gt; 0, p + q = 1 \). So we can apply \( { n \choose k } p^{k} q^{n-k} \sim \frac{1}{\sqrt{2 \pi npq}} e^{-\frac{(k - np)^{2}}{2npq}} \). Substituting \( n = 2n, k = n, p = \frac{1}{2}, q = \frac{1}{2} \):</p>
-
-<p><span  class="math">\[
-{ 2n \choose n }(\frac{1}{2})^{n}(\frac{1}{2})^{2n - n} \sim \frac{1}{\sqrt{2 \pi \cdot (2n) \cdot \frac{1}{2} \cdot \frac{1}{2}}} \cdot e^{-\frac{(n - 2n \cdot \frac{1}{2})^{2}}{2 \cdot 2n \cdot \frac{1}{2} \cdot \frac{1}{2}}} \\
-{ 2n \choose n }(\frac{1}{2})^{2n} \sim \frac{1}{\sqrt{\pi n}} \cdot e^{\frac{(n - n)^{2}}{n}} \\
-{ 2n \choose n }(\frac{1}{2})^{2n} \sim \frac{1}{\sqrt{\pi n}} \\
-\frac{{ 2n \choose n }}{2^{2n}} \sim \frac{1}{\sqrt{\pi n}} \\
+<p>Ok, I must admit that I do not know what is meant by &ldquo;neighborhood&rdquo; in this context, but here, we are interested in the quantity \( { 2n \choose n} \). Based on the parameters of the original Binomial Distribution \( B(2n, \frac{1}{2}) \), we find that \( np = 2n \cdot \frac{1}{2} = n \), and the \( k \) we are interested in is precisely \( n \), which well, should be in the neighborhood of \( n \). Moreover, \( p = \frac{1}{2} &gt; 0, q = \frac{1}{2} &gt; 0, p + q = 1 \). So we can apply \( { n \choose k } p^{k} q^{n-k} \sim \frac{1}{\sqrt{2 \pi npq}} e^{-\frac{(k - np)^{2}}{2npq}} \). Substituting \( n = 2n, k = n, p = \frac{1}{2}, q = \frac{1}{2} \):</p>
+<p>$$
+{ 2n \choose n }(\frac{1}{2})^{n}(\frac{1}{2})^{2n - n} \sim \frac{1}{\sqrt{2 \pi \cdot (2n) \cdot \frac{1}{2} \cdot \frac{1}{2}}} \cdot e^{-\frac{(n - 2n \cdot \frac{1}{2})^{2}}{2 \cdot 2n \cdot \frac{1}{2} \cdot \frac{1}{2}}} \
+{ 2n \choose n }(\frac{1}{2})^{2n} \sim \frac{1}{\sqrt{\pi n}} \cdot e^{\frac{(n - n)^{2}}{n}} \
+{ 2n \choose n }(\frac{1}{2})^{2n} \sim \frac{1}{\sqrt{\pi n}} \
+\frac{{ 2n \choose n }}{2^{2n}} \sim \frac{1}{\sqrt{\pi n}} \
 { 2n \choose n } \sim \frac{2^{2n}}{\sqrt{\pi n}}
-\]</span></p>
-
-<p>For the second way, let us first consider the quantity \( { n \choose k } \). What are we trying to do here? We are trying to select \( k \) objects from a collection of \( n \) distinct objects. When we're choosing any subset of objects (which may contain anything from \( 0 \) to \( n \) objects) from the collection of \( n \) distinct objects, for a particular object, we can choose whether to include it in our subset or to not include it in our subset. Assume that the probability of picking an object is given by \( \frac{1}{2} \), that is, it is equally likely for us to pick a particular object or not to pick it. Moreover, whether we pick a particular object \( x \) does not affect our decision of whether we pick another particular object \( y \). This is precisely the situation described by a Binomial Distribution with parameters \( n = n, p = \frac{1}{2} \).</p>
-
+$$</p>
+<p>For the second way, let us first consider the quantity \( { n \choose k } \). What are we trying to do here? We are trying to select \( k \) objects from a collection of \( n \) distinct objects. When we&rsquo;re choosing any subset of objects (which may contain anything from \( 0 \) to \( n \) objects) from the collection of \( n \) distinct objects, for a particular object, we can choose whether to include it in our subset or to not include it in our subset. Assume that the probability of picking an object is given by \( \frac{1}{2} \), that is, it is equally likely for us to pick a particular object or not to pick it. Moreover, whether we pick a particular object \( x \) does not affect our decision of whether we pick another particular object \( y \). This is precisely the situation described by a Binomial Distribution with parameters \( n = n, p = \frac{1}{2} \).</p>
 <p>Consider our Binomial Distribution of interest, \( B(2n, \frac{1}{2}) \). Now, consider all possible subsets of \( 2n \) distinct objects. What is the probability of picking any one subset from the set of all possible subsets of \( 2n \) distinct objects? Since \( p = \frac{1}{2} \), it is equally likely for us to pick any such subset!!! So each subset of the set of \( 2n \) distinct objects can be selected with probability \( (\frac{1}{2})^{2n} = \frac{1}{2^{2n}} \). Then, the quantity \( \frac{{ 2n \choose n }}{2^{2n}} \) is the probability of choosing <strong>any</strong> subset of \( n \) objects from a set of \( 2n \) distinct objects, where the probability of choosing any particular object is \( \frac{1}{2}\).</p>
-
 <p>Not so coincidentally, \( \frac{{ 2n \choose n }}{2^{2n}} \), in this case, can also be written as \( P(X = n) \), assuming we denote our \( B(2n, \frac{1}{2}) \) as \( X \), or in mathematical notation, \( X \sim B(2n, \frac{1}{2}) \). \( P(X = n) = \frac{{2n \choose n}}{2^{2n}} \) is the probability of having \( n \) successes in \( 2n \) independent trials, where each trial has a success probability of \( \frac{1}{2} \). In our terminology, it is the probability of choosing a subset of \( n \) objects from \( 2n \) distinct objects, where the probability of choosing any object is \( \frac{1}{2} \), and whether we choose a particular object \( x \) has no effect on whether we choose another object \( y \). (Ok, I know that more experienced readers should be frustrated by now, just bear with me a little bit!!!)</p>
-
-<p>For large \( n \), we can use the Normal approximation to the Binomial, and get a \( N(n, \frac{n}{2}) \). Let's denote our random variable by \( Y \), so \( Y \sim N(n, \frac{n}{2}) \). Recall that the pdf of a Normal random variable \( X \sim N(\mu, \sigma^{2}) \) is given by:</p>
-
-<p><span  class="math">\[
+<p>For large \( n \), we can use the Normal approximation to the Binomial, and get a \( N(n, \frac{n}{2}) \). Let&rsquo;s denote our random variable by \( Y \), so \( Y \sim N(n, \frac{n}{2}) \). Recall that the pdf of a Normal random variable \( X \sim N(\mu, \sigma^{2}) \) is given by:</p>
+<p>$$
 f_{X}(x) = \frac{1}{\sqrt{2 \pi \sigma}} \cdot e^{\frac{-(x - \mu)^2}{2 \sigma^{2}}}
-\]</span></p>
-
+$$</p>
 <p>Now, what happens when we use \( Y \sim N(n, \frac{n}{2}) \) instead? We get:</p>
-
-<p><span  class="math">\[
+<p>$$
 f_{Y}(y) = \frac{1}{\sqrt{2 \pi \cdot \frac{n}{2}}} \cdot e^{\frac{-(y - n)^2}{2 \cdot \frac{n}{2}}} = \frac{1}{\sqrt{\pi n}} \cdot e^{-\frac{(y - n)^2}{n}}
-\]</span></p>
-
+$$</p>
 <p>If we substitute \( y = n \), we get:</p>
-
-<p><span  class="math">\[
+<p>$$
 f_{Y}(n) = \frac{1}{\sqrt{\pi n}} \cdot e^{-\frac{(n - n)^2}{n}} = \frac{1}{\sqrt{\pi n}}
-\]</span></p>
-
-<p><strong>NOTE</strong>: This next part is where I may be gravely wrong, because a normal random variable is a continuous random variable, so the probability of it taking on any fixed value is 0. However, since we got everything out so nicely, let's assume otherwise and just go along. I'll be very glad if someone can point out whether I am correct or wrong and give a bit of explanation about it.</p>
-
+$$</p>
+<p><strong>NOTE</strong>: This next part is where I may be gravely wrong, because a normal random variable is a continuous random variable, so the probability of it taking on any fixed value is 0. However, since we got everything out so nicely, let&rsquo;s assume otherwise and just go along. I&rsquo;ll be very glad if someone can point out whether I am correct or wrong and give a bit of explanation about it.</p>
 <p>The <a href="https://en.wikipedia.org/wiki/Probability_density_function">Probability density function page on Wikipedia</a> states the following: Intuitively, one can think of \( f_{X}(x) dx \) as being the probability of \( X \) falling within the infinitesimal interval \( [x, x + dx] \).</p>
-
-<p>So let's assume that \( f_{Y}(n) = \frac{1}{\sqrt{\pi n}} \) is the probability of random variable \( Y \sim N(n, \frac{n}{2}) \) falling within the infinitesimal interval \( [n, n + dy] \). In other words, it is approximately \( P(Y = n) \), or the probability of random variable \( Y \) taking on the value \( n \).</p>
-
+<p>So let&rsquo;s assume that \( f_{Y}(n) = \frac{1}{\sqrt{\pi n}} \) is the probability of random variable \( Y \sim N(n, \frac{n}{2}) \) falling within the infinitesimal interval \( [n, n + dy] \). In other words, it is approximately \( P(Y = n) \), or the probability of random variable \( Y \) taking on the value \( n \).</p>
 <p>So we have \( X \sim B(2n, \frac{1}{2}) \), its normal approximation \( Y \sim N(n, \frac{n}{2}) \), and \( P(X = n) \sim P(Y = n) \sim \frac{1}{\sqrt{\pi n}} \). Hence we have:</p>
-
-<p><span  class="math">\[
-P(X = n) = \frac{{2n \choose n}}{2^{2n}} \sim \frac{1}{\sqrt{\pi n}} \\
+<p>$$
+P(X = n) = \frac{{2n \choose n}}{2^{2n}} \sim \frac{1}{\sqrt{\pi n}} \
 {2n \choose n} \sim \frac{2^{2n}}{\sqrt{\pi n}}
-\]</span></p>
-
+$$</p>
 <p>Putting everything together, we have:</p>
-
-<p><span  class="math">\[
+<p>$$
 \frac{1}{2}! = 2^{2n - 1} \cdot \frac{n!(n - \frac{1}{2})!}{(2n)!} \sim 2^{2n - 1} \frac{1}{{2n \choose n}\sqrt{n}} \sim 2^{2n - 1} \frac{\sqrt{\pi n}}{2^{2n} \sqrt{n}} = \frac{\sqrt{\pi}}{2}
-\]</span></p>
-
-<p>So we also get \( \frac{1}{2}! \sim \frac{\sqrt{\pi}}{2} \). Although it's dubious whether this method is correct.</p>
-
+$$</p>
+<p>So we also get \( \frac{1}{2}! \sim \frac{\sqrt{\pi}}{2} \). Although it&rsquo;s dubious whether this method is correct.</p>
 <h2 id="conclusion">Conclusion</h2>
-
-<p>Phew. This has extremely tedious to type out. <a href="https://www.mathjax.org/">MathJax</a> is awesome. Working out all the steps that I didn't fully understand enabled me to understand this much better. One wonders why Anders Kaseorg is so smart. This is probably one of the few of his answers to Math problems that I can kind of understand.</p>
-
+<p>Phew. This has extremely tedious to type out. <a href="https://www.mathjax.org/">MathJax</a> is awesome. Working out all the steps that I didn&rsquo;t fully understand enabled me to understand this much better. One wonders why Anders Kaseorg is so smart. This is probably one of the few of his answers to Math problems that I can kind of understand.</p>
 <p>##Acknowledgements</p>
-
 <p><a href="http://www.quora.com/David-Lee-144">David Lee</a>, for offering advice on parts of this post.</p>
 
 </div>

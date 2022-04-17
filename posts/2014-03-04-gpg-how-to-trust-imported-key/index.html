@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 gpg -r &#39;Pang&#39; -e some_file and a message along the lines of this pops up:
 gpg: checking the trustdb gpg: no ultimately trusted keys found gpg: There is no assurance this key belongs to the named user It is NOT certain that the key belongs to the person named in the user ID." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2014-03-04-gpg-how-to-trust-imported-key/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2014-03-04-gpg-how-to-trust-imported-key/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-03-04T22:00:00+00:00" />
 <meta property="article:modified_time" content="2014-03-04T22:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GPG - How to trust an imported key"/>
 <meta name="twitter:description" content="Recently I&rsquo;ve faced this problem when trying to encrypt a file using my own gpg key, created on another machine and newly imported. Here&rsquo;s the command used for encryption:
@@ -89,6 +90,18 @@ gpg: checking the trustdb gpg: no ultimately trusted keys found gpg: There is no
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -410,6 +423,22 @@ gpg: checking the trustdb gpg: no ultimately trusted keys found gpg: There is no
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
       </td>
     </tr>
   </tbody>
@@ -426,8 +455,8 @@ gpg: checking the trustdb gpg: no ultimately trusted keys found gpg: There is no
 <p>Recently I&rsquo;ve faced this problem when trying to encrypt a file using my own
 gpg key, created on another machine and newly imported. Here&rsquo;s the command used
 for encryption:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg -r <span style="color:#e6db74">&#39;Pang&#39;</span> -e some_file
-</code></pre></div><p>and a message along the lines of this pops up:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg -r <span style="color:#e6db74">&#39;Pang&#39;</span> -e some_file
+</span></span></code></pre></div><p>and a message along the lines of this pops up:</p>
 <pre><code>gpg: checking the trustdb
 gpg: no ultimately trusted keys found
 gpg: There is no assurance this key belongs to the named user
@@ -442,8 +471,8 @@ Use this key anyway? (y/N)
 <code>--yes</code> flag still causes GPG to prompt. I did not want that; the bash script
 should be non-interactive.</p>
 <p>It took me quite a while to reach the solution, which is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --edit-key <span style="color:#e6db74">&#39;Pang&#39;</span>
-</code></pre></div><p>which fires up GPG and shows a prompt.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg --edit-key <span style="color:#e6db74">&#39;Pang&#39;</span>
+</span></span></code></pre></div><p>which fires up GPG and shows a prompt.</p>
 <pre><code>gpg (GnuPG) 1.4.11; Copyright (C) 2010 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
@@ -477,8 +506,8 @@ Your decision?
 </code></pre>
 <p>which trusts it ultimately.</p>
 <p>Exiting the gpg program, and running:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg -r <span style="color:#e6db74">&#39;Pang&#39;</span> -e some_file
-</code></pre></div><p>no longer prompts me to answer that question. Automation ftw.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gpg -r <span style="color:#e6db74">&#39;Pang&#39;</span> -e some_file
+</span></span></code></pre></div><p>no longer prompts me to answer that question. Automation ftw.</p>
 
 </div>
 

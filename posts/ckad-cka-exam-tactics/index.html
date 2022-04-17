@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.96.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="cka,ckad,k8s,kubernetes"><meta name="description" content="Non curriculum related exam tactics for CKAD / CKA"><meta property="og:title" content="CKAD / CKA exam tactics" />
+<meta property="og:description" content="Non curriculum related exam tactics for CKAD / CKA" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/ckad-cka-exam-tactics/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-01T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CKAD / CKA exam tactics"/>
+<meta name="twitter:description" content="Non curriculum related exam tactics for CKAD / CKA"/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>CKAD / CKA exam tactics | Yan Han&#39;s blog</title><script type="text/javascript">(function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a._i.push([b,d,g])};a.__SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL? MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);mixpanel.init("49f4d9dd919ecb7ee428489acdd19dff");</script>
+</head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">01</span>
+<span class="rest">Jun 2020</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">CKAD / CKA exam tactics</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/cka/"> cka </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/ckad/"> ckad </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/k8s/"> k8s </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/kubernetes/"> kubernetes </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>The CKAD (Certified Kubernetes Application Developer) and CKA (Certified Kubernetes Administrator) certifications probably need no introduction to anyone who is a k8s user.</p>
+<p>In mid May 2020, I obtained both certifications and wish to share some pointers with you.</p>
+<p>Unlike many other resources similar to this post that cover the curriculum, this blog post takes a slight twist in emphasizing some concrete non k8s related preparation work I did upfront to sharpen my edge for the exam, as well as concrete exam tactics I used during the exam.</p>
+<h2 id="ground-rules">Ground rules</h2>
+<p>There are some rules enforced by CNCF and must be strictly adhered to during the exam. These are the ones I find very important:</p>
+<ul>
+<li>The room must be well lit. However, there should be no bright lights or window directly behind you.</li>
+<li>Clear desk policy - other than what is required (computer, keyboard, mouse, monitor, webcam), nothing else can be on the desk. (I asked if I could leave my id on the table after showing it to the proctor and he/she told me to keep it)</li>
+<li>You may have water in a clear glass or unmarked water bottle. This is the only exception to the above.</li>
+<li>In your Chrome web browser, only 2 tabs may be open: one for the exam, and another for documentation to allowed websites (<a href="https://kubernetes.io/docs">https://kubernetes.io/docs</a>, <a href="https://kubernetes.io/blog">https://kubernetes.io/blog</a>, <a href="https://github.com/kubernetes">https://github.com/kubernetes</a>, and any subdirectories under those sites)</li>
+<li>A moveable webcam is required. Before the exam starts, the proctor (examiner) will request you to move your webcam to scan the entire room and under your desk. I used a Macbook and its built-in webcam so any laptop with a built-in webcam will suffice.</li>
+<li>For the duration of the exam, no one else can enter the room.</li>
+</ul>
+<p>Once the exam starts:</p>
+<ul>
+<li>You may not move away from the computer without permission of the proctor. Breaks may be requested. Each break may be up to 15 minutes.</li>
+<li>You may not read out any part of the question. Not even silently / &ldquo;mouthing it&rdquo;.</li>
+<li>You may not cover any part of your face for extended periods of time.</li>
+</ul>
+<h2 id="prerequisite-skills">Prerequisite skills</h2>
+<p>In addition to the required k8s knowledge, you should have a good grasp of the following before you attempt the exam:</p>
+<ul>
+<li>vim (preferrably; otherwise emacs or nano or a similar Linux command line text editor)</li>
+<li>some knowledge of the Linux command line</li>
+<li>screen / tmux (optional but helpful because you only have 1 terminal in the exam)</li>
+</ul>
+<p>The exam requires you to use the Chrome web browser and the terminal exposed to you is that of a Linux machine. As such, you have to know the above to pass the exam.</p>
+<h2 id="preparation-work-i-did-non-k8s-practice-related">Preparation work I did (non k8s practice related)</h2>
+<p>These are what I did and recommend candidates to do:</p>
+<ul>
+<li>Ensure your system fulfils the requirements. You will need to install a Chrome extension which will let you test your system for it. Once you have purchased the exam at the <a href="https://portal.linuxfoundation.org/portal">Linux Foundation Portal</a>, there is a link for you to go to <a href="https://www.examslocal.com/ScheduleExam/Home/CompatibilityCheck">https://www.examslocal.com/ScheduleExam/Home/CompatibilityCheck</a> to do the compatibility check.</li>
+<li>Backup irrelevant browser bookmarks and delete them. If possible, delete irrelevant browser extensions as well. This is to decrease the probability of you accidentally accessing websites not permitted by the exam rules.</li>
+<li>Bookmark useful documentation in <a href="https://kubernetes.io/docs">https://kubernetes.io/docs</a> that are useful. To find out more, read my CKAD and/or CKA specific posts.</li>
+<li>Figure out how to copy and paste from/to the web interface - different OS require different commands. The CKAD / CKA guide should provide this (for Mac, it&rsquo;s the usual <code>CMD-c</code> and <code>CMD-v</code>)</li>
+<li>Do some practice on the actual computer you will be taking the exam on to get used to it. For myself, I used a Macbook to to take the exam because it has a webcam, as well as an external keyboard - both pieces of hardware are not what I use normally.</li>
+<li>If your desk is cluttered, spend some time the day before to clear everything irrelevant from it.</li>
+<li>Memorize <code>vimrc</code> if using vim. More on that later.</li>
+<li>Memorize bash aliases for <code>kubectl</code> commands so you save on typing during the exam. More on that later.</li>
+</ul>
+<h2 id="memorize-vimrc">Memorize vimrc</h2>
+<p>If you are a heavy vim user (like myself) and/or will be using vim during the exam, I highly recommend you to memorize a bare bones vimrc and input it during the start of the exam so you get some good defaults. I used the following for the exam:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">nocompatible</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">et</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">number</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">ai</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">ts</span>=<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">sw</span>=<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">sts</span>=<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">set</span> <span style="color:#a6e22e">bs</span>=<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h2 id="memorize-bash-aliases-for-kubectl-commands">Memorize bash aliases for kubectl commands</h2>
+<p>bash aliases for commonly used <code>kubectl</code> commands will save you a ton of typing (and time). I used the following for the exam:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">v</span>=<span style="color:#a6e22e">vim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">k</span>=<span style="color:#a6e22e">kubectl</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kg</span>=<span style="color:#e6db74">&#39;k get&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kdes</span>=<span style="color:#e6db74">&#39;k describe&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kd</span>=<span style="color:#e6db74">&#39;k delete&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kdf</span>=<span style="color:#e6db74">&#39;kd -f&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kaf</span>=<span style="color:#e6db74">&#39;k apply -f&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kx</span>=<span style="color:#e6db74">&#39;k explain&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kcc</span>=<span style="color:#e6db74">&#39;k config current-context&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kn</span>=<span style="color:#e6db74">&#39;k config set-context $(kcc) --namespace&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">knd</span>=<span style="color:#e6db74">&#39;kn default&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">knks</span>=<span style="color:#e6db74">&#39;kn kube-system&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kcu</span>=<span style="color:#e6db74">&#39;k config use-context&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">kl</span>=<span style="color:#e6db74">&#39;k logs&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">klf</span>=<span style="color:#e6db74">&#39;kl -f&#39;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>You should come up with your own list.</p>
+<p>During the exam, you can append this line to <code>~/.bashrc</code> to source for the aliases:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span> -f ~/aliases <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> source ~/aliases
+</span></span></code></pre></div><h2 id="one-day-before-the-exam">One day before the exam</h2>
+<p>Please have a good rest. If you have done your preparation work, you should have no problem passing the exam. For CKAD, you should be aiming for a perfect score. For CKA, the content is slightly harder but you should be aiming for a very high score.</p>
+<h2 id="on-the-day-of-the-exam-itself">On the day of the exam itself</h2>
+<p>Access the exam site 15 minutes prior to the scheduled time. You should do so by logging onto the <a href="https://portal.linuxfoundation.org/portal">Linux Foundation Portal</a>. There will be a link to redirect you to the examslocal.com site.</p>
+<p>The proctor will come in, do the ID check and lay down ground rules before releasing exam to you.</p>
+<p>Once the exam was released to me, I did the following:</p>
+<ul>
+<li>Ran <code>vim ~/.vimrc</code>, entered the vimrc contents above, saved and quit.</li>
+<li>Ran <code>vim ~/aliases</code>, entered the bash aliases, modified <code>~/.bashrc</code> to source those aliases.</li>
+<li>Create generic PodSpec: <code>k run nginx --restart=Never --image nginx --dry-run -o yaml &gt;podspec.yml</code></li>
+<li>Create generic Deployment Spec: <code>k create deployment nginx --image nginx --dry-run -o yaml &gt;deployspec.yml</code></li>
+</ul>
+<p>The generic PodSpec and Deployment Spec come in handy when new Pods / Deployments need to be created but their complexity overwhelms the <code>kubectl run</code> or <code>kubectl create</code> command line. Simply make a new copy, make required modifications on that copy, then <code>kubectl apply -f</code>.</p>
+<h2 id="exam-tactics">Exam tactics</h2>
+<ul>
+<li>The biggest constraint in both exams is time, <strong>especially the CKAD exam</strong>. Questions have points associated and can be done independently of one another. Therefore, like many others who have written similar guides, I highly recommend starting from the questions with more points.
+<ul>
+<li>Such questions are not necessarily more difficult than questions with less points. A useful tactic I picked up from one exam guide and used during the CKA exam is to use the in-built notepad to make a list of all the questions and their points, then start from the question with the most points that I am confident of doing.</li>
+</ul>
+</li>
+<li>(<strong>IMPT</strong>) There are multiple k8s clusters. Before rushing into a question, remember to copy and paste the <code>kubectl</code> command supplied by the question to change to the correct context. Otherwise you would have done your work for nothing.</li>
+<li>Ensure you are in the correct namespace. This is as important as the previous point. If no namespace is stated in the question, you are to use the <code>default</code> namespace.
+<ul>
+<li>If using manifest files, for resources that are scoped to a namespace, you should explicitly specify the <code>namespace</code> in the <code>metadata</code> section.</li>
+<li>If using the command line, ensure you have switched to the correct namespace; I recommend resetting the namespace to default right after you have issued the command to switch context. If you are using my bash aliases, running <code>knd</code> will do the job.</li>
+</ul>
+</li>
+<li>If you are stuck, move on. The web interface contains a button for you to flag a question so you can return to it later. Flagged questions will have a blue flag next to them in the dropdown menu used for question selection. You may also use the text editor in the web interface to record down the information, or you can just use vim / nano in the terminal.</li>
+<li>The web interface is built so that it is easy to copy and paste information (which you may type incorrectly under stress) such as Pod name, Deployment name, container name, labels, etc using a single click. No excuses for typos!</li>
+<li>Always be on the &ldquo;main node&rdquo; unless you need to do work in another node. I use quotes here because I forgot the name of the actual main node; you will find out what it is during the exam.</li>
+</ul>
+<h2 id="on-the-web-interface">On the web interface</h2>
+<p>I have read some posts that suggest the web interface is crappy. My personal experience is otherwise; I find it pretty decent.</p>
+<p>In terms of layout, there is a control section at the top of the page. The questions are on the left hand side of the page. The terminal is on the right hand side of the page and takes up the majority of the space.</p>
+<h3 id="control-section">Control section</h3>
+<p>From what I can remember, there are buttons / dropdown menus to:</p>
+<ul>
+<li>Share your camera and microphone with the proctor.</li>
+<li>Share your screen with the proctor.</li>
+<li>Open up a live chat with the proctor (if you have closed it).</li>
+<li>Open up a text editor (contents are preserved when you close it).</li>
+<li>Request a break.</li>
+<li>Request ending the exam.</li>
+<li>Safely refresh the page.</li>
+</ul>
+<h3 id="questions-section">Questions section</h3>
+<p>The most important thing about this section is that important information such as namespace, Pod names, Deployment names and the like can all be copied. Hence you should not be making any typos.</p>
+<p>There is a button at the end of every question to flag it. A dropdown menu is available to quickly navigate through questions. Questions that are flagged will have a blue flag appear next to them for quick identification.</p>
+<h3 id="terminal-section">Terminal section</h3>
+<p>There are 2 parts to this that can be toggled via &ldquo;tabs&rdquo;. The first is a help page that shows a set of instructions available using the <code>man lf_exam</code> command. The next is the terminal itself.</p>
+<p>Because there is only 1 terminal, if you foresee yourself requiring multiple terminals, use a terminal multiplexer such as screen or tmux.</p>
+<h2 id="if-you-lose-your-connection">If you lose your connection</h2>
+<p>This happened to me during my CKAD exam. About an hour into the exam, I lost my connection to the exam. My Internet connection was alright but somehow the exam website said I lost my connection to the exam and showed instructions to either call the support number or email the given support email address. None of that worked for me.</p>
+<p>If this happens to you, please do not panic. When I took the CKA exam, I asked my proctor about this and what he / she suggested was to just wait because it is most likely an issue on the proctor&rsquo;s end. The timer will be paused until you can resume the exam.</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+<script>mixpanel.track("page view", {"page": "https:\/\/yanhan.github.io\/posts\/ckad-cka-exam-tactics\/"})</script>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

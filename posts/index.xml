@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
-    <lastBuildDate>Tue, 20 Feb 2018 21:01:11 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
     
     <atom:link href="https://yanhan.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    <item>
+      <title>CKA exam guide</title>
+      <link>https://yanhan.github.io/posts/cka-exam-guide/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/cka-exam-guide/</guid>
+      <description>
+      
+      CKA specific pointers. Does not overlap with my CKAD guide.
+      
+      </description>
+    </item>
+    <item>
+      <title>CKAD exam guide for experienced k8s users</title>
+      <link>https://yanhan.github.io/posts/ckad-exam-guide/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/ckad-exam-guide/</guid>
+      <description>
+      
+      Useful kubectl commands and knowledge for the CKAD exam
+      
+      </description>
+    </item>
+    <item>
+      <title>CKAD / CKA exam tactics</title>
+      <link>https://yanhan.github.io/posts/ckad-cka-exam-tactics/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/posts/ckad-cka-exam-tactics/</guid>
+      <description>
+      
+      Non curriculum related exam tactics for CKAD / CKA
+      
+      </description>
+    </item>
     <item>
       <title>Vim abbreviations for a specific file</title>
       <link>https://yanhan.github.io/posts/vim-abbreviations-for-a-specific-file/</link>
@@ -314,7 +350,7 @@ TLDR On the command line, r...
       <guid>https://yanhan.github.io/posts/2015-07-23-given-the-pmf-of-a-random-variable-x-compute-the-variance-of-x/</guid>
       <description>
       
-      This week, I started using some free time to read Think Stats by Allen B. Downey. So far it&#39;s been a pretty good book. I...
+      This week, I started using some free time to read Think Stats by Allen B. Downey. So far it’s been a pretty good b...
       
       </description>
     </item>

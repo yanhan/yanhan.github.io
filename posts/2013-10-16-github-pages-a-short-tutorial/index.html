@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +13,10 @@ Good examples of Github pages:
 http://&lt;your username&gt;.github.io/&lt;project name&gt;/
 For example, my Github username is yanhan, and the project name I&rsquo;ve showed above is algo_ghackers, hence the url." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2013-10-16-github-pages-a-short-tutorial/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2013-10-16-github-pages-a-short-tutorial/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2013-10-16T23:44:00+00:00" />
 <meta property="article:modified_time" content="2013-10-16T23:44:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Github Pages - A short tutorial"/>
 <meta name="twitter:description" content="Github pages is a platform for you to publish a static web page about your open source project(s) on Github.
@@ -95,6 +96,18 @@ For example, my Github username is yanhan, and the project name I&rsquo;ve showe
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -416,6 +429,22 @@ For example, my Github username is yanhan, and the project name I&rsquo;ve showe
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
       </td>
     </tr>
   </tbody>
@@ -461,15 +490,15 @@ from almost 3 years back, along with some experimentation.</p>
 <p>If you want to create a Github Page for your Github project, here are the
 steps:</p>
 <h2 id="step-1-checkout-an-orphan-branch-called-gh-pages">Step 1: Checkout an orphan branch called <code>gh-pages</code></h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout --orphan gh-pages
-</code></pre></div><p>This will create an <strong>orphan</strong> branch called <code>gh-pages</code>. Based on the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout --orphan gh-pages
+</span></span></code></pre></div><p>This will create an <strong>orphan</strong> branch called <code>gh-pages</code>. Based on the
 <code>git-checkout</code> manpage, the first commit on an orphan branch has no parents,
 so it is disconnected from the history of your repository. This is perfect for
 our use case, after all, the history of the source code of a project probably
 should not feature as part of the history of its github page.</p>
 <h2 id="step-2-remove-the-tracked-contents-from-working-tree-and-index">Step 2: Remove the tracked contents from working tree and index</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git rm rf .
-</code></pre></div><p>Again, this step may be optional depending on what you are trying to do.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git rm rf .
+</span></span></code></pre></div><p>Again, this step may be optional depending on what you are trying to do.</p>
 <h2 id="step-3-track-any-contents-you-want-to-display">Step 3: Track any contents you want to display</h2>
 <p>This means adding at least an <code>index.html</code> file, and more commonly the whole
 set of static content you want to display on your project&rsquo;s Github page.
@@ -478,14 +507,14 @@ for more details.</p>
 <p>Do not forget to make a commit when you are done.</p>
 <h2 id="step-4-push-the-gh-pages-branch-up-to-github">Step 4: Push the gh-pages branch up to Github</h2>
 <p>Most commonly:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push origin gh-pages
-</code></pre></div><p>Adjust the remote name accordingly if it is not <code>origin</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git push origin gh-pages
+</span></span></code></pre></div><p>Adjust the remote name accordingly if it is not <code>origin</code>.</p>
 <h2 id="step-5-viewing-your-masterpiece">Step 5: Viewing your Masterpiece</h2>
 <p>Tadah! We are done. Or rather, almost done. If you go to any non-existent
 Github page, such as
 <a href="http://pages.github.com/123123">http://pages.github.com/123123</a>, one part
 says:</p>
-<p><em>&ldquo;Are you trying to publish one?&quot;</em> It may take up to ten minutes until
+<p><em>&ldquo;Are you trying to publish one?&rdquo;</em> It may take up to ten minutes until
 your page is available.</p>
 <p>In the meantime, just relax.</p>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 At the end of the post, you should be able to use your web server to host API documentation that looks something like http://petstore.swagger.io
 Like many of my posts, this is technical and there are instructions you have to follow." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2017-11-26-using-swagger-ui-with-any-codebase/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2017-11-26-using-swagger-ui-with-any-codebase/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-11-26T14:43:00+00:00" />
 <meta property="article:modified_time" content="2017-11-26T14:43:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Using Swagger UI with any codebase"/>
 <meta name="twitter:description" content="This post shows you how to use Swagger UI with any codebase. There are no library dependencies once you extract the assets. The only things you need are a web server and a file containing the API documentation in the OpenAPI format.
@@ -89,6 +90,34 @@ Like many of my posts, this is technical and there are instructions you have to 
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -440,91 +469,91 @@ Like many of my posts, this is technical and there are instructions you have to 
 <p>This section focuses on extracting the static assets required by Swagger UI.</p>
 <h3 id="installing-nvm">Installing nvm</h3>
 <p>Follow the instructions at the <a href="https://github.com/creationix/nvm#install-script">nvm GitHub README</a>. I have copied and pasted what I used:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
-</code></pre></div><p>nvm allows us to install multiple versions of Nodejs without having to override the system&rsquo;s Nodejs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
+</span></span></code></pre></div><p>nvm allows us to install multiple versions of Nodejs without having to override the system&rsquo;s Nodejs.</p>
 <h3 id="install-nodejs-using-nvm">Install Nodejs using nvm</h3>
 <p>I am using Nodejs 8.9.1 in this demo. I believe any 8.x Nodejs should work.</p>
-<pre><code class="language-basn" data-lang="basn">nvm install 8.9.1
+<pre tabindex="0"><code class="language-basn" data-lang="basn">nvm install 8.9.1
 </code></pre><h3 id="install-swagger-ui-dist">Install swagger-ui-dist</h3>
 <p>Create a <code>package.json</code> file with the following contents:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
-    <span style="color:#e6db74">&#34;version&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;0.1.0&#34;</span>,
-    <span style="color:#e6db74">&#34;dependencies&#34;</span><span style="color:#f92672">:</span> {
-        <span style="color:#e6db74">&#34;swagger-ui-dist&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;~3.5.0&#34;</span>
-    }
-}
-</code></pre></div><p>Then activate Nodejs 8.9.1 and install the package:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nvm use 8.9.1
-npm install
-</code></pre></div><p>You should see a <code>node_modules</code> directory. We will be extracting the static assets of <code>swagger-ui-dist</code> from it soon.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;version&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;0.1.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;dependencies&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;swagger-ui-dist&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;~3.5.0&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then activate Nodejs 8.9.1 and install the package:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm use 8.9.1
+</span></span><span style="display:flex;"><span>npm install
+</span></span></code></pre></div><p>You should see a <code>node_modules</code> directory. We will be extracting the static assets of <code>swagger-ui-dist</code> from it soon.</p>
 <h3 id="extract-static-assets">Extract static assets</h3>
 <p>Copy the <code>node_modules/swagger-ui-dist</code> directory:</p>
-<pre><code>cp -R node_modules/swagger-ui-dist .
+<pre tabindex="0"><code>cp -R node_modules/swagger-ui-dist .
 </code></pre><p>In the <code>swagger-ui-dist</code> directory, there is a file named <code>index.html</code>. Use a text editor to open that file and go to line 76. You should see code like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ui</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SwaggerUIBundle</span>({
-    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;http://petstore.swagger.io/v2/swagger.json&#34;</span>,
-</code></pre></div><p>For purposes of the demo below, modify the value of the <code>url</code> key so that it looks like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ui</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SwaggerUIBundle</span>({
-    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/api-docs.yml&#34;</span>,
-</code></pre></div><p>This is telling the code to fire a request to <code>/api-docs.yml</code> to load the API documentation. Feel free to change the name of this endpoint, as long as you configure your web server supports it and return the correct file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ui</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SwaggerUIBundle</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;http://petstore.swagger.io/v2/swagger.json&#34;</span>,
+</span></span></code></pre></div><p>For purposes of the demo below, modify the value of the <code>url</code> key so that it looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ui</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SwaggerUIBundle</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/api-docs.yml&#34;</span>,
+</span></span></code></pre></div><p>This is telling the code to fire a request to <code>/api-docs.yml</code> to load the API documentation. Feel free to change the name of this endpoint, as long as you configure your web server supports it and return the correct file.</p>
 <p>In fact, you can copy / move the entire <code>swagger-ui-dist</code> directory to your web server&rsquo;s repository and take things from there (while skipping the rest of this article). If you are unsure on how to proceed, carry on reading so you can see a demo of how we incorporate some example API documentation so it is hosted on a Flask server.</p>
 <h2 id="demo-using-flask-server-using-docker">Demo using Flask server (using Docker)</h2>
 <p>This is the easy way.</p>
 <p>Simply clone <a href="https://github.com/yanhan/swagger-ui-any-codebase">https://github.com/yanhan/swagger-ui-any-codebase</a> and run the following commands to build the Docker image and run it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./build-docker.sh
-./run-docker.sh
-</code></pre></div><p>Then go to <code>http://127.0.0.1:5000/swagger-ui</code> . Tadah!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./build-docker.sh
+</span></span><span style="display:flex;"><span>./run-docker.sh
+</span></span></code></pre></div><p>Then go to <code>http://127.0.0.1:5000/swagger-ui</code> . Tadah!</p>
 <h2 id="demo-using-flask-server-not-using-docker">Demo using Flask server (not using Docker)</h2>
 <p>This is the hard way. With the Docker option, I don&rsquo;t really recommend doing this unless you want to familiarize yourself with the pyenv toolchain.</p>
 <h3 id="install-pyenv">Install pyenv</h3>
 <p>Follow the instructions at the <a href="https://github.com/pyenv/pyenv#installation">pyenv GitHub README</a> to install pyenv. I used the instructions at the <a href="https://github.com/pyenv/pyenv-installer">pyenv-installer</a> to install pyenv. Specifically, the following command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-</code></pre></div><h3 id="install-python-363-using-pyenv">Install Python 3.6.3 using pyenv</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+</span></span></code></pre></div><h3 id="install-python-363-using-pyenv">Install Python 3.6.3 using pyenv</h3>
 <p>Now we install Python 3.6.3 using pyenv. Any version of Python 3.x should work fine.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pyenv install 3.6.3
-</code></pre></div><p>If you encounter any errors installing pyenv, google is your friend.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pyenv install 3.6.3
+</span></span></code></pre></div><p>If you encounter any errors installing pyenv, google is your friend.</p>
 <h3 id="create-a-virtualenv-for-this-demo">Create a virtualenv for this demo</h3>
 <p>We will be creating a virtualenv to install Flask. We will be naming it <code>swagger-demo</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pyenv virtualenv 3.6.3 swagger-demo
-</code></pre></div><h3 id="install-flask">Install Flask</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pyenv virtualenv 3.6.3 swagger-demo
+</span></span></code></pre></div><h3 id="install-flask">Install Flask</h3>
 <p>Now we will be installing Flask inside the <code>swagger-demo</code> virtualenv:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pyenv activate swagger-demo
-pip install -r requirements.txt
-</code></pre></div><h3 id="web-server-code">Web server code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pyenv activate swagger-demo
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span></code></pre></div><h3 id="web-server-code">Web server code</h3>
 <p>Get it from <a href="https://github.com/yanhan/swagger-ui-any-codebase/blob/master/server.py">https://github.com/yanhan/swagger-ui-any-codebase/blob/master/server.py</a> and save it as <code>server.py</code>.</p>
 <p>We will be going through some of the code later.</p>
 <h3 id="api-docsyml-file">api-docs.yml file</h3>
 <p>Get it from <a href="https://github.com/yanhan/swagger-ui-any-codebase/blob/master/api-docs.yml">https://github.com/yanhan/swagger-ui-any-codebase/blob/master/api-docs.yml</a> and save it as <code>api-docs.yml</code>.</p>
 <p>This is our example API documentation saved as a YAML file.</p>
 <h3 id="running-the-server">Running the server</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python server.py
-</code></pre></div><p>Then go to <a href="http://127.0.0.1:5000/swagger-ui">http://127.0.0.1:5000/swagger-ui</a> to see the documentation. Tadah!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python server.py
+</span></span></code></pre></div><p>Then go to <a href="http://127.0.0.1:5000/swagger-ui">http://127.0.0.1:5000/swagger-ui</a> to see the documentation. Tadah!</p>
 <h2 id="how-everything-works">How everything works</h2>
 <p>Understand this section and you can adapt the Swagger UI assets to any codebase you are using. You are recommended to open <a href="https://github.com/yanhan/swagger-ui-any-codebase/blob/master/server.py">https://github.com/yanhan/swagger-ui-any-codebase/blob/master/server.py</a> and refer to it as we explain the code.</p>
 <p>Recall that earlier we extracted the <code>swagger-ui-dist</code> directory from the swagger-ui-dist NPM package. That directory contains all the static assets required. We just need to find a way for the server to deliver the <code>swagger-ui-dist/index.html</code> file on a user request.</p>
 <p>Notice that to see the docs, we go to the path <code>/swagger-ui</code>, which serves the <code>swagger-ui-dist/index.html</code> file. Which implies that our web server must have an endpoint for this path taht serves the file. For our demo, it is right here:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/swagger-ui/&#34;</span>)
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">swagger_ui</span>():
-    <span style="color:#66d9ef">return</span> send_from_directory(SWAGGER_UI_DIST_DIR, <span style="color:#e6db74">&#34;index.html&#34;</span>)
-</code></pre></div><p>This tells Flask to return the <code>index.html</code> page from our <code>swagger-ui-dist</code> directory. Recall that earlier, we modified that file so the <code>SwaggerUIBundle</code> has its <code>url</code> value changed:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ui</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SwaggerUIBundle</span>({
-    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/api-docs.yml&#34;</span>,
-</code></pre></div><p>which implies we must have another route to <code>/api-docs.yml</code> that returns the file containing the API documentation. Indeed, it is here:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/api-docs.yml&#34;</span>)
-<span style="color:#a6e22e">@nocache</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">swagger_api_docs_yml</span>():
-    <span style="color:#66d9ef">return</span> send_from_directory(<span style="color:#e6db74">&#34;.&#34;</span>, <span style="color:#e6db74">&#34;api-docs.yml&#34;</span>)
-</code></pre></div><p>The endpoint and the filename do not have to be the same as long as the endpoint you are using returns the correct file; you can use whatever name you like for the endpoint and the filename. We are only using the same name to reduce confusion. I added the <code>nocache</code> decorator so that the docs served by the Flask server will be updated as I save the actual file and refresh my browser. Credits to <a href="https://arusahni.net/blog/2014/03/flask-nocache.html">Aru Sahni&rsquo;s blog post</a> for this code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#34;/swagger-ui/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">swagger_ui</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> send_from_directory(SWAGGER_UI_DIST_DIR, <span style="color:#e6db74">&#34;index.html&#34;</span>)
+</span></span></code></pre></div><p>This tells Flask to return the <code>index.html</code> page from our <code>swagger-ui-dist</code> directory. Recall that earlier, we modified that file so the <code>SwaggerUIBundle</code> has its <code>url</code> value changed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ui</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SwaggerUIBundle</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/api-docs.yml&#34;</span>,
+</span></span></code></pre></div><p>which implies we must have another route to <code>/api-docs.yml</code> that returns the file containing the API documentation. Indeed, it is here:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#34;/api-docs.yml&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@nocache</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">swagger_api_docs_yml</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> send_from_directory(<span style="color:#e6db74">&#34;.&#34;</span>, <span style="color:#e6db74">&#34;api-docs.yml&#34;</span>)
+</span></span></code></pre></div><p>The endpoint and the filename do not have to be the same as long as the endpoint you are using returns the correct file; you can use whatever name you like for the endpoint and the filename. We are only using the same name to reduce confusion. I added the <code>nocache</code> decorator so that the docs served by the Flask server will be updated as I save the actual file and refresh my browser. Credits to <a href="https://arusahni.net/blog/2014/03/flask-nocache.html">Aru Sahni&rsquo;s blog post</a> for this code.</p>
 <p>Finally, if we open <code>swagger-ui-dist/index.html</code>, we will see some references to other static assets with the <code>./</code> prefix, for instance:</p>
-<pre><code>./swagger-ui.css
+<pre tabindex="0"><code>./swagger-ui.css
 ./favicon-32x32.png
 ./favicon-16x16.png
 </code></pre><p>These are all available at the <code>swagger-ui-dist</code> directory. Due to the <code>./</code> and the fact that we are hosting the API docs at <code>/swagger-ui</code>, these assets will be requested from the web server under <code>/swagger-ui</code>. For instance, <code>/swagger-ui/favicon-32x32.png</code>.</p>
 <p>Hence we need an endpoint for serving these assets, right here:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/swagger-ui/&lt;asset&gt;&#34;</span>)
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">swagger_assets</span>(asset):
-    <span style="color:#66d9ef">return</span> send_from_directory(SWAGGER_UI_DIST_DIR, asset)
-</code></pre></div><p>If we do not do this step, we will be able to load <code>/swagger-ui</code> but fail to load the other static assets. Open the Network Inspector / similar of your web browser and you will see a number of 404s. In fact, that was how I debugged the problem.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#34;/swagger-ui/&lt;asset&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">swagger_assets</span>(asset):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> send_from_directory(SWAGGER_UI_DIST_DIR, asset)
+</span></span></code></pre></div><p>If we do not do this step, we will be able to load <code>/swagger-ui</code> but fail to load the other static assets. Open the Network Inspector / similar of your web browser and you will see a number of 404s. In fact, that was how I debugged the problem.</p>
 <h2 id="security-implications">Security implications</h2>
 <p>The big drawback to this approach is security. Specifically, exposure of internal API docs to the public Internet. Here, I highlight some concerns that I see.</p>
 <ol>

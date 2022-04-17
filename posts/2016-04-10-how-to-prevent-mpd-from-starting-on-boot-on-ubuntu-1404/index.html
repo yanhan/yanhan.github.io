@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,9 +12,10 @@ sudo update-rc.d mpd disable Then make sure the following files do not exist:
 ~/.mpdconf $XDG_CONFIG_HOME/mpd/mpd.conf  And we are done!
 Explanation After installing mpd via sudo apt-get install mpd, mpd starts as a service on boot under the mpd user. To prevent mpd from starting as a service on boot, we have to run:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2016-04-10-how-to-prevent-mpd-from-starting-on-boot-on-ubuntu-1404/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2016-04-10-how-to-prevent-mpd-from-starting-on-boot-on-ubuntu-1404/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2016-04-10T11:24:00+00:00" />
 <meta property="article:modified_time" content="2016-04-10T11:24:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to prevent mpd from starting on boot on Ubuntu 14.04"/>
 <meta name="twitter:description" content="mpd refers to the Music Player Daemon, whose official website is at https://www.musicpd.org/
@@ -93,6 +94,34 @@ Explanation After installing mpd via sudo apt-get install mpd, mpd starts as a s
       </td>
       <td class="tagvalues">
         <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -430,16 +459,16 @@ Explanation After installing mpd via sudo apt-get install mpd, mpd starts as a s
 <p>mpd refers to the Music Player Daemon, whose official website is at <a href="https://www.musicpd.org/">https://www.musicpd.org/</a></p>
 <h2 id="tldr">TLDR</h2>
 <p>On the command line, run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo update-rc.d mpd disable
-</code></pre></div><p>Then make sure the following files do not exist:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo update-rc.d mpd disable
+</span></span></code></pre></div><p>Then make sure the following files do not exist:</p>
 <pre><code>~/.mpdconf
 $XDG_CONFIG_HOME/mpd/mpd.conf
 </code></pre>
 <p>And we are done!</p>
 <h2 id="explanation">Explanation</h2>
 <p>After installing mpd via <code>sudo apt-get install mpd</code>, mpd starts as a service on boot under the <code>mpd</code> user. To prevent mpd from starting as a service on boot, we have to run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo update-rc.d mpd disable
-</code></pre></div><p>But after doing this, for some reason, mpd still runs on my machine but this time, as my user, because the <code>~/.mpdconf</code> file exists. Moving it away solved the problem. Oh, in case you were thinking a <code>sudo service mpd stop</code> will solve the problem, it does not, because mpd is not being run as a service on startup.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo update-rc.d mpd disable
+</span></span></code></pre></div><p>But after doing this, for some reason, mpd still runs on my machine but this time, as my user, because the <code>~/.mpdconf</code> file exists. Moving it away solved the problem. Oh, in case you were thinking a <code>sudo service mpd stop</code> will solve the problem, it does not, because mpd is not being run as a service on startup.</p>
 <p>Even though I found out that the issue lies with the existence of <code>~/.mpdconf</code>, a glance at <code>man mpd</code> shows the following line:</p>
 <pre><code>MPD searches for a config file in $XDG_CONFIG_HOME/mpd/mpd.conf then ~/.mpdconf then /etc/mpd.conf or uses CONF_FILE.
 </code></pre>

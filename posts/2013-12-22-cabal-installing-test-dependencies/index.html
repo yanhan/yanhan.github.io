@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 That being said, the content of this post should still be valid.
  If there is one serious pain point I&rsquo;ve always felt about Haskell, it is the lack of documentation, or if documentation available, it&rsquo;s usually very terse and feels like it&rsquo;s meant more for experts than for beginners." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2013-12-22-cabal-installing-test-dependencies/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2013-12-22-cabal-installing-test-dependencies/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2013-12-22T11:05:00+00:00" />
 <meta property="article:modified_time" content="2013-12-22T11:05:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="cabal - installing test dependencies"/>
 <meta name="twitter:description" content="Update Dec 2017: Dear reader, this post was written in a time when Stack did not exist and Haskell users had to deal with cabal directly. For most intents and purposes, you will have a much better experience using Stack.
@@ -125,6 +126,18 @@ That being said, the content of this post should still be valid.
         
         
         <a href="/tags/cabal/"> cabal </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -398,6 +411,22 @@ That being said, the content of this post should still be valid.
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="/tags/yesod/"> yesod </a>
         
         
@@ -454,17 +483,17 @@ a line that looks something like this:</p>
 <p>and below it, there are some <code>build-depends</code> that look like libraries meant
 for testing.
 If so, then you are in luck. Simply execute the following commands:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cabal configure --enable-tests
-cabal install --only-dependencies --enable-tests
-</code></pre></div><p>And cabal will go on to install the test dependencies. Once that is done,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cabal configure --enable-tests
+</span></span><span style="display:flex;"><span>cabal install --only-dependencies --enable-tests
+</span></span></code></pre></div><p>And cabal will go on to install the test dependencies. Once that is done,
 you should be able to run the test suite.</p>
 <p>For a longer version of how I derived the above, read on.</p>
 <h2 id="long-version">Long version</h2>
 <p>I was fiddling around with setting up a Yesod scaffolded site, and
 it went like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yesod init
-cd yesodtry <span style="color:#f92672">&amp;&amp;</span> cabal sandbox init <span style="color:#f92672">&amp;&amp;</span> cabal install <span style="color:#f92672">&amp;&amp;</span> yesod devel
-</code></pre></div><p>So my project is named <code>yesodtry</code>. Everything went smoothly, and the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yesod init
+</span></span><span style="display:flex;"><span>cd yesodtry <span style="color:#f92672">&amp;&amp;</span> cabal sandbox init <span style="color:#f92672">&amp;&amp;</span> cabal install <span style="color:#f92672">&amp;&amp;</span> yesod devel
+</span></span></code></pre></div><p>So my project is named <code>yesodtry</code>. Everything went smoothly, and the
 Yesod scaffolding comes with a &quot;demo&quot; site, that looks like
 this:</p>
 <p><img src="/images/2013-12-22/yesod_demo_site.png" alt=""></p>
@@ -537,12 +566,12 @@ Here's how working on a package might look like using the new features:
 Could that be the magic one liner needed to solve our problems? Fortunately,
 yes.</p>
 <p>So I proceeded with:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cabal install --only-dependencies --enable-tests
-</code></pre></div><p>and cabal goes on to install the dependencies for the <code>test-suite test</code>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cabal install --only-dependencies --enable-tests
+</span></span></code></pre></div><p>and cabal goes on to install the dependencies for the <code>test-suite test</code>
 section.</p>
 <p>Then, I proceeded to run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yesod test
-</code></pre></div><p>And here&rsquo;s the last few lines of output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yesod test
+</span></span></code></pre></div><p>And here&rsquo;s the last few lines of output:</p>
 <pre><code>Linking dist/build/test/test ...
 Building yesodtry-0.0.0...
 Preprocessing library yesodtry-0.0.0...

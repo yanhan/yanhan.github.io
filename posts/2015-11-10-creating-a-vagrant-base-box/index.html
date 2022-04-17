@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 Once you&rsquo;ve done that, continue reading my post for some important details.
 NOTE: Please finish reading this tutorial before you start creating your base box. You will be saving yourself a lot of time especially if you need to run a lot of provisioning scripts." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/2015-11-10-creating-a-vagrant-base-box/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/2015-11-10-creating-a-vagrant-base-box/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-11-10T22:34:00+00:00" />
 <meta property="article:modified_time" content="2015-11-10T22:34:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Creating a Vagrant base box: some important details"/>
 <meta name="twitter:description" content="If you have not done this before Instead of reinventing the wheel, I highly recommend that you read Nicholas Cerminara&rsquo;s excellent tutorial titled &ldquo;How to Create a Vagrant Base Box from an Existing One&rdquo;.
@@ -370,6 +371,34 @@ NOTE: Please finish reading this tutorial before you start creating your base bo
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="/tags/vagrant/"> vagrant </a>
         
         
@@ -438,11 +467,11 @@ NOTE: Please finish reading this tutorial before you start creating your base bo
 <p>If this line is not inside your <code>Vagrantfile</code>, I believe that Vagrant will generate an SSH keypair instead of using the default insecure keypair. If we provision box \( A \) using a generated SSH keypair instead of the insecure keypair, any box \( C \) that is based on base box \( B \) will encounter SSH connection issues during the <code>vagrant up</code> step.</p>
 <h2 id="after-provisioning-box--a--but-before-you-do-a-vagrant-package-to-create-the-base-box--b-">After provisioning box \( A \) but before you do a <code>vagrant package</code> to create the base box \( B \)</h2>
 <p>Follow <a href="https://github.com/mitchellh/vagrant/issues/5186#issuecomment-81409295">mtchavez&rsquo;s advice here</a> and run the following code as the <code>vagrant</code> user inside box \( A \):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys
-chmod <span style="color:#ae81ff">700</span> .ssh
-chmod <span style="color:#ae81ff">600</span> .ssh/authorized_keys
-chown -R vagrant:vagrant .ssh
-</code></pre></div><p>This will make the insecure public key an authorized key. I believe that by doing so, when we create boxes \( C \) based on the base box \( B \), Vagrant will be able to connect to box \( C \) via SSH, detect the presence of this insecure key and go on to generate a new SSH keypair - which is exactly what we want.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">700</span> .ssh
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">600</span> .ssh/authorized_keys
+</span></span><span style="display:flex;"><span>chown -R vagrant:vagrant .ssh
+</span></span></code></pre></div><p>This will make the insecure public key an authorized key. I believe that by doing so, when we create boxes \( C \) based on the base box \( B \), Vagrant will be able to connect to box \( C \) via SSH, detect the presence of this insecure key and go on to generate a new SSH keypair - which is exactly what we want.</p>
 <h2 id="for-a-good-explanation-as-to-why-you-need-to-do-all-that">For a good explanation as to why you need to do all that</h2>
 <p>Read <a href="https://github.com/mitchellh/vagrant/issues/5186#issuecomment-112052573">Rustem&rsquo;s explanation</a>.</p>
 <h2 id="credits">Credits</h2>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,10 @@
 It is meant for readers of my other blog post, Haskell deep dive: zsh-git-prompt, who do not have zsh installed and/or do not have zsh-git-prompt installed.
 NOTE: If you do not wish to install zsh and/or zsh-git-prompt but just want to check out what it does, head over to https://github." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yanhan.github.io/posts/how-to-install-zsh-git-prompt/" />
+<meta property="og:url" content="https://yanhan.github.io/posts/how-to-install-zsh-git-prompt/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-12-09T13:19:00+00:00" />
 <meta property="article:modified_time" content="2017-12-09T13:19:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to install zsh-git-prompt"/>
 <meta name="twitter:description" content="This post shows you how to install zsh-git-prompt, a program which customizes the zsh prompt by displaying additional information whenever a user cds into a git repository.
@@ -400,6 +401,34 @@ NOTE: If you do not wish to install zsh and/or zsh-git-prompt but just want to c
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="/tags/zsh/"> zsh </a>
         
         
@@ -433,29 +462,29 @@ NOTE: If you do not wish to install zsh and/or zsh-git-prompt but just want to c
 <h2 id="recommended-oh-my-zsh">Recommended: oh-my-zsh</h2>
 <p>You are highly recommended to install <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>, because it comes with some nice default settings and has a pretty big ecosystem of plugins and themes that you can later on choose to use for your customized setup.</p>
 <p>Follow the installation instructions at <a href="https://github.com/robbyrussell/oh-my-zsh#basic-installation">https://github.com/robbyrussell/oh-my-zsh#basic-installation</a>. I use the following command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</code></pre></div><p>This command might error out and say you are missing some programs. Install what it says that you lack using your package manager. When I was building <a href="https://github.com/yanhan/zsh-git-prompt-docker">the Docker image for this</a>, it was complaining about missing <code>make</code> and <code>xz</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>This command might error out and say you are missing some programs. Install what it says that you lack using your package manager. When I was building <a href="https://github.com/yanhan/zsh-git-prompt-docker">the Docker image for this</a>, it was complaining about missing <code>make</code> and <code>xz</code>.</p>
 <h2 id="installing-zsh-git-prompt">Installing zsh-git-prompt</h2>
 <p>We will be cloning the zsh-git-prompt git repo at your home directory.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~
-git clone https://github.com/olivierverdier/zsh-git-prompt.git
-cd zsh-git-prompt
-stack setup
-stack build
-stack install
-</code></pre></div><p>The <code>stack install</code> command should install a binary named <code>gitstatus</code> in the <code>~/zsh-git-prompt/src/.bin/</code> directory (not to be confused with the actual <code>git status</code> command). Do verify that this is the case.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~
+</span></span><span style="display:flex;"><span>git clone https://github.com/olivierverdier/zsh-git-prompt.git
+</span></span><span style="display:flex;"><span>cd zsh-git-prompt
+</span></span><span style="display:flex;"><span>stack setup
+</span></span><span style="display:flex;"><span>stack build
+</span></span><span style="display:flex;"><span>stack install
+</span></span></code></pre></div><p>The <code>stack install</code> command should install a binary named <code>gitstatus</code> in the <code>~/zsh-git-prompt/src/.bin/</code> directory (not to be confused with the actual <code>git status</code> command). Do verify that this is the case.</p>
 <p>Append the following to your <code>~/.zshrc</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">source ~/zsh-git-prompt/zshrc.sh
-GIT_PROMPT_EXECUTABLE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;haskell&#39;</span>
-<span style="color:#75715e"># an example prompt</span>
-PROMPT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;%B%m%~%b$(git_super_status) %# &#39;</span>
-</code></pre></div><p>Feel free to change the value of the <code>PROMPT</code>, so long it includes the <code>$(git_super_status)</code> somewhere. Personally, I use:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">PROMPT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_super_status)&#39;</span>
-</code></pre></div><p>For more information on what those funny <code>%B</code>, <code>%m</code>, <code>%{$fg[cyan]%}</code>, <code>%c</code> and so on mean, please consult <a href="http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html">http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>source ~/zsh-git-prompt/zshrc.sh
+</span></span><span style="display:flex;"><span>GIT_PROMPT_EXECUTABLE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;haskell&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># an example prompt</span>
+</span></span><span style="display:flex;"><span>PROMPT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;%B%m%~%b$(git_super_status) %# &#39;</span>
+</span></span></code></pre></div><p>Feel free to change the value of the <code>PROMPT</code>, so long it includes the <code>$(git_super_status)</code> somewhere. Personally, I use:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>PROMPT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_super_status)&#39;</span>
+</span></span></code></pre></div><p>For more information on what those funny <code>%B</code>, <code>%m</code>, <code>%{$fg[cyan]%}</code>, <code>%c</code> and so on mean, please consult <a href="http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html">http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html</a></p>
 <h2 id="reload-the-shell-and-see-what-zsh-git-prompt-does">Reload the shell and see what zsh-git-prompt does</h2>
 <p>If you are already on zsh, just run the following to source the <code>~/.zshrc</code> and load the changes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">source</span> <span style="color:#f92672">~/.</span>zshrc
-</code></pre></div><p>Otherwise, run <code>zsh</code> to open a new zsh shell.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">source</span> <span style="color:#f92672">~/.</span>zshrc
+</span></span></code></pre></div><p>Otherwise, run <code>zsh</code> to open a new zsh shell.</p>
 <p>To see what zsh-git-prompt does, cd to a git repository. You should see that your prompt has additional information about the git repository, similar to <code>(master|✔)</code> or <code>(somebranch|…)</code> or <code>(feature-branch|5↑2↓)</code>. If you cd to a directory which is not inside a git repo, you should not see that information.</p>
 <h2 id="references">References</h2>
 <ul>

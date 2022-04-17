@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.96.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="ckad,k8s,kubernetes"><meta name="description" content="Useful kubectl commands and knowledge for the CKAD exam"><meta property="og:title" content="CKAD exam guide for experienced k8s users" />
+<meta property="og:description" content="Useful kubectl commands and knowledge for the CKAD exam" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/ckad-exam-guide/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-02T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CKAD exam guide for experienced k8s users"/>
+<meta name="twitter:description" content="Useful kubectl commands and knowledge for the CKAD exam"/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>CKAD exam guide for experienced k8s users | Yan Han&#39;s blog</title><script type="text/javascript">(function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a._i.push([b,d,g])};a.__SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL? MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);mixpanel.init("49f4d9dd919ecb7ee428489acdd19dff");</script>
+</head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">02</span>
+<span class="rest">Jun 2020</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">CKAD exam guide for experienced k8s users</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/ckad/"> ckad </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/k8s/"> k8s </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/kubernetes/"> kubernetes </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>In this post, I will be covering content that experienced k8s users who did not prepare for CKAD may not know and can quickly pick up to narrow their knowledge gap. In many ways, this is a guide I wish I had when I started preparing for the exam.</p>
+<p>Due to the extensive availability of other guides that cover the CKAD curriculum, I will not be doing so in this post. That said, once you have completed all the free practice (covered below), you should have a good grasp of the curriculum.</p>
+<p>For generic exam tactics for the CKAD exam, I recommend you read my post on <a href="https://yanhan.github.io/posts/ckad-cka-exam-tactics/">CKA / CKAD exam tactics</a>.</p>
+<h2 id="free-practice">Free Practice</h2>
+<p>The most useful free practice (personally attempted all three):</p>
+<ul>
+<li><a href="https://github.com/dgkanatsios/CKAD-exercises">https://github.com/dgkanatsios/CKAD-exercises</a></li>
+<li><a href="https://github.com/bbachi/CKAD-Practice-Questions">https://github.com/bbachi/CKAD-Practice-Questions</a></li>
+<li><a href="https://codeburst.io/kubernetes-ckad-weekly-challenges-overview-and-tips-7282b36a2681">https://codeburst.io/kubernetes-ckad-weekly-challenges-overview-and-tips-7282b36a2681</a></li>
+</ul>
+<p>If you do not wish to spend money on paid courses to prepare for CKAD, I would say that having k8s experience outside of CKAD plus being able to do all the above exercises reasonably quickly should be sufficient for you to pass with a good score.</p>
+<h2 id="paid-course-with-lab-practice">Paid course with lab practice</h2>
+<p>If you are willing to fork out a small amount of money, Mumshad&rsquo;s Mannambeth&rsquo;s CKAD course is great for CKAD preparation:</p>
+<ul>
+<li><a href="https://www.udemy.com/course/certified-kubernetes-application-developer/">https://www.udemy.com/course/certified-kubernetes-application-developer/</a></li>
+</ul>
+<h2 id="useful-commands-you-must-know">Useful commands you must know</h2>
+<p>If there is anything difficult about the CKAD exam, it is to complete everything within 2 hours. As such, speed of execution counts and there are several kubectl commands that can be used to create resources / perform other operations quickly.</p>
+<p>In fact, this is one of my biggest takeaways from preparing for CKAD. The difference in speed can be quite astounding.</p>
+<p>Please gain familiarity with all the commands here. You may also want to go through the <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">official kubectl Cheat Sheet</a>.</p>
+<p>Quickly create Pods, Deployments and Services:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Quickly create Pod. The `--restart=Never` is crucial.</span>
+</span></span><span style="display:flex;"><span>kubectl run mypod --restart<span style="color:#f92672">=</span>Never --image busybox -- sleep <span style="color:#ae81ff">3600</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create Deployment</span>
+</span></span><span style="display:flex;"><span>kubectl create deploy mydeploy --image nginx
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create a Service for a Deployment</span>
+</span></span><span style="display:flex;"><span>kubectl expose deploy/mydeploy --type ClusterIP --port <span style="color:#ae81ff">80</span> --target-port <span style="color:#ae81ff">8080</span> --name myservice
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create a Service for a Pod</span>
+</span></span><span style="display:flex;"><span>kubectl expose po mypod --type ClusterIP --port <span style="color:#ae81ff">80</span> --target-port <span style="color:#ae81ff">8080</span> --name myservice
+</span></span></code></pre></div><p>Quickly create other resources:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Quickly create ConfigMap from literal</span>
+</span></span><span style="display:flex;"><span>kubectl create cm myconfigmap --from-literal<span style="color:#f92672">=</span>keyone<span style="color:#f92672">=</span>valone --from-literal<span style="color:#f92672">=</span>keytwo<span style="color:#f92672">=</span>valtwo
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create Secret from literal</span>
+</span></span><span style="display:flex;"><span>kubectl create secret generic mysecret --from-literal<span style="color:#f92672">=</span>keyone<span style="color:#f92672">=</span>valone --from-literal<span style="color:#f92672">=</span>keytwo<span style="color:#f92672">=</span>valtwo
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create ServiceAccount</span>
+</span></span><span style="display:flex;"><span>kubectl create sa mysa
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create Role</span>
+</span></span><span style="display:flex;"><span>kubectl create role myrole --verb<span style="color:#f92672">=</span>list,get,update --resource<span style="color:#f92672">=</span>pods,secrets
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create RoleBinding</span>
+</span></span><span style="display:flex;"><span>kubectl create rolebinding myrolebinding --role myrole --serviceaccount<span style="color:#f92672">=</span>mysa
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create Job manifest</span>
+</span></span><span style="display:flex;"><span>kubectl create job myjob --image busybox --dry-run -o yaml &gt;jobspec.yml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quickly create CronJob manifest</span>
+</span></span><span style="display:flex;"><span>kubectl create cj mycj --image busybox --dry-run -o yaml &gt;cjspec.yml
+</span></span></code></pre></div><p>Quickly get information about resources (the flags apply not just for Pods, but also for Deployments, Services, etc):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Quickly get Pod IP</span>
+</span></span><span style="display:flex;"><span>kubectl get po -o wide
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show all pod labels</span>
+</span></span><span style="display:flex;"><span>kubectl get po --show-labels
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In addition to usual columns, also output values of specific labels (app in this case)</span>
+</span></span><span style="display:flex;"><span>kubectl get po -L app
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Select Pods whose labels have certain values</span>
+</span></span><span style="display:flex;"><span>kubectl get po -l <span style="color:#e6db74">&#39;env in (dev, prod)&#39;</span>
+</span></span></code></pre></div><p>Quickly get summary of various resources (it also displays events associated with a resource):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl describe deploy/mydeploy
+</span></span><span style="display:flex;"><span>kubectl describe cm/myconfigmap
+</span></span><span style="display:flex;"><span>kubectl describe netpol/mynetworkpolicy
+</span></span></code></pre></div><p>Deploy new image for deployment, undo and see history:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use new image for Deployment</span>
+</span></span><span style="display:flex;"><span>kubectl set image deploy/mydeploy <span style="color:#e6db74">&#39;*=busybox:1.28&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Same as above but add an annotation in the Deployment to record the change</span>
+</span></span><span style="display:flex;"><span>kubectl set image deploy/mydeploy <span style="color:#e6db74">&#39;*=busybox:1.28&#39;</span> --record
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># See status of replacing Pods to use the new image</span>
+</span></span><span style="display:flex;"><span>kubectl rollout status deploy/mydeploy
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Rollback to specific revision</span>
+</span></span><span style="display:flex;"><span>kubectl rollout undo deploy/mydeploy --to-revision<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View details of a specific revision</span>
+</span></span><span style="display:flex;"><span>kubectl rollout history deploy/mydeploy --revision<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p>Getting documentation on various resources:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get docs on Pod Spec. Can be used for other resources too.</span>
+</span></span><span style="display:flex;"><span>kubectl explain po.spec
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># See high level overview of syntax for various resources; in this case for Pods.</span>
+</span></span><span style="display:flex;"><span>kubectl explain po --recursive
+</span></span></code></pre></div><h2 id="knowledge-you-must-have">Knowledge you must have</h2>
+<ul>
+<li>The <code>kubectl create</code> family of commands. Most commonly used to create Deployment, (Cluster)Role, (Cluster)RoleBinding, ServiceAccount, Job, CronJob, etc.</li>
+<li>The <code>kubectl rollout</code> family of commands.</li>
+<li>The <code>kubectl run</code> command. Using <code>--restart=Never</code> will create a Pod. There&rsquo;s also the <code>--port</code> flag to specify containerPort and <code>--env</code> to specify environment variable. Good for straightforward tasks.
+<ul>
+<li>One would do well to read through <code>kubectl run -h</code> several times to get a grasp of the available flags.</li>
+</ul>
+</li>
+<li>Using the <code>kubectl set image</code> command to update Pod and/or Deployment image. As well as the <code>--record</code> flag which will create an annotation in the Pod / Deployment spec.</li>
+<li>Knowing about <code>kubectl explain</code> and how to use it.</li>
+<li>Knowing about and using the <code>kubectl api-resources</code> command to list supported k8s resources.</li>
+<li>Knowing that <code>kubectl describe</code> gives a good and short summary for some resources, especially ConfigMap, Role, RoleBinding. For Deployment and Pods, it also shows the associated events - invaluable.</li>
+<li>Using <code>kubectl expose</code> to quickly create a Service.</li>
+<li><code>kubectl get</code>:
+<ul>
+<li>Using JSONPath to select specific fields and do filtering. The official docs covers it in depth: <a href="https://kubernetes.io/docs/reference/kubectl/jsonpath/">https://kubernetes.io/docs/reference/kubectl/jsonpath/</a></li>
+<li>Using <code>-o=custom-columns</code> for getting customized output. Good coverage in official docs at: <a href="https://kubernetes.io/docs/reference/kubectl/overview/#custom-columns">https://kubernetes.io/docs/reference/kubectl/overview/#custom-columns</a></li>
+<li>Using <code>-o wide</code> flag to quickly get Pod IPs and node IPs.</li>
+<li>Using <code>--show-labels</code> flag to quickly show labels.</li>
+</ul>
+</li>
+<li>All about ConfigMap and Secret. As other guides have mentioned, they are featured extensively.
+<ul>
+<li>The various ways of using <code>kubectl create</code> to create them. Specifically: <code>--from-literal</code>, <code>--from-file</code> and <code>--from-env-file</code>.</li>
+<li>Using ConfigMap and Secret as volumes in Pod / Deployment manifest files. You should practice this many times to become as familiar as possible to reduce the number of times you use <code>kubectl explain</code>.</li>
+<li>Using ConfigMap and Secret in PodSpec -&gt; containers <code>env</code> section, either using <code>envFrom</code> to source the entire Secret / ConfigMap or <code>valueFrom</code> to source from individual keys.</li>
+</ul>
+</li>
+<li>Job spec: familiarize yourself with <code>backoffLimit</code>, <code>completions</code>, <code>parallelism</code>, <code>activeDeadlineSeconds</code>. These may be of use as part of the Job Spec in CronJob spec as well.</li>
+<li>The syntax for <code>volumes</code> and <code>volumeMounts</code> in PodSpec.</li>
+<li>PV, PVC, Ingress, Netpol. Personally, I do not use these much normally and had to make an effort to familiarize myself with them.</li>
+</ul>
+<p>nginx ingress annotations:</p>
+<ul>
+<li><code>nginx.kubernetes.io/rewrite-target: &quot;/&quot;</code>. Without this, the ingress will not function correctly in terms of forwarding traffic on the domain name to the target service.</li>
+</ul>
+<h2 id="useful-documentation-you-should-bookmark">Useful documentation you should bookmark</h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource">Ingress spec</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes">PersistentVolume spec</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">PersistentVolumeClaim spec</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/#networkpolicy-resource">NetPol spec</a></li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/jsonpath/">JSONPath Support</a></li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/overview/#custom-columns">kubectl get Custom columns</a></li>
+</ul>
+<p>Having these as bookmarks enable you to copy and paste the Specs and save some typing, memorization, or running <code>kubectl explain</code>.</p>
+<h2 id="other-memorization-work">Other memorization work</h2>
+<p>Additional memorization I did and would recommend doing, though not strictly required especially if you have bookmarked the docs I listed above:</p>
+<ul>
+<li>Netpol spec</li>
+<li>Ingress spec</li>
+<li>PV spec</li>
+<li>PVC spec</li>
+<li><code>volumes</code> and <code>volumeMounts</code> sections in Pod Spec.</li>
+</ul>
+<h2 id="other-things-i-knew--did-to-prepare-the-certification">Other things I knew / did to prepare the certification</h2>
+<p>This section contains ramblings that are irrelevant to most people. As per the usual style of my posts such as this, I present content relevant to most people at the top, then present my personal thoughts at the end.</p>
+<p>Before I took the exam, I have about 1 year experience with k8s and 9 months production experience with it. In those 9 months, I was the maintainer of a few clusters and got to debug many issues (mostly not relevant to CKAD), so that helped lay a solid foundation.</p>
+<p>Initially, I had no intention of quickly getting CKAD, but wanted to get it eventually, so I purchased <a href="https://www.udemy.com/course/certified-kubernetes-application-developer/">Mumshad Mannambeth&rsquo;s excellent CKAD course on Udemy</a> to see what knowledge I lack. This is part of the new philosophy I have taken up in 2019, which is to spend some money on quality courses to speed up my learning - I&rsquo;m glad to say this has helped tremendously and was money well spent.</p>
+<p>To prepare for the exam, I completed all the labs in the course several times, focusing on the labs with k8s features that I don&rsquo;t use much (or at all) at work (PV, PVC, Ingress, Netpol being the main culprits).</p>
+<p>My opinion is that real world experience with k8s alone may not be sufficient for CKAD because like many exams, what you get tested on may not be an accurate reflection of skills used on the job. Main reasons:</p>
+<ul>
+<li>There are many commands that someone who prepares for CKAD will know that offers a very fast way to answer some questions. Someone who didn&rsquo;t prepare for the cert will probably not know these commands and use manifest files instead (a good engineering practice). An experienced k8s user who does not prepare for the exam will eventually get the answer but may spend more time doing so (sometimes a lot more).</li>
+<li>CKAD tests on certain things that not every company uses because of various reasons, for instance practicality. For myself, PV, PVC, Ingress and Netpol are the features I do not use often and am less familiar with. Without deliberate practice, I would probably struggle with them in an exam setting.</li>
+</ul>
+<p>Hence, even with work experience, one should spend time to prepare to maximize the probability of acing the exam on the first try.</p>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+<script>mixpanel.track("page view", {"page": "https:\/\/yanhan.github.io\/posts\/ckad-exam-guide\/"})</script>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>

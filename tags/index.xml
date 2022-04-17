@@ -7,10 +7,58 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2013 Yan Han Pang | Vitae theme for Hugo</copyright>
-    <lastBuildDate>Tue, 20 Feb 2018 21:01:11 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
     
     <atom:link href="https://yanhan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    <item>
+      <title>cka</title>
+      <link>https://yanhan.github.io/tags/cka/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/tags/cka/</guid>
+      <description>
+      
+      
+      
+      </description>
+    </item>
+    <item>
+      <title>ckad</title>
+      <link>https://yanhan.github.io/tags/ckad/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/tags/ckad/</guid>
+      <description>
+      
+      
+      
+      </description>
+    </item>
+    <item>
+      <title>k8s</title>
+      <link>https://yanhan.github.io/tags/k8s/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/tags/k8s/</guid>
+      <description>
+      
+      
+      
+      </description>
+    </item>
+    <item>
+      <title>kubernetes</title>
+      <link>https://yanhan.github.io/tags/kubernetes/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanhan.github.io/tags/kubernetes/</guid>
+      <description>
+      
+      
+      
+      </description>
+    </item>
     <item>
       <title>vim</title>
       <link>https://yanhan.github.io/tags/vim/</link>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.96.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Pang Yan Han"><meta name="keywords" content="cka,k8s,kubernetes"><meta name="description" content="CKA specific pointers. Does not overlap with my CKAD guide."><meta property="og:title" content="CKA exam guide" />
+<meta property="og:description" content="CKA specific pointers. Does not overlap with my CKAD guide." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yanhan.github.io/posts/cka-exam-guide/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-02T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CKA exam guide"/>
+<meta name="twitter:description" content="CKA specific pointers. Does not overlap with my CKAD guide."/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/all.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://yanhan.github.io/css/custom.css" /><title>CKA exam guide | Yan Han&#39;s blog</title><script type="text/javascript">(function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a._i.push([b,d,g])};a.__SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL? MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);mixpanel.init("49f4d9dd919ecb7ee428489acdd19dff");</script>
+</head>
+<body><header>
+
+  <div id="titletext"><h2 id="title"><a href="https://yanhan.github.io/">Yan Han&#39;s blog</a></h2></div>
+  <div id="title-description"><p id="subtitle">On Computer Technology</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/yanhan"><i title="GitHub" class="icons fab fa-github"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/bookshelf">Bookshelf</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+
+<div class="date">
+<span class="day">02</span>
+<span class="rest">Jun 2020</span>
+</div>
+
+</div>
+
+<div class="matter">
+<h1 class="title">CKA exam guide</h1>
+</div>
+</div>
+
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>Tags</p>
+      </td>
+      <td class="tagvalues">
+        <p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/cka/"> cka </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/k8s/"> k8s </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="/tags/kubernetes/"> kubernetes </a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+</div>
+
+<div class="markdown">
+<p>This post covers the knowledge component of the CKA exam.</p>
+<p>For generic exam tactics for the exam, I recommend you read my post on <a href="https://yanhan.github.io/posts/ckad-cka-exam-tactics/">CKA / CKAD exam tactics</a>.</p>
+<h2 id="ckad-knowledge-is-necessary">CKAD knowledge is necessary</h2>
+<p>To my surprise, there is a good amount of overlap between the CKAD and CKA exam. This is probably good news for people who have spent time preparing for the CKAD exam. Of course, the situation may change in the future.</p>
+<p>Therefore, CKAD knowledge should be considered prerequisite for CKA and I recommend you to read my <a href="https://yanhan.github.io/posts/ckad-exam-guide/">CKAD exam guide</a> for pointers on CKAD specific knowledge. Other than for emphasis, I will not be repeating the content in that post here.</p>
+<h2 id="kubernetes-the-hard-way-is-not-necessary">&ldquo;Kubernetes The Hard Way&rdquo; is not necessary</h2>
+<p>I have read many CKA guides that encourage candidates preparing for the CKA exam to go through <a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">Kubernetes The Hard Way</a> several times to get a firm knowledge of Kubernetes to prepare for the exam.</p>
+<p>Having done that and been through the CKA exam, I will say that it is not necessary. In fact, Kubernetes The Hard Way is overkill for the CKA exam.</p>
+<p>At no point during the exam did I make use of knowledge that I gained exclusively from Kubernetes The Hard Way.</p>
+<p>Instead, during preparation, I found myself trying (and failing) to memorize the Common Name, Organization and Subject Alternative Names of the many certificates required by a k8s cluster, as well as trying to gain familiarity with a bunch of command line flags (and their values) for the control plane binaries.</p>
+<p>The sheer number of details (and certificates) would be too much for most people to handle.</p>
+<p><strong>NOTE:</strong> This is not a criticism of Kubernetes The Hard Way. In fact, I highly recommend any serious Kubernetes administrator to do it a few times for knowledge and to appreciate how much custom Kubernetes distributions do for you under the hood, especially cloud based k8s such as GKE, EKS and similar.</p>
+<h2 id="cka-specific-knowledge-not-covered-in-cka">CKA specific knowledge not covered in CKA</h2>
+<p>The following list is not exhaustive. But they lie outside the purview of CKAD and belong more to the realm of Kubernetes administrators than users. I was not familiar with a good amount of it until I started preparing for the exam.</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/">Static Pods</a>. How to create, modify and delete them</li>
+<li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename">Scheduling a Pod on a specific node</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector">Scheduling a Pod on node with certain labels using <code>nodeSelector</code></a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/#specify-schedulers-for-pods">Scheduling a Pod using a custom scheduler</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">Taints and tolerations</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity">Affinity. More emphasis on Pod affinity</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/">initContainers</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">DaemonSets</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">securityContext</a> (running container / Pod as specific user /  group; capabilities)</li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Container / Pod resource requests and limits</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/policy/limit-range/">Limit Ranges</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/policy/resource-quotas/">Resource Quotas</a></li>
+<li>Finding CPU and memory consumption of Pods and Nodes (use <code>kubectl top po</code> and <code>kubectl top node</code>)</li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/">Looking up Services and Pods by their DNS names</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/#create-a-certificate-signing-request">Creating a Kubernetes user</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">kubeconfig</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/">Marking a node as schedulable / unschedulable, draining a node</a></li>
+<li>Troubleshooting node issues (mostly kubelet specific)</li>
+<li>Backing up and restoring the cluster (covered in the section below under etcd)</li>
+<li>Check general cluster health (use <code>kubectl get componentstatuses</code>)</li>
+<li><a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">Using kubeadm to setup a new k8s cluster</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/">Using kubeadm to upgrade the k8s version of a cluster</a></li>
+<li>Troubleshooting control plane issues</li>
+</ul>
+<h2 id="service-and-pod-dns">Service and Pod DNS</h2>
+<p>While some of the information here is available in the official docs and other guides, I choose to cover it here because I find it pretty important and feel I can do better in some aspects.</p>
+<h3 id="service">Service</h3>
+<p>Service DNS names follow the convention <code>&lt;SERIVCENAME&gt;.&lt;NAMESPACE&gt;.service.cluster.local</code></p>
+<p>Suppose there is a service named <code>web</code> in the <code>apps</code> namespace.</p>
+<p>A Pod in the same namespace as the service can refer to the service using the service&rsquo;s name itself. Eg <code>web</code>.</p>
+<p>A Pod in a different namespace has to specify the namespace as well. Eg. <code>web.apps</code>. Alternatively, it can also use the full DNS name of <code>web.apps.service.cluster.local</code>.</p>
+<h3 id="pod">Pod</h3>
+<p>Pod DNS names follow the convention <code>&lt;POD IP&gt;.&lt;NAMESPACE&gt;.pod.cluster.local</code> , where <code>&lt;POD IP&gt;</code> is the Pod&rsquo;s IP address with all the <code>.</code> characters replaced with <code>-</code>.</p>
+<p>To get a Pod DNS name, first, you will have to get the IP address of the Pod in question. This can be done using <code>kubectl get po -o wide</code> and further narrowed down if you know the Pod name or select using label(s).</p>
+<p>Assuming the Pod IP is <code>10.244.0.112</code> and is in the <code>apps</code> namespace, the DNS name of the Pod is <code>10-244-0-112.apps.pod.cluster.local</code>.</p>
+<p>For some unknown reason, this is missing from the most recent (1.18) English Kubernetes docs. I used to be able to find it in (I believe) the 1.13 docs but now it does not seem available. That said, you can still find it on:</p>
+<ul>
+<li>The <a href="https://kubernetes.io/ja/docs/concepts/services-networking/dns-pod-service/#a%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89-1">Japanese version of the docs</a></li>
+<li><a href="https://github.com/kubernetes/dns/issues/266">https://github.com/kubernetes/dns/issues/266</a> (This is safe for use during exam because it is a subdomain of the allowed domain <a href="https://github.com/kubernetes">https://github.com/kubernetes</a>)</li>
+<li><a href="https://v1-14.docs.kubernetes.io/zh/docs/concepts/services-networking/dns-pod-service/#a-%E8%AE%B0%E5%BD%95-1">https://v1-14.docs.kubernetes.io/zh/docs/concepts/services-networking/dns-pod-service/#a-%E8%AE%B0%E5%BD%95-1</a> (Mandarin Chinese docs but for version 1.14; not safe for exam use)</li>
+</ul>
+<h2 id="external-programs-that-you-must-be-familiar-with">External programs that you must be familiar with</h2>
+<ul>
+<li>etcd (a limited subset of commands)</li>
+<li>systemctl</li>
+<li>journalctl</li>
+<li>openssl</li>
+</ul>
+<h3 id="etcd">etcd</h3>
+<p>For etcd, you must be familiar with how to take snapshot and restore snapshot. It should be sufficient to familiarize yourself with the contents of this doc: <a href="https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/">https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/</a></p>
+<h3 id="systemctl">systemctl</h3>
+<p>For systemctl, you should minimally be familiar with how to start, stop, restart and view the status of services, list services and edit service files. The following is a short cheatsheet that assumes you run the commands as root:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># view service status</span>
+</span></span><span style="display:flex;"><span>systemctl status servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># start service</span>
+</span></span><span style="display:flex;"><span>systemctl start servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># stop service</span>
+</span></span><span style="display:flex;"><span>systemctl stop servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># restart service</span>
+</span></span><span style="display:flex;"><span>systemctl restart servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># shows the systemctl file for a service</span>
+</span></span><span style="display:flex;"><span>systemctl cat servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># edit systemctl file service file</span>
+</span></span><span style="display:flex;"><span>systemctl edit --full servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># specify vim as the editor</span>
+</span></span><span style="display:flex;"><span>EDITOR<span style="color:#f92672">=</span>vim systemctl edit --full servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># List services</span>
+</span></span><span style="display:flex;"><span>systemctl list-units
+</span></span><span style="display:flex;"><span>systemctl list-units --all
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable a service (so it will automatically run on system boot)</span>
+</span></span><span style="display:flex;"><span>systemctl enable servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Disable a service (so it will not run automatically on system boot)</span>
+</span></span><span style="display:flex;"><span>systemctl disable servicename
+</span></span></code></pre></div><h3 id="journalctl">journalctl</h3>
+<p>We use journalctl to get logs from services run by systemd. For CKA, you may need to use it to view logs for control plane components or kubelet. Below is a cheatsheet of useful commands:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># View logs from service</span>
+</span></span><span style="display:flex;"><span>journalctl -u servicename
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Don&#39;t use a pager to view the logs, just direct to standard output</span>
+</span></span><span style="display:flex;"><span>journalctl -u servicename --no-pager
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View logs from service with UTC timestamps</span>
+</span></span><span style="display:flex;"><span>journalctl -u servicename --utc
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View logs from service but in current boot</span>
+</span></span><span style="display:flex;"><span>journalctl -u servicename -b
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View logs in JSON format</span>
+</span></span><span style="display:flex;"><span>journalctl -u servicename -o json
+</span></span><span style="display:flex;"><span>journalctl -u servicename -o json-pretty
+</span></span></code></pre></div><h3 id="openssl">openssl</h3>
+<p>The openssl command line is notorious for being very confusing due to how it defies many command line flag conventions and its generally obtuse documentation.</p>
+<p>If you have done Kubernetes The Hard Way or used cfssl, you will find that cfssl offers a much better user experience. Hence, you may be tempted to go down the cfssl route and memorize cfssl commands.</p>
+<p>However, when I did the actual comparison, there is less memory work required for openssl commands as compared to cfssl, because despite the much better command line docs from cfssl, one has to memorize at least 2 JSON files for cfssl.</p>
+<p>Hence I recommend memorizing openssl commands. Thankfully, there are only a few:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># VERY IMPT: Inspect details of a cert</span>
+</span></span><span style="display:flex;"><span>openssl x509 -in example.crt -noout -text
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate RSA private key (final argument is number of bits. Eg. 2048, 4096)</span>
+</span></span><span style="display:flex;"><span>openssl genrsa -out example.key <span style="color:#ae81ff">2048</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create CSR (Certificate Signing Request) from private key</span>
+</span></span><span style="display:flex;"><span>openssl req -new -key example.key -out example.csr
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a cert from the CSR. The cert will be signed with a CA cert</span>
+</span></span><span style="display:flex;"><span>openssl x509 -req -in child.csr -days <span style="color:#ae81ff">365</span> -CA ca.crt -CAkey ca.key -CAcreateserial -out child.crt
+</span></span></code></pre></div><p>This is probably optional:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create self signed cert (most likely won&#39;t need this)</span>
+</span></span><span style="display:flex;"><span>openssl x509 -req -in example.csr -signkey example.key -out example.crt -days <span style="color:#ae81ff">365</span>
+</span></span></code></pre></div><p>I would like to emphasize that you must memorize the following command for viewing the details of an x509 certificate:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>openssl x509 -in example.crt -noout -text
+</span></span></code></pre></div><p>Because you may need to inspect the Common Name, Expiry Date, CA, Subject Alternative Name and other details of certificates.</p>
+<h2 id="useful-official-docs-to-bookmark">Useful official docs to bookmark</h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/#create-a-certificate-signing-request-object-to-send-to-the-kubernetes-api">https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/#create-a-certificate-signing-request-object-to-send-to-the-kubernetes-api</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/">https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/">https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/cluster-administration/certificates/">https://kubernetes.io/docs/concepts/cluster-administration/certificates/</a></li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/overview/#custom-columns">https://kubernetes.io/docs/reference/kubectl/overview/#custom-columns</a></li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/jsonpath/">https://kubernetes.io/docs/reference/kubectl/jsonpath/</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/">https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/">https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/">https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/">https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/</a></li>
+<li><a href="https://kubernetes.io/docs/setup/best-practices/certificates/">https://kubernetes.io/docs/setup/best-practices/certificates/</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/">https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/">https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/</a></li>
+</ul>
+<h2 id="free-practice">Free Practice</h2>
+<p>I personally tried this: <a href="https://github.com/David-VTUK/CKA-StudyGuide">https://github.com/David-VTUK/CKA-StudyGuide</a></p>
+<p>But I do not find it sufficient for the CKA exam.</p>
+<p>Unlike for CKAD, there are much less free practice resources for CKA. This is because there is significantly more work required to setup clusters that mimick scenarios similar to those in the CKA exam and people who do that will want to (and should be) compensated for their effort.</p>
+<p>Therefore, I will recommend you to prepare by purchasing the course in the next section.</p>
+<h2 id="paid-course">Paid course</h2>
+<p>This is the only paid course I purchased to prepare for CKA and the only one I will recommend: <a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/">https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/</a></p>
+<p>Yes, it&rsquo;s Mumshad Mannambeth again. If you have read my <a href="https://yanhan.github.io/posts/ckad-exam-guide/">CKAD exam guide</a>, I recommended his CKAD course there. For CKA, I strongly recommend his CKA course for the lab practices because you will get to go through many different scenarios and clusters which require different debugging methods and solutions. It also showed me many gaps in my knowledge when it comes to the CKA exam.</p>
+<p>Having gone through the exam, I would say that the course over prepares one for the exam. But heck, it was fun debugging those clusters. And it is better to over prepare than to under prepare.</p>
+<p><strong>Disclaimer:</strong> I am not paid to advertise for his course. The lab practices are just fantastic and the lack of free viable alternatives (unlike CKAD) makes it an even more attractive deal.</p>
+<h2 id="concluding-remarks">Concluding remarks</h2>
+<p>Unlike the CKAD exam which I believe seasoned users of k8s can pass even without much preparation work, I highly doubt most people can pass the CKA without preparing for it. Exception being people who have setup and maintained bare metal Kubernetes clusters for a long time.</p>
+<p>This is due to the higher bar required (74% compared to 66% for CKAD) as well as the much greater breadth that even seasoned administrators may not be familiar with. Despite more time available for the CKA exam (3 hours compared to 2 hours for CKAD), the additional 1 hour of time is not sufficient if one is clueless about what to do.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal">https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs">https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs</a></li>
+<li><a href="https://www.freecodecamp.org/news/openssl-command-cheatsheet-b441be1e8c4a/">https://www.freecodecamp.org/news/openssl-command-cheatsheet-b441be1e8c4a/</a></li>
+<li><a href="https://github.com/David-VTUK/CKA-StudyGuide">https://github.com/David-VTUK/CKA-StudyGuide</a></li>
+<li><a href="https://github.com/walidshaari/Kubernetes-Certified-Administrator">https://github.com/walidshaari/Kubernetes-Certified-Administrator</a></li>
+</ul>
+
+</div>
+
+<div class="disclaimer">
+  <p>Disclaimer: Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer(s), past or present.</p>
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function () {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'pangyanhan';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the</a></noscript>
+<a href="http://disqus.com/">comments powered by <span>Disqus</span></a>
+</div>
+
+<script>mixpanel.track("page view", {"page": "https:\/\/yanhan.github.io\/posts\/cka-exam-guide\/"})</script>
+
+</main><footer>
+ © Copyright 2013 Yan Han Pang | <a href="https://github.com/dataCobra/hugo-vitae">Vitae</a> theme for <a href="https://gohugo.io">Hugo</a> 
+
+
+    
+
+</footer>
+</body>
+</html>
